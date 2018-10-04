@@ -27,11 +27,11 @@ import java.io.StringWriter;
 import java.util.Enumeration;
 import java.util.Map.Entry;
 
-import org.logicware.pdb.Stack;
-import org.logicware.pdb.TypedArrayStack;
-import org.logicware.pdb.prolog.PrologProvider;
-import org.logicware.pdb.prolog.PrologTerm;
-import org.logicware.pdb.prolog.StructureExpectedError;
+import org.logicware.platform.Stack;
+import org.logicware.platform.TypedArrayStack;
+import org.logicware.prolog.PrologProvider;
+import org.logicware.prolog.PrologTerm;
+import org.logicware.prolog.StructureExpectedError;
 
 import ubc.cs.JLog.Foundation.jKnowledgeBase;
 import ubc.cs.JLog.Foundation.jPrologServices;

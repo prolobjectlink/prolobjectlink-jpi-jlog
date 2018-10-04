@@ -22,12 +22,12 @@ package org.logicware.prolog.jlog;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.logicware.pdb.prolog.PrologAtom;
-import org.logicware.pdb.prolog.PrologFactory;
-import org.logicware.pdb.prolog.PrologInteger;
-import org.logicware.pdb.prolog.PrologProvider;
-import org.logicware.pdb.prolog.PrologTerm;
-import org.logicware.pdb.prolog.PrologVariable;
+import org.logicware.prolog.PrologAtom;
+import org.logicware.prolog.PrologFactory;
+import org.logicware.prolog.PrologInteger;
+import org.logicware.prolog.PrologProvider;
+import org.logicware.prolog.PrologTerm;
+import org.logicware.prolog.PrologVariable;
 
 import ubc.cs.JLog.Foundation.jEquivalenceMapping;
 

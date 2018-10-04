@@ -19,7 +19,7 @@
  */
 package org.logicware.prolog.jlog;
 
-import static org.logicware.pdb.logging.LoggerConstants.ERROR_LOADING_BUILT_INS;
+import static org.logicware.platform.logging.LoggerConstants.ERROR_LOADING_BUILT_INS;
 import static org.logicware.prolog.jlog.JLogTerm.SIMPLE_ATOM_REGEX;
 
 import java.io.IOException;
@@ -27,20 +27,20 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
-import org.logicware.pdb.logging.LoggerUtils;
-import org.logicware.pdb.prolog.AbstractProvider;
-import org.logicware.pdb.prolog.PrologAtom;
-import org.logicware.pdb.prolog.PrologConverter;
-import org.logicware.pdb.prolog.PrologDouble;
-import org.logicware.pdb.prolog.PrologEngine;
-import org.logicware.pdb.prolog.PrologFloat;
-import org.logicware.pdb.prolog.PrologInteger;
-import org.logicware.pdb.prolog.PrologList;
-import org.logicware.pdb.prolog.PrologLong;
-import org.logicware.pdb.prolog.PrologProvider;
-import org.logicware.pdb.prolog.PrologStructure;
-import org.logicware.pdb.prolog.PrologTerm;
-import org.logicware.pdb.prolog.PrologVariable;
+import org.logicware.platform.logging.LoggerUtils;
+import org.logicware.prolog.AbstractProvider;
+import org.logicware.prolog.PrologAtom;
+import org.logicware.prolog.PrologConverter;
+import org.logicware.prolog.PrologDouble;
+import org.logicware.prolog.PrologEngine;
+import org.logicware.prolog.PrologFloat;
+import org.logicware.prolog.PrologInteger;
+import org.logicware.prolog.PrologList;
+import org.logicware.prolog.PrologLong;
+import org.logicware.prolog.PrologProvider;
+import org.logicware.prolog.PrologStructure;
+import org.logicware.prolog.PrologTerm;
+import org.logicware.prolog.PrologVariable;
 
 import ubc.cs.JLog.Foundation.jKnowledgeBase;
 import ubc.cs.JLog.Foundation.jPrologFileServices;

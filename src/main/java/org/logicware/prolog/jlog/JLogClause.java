@@ -19,10 +19,10 @@
  */
 package org.logicware.prolog.jlog;
 
-import org.logicware.pdb.prolog.AbstractClause;
-import org.logicware.pdb.prolog.PrologClause;
-import org.logicware.pdb.prolog.PrologProvider;
-import org.logicware.pdb.prolog.PrologTerm;
+import org.logicware.prolog.AbstractClause;
+import org.logicware.prolog.PrologClause;
+import org.logicware.prolog.PrologProvider;
+import org.logicware.prolog.PrologTerm;
 
 public class JLogClause extends AbstractClause implements PrologClause {
 

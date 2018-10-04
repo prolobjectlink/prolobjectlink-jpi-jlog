@@ -19,9 +19,9 @@
  */
 package org.logicware.prolog.jlog;
 
-import static org.logicware.pdb.logging.LoggerConstants.ERROR_LOADING_BUILT_INS;
-import static org.logicware.pdb.logging.LoggerConstants.FILE_NOT_FOUND;
-import static org.logicware.pdb.logging.LoggerConstants.IO;
+import static org.logicware.platform.logging.LoggerConstants.ERROR_LOADING_BUILT_INS;
+import static org.logicware.platform.logging.LoggerConstants.FILE_NOT_FOUND;
+import static org.logicware.platform.logging.LoggerConstants.IO;
 import static ubc.cs.JLog.Parser.pOperatorEntry.FX;
 import static ubc.cs.JLog.Parser.pOperatorEntry.FY;
 import static ubc.cs.JLog.Parser.pOperatorEntry.XF;
@@ -44,18 +44,18 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.StringTokenizer;
 
-import org.logicware.pdb.Licenses;
-import org.logicware.pdb.logging.LoggerUtils;
-import org.logicware.pdb.prolog.AbstractEngine;
-import org.logicware.pdb.prolog.OperatorEntry;
-import org.logicware.pdb.prolog.PredicateIndicator;
-import org.logicware.pdb.prolog.PrologClause;
-import org.logicware.pdb.prolog.PrologEngine;
-import org.logicware.pdb.prolog.PrologIndicator;
-import org.logicware.pdb.prolog.PrologOperator;
-import org.logicware.pdb.prolog.PrologProvider;
-import org.logicware.pdb.prolog.PrologQuery;
-import org.logicware.pdb.prolog.PrologTerm;
+import org.logicware.platform.Licenses;
+import org.logicware.platform.logging.LoggerUtils;
+import org.logicware.prolog.AbstractEngine;
+import org.logicware.prolog.OperatorEntry;
+import org.logicware.prolog.PredicateIndicator;
+import org.logicware.prolog.PrologClause;
+import org.logicware.prolog.PrologEngine;
+import org.logicware.prolog.PrologIndicator;
+import org.logicware.prolog.PrologOperator;
+import org.logicware.prolog.PrologProvider;
+import org.logicware.prolog.PrologQuery;
+import org.logicware.prolog.PrologTerm;
 
 import ubc.cs.JLog.Foundation.iNameArityStub;
 import ubc.cs.JLog.Foundation.jKnowledgeBase;
