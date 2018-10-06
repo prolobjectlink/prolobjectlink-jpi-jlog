@@ -384,7 +384,10 @@ final class JLogUtil {
 			buffer.append('(');
 		while (e.hasMoreElements()) {
 			jTerm jTerm = (jTerm) e.nextElement();
-			if (jTerm instanceof jPredicate) {
+			if (jTerm instanceof jVariable) {
+				jVariable jVar = (jVariable) jTerm;
+				buffer.append(jVar.getName());
+			} else if (jTerm instanceof jPredicate) {
 				jPredicate p = (jPredicate) jTerm;
 				String arg = toString(p.getName(), p.getArguments());
 				buffer.append(arg);

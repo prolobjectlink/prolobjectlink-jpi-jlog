@@ -21,6 +21,7 @@ package org.logicware.prolog.jlog;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import static ubc.cs.JLog.Parser.pOperatorEntry.FX;
 import static ubc.cs.JLog.Parser.pOperatorEntry.FY;
@@ -35,6 +36,7 @@ import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -1298,6 +1300,26 @@ public class PrologEngineTest extends PrologBaseTest {
 		engine.dispose();
 		assertTrue(engine.isProgramEmpty());
 		assertEquals(0, engine.getProgramSize());
+	}
+
+	@Test
+	public final void testIterator() {
+
+		engine = provider.newEngine();
+		engine.consult("family.pl");
+
+		int counter = 0;
+		Iterator<?> i = engine.iterator();
+		int size = engine.getProgramSize();
+
+		assertNotNull(i);
+		while (i.hasNext()) {
+			counter++;
+			i.next();
+		}
+
+		assertEquals(size, counter);
+
 	}
 
 }
