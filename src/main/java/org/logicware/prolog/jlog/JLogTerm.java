@@ -44,7 +44,7 @@ import java.io.IOException;
 import java.util.Enumeration;
 
 import org.logicware.platform.Stack;
-import org.logicware.platform.TypedArrayStack;
+import org.logicware.platform.ArrayStack;
 import org.logicware.platform.logging.LoggerConstants;
 import org.logicware.platform.logging.LoggerUtils;
 import org.logicware.prolog.AbstractTerm;
@@ -219,7 +219,7 @@ public abstract class JLogTerm extends AbstractTerm implements PrologTerm {
 	}
 
 	public final boolean unify(PrologTerm term) {
-		Stack<PrologTerm> stack = new TypedArrayStack<PrologTerm>();
+		Stack<PrologTerm> stack = new ArrayStack<PrologTerm>();
 		boolean match = unify(term, stack);
 		for (PrologTerm prologTerm : stack) {
 			unwrap(prologTerm, JLogTerm.class).unbind();

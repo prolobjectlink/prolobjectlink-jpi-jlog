@@ -28,7 +28,7 @@ import java.util.Enumeration;
 import java.util.Map.Entry;
 
 import org.logicware.platform.Stack;
-import org.logicware.platform.TypedArrayStack;
+import org.logicware.platform.ArrayStack;
 import org.logicware.prolog.PrologProvider;
 import org.logicware.prolog.PrologTerm;
 import org.logicware.prolog.StructureExpectedError;
@@ -73,7 +73,7 @@ final class JLogUtil {
 	}
 
 	static final boolean unify(jTerm thisTerm, jTerm otherTerm) {
-		return unify(thisTerm, otherTerm, new TypedArrayStack<jVariable>());
+		return unify(thisTerm, otherTerm, new ArrayStack<jVariable>());
 	}
 
 	static final boolean unify(jTerm thisTerm, jTerm otherTerm, Stack<jVariable> stack) {
