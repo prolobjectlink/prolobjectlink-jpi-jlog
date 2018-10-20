@@ -76,7 +76,6 @@ public class JLogConverter extends AbstractConverter<jTerm> implements PrologCon
 	protected static final String NECK = ":-";
 	protected static final String COMMA = ",";
 	protected static final String BUILTINS = "builtins";
-	protected static final String SIMPLE_ATOM_REGEX = "\\.|[a-z][A-Za-z0-9_]*";
 
 	protected final jPredicateTerms emptyBody = new jPredicateTerms();
 	protected final jEquivalenceMapping equivalence = new jEquivalenceMapping();

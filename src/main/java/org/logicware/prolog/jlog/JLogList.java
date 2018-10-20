@@ -136,7 +136,7 @@ public class JLogList extends JLogTerm implements PrologList {
 
 	private final class JLogListIter implements Iterator<PrologTerm> {
 
-		private Iterator<? extends jTerm> e;
+		private final Iterator<? extends jTerm> e;
 
 		private JLogListIter(jListPair list) {
 			e = new JLogIterator(list);

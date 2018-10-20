@@ -313,7 +313,8 @@ public abstract class JLogTerm extends AbstractTerm implements PrologTerm {
 		return isVariable() && vValue == null;
 	}
 
-	/** Binds a variable to a term */
+	/** Binds a variable to a term
+     * @param term */
 	protected final void bind(JLogTerm term) {
 		if (this != term) {
 			vValue = term;
@@ -341,16 +342,15 @@ public abstract class JLogTerm extends AbstractTerm implements PrologTerm {
 		JLogTerm thisTerm = this;
 		if (thisTerm.isVariable() && otherTerm.isCompound()) {
 			PrologTerm[] otherArguments = otherTerm.getArguments();
-			for (int i = 0; i < otherArguments.length; i++) {
-				PrologTerm argument = otherArguments[i];
-				if (argument != null) {
-					if (argument.isVariable()) {
-						return thisTerm == argument;
-					} else if (argument.isCompound() && thisTerm.occurs(argument)) {
-						return true;
-					}
-				}
-			}
+                    for (PrologTerm argument : otherArguments) {
+                        if (argument != null) {
+                            if (argument.isVariable()) {
+                                return thisTerm == argument;
+                            } else if (argument.isCompound() && thisTerm.occurs(argument)) {
+                                return true;
+                            }
+                        }
+                    }
 		}
 		return false;
 	}
