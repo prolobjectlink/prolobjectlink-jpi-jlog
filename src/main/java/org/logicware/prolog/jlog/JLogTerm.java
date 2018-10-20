@@ -43,8 +43,8 @@ import static ubc.cs.JLog.Foundation.iType.TYPE_VARIABLE;
 import java.io.IOException;
 import java.util.Enumeration;
 
-import org.logicware.platform.Stack;
 import org.logicware.platform.ArrayStack;
+import org.logicware.platform.Stack;
 import org.logicware.platform.logging.LoggerConstants;
 import org.logicware.platform.logging.LoggerUtils;
 import org.logicware.prolog.AbstractTerm;
@@ -313,8 +313,11 @@ public abstract class JLogTerm extends AbstractTerm implements PrologTerm {
 		return isVariable() && vValue == null;
 	}
 
-	/** Binds a variable to a term
-     * @param term */
+	/**
+	 * Binds a variable to a term
+	 * 
+	 * @param term
+	 */
 	protected final void bind(JLogTerm term) {
 		if (this != term) {
 			vValue = term;
@@ -342,15 +345,15 @@ public abstract class JLogTerm extends AbstractTerm implements PrologTerm {
 		JLogTerm thisTerm = this;
 		if (thisTerm.isVariable() && otherTerm.isCompound()) {
 			PrologTerm[] otherArguments = otherTerm.getArguments();
-                    for (PrologTerm argument : otherArguments) {
-                        if (argument != null) {
-                            if (argument.isVariable()) {
-                                return thisTerm == argument;
-                            } else if (argument.isCompound() && thisTerm.occurs(argument)) {
-                                return true;
-                            }
-                        }
-                    }
+			for (PrologTerm argument : otherArguments) {
+				if (argument != null) {
+					if (argument.isVariable()) {
+						return thisTerm == argument;
+					} else if (argument.isCompound() && thisTerm.occurs(argument)) {
+						return true;
+					}
+				}
+			}
 		}
 		return false;
 	}
@@ -513,8 +516,9 @@ public abstract class JLogTerm extends AbstractTerm implements PrologTerm {
 		if (value == null) {
 			if (other.value != null)
 				return false;
-		} else if (!value.equivalence(other.value, equivalence))
+		} else if (!value.equivalence(other.value, equivalence)) {
 			return false;
+		}
 		return true;
 	}
 
