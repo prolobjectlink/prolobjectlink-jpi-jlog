@@ -80,10 +80,6 @@ public final class JLogProvider extends AbstractProvider implements PrologProvid
 		return false;
 	}
 
-	public boolean preserveQuotes() {
-		return false;
-	}
-
 	public PrologTerm prologNil() {
 		return new JLogNil(this);
 	}
@@ -161,20 +157,12 @@ public final class JLogProvider extends AbstractProvider implements PrologProvid
 		return new JLogLong(this, value);
 	}
 
-	public PrologVariable newVariable() {
+	public PrologVariable newVariable(int position) {
 		return new JLogVariable(this);
 	}
 
-	public PrologVariable newVariable(String name) {
-		return new JLogVariable(this, name);
-	}
-
-	public PrologVariable newVariable(int position) {
-		return newVariable();
-	}
-
 	public PrologVariable newVariable(String name, int position) {
-		return newVariable(name);
+		return new JLogVariable(this, name);
 	}
 
 	public PrologList newList() {
