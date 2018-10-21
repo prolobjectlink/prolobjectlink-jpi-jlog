@@ -165,7 +165,7 @@ public final class JLogQuery extends AbstractQuery implements PrologQuery {
 			PrologTerm[][] allSolutions = new PrologTerm[n][m];
 			for (int i = 0; i < n; i++) {
 				PrologTerm[] solutionArray = all.get(i);
-                            System.arraycopy(solutionArray, 0, allSolutions[i], 0, m);
+				System.arraycopy(solutionArray, 0, allSolutions[i], 0, m);
 			}
 			return allSolutions;
 		}
@@ -203,7 +203,7 @@ public final class JLogQuery extends AbstractQuery implements PrologQuery {
 		PrologTerm[][] allSolutions = new PrologTerm[n][m];
 		for (int i = 0; i < n; i++) {
 			PrologTerm[] solutionArray = all.get(i);
-                    System.arraycopy(solutionArray, 0, allSolutions[i], 0, m);
+			System.arraycopy(solutionArray, 0, allSolutions[i], 0, m);
 		}
 		return allSolutions;
 	}
@@ -247,13 +247,15 @@ public final class JLogQuery extends AbstractQuery implements PrologQuery {
 		if (solution == null) {
 			if (other.solution != null)
 				return false;
-		} else if (!solution.equals(other.solution))
+		} else if (!solution.equals(other.solution)) {
 			return false;
+		}
 		if (vector == null) {
 			if (other.vector != null)
 				return false;
-		} else if (!vector.equals(other.vector))
+		} else if (!vector.equals(other.vector)) {
 			return false;
+		}
 		return true;
 	}
 

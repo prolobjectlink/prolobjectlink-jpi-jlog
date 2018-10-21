@@ -55,7 +55,6 @@ import org.logicware.prolog.PrologIndicator;
 import org.logicware.prolog.PrologQuery;
 import org.logicware.prolog.PrologStructure;
 import org.logicware.prolog.PrologTerm;
-import org.logicware.prolog.PrologVariable;
 
 import ubc.cs.JLog.Foundation.jPrologServices;
 import ubc.cs.JLog.Foundation.jRule;
@@ -178,45 +177,44 @@ public class PrologEngineTest extends PrologBaseTest {
 		engine.assertz(provider.newStructure(female, pat));
 		engine.assertz(provider.newStructure(male, jim));
 
-		x = provider.newVariable("X");
-		y = provider.newVariable("Y");
-		z = provider.newVariable("Z");
+		x = provider.newVariable("X", 0);
+		y = provider.newVariable("Y", 1);
+		z = provider.newVariable("Z", 2);
 		engine.assertz(provider.newStructure(offspring, x, y), provider.newStructure(parent, x, y));
 
-		x = provider.newVariable("X");
-		y = provider.newVariable("Y");
+		x = provider.newVariable("X", 0);
+		y = provider.newVariable("Y", 1);
 		engine.assertz(provider.newStructure(mother, x, y), provider.newStructure(parent, x, y),
 				provider.newStructure(female, x));
 
-		x = provider.newVariable("X");
-		y = provider.newVariable("Y");
-		z = provider.newVariable("Z");
+		x = provider.newVariable("X", 0);
+		y = provider.newVariable("Y", 1);
+		z = provider.newVariable("Z", 2);
 		engine.assertz(provider.newStructure(grandparent, x, z), provider.newStructure(parent, x, y),
 				provider.newStructure(parent, y, z));
 
-		x = provider.newVariable("X");
-		y = provider.newVariable("Y");
-		z = provider.newVariable("Z");
-
+		x = provider.newVariable("X", 0);
+		y = provider.newVariable("Y", 1);
+		z = provider.newVariable("Z", 2);
 		engine.assertz(provider.newStructure(sister, x, y), provider.newStructure(parent, z, x),
 				provider.newStructure(parent, z, y), provider.newStructure(female, x),
 				provider.newStructure(different, x, y));
 
-		x = provider.newVariable("X");
+		x = provider.newVariable("X", 0);
 		engine.assertz(provider.newStructure(different, x, x), provider.prologCut(), provider.prologFail());
 
-		x = provider.newVariable("X");
-		y = provider.newVariable("Y");
+		x = provider.newVariable("X", 0);
+		y = provider.newVariable("Y", 1);
 		engine.assertz(provider.newStructure(different, x, y));
 
-		x = provider.newVariable("X");
-		y = provider.newVariable("Y");
-		z = provider.newVariable("Z");
+		x = provider.newVariable("X", 0);
+		y = provider.newVariable("Y", 1);
+		z = provider.newVariable("Z", 2);
 		engine.assertz(provider.newStructure(predecessor, x, z), provider.newStructure(parent, x, z));
 
-		x = provider.newVariable("X");
-		y = provider.newVariable("Y");
-		z = provider.newVariable("Z");
+		x = provider.newVariable("X", 0);
+		y = provider.newVariable("Y", 1);
+		z = provider.newVariable("Z", 2);
 		engine.assertz(provider.newStructure(predecessor, x, z), provider.newStructure(parent, x, y),
 				provider.newStructure(predecessor, y, z));
 
@@ -287,10 +285,10 @@ public class PrologEngineTest extends PrologBaseTest {
 		engine.assertz(provider.newStructure("gray", elephant));
 
 		// dark rules
-		z = provider.newVariable("Z");
+		z = provider.newVariable("Z", 0);
 		engine.assertz(provider.newStructure("dark", z), provider.newStructure("black", z));
 
-		z = provider.newVariable("Z");
+		z = provider.newVariable("Z", 0);
 		engine.assertz(provider.newStructure("dark", z), provider.newStructure("brown", z));
 
 		engine.persist("zoo.pl");
@@ -358,14 +356,14 @@ public class PrologEngineTest extends PrologBaseTest {
 		engine.asserta(provider.newStructure(parent, tom, bob));
 		assertEquals(2, engine.getProgramSize());
 
-		x = provider.newVariable("X");
-		y = provider.newVariable("Y");
+		x = provider.newVariable("X", 0);
+		y = provider.newVariable("Y", 1);
 		engine.asserta(provider.newStructure(mother, x, y), provider.newStructure(parent, x, y),
 				provider.newStructure(female, x));
 		assertEquals(3, engine.getProgramSize());
 
-		x = provider.newVariable("X");
-		y = provider.newVariable("Y");
+		x = provider.newVariable("X", 0);
+		y = provider.newVariable("Y", 1);
 		engine.asserta(provider.newStructure(mother, x, y), provider.newStructure(parent, x, y),
 				provider.newStructure(female, x));
 		// the program size is three because the added clause is already defined
@@ -375,8 +373,8 @@ public class PrologEngineTest extends PrologBaseTest {
 
 	@Test
 	public final void testAssertaIPrologTermIPrologTermArray() {
-		PrologVariable x = provider.newVariable("X");
-		PrologVariable y = provider.newVariable("Y");
+		x = provider.newVariable("X", 0);
+		y = provider.newVariable("Y", 1);
 		engine.asserta(provider.newStructure(mother, x, y), provider.newStructure(parent, x, y),
 				provider.newStructure(female, x));
 		assertEquals(1, engine.getProgramSize());
@@ -415,14 +413,14 @@ public class PrologEngineTest extends PrologBaseTest {
 		engine.assertz(provider.newStructure(parent, tom, bob));
 		assertEquals(2, engine.getProgramSize());
 
-		x = provider.newVariable("X");
-		y = provider.newVariable("Y");
+		x = provider.newVariable("X", 0);
+		y = provider.newVariable("Y", 1);
 		engine.assertz(provider.newStructure(mother, x, y), provider.newStructure(parent, x, y),
 				provider.newStructure(female, x));
 		assertEquals(3, engine.getProgramSize());
 
-		x = provider.newVariable("X");
-		y = provider.newVariable("Y");
+		x = provider.newVariable("X", 0);
+		y = provider.newVariable("Y", 1);
 		engine.assertz(provider.newStructure(mother, x, y), provider.newStructure(parent, x, y),
 				provider.newStructure(female, x));
 		// the program size is three because the added clause is already defined
@@ -432,8 +430,8 @@ public class PrologEngineTest extends PrologBaseTest {
 
 	@Test
 	public final void testAssertzIPrologTermIPrologTermArray() {
-		PrologVariable x = provider.newVariable("X");
-		PrologVariable y = provider.newVariable("Y");
+		x = provider.newVariable("X", 0);
+		y = provider.newVariable("Y", 1);
 		engine.assertz(provider.newStructure(mother, x, y), provider.newStructure(parent, x, y),
 				provider.newStructure(female, x));
 		assertEquals(1, engine.getProgramSize());
@@ -483,8 +481,8 @@ public class PrologEngineTest extends PrologBaseTest {
 		PrologAtom jim = provider.newAtom("jim");
 		assertTrue(engine.clause(provider.newStructure("parent", pat, jim)));
 
-		x = provider.newVariable("X");
-		y = provider.newVariable("Y");
+		x = provider.newVariable("X", 0);
+		y = provider.newVariable("Y", 1);
 		assertTrue(engine.clause(provider.newStructure("parent", x, y)));
 	}
 
@@ -499,14 +497,14 @@ public class PrologEngineTest extends PrologBaseTest {
 		engine.assertz("predecessor( X, Z):-parent( X, Z)");
 		engine.assertz("predecessor( X, Z):-parent( X, Y),predecessor( Y, Z)");
 
-		x = provider.newVariable("X");
-		y = provider.newVariable("Y");
-		z = provider.newVariable("Z");
+		x = provider.newVariable("X", 0);
+		y = provider.newVariable("Y", 1);
+		z = provider.newVariable("Z", 2);
 		assertTrue(engine.clause(provider.newStructure("predecessor", x, z), provider.newStructure("parent", x, z)));
 
-		x = provider.newVariable("X");
-		y = provider.newVariable("Y");
-		z = provider.newVariable("Z");
+		x = provider.newVariable("X", 0);
+		y = provider.newVariable("Y", 1);
+		z = provider.newVariable("Z", 2);
 		assertTrue(engine.clause(provider.newStructure("predecessor", x, z), provider.newStructure("parent", x, y),
 				provider.newStructure("predecessor", y, z)));
 
@@ -575,8 +573,8 @@ public class PrologEngineTest extends PrologBaseTest {
 		engine.assertz("mother( X, Y):-parent( X, Y),female( X)");
 		assertEquals(1, engine.getProgramSize());
 
-		PrologVariable x = provider.newVariable("X");
-		PrologVariable y = provider.newVariable("Y");
+		x = provider.newVariable("X", 0);
+		y = provider.newVariable("Y", 1);
 		engine.retract(provider.newStructure(mother, x, y), provider.newStructure(parent, x, y),
 				provider.newStructure(female, x));
 		assertEquals(0, engine.getProgramSize());
@@ -643,8 +641,8 @@ public class PrologEngineTest extends PrologBaseTest {
 		famillySolutionMap.put("X", pam);
 		famillySolutionMap.put("Y", bob);
 
-		PrologVariable x = provider.newVariable("X");
-		PrologVariable y = provider.newVariable("Y");
+		x = provider.newVariable("X", 0);
+		y = provider.newVariable("Y", 1);
 		solutionMap = engine.queryOne(provider.newStructure(mother, x, y));
 		assertEquals(famillySolutionMap, solutionMap);
 	}
@@ -678,9 +676,9 @@ public class PrologEngineTest extends PrologBaseTest {
 		famillySolutionMap.put("Y", bob);
 		famillySolutionMap.put("Z", ann);
 
-		x = provider.newVariable("X");
-		y = provider.newVariable("Y");
-		z = provider.newVariable("Z");
+		x = provider.newVariable("X", 0);
+		y = provider.newVariable("Y", 1);
+		z = provider.newVariable("Z", 2);
 
 		solutionMap = engine.queryOne(provider.newStructure(mother, x, y), provider.newStructure(grandparent, x, z));
 
@@ -794,8 +792,8 @@ public class PrologEngineTest extends PrologBaseTest {
 		solutionMap.put("Y", jim);
 		famillyAll.add(5, solutionMap);
 
-		x = provider.newVariable("X");
-		y = provider.newVariable("Y");
+		x = provider.newVariable("X", 0);
+		y = provider.newVariable("Y", 1);
 		List<Map<String, PrologTerm>> allSolutionMap = engine.queryAll(provider.newStructure(parent, x, y));
 		assertEquals(famillyAll, allSolutionMap);
 	}
@@ -837,9 +835,9 @@ public class PrologEngineTest extends PrologBaseTest {
 		solutionMap.put("Z", pat);
 		famillyAll.add(1, solutionMap);
 
-		x = provider.newVariable("X");
-		y = provider.newVariable("Y");
-		z = provider.newVariable("Z");
+		x = provider.newVariable("X", 0);
+		y = provider.newVariable("Y", 1);
+		z = provider.newVariable("Z", 2);
 		List<Map<String, PrologTerm>> allSolutionMap = engine.queryAll(provider.newStructure(mother, x, y),
 				provider.newStructure(grandparent, x, z));
 

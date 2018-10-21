@@ -369,6 +369,11 @@ public abstract class JLogTerm extends AbstractTerm implements PrologTerm {
 		}
 
 		switch (type) {
+		case NIL_TYPE:
+		case CUT_TYPE:
+		case FAIL_TYPE:
+		case TRUE_TYPE:
+		case FALSE_TYPE:
 		case ATOM_TYPE:
 
 			// alphabetic functor comparison
