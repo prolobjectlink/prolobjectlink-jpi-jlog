@@ -27,8 +27,8 @@ import java.io.StringWriter;
 import java.util.Enumeration;
 import java.util.Map.Entry;
 
-import org.logicware.platform.Stack;
 import org.logicware.platform.ArrayStack;
+import org.logicware.platform.Stack;
 import org.logicware.prolog.PrologProvider;
 import org.logicware.prolog.PrologTerm;
 import org.logicware.prolog.StructureExpectedError;

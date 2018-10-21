@@ -23,7 +23,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.logicware.prolog.PrologAtom;
+import org.logicware.prolog.PrologDouble;
 import org.logicware.prolog.PrologFactory;
+import org.logicware.prolog.PrologFloat;
 import org.logicware.prolog.PrologInteger;
 import org.logicware.prolog.PrologProvider;
 import org.logicware.prolog.PrologTerm;
@@ -78,6 +80,11 @@ public abstract class PrologBaseTest {
 	protected PrologInteger eight = provider.newInteger(8);
 	protected PrologInteger nine = provider.newInteger(9);
 	protected PrologInteger ten = provider.newInteger(10);
+
+	protected PrologDouble gauss = provider.newDouble(.8346268);
+	protected PrologDouble aureo = provider.newDouble(1.6180339887);
+	protected PrologDouble pi = provider.newDouble(3.14159);
+	protected PrologFloat euler = provider.newFloat(2.71828);
 
 	protected PrologAtom cat = provider.newAtom("cat");
 	protected PrologAtom bear = provider.newAtom("bear");
