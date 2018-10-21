@@ -23,11 +23,13 @@ import java.util.Enumeration;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
+import org.logicware.platform.AbstractIterator;
+
 import ubc.cs.JLog.Terms.iTermToObject;
 import ubc.cs.JLog.Terms.jList;
 import ubc.cs.JLog.Terms.jTerm;
 
-final class JLogIterator implements Iterator<jTerm> {
+final class JLogIterator extends AbstractIterator<jTerm> implements Iterator<jTerm> {
 
 	private Enumeration<?> e;
 
@@ -50,10 +52,6 @@ final class JLogIterator implements Iterator<jTerm> {
 			throw new NoSuchElementException();
 		}
 		return e != null ? (jTerm) e.nextElement() : null;
-	}
-
-	public void remove() {
-		throw new UnsupportedOperationException();
 	}
 
 }

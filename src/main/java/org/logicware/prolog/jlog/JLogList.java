@@ -24,6 +24,7 @@ import static org.logicware.prolog.PrologTermType.LIST_TYPE;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
+import org.logicware.platform.AbstractIterator;
 import org.logicware.prolog.PrologList;
 import org.logicware.prolog.PrologProvider;
 import org.logicware.prolog.PrologTerm;
@@ -134,7 +135,7 @@ public class JLogList extends JLogTerm implements PrologList {
 		return arguments;
 	}
 
-	private final class JLogListIter implements Iterator<PrologTerm> {
+	private final class JLogListIter extends AbstractIterator<PrologTerm> implements Iterator<PrologTerm> {
 
 		private final Iterator<? extends jTerm> e;
 
@@ -151,10 +152,6 @@ public class JLogList extends JLogTerm implements PrologList {
 				throw new NoSuchElementException();
 			}
 			return toTerm(e.next(), PrologTerm.class);
-		}
-
-		public void remove() {
-			throw new UnsupportedOperationException();
 		}
 
 	}
