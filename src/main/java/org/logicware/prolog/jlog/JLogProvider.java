@@ -19,7 +19,7 @@
  */
 package org.logicware.prolog.jlog;
 
-import static org.logicware.platform.logging.LoggerConstants.ERROR_LOADING_BUILT_INS;
+import static org.logicware.logging.LoggerConstants.ERROR_LOADING_BUILT_INS;
 import static org.logicware.prolog.jlog.JLogTerm.SIMPLE_ATOM_REGEX;
 
 import java.io.IOException;
@@ -27,7 +27,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
-import org.logicware.platform.logging.LoggerUtils;
+import org.logicware.logging.LoggerUtils;
 import org.logicware.prolog.AbstractProvider;
 import org.logicware.prolog.PrologAtom;
 import org.logicware.prolog.PrologConverter;

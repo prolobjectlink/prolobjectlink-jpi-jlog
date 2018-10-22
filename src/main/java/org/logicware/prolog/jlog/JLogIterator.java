@@ -23,7 +23,7 @@ import java.util.Enumeration;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-import org.logicware.platform.AbstractIterator;
+import org.logicware.AbstractIterator;
 
 import ubc.cs.JLog.Terms.iTermToObject;
 import ubc.cs.JLog.Terms.jList;

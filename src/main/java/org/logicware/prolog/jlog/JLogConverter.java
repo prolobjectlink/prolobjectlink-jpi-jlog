@@ -39,8 +39,8 @@ import java.util.Enumeration;
 import java.util.Iterator;
 import java.util.Objects;
 
-import org.logicware.platform.logging.LoggerConstants;
-import org.logicware.platform.logging.LoggerUtils;
+import org.logicware.logging.LoggerConstants;
+import org.logicware.logging.LoggerUtils;
 import org.logicware.prolog.AbstractConverter;
 import org.logicware.prolog.PrologAtom;
 import org.logicware.prolog.PrologConverter;

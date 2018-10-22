@@ -43,10 +43,10 @@ import static ubc.cs.JLog.Foundation.iType.TYPE_VARIABLE;
 import java.io.IOException;
 import java.util.Enumeration;
 
-import org.logicware.platform.ArrayStack;
-import org.logicware.platform.Stack;
-import org.logicware.platform.logging.LoggerConstants;
-import org.logicware.platform.logging.LoggerUtils;
+import org.logicware.ArrayStack;
+import org.logicware.Stack;
+import org.logicware.logging.LoggerConstants;
+import org.logicware.logging.LoggerUtils;
 import org.logicware.prolog.AbstractTerm;
 import org.logicware.prolog.NumberExpectedError;
 import org.logicware.prolog.PrologNumber;
