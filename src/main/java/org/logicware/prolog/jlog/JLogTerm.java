@@ -52,6 +52,8 @@ import org.logicware.prolog.NumberExpectedError;
 import org.logicware.prolog.PrologNumber;
 import org.logicware.prolog.PrologProvider;
 import org.logicware.prolog.PrologTerm;
+import org.logicware.prolog.jlogx.jDouble;
+import org.logicware.prolog.jlogx.jFloat;
 
 import ubc.cs.JLog.Foundation.jEquivalenceMapping;
 import ubc.cs.JLog.Foundation.jKnowledgeBase;
@@ -66,7 +68,6 @@ import ubc.cs.JLog.Terms.jList;
 import ubc.cs.JLog.Terms.jListPair;
 import ubc.cs.JLog.Terms.jNullList;
 import ubc.cs.JLog.Terms.jPredicateTerms;
-import ubc.cs.JLog.Terms.jReal;
 import ubc.cs.JLog.Terms.jTerm;
 import ubc.cs.JLog.Terms.jVariable;
 
@@ -388,7 +389,7 @@ public abstract class JLogTerm extends AbstractTerm implements PrologTerm {
 		case FLOAT_TYPE:
 
 			checkNumberType(term);
-			float thisFloatValue = ((jReal) value).getRealValue();
+			float thisFloatValue = ((jFloat) value).getRealValue();
 			float otherFloatValue = ((PrologNumber) term).getFloatValue();
 
 			if (thisFloatValue < otherFloatValue) {
@@ -416,7 +417,7 @@ public abstract class JLogTerm extends AbstractTerm implements PrologTerm {
 		case DOUBLE_TYPE:
 
 			checkNumberType(term);
-			double thisDoubleValue = ((jReal) value).getRealValue();
+			double thisDoubleValue = ((jDouble) value).getRealValue();
 			double otherDoubleValue = ((PrologNumber) term).getDoubleValue();
 
 			if (thisDoubleValue < otherDoubleValue) {

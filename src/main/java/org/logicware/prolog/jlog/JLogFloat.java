@@ -30,13 +30,12 @@ import org.logicware.prolog.PrologInteger;
 import org.logicware.prolog.PrologLong;
 import org.logicware.prolog.PrologProvider;
 import org.logicware.prolog.PrologTerm;
-
-import ubc.cs.JLog.Terms.jReal;
+import org.logicware.prolog.jlogx.jFloat;
 
 public final class JLogFloat extends JLogTerm implements PrologFloat {
 
 	public JLogFloat(PrologProvider provider, Number value) {
-		super(FLOAT_TYPE, provider, new jReal(value.floatValue()));
+		super(FLOAT_TYPE, provider, new jFloat(value.floatValue()));
 	}
 
 	public PrologInteger getPrologInteger() {
@@ -68,7 +67,7 @@ public final class JLogFloat extends JLogTerm implements PrologFloat {
 	}
 
 	public float getFloatValue() {
-		return ((jReal) value).getRealValue();
+		return ((jFloat) value).getRealValue();
 	}
 
 	public PrologTerm[] getArguments() {

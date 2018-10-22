@@ -30,13 +30,12 @@ import org.logicware.prolog.PrologInteger;
 import org.logicware.prolog.PrologLong;
 import org.logicware.prolog.PrologProvider;
 import org.logicware.prolog.PrologTerm;
-
-import ubc.cs.JLog.Terms.jReal;
+import org.logicware.prolog.jlogx.jDouble;
 
 public final class JLogDouble extends JLogTerm implements PrologDouble {
 
 	public JLogDouble(PrologProvider provider, Number value) {
-		super(DOUBLE_TYPE, provider, new jReal(value.floatValue()));
+		super(DOUBLE_TYPE, provider, new jDouble(value.doubleValue()));
 	}
 
 	public PrologInteger getPrologInteger() {
@@ -60,7 +59,7 @@ public final class JLogDouble extends JLogTerm implements PrologDouble {
 	}
 
 	public double getDoubleValue() {
-		return (double) getFloatValue();
+		return ((jDouble) value).getRealValue();
 	}
 
 	public int getIntValue() {
@@ -68,7 +67,7 @@ public final class JLogDouble extends JLogTerm implements PrologDouble {
 	}
 
 	public float getFloatValue() {
-		return ((jReal) value).getRealValue();
+		return (float) getDoubleValue();
 	}
 
 	public PrologTerm[] getArguments() {

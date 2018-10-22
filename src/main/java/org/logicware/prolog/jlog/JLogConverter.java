@@ -39,6 +39,8 @@ import java.util.Enumeration;
 import java.util.Iterator;
 import java.util.Objects;
 
+import org.logicware.platform.logging.LoggerConstants;
+import org.logicware.platform.logging.LoggerUtils;
 import org.logicware.prolog.AbstractConverter;
 import org.logicware.prolog.PrologAtom;
 import org.logicware.prolog.PrologConverter;
@@ -52,6 +54,8 @@ import org.logicware.prolog.PrologStructure;
 import org.logicware.prolog.PrologTerm;
 import org.logicware.prolog.PrologVariable;
 import org.logicware.prolog.UnknownTermError;
+import org.logicware.prolog.jlogx.jDouble;
+import org.logicware.prolog.jlogx.jFloat;
 
 import ubc.cs.JLog.Foundation.jEquivalenceMapping;
 import ubc.cs.JLog.Terms.jAtom;
@@ -113,7 +117,24 @@ public class JLogConverter extends AbstractConverter<jTerm> implements PrologCon
 		case jTerm.TYPE_INTEGER:
 			return new JLogInteger(provider, ((jInteger) prologTerm).getIntegerValue());
 		case jTerm.TYPE_REAL:
-			return new JLogDouble(provider, ((jReal) prologTerm).getRealValue());
+			JLogTerm number = null;
+			try {
+				if (prologTerm instanceof jFloat) {
+					number = new JLogFloat(provider, ((jFloat) prologTerm).getRealValue());
+				} else {
+					number = new JLogDouble(provider, ((jDouble) prologTerm).getRealValue());
+				}
+			} catch (ClassCastException e) {
+				// the parsed number is a jReal number we need convert in double or float
+				if (e.getMessage().contains(jFloat.class.getName())) {
+					number = new JLogFloat(provider, ((jReal) prologTerm).getRealValue());
+				} else if (e.getMessage().contains(jDouble.class.getName())) {
+					number = new JLogDouble(provider, ((jReal) prologTerm).getRealValue());
+				} else {
+					LoggerUtils.error(getClass(), LoggerConstants.CLASS_CAST, e);
+				}
+			}
+			return number;
 		case jTerm.TYPE_VARIABLE:
 			String name = ((jVariable) prologTerm).getName();
 			PrologVariable variable = sharedVariables.get(name);
@@ -197,11 +218,11 @@ public class JLogConverter extends AbstractConverter<jTerm> implements PrologCon
 			String value = ((PrologAtom) term).getStringValue();
 			return new jAtom(value);
 		case FLOAT_TYPE:
-			return new jReal(((PrologFloat) term).getFloatValue());
+			return new jFloat(((PrologFloat) term).getFloatValue());
 		case INTEGER_TYPE:
 			return new jInteger(((PrologInteger) term).getIntValue());
 		case DOUBLE_TYPE:
-			return new jReal(((PrologDouble) term).getFloatValue());
+			return new jDouble(((PrologDouble) term).getDoubleValue());
 		case LONG_TYPE:
 			return new jInteger(((PrologLong) term).getIntValue());
 		case VARIABLE_TYPE:

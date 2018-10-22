@@ -78,7 +78,7 @@ public class PrologDoubleTest extends PrologBaseTest {
 
 	@Test
 	public final void testGetDoubleValue() {
-		assertEquals(1.6180340051651, double1.getDoubleValue(), 0);
+		assertEquals(1.6180339887, double1.getDoubleValue(), 0);
 	}
 
 	@Test
@@ -98,7 +98,7 @@ public class PrologDoubleTest extends PrologBaseTest {
 
 	@Test
 	public void testToString() {
-		assertEquals("1.618034", double1.toString());
+		assertEquals("1.6180339887", double1.toString());
 	}
 
 	@Test(expected = IndicatorError.class)

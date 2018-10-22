@@ -201,11 +201,6 @@ public final class JLogEngine extends AbstractEngine implements PrologEngine {
 					jRule jRule = (jRule) object;
 					jPredicate ruleHead = jRule.getHead();
 					jPredicateTerms ruleBody = jRule.getBase();
-					// Deque<jVariable> s = new ArrayDeque<jVariable>();
-					// if (JLogUtil.unify(ruleHead, head, s) &&
-					// JLogUtil.unify(ruleBody, body, s)) {
-					// return true;
-					// }
 					jUnifiedVector v = new jUnifiedVector();
 					if (ruleHead.unify(head, v) && ruleBody.unify(body, v)) {
 						return true;
@@ -242,11 +237,6 @@ public final class JLogEngine extends AbstractEngine implements PrologEngine {
 					jRule jRule = (jRule) object;
 					jPredicate ruleHead = jRule.getHead();
 					jPredicateTerms ruleBody = jRule.getBase();
-					// Deque<jVariable> s = new ArrayDeque<jVariable>();
-					// if (JLogUtil.unify(ruleHead, head, s) &&
-					// JLogUtil.unify(ruleBody, body, s)) {
-					// rds.removeRule(jRule);
-					// }
 					jUnifiedVector v = new jUnifiedVector();
 					if (ruleHead.unify(head, v) && ruleBody.unify(body, v)) {
 						rds.removeRule(jRule);

@@ -27,8 +27,6 @@ import java.io.StringWriter;
 import java.util.Enumeration;
 import java.util.Map.Entry;
 
-import org.logicware.platform.ArrayStack;
-import org.logicware.platform.Stack;
 import org.logicware.prolog.PrologProvider;
 import org.logicware.prolog.PrologTerm;
 import org.logicware.prolog.StructureExpectedError;
@@ -40,15 +38,12 @@ import ubc.cs.JLog.Foundation.jRuleDefinitions;
 import ubc.cs.JLog.Parser.pOperatorRegistry;
 import ubc.cs.JLog.Parser.pParseStream;
 import ubc.cs.JLog.Parser.pPredicateRegistry;
-import ubc.cs.JLog.Terms.jAtom;
 import ubc.cs.JLog.Terms.jBuiltinRule;
 import ubc.cs.JLog.Terms.jCompoundTerm;
 import ubc.cs.JLog.Terms.jCons;
 import ubc.cs.JLog.Terms.jIf;
-import ubc.cs.JLog.Terms.jInteger;
 import ubc.cs.JLog.Terms.jPredicate;
 import ubc.cs.JLog.Terms.jPredicateTerms;
-import ubc.cs.JLog.Terms.jReal;
 import ubc.cs.JLog.Terms.jTerm;
 import ubc.cs.JLog.Terms.jVariable;
 
@@ -62,122 +57,6 @@ import ubc.cs.JLog.Terms.jVariable;
 final class JLogUtil {
 
 	private JLogUtil() {
-	}
-
-	private static jTerm dereference(jTerm thisTerm) {
-		jTerm iter = thisTerm;
-		while (iter.type == jTerm.TYPE_VARIABLE) {
-			iter = iter.getTerm();
-		}
-		return iter;
-	}
-
-	static final boolean unify(jTerm thisTerm, jTerm otherTerm) {
-		return unify(thisTerm, otherTerm, new ArrayStack<jVariable>());
-	}
-
-	static final boolean unify(jTerm thisTerm, jTerm otherTerm, Stack<jVariable> stack) {
-
-		thisTerm = dereference(thisTerm);
-		otherTerm = dereference(otherTerm);
-
-		// if left term is variable
-		if (thisTerm instanceof jVariable) {
-			jVariable thisVariable = (jVariable) thisTerm;
-
-			// if left term is free variable
-			if (!thisVariable.isBound()) {
-				thisVariable.setBinding(otherTerm);
-				stack.push(thisVariable);
-				return true;
-			}
-
-			// if left term is variable bound
-			return unify(thisVariable.getTerm(), otherTerm, stack);
-		}
-
-		// if right term is variable
-		else if (otherTerm instanceof jVariable) {
-			jVariable otherVariable = (jVariable) otherTerm;
-
-			// if right term is free variable
-			if (!otherVariable.isBound()) {
-				otherVariable.setBinding(thisTerm);
-				stack.push(otherVariable);
-				return true;
-			}
-
-			// if right term is variable bound
-			return unify(otherVariable.getTerm(), thisTerm, stack);
-		}
-
-		// if at least term is a integer then check equivalence
-		else if ((thisTerm instanceof jInteger) && (otherTerm instanceof jInteger)) {
-			int thisInt = ((jInteger) thisTerm).getIntegerValue();
-			int otherInt = ((jInteger) otherTerm).getIntegerValue();
-			return thisInt == otherInt;
-		}
-
-		// if at least term is a real then check equivalence
-		else if ((thisTerm instanceof jReal) && (otherTerm instanceof jReal)) {
-			float thisFloat = ((jReal) thisTerm).getRealValue();
-			float otherFloat = ((jReal) otherTerm).getRealValue();
-			return thisFloat == otherFloat;
-		}
-
-		else if ((thisTerm instanceof jCompoundTerm) && (otherTerm instanceof jCompoundTerm)) {
-			jCompoundTerm thisAtom = (jCompoundTerm) thisTerm;
-			jCompoundTerm otherAtom = (jCompoundTerm) otherTerm;
-			int thisArity = thisAtom.size();
-			int otherArity = otherAtom.size();
-			String thisFunctor = thisAtom.getName();
-			String otherFunctor = otherAtom.getName();
-			if (thisFunctor.equals(otherFunctor) && thisArity == otherArity) {
-				for (int i = 0; i < thisArity; i++) {
-					if (!unify(thisAtom.elementAt(i), otherAtom.elementAt(i), stack)) {
-						return false;
-					}
-				}
-				return true;
-			}
-			return false;
-		}
-
-		else if ((thisTerm instanceof jAtom) && (otherTerm instanceof jAtom)) {
-			return thisTerm.getName().equals(otherTerm.getName());
-		}
-
-		// if both terms are predicate
-		else if ((thisTerm instanceof jPredicate) && (otherTerm instanceof jPredicate)) {
-
-			jPredicate thisPredicate = (jPredicate) thisTerm;
-			jPredicate otherPredicate = (jPredicate) otherTerm;
-
-			int thisArity = thisPredicate.getArity();
-			int otherArity = otherPredicate.getArity();
-			String thisFunctor = thisPredicate.getName();
-			String otherFunctor = otherPredicate.getName();
-
-			if (thisFunctor.startsWith("'") && thisFunctor.endsWith("'"))
-				thisFunctor = thisFunctor.substring(1, thisFunctor.length() - 1);
-			if (otherFunctor.startsWith("'") && otherFunctor.endsWith("'"))
-				otherFunctor = otherFunctor.substring(1, otherFunctor.length() - 1);
-
-			if (thisFunctor.equals(otherFunctor) && thisArity == otherArity) {
-				jCompoundTerm thisArguments = thisPredicate.getArguments();
-				jCompoundTerm otherArguments = otherPredicate.getArguments();
-				for (int i = 0; i < thisArity; i++) {
-					jTerm thisArgument = thisArguments.elementAt(i);
-					jTerm otherArgument = otherArguments.elementAt(i);
-					if (!unify(thisArgument, otherArgument, stack)) {
-						return false;
-					}
-				}
-				return true;
-			}
-		}
-
-		return false;
 	}
 
 	static final PrologTerm toTerm(PrologProvider provider, Object object) {
