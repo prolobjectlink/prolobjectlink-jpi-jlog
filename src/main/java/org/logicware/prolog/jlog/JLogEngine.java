@@ -303,43 +303,6 @@ public final class JLogEngine extends AbstractEngine implements PrologEngine {
 
 	}
 
-	public Set<PrologIndicator> currentPredicates() {
-
-		// built-ins on libraries
-		Set<PrologIndicator> builtins = new HashSet<PrologIndicator>();
-		Enumeration<?> e = engine.getPredicateRegistry().enumPredicates();
-		while (e.hasMoreElements()) {
-			Object object = e.nextElement();
-			if (object instanceof pGenericPredicateEntry) {
-				pGenericPredicateEntry entry = (pGenericPredicateEntry) object;
-				String functor = entry.getName();
-				int arity = entry.getArity();
-				PredicateIndicator pi = new PredicateIndicator(functor, arity);
-				builtins.add(pi);
-			}
-		}
-
-		// user defined predicates
-		e = kb.enumDefinitions();
-		while (e.hasMoreElements()) {
-			jRuleDefinitions definitions = (jRuleDefinitions) e.nextElement();
-			Enumeration<?> rules = definitions.enumRules();
-			while (rules.hasMoreElements()) {
-				Object object2 = rules.nextElement();
-				if (!(object2 instanceof jBuiltinRule)) {
-					jRule jRule = (jRule) object2;
-					jPredicate ruleHead = jRule.getHead();
-					String functor = ruleHead.getName();
-					int arity = ruleHead.getArity();
-					PredicateIndicator pi = new PredicateIndicator(functor, arity);
-					builtins.add(pi);
-				}
-			}
-		}
-
-		return builtins;
-	}
-
 	public Set<PrologOperator> currentOperators() {
 		HashSet<PrologOperator> operators = new HashSet<PrologOperator>();
 		Enumeration<?> e = engine.getOperatorRegistry().enumOperators();
@@ -426,6 +389,43 @@ public final class JLogEngine extends AbstractEngine implements PrologEngine {
 			}
 		}
 		return programSize;
+	}
+
+	public Set<PrologIndicator> getPredicates() {
+		Set<PrologIndicator> predicates = new HashSet<PrologIndicator>();
+		Enumeration<?> e = kb.enumDefinitions();
+		while (e.hasMoreElements()) {
+			jRuleDefinitions definitions = (jRuleDefinitions) e.nextElement();
+			Enumeration<?> rules = definitions.enumRules();
+			while (rules.hasMoreElements()) {
+				Object object2 = rules.nextElement();
+				if (!(object2 instanceof jBuiltinRule)) {
+					jRule jRule = (jRule) object2;
+					jPredicate ruleHead = jRule.getHead();
+					String functor = ruleHead.getName();
+					int arity = ruleHead.getArity();
+					PredicateIndicator pi = new PredicateIndicator(functor, arity);
+					predicates.add(pi);
+				}
+			}
+		}
+		return predicates;
+	}
+
+	public Set<PrologIndicator> getBuiltIns() {
+		Set<PrologIndicator> builtins = new HashSet<PrologIndicator>();
+		Enumeration<?> e = engine.getPredicateRegistry().enumPredicates();
+		while (e.hasMoreElements()) {
+			Object object = e.nextElement();
+			if (object instanceof pGenericPredicateEntry) {
+				pGenericPredicateEntry entry = (pGenericPredicateEntry) object;
+				String functor = entry.getName();
+				int arity = entry.getArity();
+				PredicateIndicator pi = new PredicateIndicator(functor, arity);
+				builtins.add(pi);
+			}
+		}
+		return builtins;
 	}
 
 	public String getLicense() {
