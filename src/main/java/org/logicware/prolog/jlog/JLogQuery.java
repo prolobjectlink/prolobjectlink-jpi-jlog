@@ -43,7 +43,7 @@ import ubc.cs.JLog.Terms.jVariable;
 public final class JLogQuery extends AbstractQuery implements PrologQuery {
 
 	private Map<?, ?> solution;
-	private final jPrologAPI jlogApi;
+	private jPrologAPI jlogApi;
 	private jVariableVector vector = new jVariableVector();
 
 	protected JLogQuery(AbstractEngine engine, String str) {
@@ -74,26 +74,30 @@ public final class JLogQuery extends AbstractQuery implements PrologQuery {
 	protected JLogQuery(AbstractEngine engine, PrologTerm[] terms) {
 		super(engine);
 
-		String str = Arrays.toString(terms).substring(1);
-		str = str.substring(0, str.length() - 1) + '.';
+		if (terms != null && terms.length > 0) {
 
-		// saving variable order
-		str = JLogUtil.rectify(str);
-		JLogEngine pe = engine.unwrap(JLogEngine.class);
-		jKnowledgeBase kb = pe.engine.getKnowledgeBase();
-		pOperatorRegistry or = pe.engine.getOperatorRegistry();
-		pPredicateRegistry pr = pe.engine.getPredicateRegistry();
-		pParseStream parser = new pParseStream(str, kb, pr, or);
-		jPredicateTerms jpts = parser.parseQuery();
-		jpts.enumerateVariables(vector, true);
+			String str = Arrays.toString(terms).substring(1);
+			str = str.substring(0, str.length() - 1) + '.';
 
-		// adapt program to string
-		String source = JLogUtil.toString(pe.engine);
-		jlogApi = new jPrologAPI(source);
-		try {
-			solution = jlogApi.query(str);
-		} catch (Exception e) {
-			solution = null;
+			// saving variable order
+			str = JLogUtil.rectify(str);
+			JLogEngine pe = engine.unwrap(JLogEngine.class);
+			jKnowledgeBase kb = pe.engine.getKnowledgeBase();
+			pOperatorRegistry or = pe.engine.getOperatorRegistry();
+			pPredicateRegistry pr = pe.engine.getPredicateRegistry();
+			pParseStream parser = new pParseStream(str, kb, pr, or);
+			jPredicateTerms jpts = parser.parseQuery();
+			jpts.enumerateVariables(vector, true);
+
+			// adapt program to string
+			String source = JLogUtil.toString(pe.engine);
+			jlogApi = new jPrologAPI(source);
+			try {
+				solution = jlogApi.query(str);
+			} catch (Exception e) {
+				solution = null;
+			}
+
 		}
 
 	}
