@@ -134,23 +134,23 @@ public abstract class JLogTerm extends AbstractTerm implements PrologTerm {
 	}
 
 	public final boolean isFloat() {
-		return this instanceof JLogFloat;
+		return type == FLOAT_TYPE;
 	}
 
 	public final boolean isDouble() {
-		return this instanceof JLogDouble;
+		return type == DOUBLE_TYPE;
 	}
 
 	public final boolean isInteger() {
-		return this instanceof JLogInteger;
+		return type == INTEGER_TYPE;
 	}
 
 	public final boolean isLong() {
-		return this instanceof JLogLong;
+		return type == LONG_TYPE;
 	}
 
 	public final boolean isVariable() {
-		return this instanceof JLogVariable;
+		return type == VARIABLE_TYPE;
 	}
 
 	public final boolean isList() {

@@ -21,74 +21,41 @@ package org.logicware.prolog.jlog;
 
 import static org.logicware.prolog.PrologTermType.INTEGER_TYPE;
 
-import org.logicware.prolog.ArityError;
-import org.logicware.prolog.FunctorError;
-import org.logicware.prolog.IndicatorError;
-import org.logicware.prolog.PrologDouble;
-import org.logicware.prolog.PrologFloat;
 import org.logicware.prolog.PrologInteger;
-import org.logicware.prolog.PrologLong;
 import org.logicware.prolog.PrologProvider;
 import org.logicware.prolog.PrologTerm;
 
 import ubc.cs.JLog.Terms.jInteger;
+import ubc.cs.JLog.Terms.jTerm;
 
-public class JLogInteger extends JLogTerm implements PrologInteger {
+public class JLogInteger extends JLogNumber implements PrologInteger {
 
 	public JLogInteger(PrologProvider provider, Number value) {
 		super(INTEGER_TYPE, provider, new jInteger(value.intValue()));
 	}
 
-	public PrologInteger getPrologInteger() {
-		return new JLogInteger(provider, getIntValue());
+	public JLogInteger(int type, PrologProvider provider, jTerm value) {
+		super(type, provider, value);
 	}
 
-	public PrologFloat getPrologFloat() {
-		return new JLogFloat(provider, getFloatValue());
-	}
-
-	public PrologDouble getPrologDouble() {
-		return new JLogDouble(provider, getDoubleValue());
-	}
-
-	public PrologLong getPrologLong() {
-		return new JLogLong(provider, getLongValue());
-	}
-
-	public long getLongValue() {
+	public final long getLongValue() {
 		return (long) getIntValue();
 	}
 
-	public double getDoubleValue() {
+	public final double getDoubleValue() {
 		return (double) getIntValue();
 	}
 
-	public int getIntValue() {
+	public final int getIntValue() {
 		return ((jInteger) value).getIntegerValue();
 	}
 
-	public float getFloatValue() {
+	public final float getFloatValue() {
 		return (float) getIntValue();
 	}
 
-	public PrologTerm[] getArguments() {
+	public final PrologTerm[] getArguments() {
 		return new JLogInteger[0];
-	}
-
-	public int getArity() {
-		throw new ArityError(this);
-	}
-
-	public String getFunctor() {
-		throw new FunctorError(this);
-	}
-
-	public String getIndicator() {
-		throw new IndicatorError(this);
-	}
-
-	public boolean hasIndicator(String functor, int arity) {
-		throw new IndicatorError(this);
 	}
 
 }
