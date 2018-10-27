@@ -33,12 +33,8 @@ import static org.logicware.prolog.PrologTermType.NIL_TYPE;
 import static org.logicware.prolog.PrologTermType.STRUCTURE_TYPE;
 import static org.logicware.prolog.PrologTermType.TRUE_TYPE;
 import static org.logicware.prolog.PrologTermType.VARIABLE_TYPE;
-import static ubc.cs.JLog.Foundation.iType.TYPE_ATOM;
-import static ubc.cs.JLog.Foundation.iType.TYPE_INTEGER;
 import static ubc.cs.JLog.Foundation.iType.TYPE_LIST;
 import static ubc.cs.JLog.Foundation.iType.TYPE_PREDICATE;
-import static ubc.cs.JLog.Foundation.iType.TYPE_REAL;
-import static ubc.cs.JLog.Foundation.iType.TYPE_VARIABLE;
 
 import java.io.IOException;
 import java.util.Enumeration;
@@ -206,9 +202,7 @@ public abstract class JLogTerm extends AbstractTerm implements PrologTerm {
 	}
 
 	public final boolean isAtomic() {
-		return value.type == TYPE_ATOM || value.type == TYPE_INTEGER || value.type == TYPE_REAL
-				|| value.type == TYPE_VARIABLE || type == FAIL_TYPE || type == FALSE_TYPE || type == TRUE_TYPE
-				|| type == EMPTY_TYPE || type == CUT_TYPE || type == NIL_TYPE;
+		return !isCompound();
 	}
 
 	public final boolean isCompound() {
