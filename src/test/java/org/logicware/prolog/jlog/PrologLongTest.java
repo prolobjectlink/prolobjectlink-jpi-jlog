@@ -191,7 +191,6 @@ public class PrologLongTest extends PrologBaseTest {
 		long1.getIndicator();
 	}
 
-	@Test(expected = IndicatorError.class)
 	public final void testHasIndicator() {
 		assertTrue(long1.hasIndicator("100", 0));
 	}

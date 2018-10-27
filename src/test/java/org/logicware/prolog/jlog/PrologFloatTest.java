@@ -99,7 +99,6 @@ public class PrologFloatTest extends PrologBaseTest {
 		f.getIndicator();
 	}
 
-	@Test(expected = IndicatorError.class)
 	public final void testHasIndicator() {
 		assertFalse(f.hasIndicator("3.14", 0));
 	}

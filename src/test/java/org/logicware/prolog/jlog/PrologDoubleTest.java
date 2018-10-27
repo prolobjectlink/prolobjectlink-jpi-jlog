@@ -106,7 +106,6 @@ public class PrologDoubleTest extends PrologBaseTest {
 		double1.getIndicator();
 	}
 
-	@Test(expected = IndicatorError.class)
 	public void testHasIndicator() {
 		assertFalse(double1.hasIndicator("1.6180339887", 0));
 	}

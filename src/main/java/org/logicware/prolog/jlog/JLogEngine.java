@@ -259,23 +259,7 @@ public final class JLogEngine extends AbstractEngine implements PrologEngine {
 	}
 
 	public void operator(int priority, String specifier, String operator) {
-		int type = -1;
-		if (specifier.equals("fx")) {
-			type = FX;
-		} else if (specifier.equals("fy")) {
-			type = FY;
-		} else if (specifier.equals("xfx")) {
-			type = XFX;
-		} else if (specifier.equals("xfy")) {
-			type = XFY;
-		} else if (specifier.equals("yfx")) {
-			type = YFX;
-		} else if (specifier.equals("xf")) {
-			type = XF;
-		} else if (specifier.equals("yf")) {
-			type = YF;
-		}
-		pOperatorEntry op = new pPredicateOperatorEntry(operator, type, priority);
+		pOperatorEntry op = new pPredicateOperatorEntry(operator, getType(specifier), priority);
 		engine.getOperatorRegistry().addOperator(op);
 	}
 
@@ -285,26 +269,9 @@ public final class JLogEngine extends AbstractEngine implements PrologEngine {
 	}
 
 	public boolean currentOperator(int priority, String specifier, String operator) {
-		int type = -1;
-		if (specifier.equals("fx")) {
-			type = FX;
-		} else if (specifier.equals("fy")) {
-			type = FY;
-		} else if (specifier.equals("xfx")) {
-			type = XFX;
-		} else if (specifier.equals("xfy")) {
-			type = XFY;
-		} else if (specifier.equals("yfx")) {
-			type = YFX;
-		} else if (specifier.equals("xf")) {
-			type = XF;
-		} else if (specifier.equals("yf")) {
-			type = YF;
-		}
 		pOperatorEntry op = engine.getOperatorRegistry().getOperator(operator, true);
 		op = op == null ? engine.getOperatorRegistry().getOperator(operator, false) : op;
-		return op != null && op.getPriority() == priority && op.getType() == type;
-
+		return op != null && op.getPriority() == priority && op.getType() == getType(specifier);
 	}
 
 	public Set<PrologOperator> currentOperators() {
@@ -345,6 +312,26 @@ public final class JLogEngine extends AbstractEngine implements PrologEngine {
 			}
 		}
 		return operators;
+	}
+
+	private int getType(String specifier) {
+		int type = -1;
+		if (specifier.equals("fx")) {
+			type = FX;
+		} else if (specifier.equals("fy")) {
+			type = FY;
+		} else if (specifier.equals("xfx")) {
+			type = XFX;
+		} else if (specifier.equals("xfy")) {
+			type = XFY;
+		} else if (specifier.equals("yfx")) {
+			type = YFX;
+		} else if (specifier.equals("xf")) {
+			type = XF;
+		} else if (specifier.equals("yf")) {
+			type = YF;
+		}
+		return type;
 	}
 
 	public Iterator<PrologClause> iterator() {

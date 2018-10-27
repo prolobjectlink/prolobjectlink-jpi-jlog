@@ -69,7 +69,7 @@ public class JLogVariable extends JLogTerm implements PrologVariable {
 	}
 
 	public boolean hasIndicator(String functor, int arity) {
-		throw new IndicatorError(this);
+		return false;
 	}
 
 	public int getPosition() {

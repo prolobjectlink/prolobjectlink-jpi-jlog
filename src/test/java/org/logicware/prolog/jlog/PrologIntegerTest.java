@@ -104,7 +104,6 @@ public class PrologIntegerTest extends PrologBaseTest {
 		integer.getIndicator();
 	}
 
-	@Test(expected = IndicatorError.class)
 	public final void testHasIndicator() {
 		assertFalse(integer.hasIndicator("100", 0));
 	}

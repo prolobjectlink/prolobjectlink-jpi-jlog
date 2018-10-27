@@ -66,7 +66,7 @@ public abstract class JLogNumber extends JLogTerm implements PrologNumber {
 	}
 
 	public final boolean hasIndicator(String functor, int arity) {
-		throw new IndicatorError(this);
+		return false;
 	}
 
 }
