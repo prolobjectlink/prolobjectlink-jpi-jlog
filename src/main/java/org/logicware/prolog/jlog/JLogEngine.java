@@ -47,7 +47,6 @@ import java.util.StringTokenizer;
 import org.logicware.Licenses;
 import org.logicware.logging.LoggerUtils;
 import org.logicware.prolog.AbstractEngine;
-import org.logicware.prolog.OperatorEntry;
 import org.logicware.prolog.PredicateIndicator;
 import org.logicware.prolog.PrologClause;
 import org.logicware.prolog.PrologEngine;
@@ -307,7 +306,7 @@ public final class JLogEngine extends AbstractEngine implements PrologEngine {
 					specifier = "yf";
 					break;
 				}
-				OperatorEntry op = new OperatorEntry(priority, specifier, operator);
+				PrologOperator op = new JLogOperator(priority, specifier, operator);
 				operators.add(op);
 			}
 		}

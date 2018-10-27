@@ -47,11 +47,11 @@ import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.logicware.Licenses;
-import org.logicware.prolog.OperatorEntry;
 import org.logicware.prolog.PredicateIndicator;
 import org.logicware.prolog.PrologAtom;
 import org.logicware.prolog.PrologEngine;
 import org.logicware.prolog.PrologIndicator;
+import org.logicware.prolog.PrologOperator;
 import org.logicware.prolog.PrologQuery;
 import org.logicware.prolog.PrologStructure;
 import org.logicware.prolog.PrologTerm;
@@ -1065,7 +1065,7 @@ public class PrologEngineTest extends PrologBaseTest {
 	@Test
 	public final void testCurrentOperators() {
 
-		Set<OperatorEntry> operators = new HashSet<OperatorEntry>();
+		Set<PrologOperator> operators = new HashSet<PrologOperator>();
 		Enumeration<?> e = engine.unwrap(JLogEngine.class).engine.getOperatorRegistry().enumOperators();
 		while (e.hasMoreElements()) {
 			Object object = e.nextElement();
@@ -1097,7 +1097,7 @@ public class PrologEngineTest extends PrologBaseTest {
 					specifier = "yf";
 					break;
 				}
-				OperatorEntry op = new OperatorEntry(priority, specifier, operator);
+				PrologOperator op = new JLogOperator(priority, specifier, operator);
 				operators.add(op);
 			}
 		}
