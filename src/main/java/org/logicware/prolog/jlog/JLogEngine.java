@@ -102,6 +102,46 @@ public final class JLogEngine extends AbstractEngine implements PrologEngine {
 		}
 	}
 
+	/**
+	 * Find or Remove a give rule depending of boolean flag. If flag is true the
+	 * rule will be removed. If flag is false just find the given rule. Return true
+	 * if the rule was found, false otherwise.
+	 * 
+	 * @param rule       Rule to be found or removed
+	 * @param toBeRemove Flag to indicate removal action
+	 * @return true if the rule was found, false otherwise.
+	 */
+	private boolean clauseOrRetract(jRule rule, boolean toBeRemove) {
+		String name = rule.getName();
+		int arity = rule.getArity();
+		jPredicate head = rule.getHead();
+		jPredicateTerms body = rule.getBase();
+		if (name.startsWith("'") && name.endsWith("'")) {
+			name = name.substring(1, name.length() - 1);
+		}
+		iNameArity na = new iNameArityStub(name, arity);
+		jRuleDefinitions rds = kb.getRuleDefinitionsMatch(na);
+		if (rds != null && rds.size() > 0) {
+			Enumeration<?> e = rds.enumRules();
+			while (e.hasMoreElements()) {
+				Object object = e.nextElement();
+				if (object instanceof jRule) {
+					jRule jRule = (jRule) object;
+					jPredicate ruleHead = jRule.getHead();
+					jPredicateTerms ruleBody = jRule.getBase();
+					jUnifiedVector v = new jUnifiedVector();
+					if (ruleHead.unify(head, v) && ruleBody.unify(body, v)) {
+						if (toBeRemove) {
+							rds.removeRule(jRule);
+						}
+						return true;
+					}
+				}
+			}
+		}
+		return false;
+	}
+
 	public void include(String path) {
 		try {
 			FileReader fileReader = new FileReader(path);
@@ -183,31 +223,7 @@ public final class JLogEngine extends AbstractEngine implements PrologEngine {
 	}
 
 	private boolean clause(jRule rule) {
-		String name = rule.getName();
-		int arity = rule.getArity();
-		jPredicate head = rule.getHead();
-		jPredicateTerms body = rule.getBase();
-		if (name.startsWith("'") && name.endsWith("'")) {
-			name = name.substring(1, name.length() - 1);
-		}
-		iNameArity na = new iNameArityStub(name, arity);
-		jRuleDefinitions rds = kb.getRuleDefinitionsMatch(na);
-		if (rds != null && rds.size() > 0) {
-			Enumeration<?> e = rds.enumRules();
-			while (e.hasMoreElements()) {
-				Object object = e.nextElement();
-				if (object instanceof jRule) {
-					jRule jRule = (jRule) object;
-					jPredicate ruleHead = jRule.getHead();
-					jPredicateTerms ruleBody = jRule.getBase();
-					jUnifiedVector v = new jUnifiedVector();
-					if (ruleHead.unify(head, v) && ruleBody.unify(body, v)) {
-						return true;
-					}
-				}
-			}
-		}
-		return false;
+		return clauseOrRetract(rule, false);
 	}
 
 	public void retract(String stringClause) {
@@ -219,30 +235,7 @@ public final class JLogEngine extends AbstractEngine implements PrologEngine {
 	}
 
 	private void retract(jRule rule) {
-		String name = rule.getName();
-		int arity = rule.getArity();
-		jPredicate head = rule.getHead();
-		jPredicateTerms body = rule.getBase();
-		if (name.startsWith("'") && name.endsWith("'")) {
-			name = name.substring(1, name.length() - 1);
-		}
-		iNameArity na = new iNameArityStub(name, arity);
-		jRuleDefinitions rds = kb.getRuleDefinitionsMatch(na);
-		if (rds != null && rds.size() > 0) {
-			Enumeration<?> e = rds.enumRules();
-			while (e.hasMoreElements()) {
-				Object object = e.nextElement();
-				if (object instanceof jRule) {
-					jRule jRule = (jRule) object;
-					jPredicate ruleHead = jRule.getHead();
-					jPredicateTerms ruleBody = jRule.getBase();
-					jUnifiedVector v = new jUnifiedVector();
-					if (ruleHead.unify(head, v) && ruleBody.unify(body, v)) {
-						rds.removeRule(jRule);
-					}
-				}
-			}
-		}
+		clauseOrRetract(rule, true);
 	}
 
 	public PrologQuery query(String stringQuery) {
