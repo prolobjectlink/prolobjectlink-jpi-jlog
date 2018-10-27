@@ -73,7 +73,7 @@ public class JLogVariable extends JLogTerm implements PrologVariable {
 	}
 
 	public int getPosition() {
-		throw new UnsupportedOperationException("getPosition()");
+		return vIndex;
 	}
 
 }
