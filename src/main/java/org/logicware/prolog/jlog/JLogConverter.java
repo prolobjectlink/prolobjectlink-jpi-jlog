@@ -272,7 +272,7 @@ public class JLogConverter extends AbstractConverter<jTerm> implements PrologCon
 	}
 
 	public PrologProvider createProvider() {
-		return new JLogProvider(this);
+		return new JLog(this);
 	}
 
 	@Override

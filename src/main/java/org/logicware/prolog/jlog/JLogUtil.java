@@ -19,7 +19,7 @@
  */
 package org.logicware.prolog.jlog;
 
-import static org.logicware.prolog.jlog.JLogProvider.FUNCTORS;
+import static org.logicware.prolog.jlog.JLog.FUNCTORS;
 import static org.logicware.prolog.jlog.JLogTerm.SIMPLE_ATOM_REGEX;
 
 import java.io.PrintWriter;

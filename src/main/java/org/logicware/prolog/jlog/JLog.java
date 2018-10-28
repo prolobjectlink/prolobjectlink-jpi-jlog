@@ -51,7 +51,7 @@ import ubc.cs.JLog.Parser.pPredicateRegistry;
 import ubc.cs.JLog.Terms.jPredicateTerms;
 import ubc.cs.JLog.Terms.jTerm;
 
-public final class JLogProvider extends AbstractProvider implements PrologProvider {
+public final class JLog extends AbstractProvider implements PrologProvider {
 
 	private final jKnowledgeBase kb = new jKnowledgeBase();
 	private final pOperatorRegistry or = new pOperatorRegistry();
@@ -62,11 +62,11 @@ public final class JLogProvider extends AbstractProvider implements PrologProvid
 	protected static final String BUILTINS = "builtins";
 	protected static final Map<String, String> FUNCTORS = new HashMap<String, String>();
 
-	public JLogProvider() {
+	public JLog() {
 		this(new JLogConverter());
 	}
 
-	public JLogProvider(PrologConverter<jTerm> converter) {
+	public JLog(PrologConverter<jTerm> converter) {
 		super(converter);
 		engine.setFileServices(new jPrologFileServices());
 		try {
@@ -213,7 +213,7 @@ public final class JLogProvider extends AbstractProvider implements PrologProvid
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		JLogProvider other = (JLogProvider) obj;
+		JLog other = (JLog) obj;
 		return Objects.equals(engine, other.engine);
 	}
 
