@@ -106,7 +106,7 @@ final class JLogUtil {
 				}
 			}
 
-			return provider.parsePrologTerm(string);
+			return provider.parseTerm(string);
 		}
 
 		// primitives and wrappers data types

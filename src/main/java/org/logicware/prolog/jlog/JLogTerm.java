@@ -38,6 +38,8 @@ import static ubc.cs.JLog.Foundation.iType.TYPE_PREDICATE;
 
 import java.io.IOException;
 import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.logicware.ArrayStack;
 import org.logicware.Stack;
@@ -223,6 +225,22 @@ public abstract class JLogTerm extends AbstractTerm implements PrologTerm {
 		return match;
 	}
 
+	public final Map<String, PrologTerm> match(PrologTerm term) {
+		Stack<PrologTerm> stack = new ArrayStack<PrologTerm>();
+		if (unify(term, stack)) {
+			int l = stack.size();
+			Map<String, PrologTerm> s = new HashMap<String, PrologTerm>(l);
+			while (l > 0) {
+				JLogVariable variable = (JLogVariable) stack.pop();
+				s.put(variable.getName(), variable.vValue);
+				variable.unbind();
+				l--;
+			}
+			return s;
+		}
+		return new HashMap<String, PrologTerm>();
+	}
+
 	protected final boolean unify(PrologTerm term, Stack<PrologTerm> stack) {
 		return unify(unwrap(term, JLogTerm.class), stack);
 	}
@@ -231,7 +249,16 @@ public abstract class JLogTerm extends AbstractTerm implements PrologTerm {
 
 		JLogTerm thisTerm = this;
 
-		if (thisTerm.isVariableBound()) {
+		if (thisTerm == otherTerm) {
+			if (thisTerm.isVariableNotBound()) {
+				thisTerm.bind(otherTerm);
+				otherTerm.bind(thisTerm);
+				stack.push(thisTerm);
+			}
+			return true;
+		}
+
+		else if (thisTerm.isVariableBound()) {
 			return thisTerm.vValue.unwrap(JLogTerm.class).unify(otherTerm, stack);
 		}
 
@@ -272,12 +299,14 @@ public abstract class JLogTerm extends AbstractTerm implements PrologTerm {
 			if (thisFunctor.equals(otherFunctor) && thisArity == otherArity) {
 				PrologTerm[] thisArguments = thisTerm.getArguments();
 				PrologTerm[] otherArguments = otherTerm.getArguments();
-				for (int i = 0; i < thisArity; i++) {
-					if (thisArguments[i] != null && otherArguments[i] != null) {
-						JLogTerm thisJLogTerm = unwrap(thisArguments[i], JLogTerm.class);
-						JLogTerm otherJLogTerm = unwrap(otherArguments[i], JLogTerm.class);
-						if (!thisJLogTerm.unify(otherJLogTerm, stack)) {
-							return false;
+				if (thisArguments.length == otherArguments.length) {
+					for (int i = 0; i < thisArguments.length; i++) {
+						if (thisArguments[i] != null && otherArguments[i] != null) {
+							JLogTerm thisJLogTerm = unwrap(thisArguments[i], JLogTerm.class);
+							JLogTerm otherJLogTerm = unwrap(otherArguments[i], JLogTerm.class);
+							if (!thisJLogTerm.unify(otherJLogTerm, stack)) {
+								return false;
+							}
 						}
 					}
 				}
@@ -314,9 +343,7 @@ public abstract class JLogTerm extends AbstractTerm implements PrologTerm {
 	 * @param term
 	 */
 	protected final void bind(JLogTerm term) {
-		if (this != term) {
-			vValue = term;
-		}
+		vValue = term;
 	}
 
 	/** Unbinds a term reseting it to a variable */

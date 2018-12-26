@@ -104,12 +104,12 @@ public final class JLog extends AbstractProvider implements PrologProvider {
 		return new JLogEmpty(this);
 	}
 
-	public PrologTerm parsePrologTerm(String str) {
+	public PrologTerm parseTerm(String str) {
 		String s = str.charAt(str.length() - 1) == '.' ? str : str + DOT;
 		return toTerm(new pParseStream(s, kb, pr, or).parseTerm(), PrologTerm.class);
 	}
 
-	public PrologTerm[] parsePrologTerms(String str) {
+	public PrologTerm[] parseTerms(String str) {
 		String s = str.charAt(str.length() - 1) == '.' ? str : str + DOT;
 		jPredicateTerms terms = new pParseStream(s, kb, pr, or).parseQuery();
 		PrologTerm[] prologTerms = new PrologTerm[terms.size()];
