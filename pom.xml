@@ -168,7 +168,7 @@
 					<failOnMissingHeader>true</failOnMissingHeader>
 					<acceptPomPackaging>true</acceptPomPackaging>
 					<licenseName>gpl_v2</licenseName>
-					<dryRun>true</dryRun>
+					<!-- <dryRun>true</dryRun> -->
 					<addJavaLicenseAfterPackage>false</addJavaLicenseAfterPackage>
 					<roots>
 						<root>src/main</root>
