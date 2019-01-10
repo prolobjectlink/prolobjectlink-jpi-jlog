@@ -57,10 +57,10 @@ public final class jLong extends jTerm {
 
 		if (t instanceof jReal)
 			return GREATER_THAN;
-		
+
 		if (t instanceof jFloat)
 			return GREATER_THAN;
-		
+
 		if (t instanceof jDouble)
 			return GREATER_THAN;
 

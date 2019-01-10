@@ -26,10 +26,10 @@ import static org.logicware.prolog.PrologTermType.LIST_TYPE;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-import org.logicware.AbstractIterator;
 import org.logicware.prolog.PrologList;
 import org.logicware.prolog.PrologProvider;
 import org.logicware.prolog.PrologTerm;
+import org.worklogic.AbstractIterator;
 
 import ubc.cs.JLog.Terms.jList;
 import ubc.cs.JLog.Terms.jListPair;

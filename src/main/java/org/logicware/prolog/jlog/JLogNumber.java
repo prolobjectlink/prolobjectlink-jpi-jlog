@@ -33,6 +33,7 @@ import org.logicware.prolog.PrologProvider;
 
 import ubc.cs.JLog.Terms.jTerm;
 
+/** @author Jose Zalacain @since 1.0 */
 public abstract class JLogNumber extends JLogTerm implements PrologNumber {
 
 	protected JLogNumber(int type, PrologProvider provider, jTerm value) {

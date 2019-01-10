@@ -232,7 +232,7 @@ public class PrologAtomTest extends PrologBaseTest {
 		assertEquals(1, atom.compareTo(dValue));
 
 		// with variable
-		PrologVariable variable = provider.newVariable("X",0);
+		PrologVariable variable = provider.newVariable("X", 0);
 		// true. case atom and variable
 		assertEquals(1, atom.compareTo(variable));
 
@@ -249,7 +249,7 @@ public class PrologAtomTest extends PrologBaseTest {
 		assertEquals(-1, atom.compareTo(expression));
 
 	}
-	
+
 	@Test
 	public final void testMatch() {
 

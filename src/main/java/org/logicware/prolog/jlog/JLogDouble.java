@@ -32,7 +32,7 @@ public final class JLogDouble extends JLogFloat implements PrologDouble {
 	public JLogDouble(PrologProvider provider, Number value) {
 		super(DOUBLE_TYPE, provider, new jDouble(value.doubleValue()));
 	}
-	
+
 	public final double getDoubleValue() {
 		return ((jDouble) value).getRealValue();
 	}

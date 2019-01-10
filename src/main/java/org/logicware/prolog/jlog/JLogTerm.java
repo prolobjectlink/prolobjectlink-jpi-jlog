@@ -43,10 +43,6 @@ import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.logicware.ArrayStack;
-import org.logicware.Stack;
-import org.logicware.logging.LoggerConstants;
-import org.logicware.logging.LoggerUtils;
 import org.logicware.prolog.AbstractTerm;
 import org.logicware.prolog.NumberExpectedError;
 import org.logicware.prolog.PrologNumber;
@@ -54,6 +50,10 @@ import org.logicware.prolog.PrologProvider;
 import org.logicware.prolog.PrologTerm;
 import org.logicware.prolog.jlogx.jDouble;
 import org.logicware.prolog.jlogx.jFloat;
+import org.worklogic.ArrayStack;
+import org.worklogic.Stack;
+import org.worklogic.logging.LoggerConstants;
+import org.worklogic.logging.LoggerUtils;
 
 import ubc.cs.JLog.Foundation.jEquivalenceMapping;
 import ubc.cs.JLog.Foundation.jKnowledgeBase;
@@ -71,6 +71,7 @@ import ubc.cs.JLog.Terms.jPredicateTerms;
 import ubc.cs.JLog.Terms.jTerm;
 import ubc.cs.JLog.Terms.jVariable;
 
+/** @author Jose Zalacain @since 1.0 */
 public abstract class JLogTerm extends AbstractTerm implements PrologTerm {
 
 	protected int vIndex;

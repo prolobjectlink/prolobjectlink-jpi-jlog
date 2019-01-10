@@ -41,8 +41,6 @@ import java.util.Enumeration;
 import java.util.Iterator;
 import java.util.Objects;
 
-import org.logicware.logging.LoggerConstants;
-import org.logicware.logging.LoggerUtils;
 import org.logicware.prolog.AbstractConverter;
 import org.logicware.prolog.PrologAtom;
 import org.logicware.prolog.PrologConverter;
@@ -58,6 +56,8 @@ import org.logicware.prolog.PrologVariable;
 import org.logicware.prolog.UnknownTermError;
 import org.logicware.prolog.jlogx.jDouble;
 import org.logicware.prolog.jlogx.jFloat;
+import org.worklogic.logging.LoggerConstants;
+import org.worklogic.logging.LoggerUtils;
 
 import ubc.cs.JLog.Foundation.jEquivalenceMapping;
 import ubc.cs.JLog.Terms.jAtom;

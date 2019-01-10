@@ -21,9 +21,9 @@
  */
 package org.logicware.prolog.jlog;
 
-import static org.logicware.logging.LoggerConstants.ERROR_LOADING_BUILT_INS;
-import static org.logicware.logging.LoggerConstants.FILE_NOT_FOUND;
-import static org.logicware.logging.LoggerConstants.IO;
+import static org.worklogic.logging.LoggerConstants.ERROR_LOADING_BUILT_INS;
+import static org.worklogic.logging.LoggerConstants.FILE_NOT_FOUND;
+import static org.worklogic.logging.LoggerConstants.IO;
 import static ubc.cs.JLog.Parser.pOperatorEntry.FX;
 import static ubc.cs.JLog.Parser.pOperatorEntry.FY;
 import static ubc.cs.JLog.Parser.pOperatorEntry.XF;
@@ -46,8 +46,6 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.StringTokenizer;
 
-import org.logicware.Licenses;
-import org.logicware.logging.LoggerUtils;
 import org.logicware.prolog.AbstractEngine;
 import org.logicware.prolog.PredicateIndicator;
 import org.logicware.prolog.PrologClause;
@@ -57,6 +55,8 @@ import org.logicware.prolog.PrologOperator;
 import org.logicware.prolog.PrologProvider;
 import org.logicware.prolog.PrologQuery;
 import org.logicware.prolog.PrologTerm;
+import org.worklogic.Licenses;
+import org.worklogic.logging.LoggerUtils;
 
 import ubc.cs.JLog.Foundation.iNameArityStub;
 import ubc.cs.JLog.Foundation.jKnowledgeBase;
