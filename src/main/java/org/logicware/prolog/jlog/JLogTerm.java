@@ -44,7 +44,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.logicware.prolog.AbstractTerm;
-import org.logicware.prolog.NumberExpectedError;
 import org.logicware.prolog.PrologNumber;
 import org.logicware.prolog.PrologProvider;
 import org.logicware.prolog.PrologTerm;
@@ -117,12 +116,6 @@ public abstract class JLogTerm extends AbstractTerm implements PrologTerm {
 	protected JLogTerm(int type, PrologProvider provider, String name, int vIndex) {
 		this(type, provider, new jVariable(name));
 		this.vIndex = vIndex;
-	}
-
-	protected final void checkNumberType(PrologTerm term) {
-		if (!term.isNumber()) {
-			throw new NumberExpectedError(term);
-		}
 	}
 
 	public final boolean isAtom() {
