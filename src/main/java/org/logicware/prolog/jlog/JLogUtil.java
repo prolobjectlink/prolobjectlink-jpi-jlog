@@ -22,7 +22,7 @@
 package org.logicware.prolog.jlog;
 
 import static org.logicware.prolog.jlog.JLog.FUNCTORS;
-import static org.logicware.prolog.jlog.JLogTerm.SIMPLE_ATOM_REGEX;
+import static org.logicware.prolog.AbstractConverter.SIMPLE_ATOM_REGEX;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
