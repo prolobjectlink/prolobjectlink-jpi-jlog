@@ -1,9 +1,8 @@
-package org.logicware.prolog.jlog;
 /*
  * #%L
  * prolobjectlink-jpi-jlog
  * %%
- * Copyright (C) 2012 - 2018 WorkLogic Project
+ * Copyright (C) 2019 Prolobjectlink Project
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as
@@ -20,6 +19,7 @@ package org.logicware.prolog.jlog;
  * <http://www.gnu.org/licenses/gpl-3.0.html>.
  * #L%
  */
+package org.logicware.prolog.jlog;
 
 import org.logicware.prolog.AbstractConsole;
 import org.logicware.prolog.PrologConsole;
