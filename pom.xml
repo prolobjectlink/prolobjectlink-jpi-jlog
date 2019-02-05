@@ -18,8 +18,8 @@
 
 	<licenses>
 		<license>
-			<name>GNU GPL 2</name>
-			<url>http://www.gnu.org/licenses/gpl-2.html</url>
+			<name>GNU GPL 3</name>
+			<url>http://www.gnu.org/licenses/gpl-3.html</url>
 			<distribution>repo</distribution>
 		</license>
 	</licenses>
