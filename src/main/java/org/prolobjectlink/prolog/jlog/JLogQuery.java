@@ -154,7 +154,7 @@ public final class JLogQuery extends AbstractQuery implements PrologQuery {
 		if (hasSolution()) {
 			int index = 0;
 			PrologTerm[] array = new PrologTerm[solution.size()];
-			for (Enumeration<?> e = vector.enumerate(); e.hasMoreElements();) {
+			for (Enumeration<?> e = vector.enumerate(); e.hasMoreElements() && index < solution.size();) {
 				Object object = e.nextElement();
 				if (object instanceof jVariable) {
 					String key = ((jVariable) object).getName();
