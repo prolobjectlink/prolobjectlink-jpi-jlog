@@ -70,7 +70,10 @@ import ubc.cs.JLog.Terms.jPredicateTerms;
 import ubc.cs.JLog.Terms.jTerm;
 import ubc.cs.JLog.Terms.jVariable;
 
-/** @author Jose Zalacain @since 1.0 */
+/** 
+ * @author Jose Zalacain 
+ * @since 1.0 
+ */
 public abstract class JLogTerm extends AbstractTerm implements PrologTerm {
 
 	protected int vIndex;
@@ -80,8 +83,6 @@ public abstract class JLogTerm extends AbstractTerm implements PrologTerm {
 
 	protected final jPredicateTerms emptyBody = new jPredicateTerms();
 	protected final jEquivalenceMapping equivalence = new jEquivalenceMapping();
-
-	protected static final String SIMPLE_ATOM_REGEX = ".|[a-z][A-Za-z0-9_]*";
 
 	protected final jList adaptList(PrologTerm[] arguments) {
 		jList pList = jNullList.NULL_LIST;

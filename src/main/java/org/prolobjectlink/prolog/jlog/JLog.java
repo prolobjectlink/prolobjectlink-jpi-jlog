@@ -22,7 +22,7 @@
 package org.prolobjectlink.prolog.jlog;
 
 import static org.prolobjectlink.logging.LoggerConstants.ERROR_LOADING_BUILT_INS;
-import static org.prolobjectlink.prolog.jlog.JLogTerm.SIMPLE_ATOM_REGEX;
+import static org.prolobjectlink.prolog.AbstractConverter.SIMPLE_ATOM_REGEX;
 
 import java.io.IOException;
 import java.util.HashMap;
