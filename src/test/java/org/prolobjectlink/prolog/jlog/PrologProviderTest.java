@@ -182,9 +182,8 @@ public class PrologProviderTest extends PrologBaseTest {
 		PrologAtom atom = (PrologAtom) provider.parseTerm("an_atom");
 		assertEquals(provider.newAtom("an_atom"), atom);
 
-		// be careful this engine no atom is well formed if not use quotes
 		PrologAtom complex_atom0 = (PrologAtom) provider.parseTerm("'an complex atom'");
-		assertEquals(provider.newAtom("'an complex atom'"), complex_atom0);
+		assertEquals(provider.newAtom("an complex atom"), complex_atom0);
 
 		// IPrologFloat f = (IPrologFloat) adapter.parseTerm("3.14");
 		// assertEquals(new FloatAdapter(3.14), f);

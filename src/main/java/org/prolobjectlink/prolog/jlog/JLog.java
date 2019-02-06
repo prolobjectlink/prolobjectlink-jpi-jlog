@@ -140,6 +140,9 @@ public final class JLog extends AbstractProvider implements PrologProvider {
 	}
 
 	public PrologAtom newAtom(String functor) {
+		if (!functor.matches(SIMPLE_ATOM_REGEX)) {
+			return new JLogAtom(this, "'" + functor + "'");
+		}
 		return new JLogAtom(this, functor);
 	}
 
