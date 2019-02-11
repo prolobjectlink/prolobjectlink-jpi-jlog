@@ -40,6 +40,7 @@ import ubc.cs.JLog.Foundation.jRuleDefinitions;
 import ubc.cs.JLog.Parser.pOperatorRegistry;
 import ubc.cs.JLog.Parser.pParseStream;
 import ubc.cs.JLog.Parser.pPredicateRegistry;
+import ubc.cs.JLog.Terms.jAtom;
 import ubc.cs.JLog.Terms.jBuiltinRule;
 import ubc.cs.JLog.Terms.jCompoundTerm;
 import ubc.cs.JLog.Terms.jCons;
@@ -185,8 +186,14 @@ final class JLogUtil {
 
 	static final jRule toRule(PrologProvider provider, PrologTerm head, PrologTerm... body) {
 		jTerm termHead = provider.fromTerm(head, jTerm.class);
-		if (termHead.type == jTerm.TYPE_PREDICATE) {
-			jPredicate predicateHead = (jPredicate) termHead;
+		if (termHead.type == jTerm.TYPE_PREDICATE || termHead.type == jTerm.TYPE_ATOM) {
+			jPredicate predicateHead = null;
+			if (termHead.type == jTerm.TYPE_PREDICATE) {
+				predicateHead = (jPredicate) termHead;
+			} else if (termHead.type == jTerm.TYPE_ATOM) {
+				jAtom atomHead = (jAtom) termHead;
+				predicateHead = new jPredicate(atomHead);
+			}
 			jPredicateTerms predicateBody = new jPredicateTerms();
 			for (PrologTerm iPrologTerm : body) {
 				predicateBody.addTerm(provider.fromTerm(iPrologTerm, jTerm.class));
