@@ -43,14 +43,14 @@ import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.prolobjectlink.ArrayStack;
-import org.prolobjectlink.Stack;
 import org.prolobjectlink.logging.LoggerConstants;
 import org.prolobjectlink.logging.LoggerUtils;
 import org.prolobjectlink.prolog.AbstractTerm;
+import org.prolobjectlink.prolog.ArrayStack;
 import org.prolobjectlink.prolog.PrologNumber;
 import org.prolobjectlink.prolog.PrologProvider;
 import org.prolobjectlink.prolog.PrologTerm;
+import org.prolobjectlink.prolog.Stack;
 
 import ubc.cs.JLog.Foundation.jEquivalenceMapping;
 import ubc.cs.JLog.Foundation.jKnowledgeBase;
