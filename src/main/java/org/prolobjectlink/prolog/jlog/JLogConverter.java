@@ -56,8 +56,6 @@ import org.prolobjectlink.prolog.PrologStructure;
 import org.prolobjectlink.prolog.PrologTerm;
 import org.prolobjectlink.prolog.PrologVariable;
 import org.prolobjectlink.prolog.UnknownTermError;
-import org.prolobjectlink.prolog.jlogx.jDouble;
-import org.prolobjectlink.prolog.jlogx.jFloat;
 
 import ubc.cs.JLog.Foundation.jEquivalenceMapping;
 import ubc.cs.JLog.Terms.jAtom;

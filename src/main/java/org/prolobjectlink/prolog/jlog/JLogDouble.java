@@ -25,7 +25,6 @@ import static org.prolobjectlink.prolog.PrologTermType.DOUBLE_TYPE;
 
 import org.prolobjectlink.prolog.PrologDouble;
 import org.prolobjectlink.prolog.PrologProvider;
-import org.prolobjectlink.prolog.jlogx.jDouble;
 
 public final class JLogDouble extends JLogFloat implements PrologDouble {
 

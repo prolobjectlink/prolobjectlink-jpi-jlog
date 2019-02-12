@@ -26,7 +26,6 @@ import static org.prolobjectlink.prolog.PrologTermType.FLOAT_TYPE;
 import org.prolobjectlink.prolog.PrologFloat;
 import org.prolobjectlink.prolog.PrologProvider;
 import org.prolobjectlink.prolog.PrologTerm;
-import org.prolobjectlink.prolog.jlogx.jFloat;
 
 import ubc.cs.JLog.Terms.jTerm;
 

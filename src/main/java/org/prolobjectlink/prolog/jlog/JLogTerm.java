@@ -51,8 +51,6 @@ import org.prolobjectlink.prolog.AbstractTerm;
 import org.prolobjectlink.prolog.PrologNumber;
 import org.prolobjectlink.prolog.PrologProvider;
 import org.prolobjectlink.prolog.PrologTerm;
-import org.prolobjectlink.prolog.jlogx.jDouble;
-import org.prolobjectlink.prolog.jlogx.jFloat;
 
 import ubc.cs.JLog.Foundation.jEquivalenceMapping;
 import ubc.cs.JLog.Foundation.jKnowledgeBase;

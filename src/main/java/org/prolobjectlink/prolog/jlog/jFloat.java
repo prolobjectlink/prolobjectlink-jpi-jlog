@@ -19,7 +19,7 @@
  * <http://www.gnu.org/licenses/gpl-2.0.html>.
  * #L%
  */
-package org.prolobjectlink.prolog.jlogx;
+package org.prolobjectlink.prolog.jlog;
 
 import ubc.cs.JLog.Terms.jReal;
 
