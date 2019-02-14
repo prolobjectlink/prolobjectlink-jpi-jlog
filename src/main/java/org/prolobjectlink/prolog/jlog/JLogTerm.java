@@ -68,9 +68,9 @@ import ubc.cs.JLog.Terms.jPredicateTerms;
 import ubc.cs.JLog.Terms.jTerm;
 import ubc.cs.JLog.Terms.jVariable;
 
-/** 
- * @author Jose Zalacain 
- * @since 1.0 
+/**
+ * @author Jose Zalacain
+ * @since 1.0
  */
 public abstract class JLogTerm extends AbstractTerm implements PrologTerm {
 
@@ -214,7 +214,7 @@ public abstract class JLogTerm extends AbstractTerm implements PrologTerm {
 		Stack<PrologTerm> stack = new ArrayStack<PrologTerm>();
 		boolean match = unify(term, stack);
 		for (PrologTerm prologTerm : stack) {
-			unwrap(prologTerm, JLogTerm.class).unbind();
+			((JLogTerm) prologTerm).unbind();
 		}
 		stack.clear();
 		return match;
@@ -237,7 +237,7 @@ public abstract class JLogTerm extends AbstractTerm implements PrologTerm {
 	}
 
 	protected final boolean unify(PrologTerm term, Stack<PrologTerm> stack) {
-		return unify(unwrap(term, JLogTerm.class), stack);
+		return unify((JLogTerm) term, stack);
 	}
 
 	protected final boolean unify(JLogTerm otherTerm, Stack<PrologTerm> stack) {
@@ -254,11 +254,11 @@ public abstract class JLogTerm extends AbstractTerm implements PrologTerm {
 		}
 
 		else if (thisTerm.isVariableBound()) {
-			return thisTerm.vValue.unwrap(JLogTerm.class).unify(otherTerm, stack);
+			return ((JLogTerm) thisTerm.vValue).unify(otherTerm, stack);
 		}
 
 		else if (otherTerm.isVariableBound()) {
-			return otherTerm.vValue.unwrap(JLogTerm.class).unify(thisTerm, stack);
+			return ((JLogTerm) otherTerm.vValue).unify(thisTerm, stack);
 		}
 
 		// current term is a free variable
@@ -297,8 +297,8 @@ public abstract class JLogTerm extends AbstractTerm implements PrologTerm {
 				if (thisArguments.length == otherArguments.length) {
 					for (int i = 0; i < thisArguments.length; i++) {
 						if (thisArguments[i] != null && otherArguments[i] != null) {
-							JLogTerm thisJLogTerm = unwrap(thisArguments[i], JLogTerm.class);
-							JLogTerm otherJLogTerm = unwrap(otherArguments[i], JLogTerm.class);
+							JLogTerm thisJLogTerm = (JLogTerm) thisArguments[i];
+							JLogTerm otherJLogTerm = (JLogTerm) otherArguments[i];
 							if (!thisJLogTerm.unify(otherJLogTerm, stack)) {
 								return false;
 							}
@@ -498,8 +498,8 @@ public abstract class JLogTerm extends AbstractTerm implements PrologTerm {
 
 		case VARIABLE_TYPE:
 
-			JLogTerm thisVariable = unwrap(JLogTerm.class);
-			JLogTerm otherVariable = unwrap(term, JLogTerm.class);
+			JLogTerm thisVariable = this;
+			JLogTerm otherVariable = ((JLogTerm) term);
 			if (thisVariable.vIndex < otherVariable.vIndex) {
 				return -1;
 			} else if (thisVariable.vIndex > otherVariable.vIndex) {

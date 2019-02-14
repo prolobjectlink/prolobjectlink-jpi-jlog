@@ -53,7 +53,7 @@ public final class JLogQuery extends AbstractQuery implements PrologQuery {
 
 		// saving variable order
 		str = JLogUtil.rectify(str);
-		JLogEngine pe = engine.unwrap(JLogEngine.class);
+		JLogEngine pe = (JLogEngine) engine;
 		jKnowledgeBase kb = pe.engine.getKnowledgeBase();
 		pOperatorRegistry or = pe.engine.getOperatorRegistry();
 		pPredicateRegistry pr = pe.engine.getPredicateRegistry();
@@ -83,7 +83,7 @@ public final class JLogQuery extends AbstractQuery implements PrologQuery {
 
 			// saving variable order
 			str = JLogUtil.rectify(str);
-			JLogEngine pe = engine.unwrap(JLogEngine.class);
+			JLogEngine pe = (JLogEngine) engine;
 			jKnowledgeBase kb = pe.engine.getKnowledgeBase();
 			pOperatorRegistry or = pe.engine.getOperatorRegistry();
 			pPredicateRegistry pr = pe.engine.getPredicateRegistry();
@@ -111,7 +111,7 @@ public final class JLogQuery extends AbstractQuery implements PrologQuery {
 
 		// saving variable order
 		str = JLogUtil.rectify(str);
-		JLogEngine pe = engine.unwrap(JLogEngine.class);
+		JLogEngine pe = (JLogEngine) engine;
 		jKnowledgeBase kb = pe.engine.getKnowledgeBase();
 		pOperatorRegistry or = pe.engine.getOperatorRegistry();
 		pPredicateRegistry pr = pe.engine.getPredicateRegistry();

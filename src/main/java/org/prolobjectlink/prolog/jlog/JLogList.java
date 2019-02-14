@@ -26,7 +26,7 @@ import static org.prolobjectlink.prolog.PrologTermType.LIST_TYPE;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-import org.prolobjectlink.AbstractIterator;
+import org.prolobjectlink.prolog.AbstractIterator;
 import org.prolobjectlink.prolog.PrologList;
 import org.prolobjectlink.prolog.PrologProvider;
 import org.prolobjectlink.prolog.PrologTerm;

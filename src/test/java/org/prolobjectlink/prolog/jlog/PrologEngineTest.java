@@ -57,8 +57,6 @@ import org.prolobjectlink.prolog.PrologOperator;
 import org.prolobjectlink.prolog.PrologQuery;
 import org.prolobjectlink.prolog.PrologStructure;
 import org.prolobjectlink.prolog.PrologTerm;
-import org.prolobjectlink.prolog.jlog.JLogEngine;
-import org.prolobjectlink.prolog.jlog.JLogOperator;
 
 import ubc.cs.JLog.Foundation.jPrologServices;
 import ubc.cs.JLog.Foundation.jRule;
@@ -1033,7 +1031,7 @@ public class PrologEngineTest extends PrologBaseTest {
 
 		// built-ins on libraries
 		Set<PrologIndicator> builtins = new HashSet<PrologIndicator>();
-		Enumeration<?> e = engine.unwrap(JLogEngine.class).engine.getPredicateRegistry().enumPredicates();
+		Enumeration<?> e = ((JLogEngine) engine).engine.getPredicateRegistry().enumPredicates();
 		while (e.hasMoreElements()) {
 			Object object = e.nextElement();
 			if (object instanceof pGenericPredicateEntry) {
@@ -1046,7 +1044,7 @@ public class PrologEngineTest extends PrologBaseTest {
 		}
 
 		// user defined predicates
-		e = engine.unwrap(JLogEngine.class).engine.getKnowledgeBase().enumDefinitions();
+		e = ((JLogEngine) engine).engine.getKnowledgeBase().enumDefinitions();
 		while (e.hasMoreElements()) {
 			jRuleDefinitions definitions = (jRuleDefinitions) e.nextElement();
 			Enumeration<?> rules = definitions.enumRules();
@@ -1070,7 +1068,7 @@ public class PrologEngineTest extends PrologBaseTest {
 	public final void testCurrentOperators() {
 
 		Set<PrologOperator> operators = new HashSet<PrologOperator>();
-		Enumeration<?> e = engine.unwrap(JLogEngine.class).engine.getOperatorRegistry().enumOperators();
+		Enumeration<?> e = ((JLogEngine) engine).engine.getOperatorRegistry().enumOperators();
 		while (e.hasMoreElements()) {
 			Object object = e.nextElement();
 			if (object instanceof pOperatorEntry) {
