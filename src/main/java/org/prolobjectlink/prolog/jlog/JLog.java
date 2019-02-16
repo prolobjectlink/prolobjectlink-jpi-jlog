@@ -38,6 +38,7 @@ import org.prolobjectlink.prolog.PrologEngine;
 import org.prolobjectlink.prolog.PrologFloat;
 import org.prolobjectlink.prolog.PrologInteger;
 import org.prolobjectlink.prolog.PrologList;
+import org.prolobjectlink.prolog.PrologLogger;
 import org.prolobjectlink.prolog.PrologLong;
 import org.prolobjectlink.prolog.PrologProvider;
 import org.prolobjectlink.prolog.PrologStructure;
@@ -62,6 +63,7 @@ public final class JLog extends AbstractProvider implements PrologProvider {
 
 	protected static final String DOT = ".";
 	protected static final String BUILTINS = "builtins";
+	private static final PrologLogger logger = new JLogLogger();
 	protected static final Map<String, String> FUNCTORS = new HashMap<String, String>();
 
 	public JLog() {
@@ -195,6 +197,10 @@ public final class JLog extends AbstractProvider implements PrologProvider {
 
 	public PrologTerm newStructure(PrologTerm left, String operator, PrologTerm right) {
 		return new JLogStructure(this, left, operator, right);
+	}
+
+	public PrologLogger getLogger() {
+		return logger;
 	}
 
 	@Override
