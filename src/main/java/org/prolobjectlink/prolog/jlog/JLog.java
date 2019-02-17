@@ -21,15 +21,14 @@
  */
 package org.prolobjectlink.prolog.jlog;
 
-import static org.prolobjectlink.logging.LoggerConstants.ERROR_LOADING_BUILT_INS;
 import static org.prolobjectlink.prolog.AbstractConverter.SIMPLE_ATOM_REGEX;
+import static org.prolobjectlink.prolog.LoggerConstants.ERROR_LOADING_BUILT_INS;
 
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
-import org.prolobjectlink.logging.LoggerUtils;
 import org.prolobjectlink.prolog.AbstractProvider;
 import org.prolobjectlink.prolog.PrologAtom;
 import org.prolobjectlink.prolog.PrologConverter;
@@ -76,7 +75,7 @@ public final class JLog extends AbstractProvider implements PrologProvider {
 		try {
 			engine.loadLibrary(BUILTINS);
 		} catch (IOException e) {
-			LoggerUtils.error(getClass(), ERROR_LOADING_BUILT_INS, e);
+			getLogger().error(getClass(), ERROR_LOADING_BUILT_INS, e);
 		}
 	}
 

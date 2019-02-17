@@ -43,10 +43,9 @@ import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.prolobjectlink.logging.LoggerConstants;
-import org.prolobjectlink.logging.LoggerUtils;
 import org.prolobjectlink.prolog.AbstractTerm;
 import org.prolobjectlink.prolog.ArrayStack;
+import org.prolobjectlink.prolog.LoggerConstants;
 import org.prolobjectlink.prolog.PrologNumber;
 import org.prolobjectlink.prolog.PrologProvider;
 import org.prolobjectlink.prolog.PrologTerm;
@@ -177,7 +176,7 @@ public abstract class JLogTerm extends AbstractTerm implements PrologTerm {
 			try {
 				engine.loadLibrary(builtins);
 			} catch (IOException e) {
-				LoggerUtils.error(getClass(), LoggerConstants.ERROR_LOADING_BUILT_INS, e);
+				getLogger().error(getClass(), LoggerConstants.ERROR_LOADING_BUILT_INS, e);
 			}
 			Enumeration<?> e = engine.getOperatorRegistry().enumOperators();
 			while (e.hasMoreElements()) {

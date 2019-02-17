@@ -21,9 +21,9 @@
  */
 package org.prolobjectlink.prolog.jlog;
 
-import static org.prolobjectlink.logging.LoggerConstants.ERROR_LOADING_BUILT_INS;
-import static org.prolobjectlink.logging.LoggerConstants.FILE_NOT_FOUND;
-import static org.prolobjectlink.logging.LoggerConstants.IO;
+import static org.prolobjectlink.prolog.LoggerConstants.ERROR_LOADING_BUILT_INS;
+import static org.prolobjectlink.prolog.LoggerConstants.FILE_NOT_FOUND;
+import static org.prolobjectlink.prolog.LoggerConstants.IO;
 import static ubc.cs.JLog.Parser.pOperatorEntry.FX;
 import static ubc.cs.JLog.Parser.pOperatorEntry.FY;
 import static ubc.cs.JLog.Parser.pOperatorEntry.XF;
@@ -46,7 +46,6 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.StringTokenizer;
 
-import org.prolobjectlink.logging.LoggerUtils;
 import org.prolobjectlink.prolog.AbstractEngine;
 import org.prolobjectlink.prolog.Licenses;
 import org.prolobjectlink.prolog.PredicateIndicator;
@@ -100,7 +99,7 @@ public final class JLogEngine extends AbstractEngine implements PrologEngine {
 		try {
 			engine.loadLibrary(BUILTINS);
 		} catch (IOException e) {
-			LoggerUtils.error(getClass(), ERROR_LOADING_BUILT_INS, e);
+			getLogger().error(getClass(), ERROR_LOADING_BUILT_INS, e);
 		}
 	}
 
@@ -149,7 +148,7 @@ public final class JLogEngine extends AbstractEngine implements PrologEngine {
 			FileReader fileReader = new FileReader(path);
 			new pParseStream(fileReader, kb, pr, or).parseSource();
 		} catch (FileNotFoundException e) {
-			LoggerUtils.error(getClass(), FILE_NOT_FOUND + path, e);
+			getLogger().error(getClass(), FILE_NOT_FOUND + path, e);
 		}
 	}
 
@@ -159,7 +158,7 @@ public final class JLogEngine extends AbstractEngine implements PrologEngine {
 			FileReader fileReader = new FileReader(path);
 			new pParseStream(fileReader, kb, pr, or).parseSource();
 		} catch (FileNotFoundException e) {
-			LoggerUtils.error(getClass(), FILE_NOT_FOUND + path, e);
+			getLogger().error(getClass(), FILE_NOT_FOUND + path, e);
 		}
 	}
 
@@ -170,9 +169,9 @@ public final class JLogEngine extends AbstractEngine implements PrologEngine {
 			writer.print(JLogUtil.toString(engine));
 			writer.flush();
 		} catch (FileNotFoundException e) {
-			LoggerUtils.error(getClass(), FILE_NOT_FOUND + path, e);
+			getLogger().error(getClass(), FILE_NOT_FOUND + path, e);
 		} catch (IOException e) {
-			LoggerUtils.error(getClass(), IO + path, e);
+			getLogger().error(getClass(), IO + path, e);
 		} finally {
 			assert writer != null;
 			writer.close();
