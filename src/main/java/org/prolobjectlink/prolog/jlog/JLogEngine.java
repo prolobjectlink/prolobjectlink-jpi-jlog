@@ -21,9 +21,9 @@
  */
 package org.prolobjectlink.prolog.jlog;
 
-import static org.prolobjectlink.prolog.LoggerConstants.ERROR_LOADING_BUILT_INS;
-import static org.prolobjectlink.prolog.LoggerConstants.FILE_NOT_FOUND;
-import static org.prolobjectlink.prolog.LoggerConstants.IO;
+import static org.prolobjectlink.prolog.PrologLogger.ERROR_LOADING_BUILT_INS;
+import static org.prolobjectlink.prolog.PrologLogger.FILE_NOT_FOUND;
+import static org.prolobjectlink.prolog.PrologLogger.IO;
 import static ubc.cs.JLog.Parser.pOperatorEntry.FX;
 import static ubc.cs.JLog.Parser.pOperatorEntry.FY;
 import static ubc.cs.JLog.Parser.pOperatorEntry.XF;

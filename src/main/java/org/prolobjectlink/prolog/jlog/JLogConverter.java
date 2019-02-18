@@ -42,7 +42,7 @@ import java.util.Iterator;
 import java.util.Objects;
 
 import org.prolobjectlink.prolog.AbstractConverter;
-import org.prolobjectlink.prolog.LoggerConstants;
+import org.prolobjectlink.prolog.PrologLogger;
 import org.prolobjectlink.prolog.PrologAtom;
 import org.prolobjectlink.prolog.PrologConverter;
 import org.prolobjectlink.prolog.PrologDouble;
@@ -130,7 +130,7 @@ public class JLogConverter extends AbstractConverter<jTerm> implements PrologCon
 				} else if (e.getMessage().contains(jDouble.class.getName())) {
 					number = new JLogDouble(provider, ((jReal) prologTerm).getRealValue());
 				} else {
-					getLogger().error(getClass(), LoggerConstants.CLASS_CAST, e);
+					getLogger().error(getClass(), PrologLogger.CLASS_CAST, e);
 				}
 			}
 			return number;
