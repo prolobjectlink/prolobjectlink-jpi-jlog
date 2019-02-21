@@ -49,7 +49,6 @@ import org.prolobjectlink.prolog.PrologLogger;
 import org.prolobjectlink.prolog.PrologNumber;
 import org.prolobjectlink.prolog.PrologProvider;
 import org.prolobjectlink.prolog.PrologTerm;
-import org.prolobjectlink.prolog.Stack;
 
 import ubc.cs.JLog.Foundation.jEquivalenceMapping;
 import ubc.cs.JLog.Foundation.jKnowledgeBase;
@@ -210,7 +209,7 @@ public abstract class JLogTerm extends AbstractTerm implements PrologTerm {
 	}
 
 	public final boolean unify(PrologTerm term) {
-		Stack<PrologTerm> stack = new ArrayStack<PrologTerm>();
+		ArrayStack<PrologTerm> stack = new ArrayStack<PrologTerm>();
 		boolean match = unify(term, stack);
 		for (PrologTerm prologTerm : stack) {
 			((JLogTerm) prologTerm).unbind();
@@ -220,7 +219,7 @@ public abstract class JLogTerm extends AbstractTerm implements PrologTerm {
 	}
 
 	public final Map<String, PrologTerm> match(PrologTerm term) {
-		Stack<PrologTerm> stack = new ArrayStack<PrologTerm>();
+		ArrayStack<PrologTerm> stack = new ArrayStack<PrologTerm>();
 		if (unify(term, stack)) {
 			int l = stack.size();
 			Map<String, PrologTerm> s = new HashMap<String, PrologTerm>(l);
@@ -235,11 +234,11 @@ public abstract class JLogTerm extends AbstractTerm implements PrologTerm {
 		return new HashMap<String, PrologTerm>();
 	}
 
-	protected final boolean unify(PrologTerm term, Stack<PrologTerm> stack) {
+	protected final boolean unify(PrologTerm term, ArrayStack<PrologTerm> stack) {
 		return unify((JLogTerm) term, stack);
 	}
 
-	protected final boolean unify(JLogTerm otherTerm, Stack<PrologTerm> stack) {
+	protected final boolean unify(JLogTerm otherTerm, ArrayStack<PrologTerm> stack) {
 
 		JLogTerm thisTerm = this;
 
