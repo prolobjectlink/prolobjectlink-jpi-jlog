@@ -268,24 +268,25 @@ final class JLogUtil {
 			buffer.append(functor);
 		}
 		Enumeration<?> e = args.enumTerms();
-		if (e.hasMoreElements())
+		if (e.hasMoreElements()) {
 			buffer.append('(');
-		while (e.hasMoreElements()) {
-			jTerm jTerm = (jTerm) e.nextElement();
-			if (jTerm instanceof jVariable) {
-				jVariable jVar = (jVariable) jTerm;
-				buffer.append(jVar.getName());
-			} else if (jTerm instanceof jPredicate) {
-				jPredicate p = (jPredicate) jTerm;
-				String arg = toString(p.getName(), p.getArguments());
-				buffer.append(arg);
-			} else {
-				buffer.append(jTerm);
+			while (e.hasMoreElements()) {
+				jTerm jTerm = (jTerm) e.nextElement();
+				if (jTerm instanceof jVariable) {
+					jVariable jVar = (jVariable) jTerm;
+					buffer.append(jVar.getName());
+				} else if (jTerm instanceof jPredicate) {
+					jPredicate p = (jPredicate) jTerm;
+					String arg = toString(p.getName(), p.getArguments());
+					buffer.append(arg);
+				} else {
+					buffer.append(jTerm);
+				}
+				if (e.hasMoreElements())
+					buffer.append(',');
 			}
-			if (e.hasMoreElements())
-				buffer.append(',');
+			buffer.append(')');
 		}
-		buffer.append(')');
 		return "" + buffer + "";
 	}
 
