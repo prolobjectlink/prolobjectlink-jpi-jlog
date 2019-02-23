@@ -37,11 +37,13 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Enumeration;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 import java.util.StringTokenizer;
@@ -461,6 +463,10 @@ public final class JLogEngine extends AbstractEngine implements PrologEngine {
 	public void dispose() {
 		engine.release();
 		kb.clearRules();
+	}
+
+	public final List<String> verify() {
+		return Arrays.asList("OK");
 	}
 
 }
