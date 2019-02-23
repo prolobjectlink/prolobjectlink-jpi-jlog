@@ -402,7 +402,6 @@ public abstract class JLogTerm extends AbstractTerm implements PrologTerm {
 
 		case FLOAT_TYPE:
 
-			checkNumberType(term);
 			float thisFloatValue = ((jFloat) value).getRealValue();
 			float otherFloatValue = ((PrologNumber) term).getFloatValue();
 
@@ -416,7 +415,6 @@ public abstract class JLogTerm extends AbstractTerm implements PrologTerm {
 
 		case LONG_TYPE:
 
-			checkNumberType(term);
 			long thisValue = ((jInteger) value).getIntegerValue();
 			long otherValue = ((PrologNumber) term).getLongValue();
 
@@ -430,7 +428,6 @@ public abstract class JLogTerm extends AbstractTerm implements PrologTerm {
 
 		case DOUBLE_TYPE:
 
-			checkNumberType(term);
 			double thisDoubleValue = ((jDouble) value).getRealValue();
 			double otherDoubleValue = ((PrologNumber) term).getDoubleValue();
 
@@ -444,7 +441,6 @@ public abstract class JLogTerm extends AbstractTerm implements PrologTerm {
 
 		case INTEGER_TYPE:
 
-			checkNumberType(term);
 			int thisIntergerValue = ((jInteger) value).getIntegerValue();
 			int otherIntegerValue = ((PrologNumber) term).getIntValue();
 
