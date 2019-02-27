@@ -39,16 +39,15 @@ import static org.prolobjectlink.prolog.PrologTermType.VARIABLE_TYPE;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.Iterator;
-import java.util.Objects;
 
 import org.prolobjectlink.prolog.AbstractConverter;
-import org.prolobjectlink.prolog.PrologLogger;
 import org.prolobjectlink.prolog.PrologAtom;
 import org.prolobjectlink.prolog.PrologConverter;
 import org.prolobjectlink.prolog.PrologDouble;
 import org.prolobjectlink.prolog.PrologFloat;
 import org.prolobjectlink.prolog.PrologInteger;
 import org.prolobjectlink.prolog.PrologList;
+import org.prolobjectlink.prolog.PrologLogger;
 import org.prolobjectlink.prolog.PrologLong;
 import org.prolobjectlink.prolog.PrologProvider;
 import org.prolobjectlink.prolog.PrologStructure;
@@ -278,8 +277,8 @@ public class JLogConverter extends AbstractConverter<jTerm> implements PrologCon
 	public int hashCode() {
 		final int prime = 31;
 		int result = super.hashCode();
-		result = prime * result + Objects.hashCode(emptyBody);
-		result = prime * result + Objects.hashCode(equivalence);
+		result = prime * result + emptyBody.hashCode();
+		result = prime * result + equivalence.hashCode();
 		return result;
 	}
 
@@ -292,9 +291,9 @@ public class JLogConverter extends AbstractConverter<jTerm> implements PrologCon
 		if (getClass() != obj.getClass())
 			return false;
 		JLogConverter other = (JLogConverter) obj;
-		if (!Objects.equals(emptyBody, other.emptyBody))
+		if (!emptyBody.equals(other.emptyBody))
 			return false;
-		return Objects.equals(equivalence, other.equivalence);
+		return equivalence.equals(other.emptyBody);
 	}
 
 }

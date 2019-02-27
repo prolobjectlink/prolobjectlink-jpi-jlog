@@ -27,7 +27,6 @@ import static org.prolobjectlink.prolog.PrologLogger.ERROR_LOADING_BUILT_INS;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 
 import org.prolobjectlink.prolog.AbstractProvider;
 import org.prolobjectlink.prolog.PrologAtom;
@@ -211,7 +210,7 @@ public final class JLog extends AbstractProvider implements PrologProvider {
 	public int hashCode() {
 		final int prime = 31;
 		int result = super.hashCode();
-		result = prime * result + Objects.hashCode(engine);
+		result = prime * result + engine.hashCode();
 		return result;
 	}
 
@@ -224,7 +223,7 @@ public final class JLog extends AbstractProvider implements PrologProvider {
 		if (getClass() != obj.getClass())
 			return false;
 		JLog other = (JLog) obj;
-		return Objects.equals(engine, other.engine);
+		return engine.equals(other.engine);
 	}
 
 }

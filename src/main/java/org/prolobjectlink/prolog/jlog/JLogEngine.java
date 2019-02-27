@@ -44,7 +44,6 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Objects;
 import java.util.Set;
 import java.util.StringTokenizer;
 
@@ -435,10 +434,10 @@ public final class JLogEngine extends AbstractEngine implements PrologEngine {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + Objects.hashCode(engine);
-		result = prime * result + Objects.hashCode(kb);
-		result = prime * result + Objects.hashCode(or);
-		result = prime * result + Objects.hashCode(pr);
+		result = prime * result + engine.hashCode();
+		result = prime * result + kb.hashCode();
+		result = prime * result + or.hashCode();
+		result = prime * result + pr.hashCode();
 		return result;
 	}
 
@@ -451,13 +450,13 @@ public final class JLogEngine extends AbstractEngine implements PrologEngine {
 		if (getClass() != obj.getClass())
 			return false;
 		JLogEngine other = (JLogEngine) obj;
-		if (!Objects.equals(engine, other.engine))
+		if (!engine.equals(other.engine))
 			return false;
-		if (!Objects.equals(kb, other.kb))
+		if (!kb.equals(other.kb))
 			return false;
-		if (!Objects.equals(or, other.or))
+		if (!or.equals(other.or))
 			return false;
-		return Objects.equals(pr, other.pr);
+		return pr.equals(other.pr);
 	}
 
 	public void dispose() {
