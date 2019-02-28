@@ -49,7 +49,6 @@ import java.util.StringTokenizer;
 
 import org.prolobjectlink.prolog.AbstractEngine;
 import org.prolobjectlink.prolog.Licenses;
-import org.prolobjectlink.prolog.PredicateIndicator;
 import org.prolobjectlink.prolog.PrologClause;
 import org.prolobjectlink.prolog.PrologEngine;
 import org.prolobjectlink.prolog.PrologIndicator;
@@ -258,7 +257,7 @@ public final class JLogEngine extends AbstractEngine implements PrologEngine {
 	}
 
 	public boolean currentPredicate(String functor, int arity) {
-		PrologIndicator pi = new PredicateIndicator(functor, arity);
+		PrologIndicator pi = new JLogIndicator(functor, arity);
 		return currentPredicates().contains(pi);
 	}
 
@@ -389,7 +388,7 @@ public final class JLogEngine extends AbstractEngine implements PrologEngine {
 					jPredicate ruleHead = jRule.getHead();
 					String functor = ruleHead.getName();
 					int arity = ruleHead.getArity();
-					PredicateIndicator pi = new PredicateIndicator(functor, arity);
+					JLogIndicator pi = new JLogIndicator(functor, arity);
 					predicates.add(pi);
 				}
 			}
@@ -406,7 +405,7 @@ public final class JLogEngine extends AbstractEngine implements PrologEngine {
 				pGenericPredicateEntry entry = (pGenericPredicateEntry) object;
 				String functor = entry.getName();
 				int arity = entry.getArity();
-				PredicateIndicator pi = new PredicateIndicator(functor, arity);
+				JLogIndicator pi = new JLogIndicator(functor, arity);
 				builtins.add(pi);
 			}
 		}
