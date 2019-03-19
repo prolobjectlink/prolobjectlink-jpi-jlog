@@ -106,6 +106,10 @@ public final class JLog extends AbstractProvider implements PrologProvider {
 		return new JLogEmpty(this);
 	}
 
+	public PrologTerm prologInclude(String file) {
+		return newStructure("consult", newAtom(file));
+	}
+
 	public PrologTerm parseTerm(String str) {
 		String s = str.charAt(str.length() - 1) == '.' ? str : str + DOT;
 		return toTerm(new pParseStream(s, kb, pr, or).parseTerm(), PrologTerm.class);
