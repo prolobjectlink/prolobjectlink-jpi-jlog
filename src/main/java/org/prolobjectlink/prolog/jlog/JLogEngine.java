@@ -53,6 +53,7 @@ import org.prolobjectlink.prolog.PrologClause;
 import org.prolobjectlink.prolog.PrologEngine;
 import org.prolobjectlink.prolog.PrologIndicator;
 import org.prolobjectlink.prolog.PrologOperator;
+import org.prolobjectlink.prolog.PrologProgrammer;
 import org.prolobjectlink.prolog.PrologProvider;
 import org.prolobjectlink.prolog.PrologQuery;
 import org.prolobjectlink.prolog.PrologTerm;
@@ -415,6 +416,10 @@ public final class JLogEngine extends AbstractEngine implements PrologEngine {
 			}
 		}
 		return builtins;
+	}
+
+	public PrologProgrammer getProgrammer() {
+		return new JLogProgrammer(provider);
 	}
 
 	public String getLicense() {
