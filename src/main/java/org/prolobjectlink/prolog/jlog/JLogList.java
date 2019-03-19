@@ -36,6 +36,11 @@ import ubc.cs.JLog.Terms.jListPair;
 import ubc.cs.JLog.Terms.jNullList;
 import ubc.cs.JLog.Terms.jTerm;
 
+/**
+ * 
+ * @author Jose Zalacain
+ * @since 1.0
+ */
 public class JLogList extends JLogTerm implements PrologList {
 
 	protected JLogList(PrologProvider provider) {

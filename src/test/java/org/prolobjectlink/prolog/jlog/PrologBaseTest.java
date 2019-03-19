@@ -32,7 +32,6 @@ import org.prolobjectlink.prolog.PrologInteger;
 import org.prolobjectlink.prolog.PrologProvider;
 import org.prolobjectlink.prolog.PrologTerm;
 import org.prolobjectlink.prolog.PrologVariable;
-import org.prolobjectlink.prolog.jlog.JLog;
 
 import ubc.cs.JLog.Foundation.jEquivalenceMapping;
 

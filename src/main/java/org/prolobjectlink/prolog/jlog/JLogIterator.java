@@ -31,6 +31,11 @@ import ubc.cs.JLog.Terms.iTermToObject;
 import ubc.cs.JLog.Terms.jList;
 import ubc.cs.JLog.Terms.jTerm;
 
+/**
+ * 
+ * @author Jose Zalacain
+ * @since 1.0
+ */
 final class JLogIterator extends AbstractIterator<jTerm> implements Iterator<jTerm> {
 
 	private Enumeration<?> e;

@@ -75,6 +75,11 @@ import ubc.cs.JLog.Terms.jBuiltinRule;
 import ubc.cs.JLog.Terms.jPredicate;
 import ubc.cs.JLog.Terms.jPredicateTerms;
 
+/**
+ * 
+ * @author Jose Zalacain
+ * @since 1.0
+ */
 public final class JLogEngine extends AbstractEngine implements PrologEngine {
 
 	final jPrologServices engine;

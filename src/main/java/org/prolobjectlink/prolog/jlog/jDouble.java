@@ -30,6 +30,11 @@ import ubc.cs.JLog.Terms.jInteger;
 import ubc.cs.JLog.Terms.jTerm;
 import ubc.cs.JLog.Terms.jVariable;
 
+/**
+ * 
+ * @author Jose Zalacain
+ * @since 1.0
+ */
 public class jDouble extends jTerm {
 
 	protected double value;

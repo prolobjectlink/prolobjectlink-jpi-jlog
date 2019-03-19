@@ -32,6 +32,11 @@ import org.prolobjectlink.prolog.PrologVariable;
 
 import ubc.cs.JLog.Terms.jVariable;
 
+/**
+ * 
+ * @author Jose Zalacain
+ * @since 1.0
+ */
 public class JLogVariable extends JLogTerm implements PrologVariable {
 
 	public JLogVariable(PrologProvider provider) {

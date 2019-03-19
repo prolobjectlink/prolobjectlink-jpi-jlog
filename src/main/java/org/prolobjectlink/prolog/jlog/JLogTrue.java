@@ -28,6 +28,11 @@ import org.prolobjectlink.prolog.PrologTerm;
 
 import ubc.cs.JLog.Terms.jTrue;
 
+/**
+ * 
+ * @author Jose Zalacain
+ * @since 1.0
+ */
 public final class JLogTrue extends JLogTerm implements PrologTerm {
 
 	protected JLogTrue(PrologProvider provider) {

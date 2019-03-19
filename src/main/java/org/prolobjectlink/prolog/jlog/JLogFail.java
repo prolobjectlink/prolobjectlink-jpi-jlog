@@ -28,6 +28,11 @@ import org.prolobjectlink.prolog.PrologTerm;
 
 import ubc.cs.JLog.Terms.jFail;
 
+/**
+ * 
+ * @author Jose Zalacain
+ * @since 1.0
+ */
 public final class JLogFail extends JLogTerm implements PrologTerm {
 
 	protected JLogFail(PrologProvider provider) {

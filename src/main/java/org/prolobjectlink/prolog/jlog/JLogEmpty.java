@@ -27,6 +27,11 @@ import org.prolobjectlink.prolog.PrologTerm;
 
 import ubc.cs.JLog.Terms.jNullList;
 
+/**
+ * 
+ * @author Jose Zalacain
+ * @since 1.0
+ */
 public class JLogEmpty extends JLogList implements PrologList {
 
 	protected JLogEmpty(PrologProvider provider) {

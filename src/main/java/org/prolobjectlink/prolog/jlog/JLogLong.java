@@ -28,6 +28,11 @@ import org.prolobjectlink.prolog.PrologProvider;
 
 import ubc.cs.JLog.Terms.jInteger;
 
+/**
+ * 
+ * @author Jose Zalacain
+ * @since 1.0
+ */
 public class JLogLong extends JLogInteger implements PrologLong {
 
 	public JLogLong(PrologProvider provider, Number value) {

@@ -31,6 +31,11 @@ import ubc.cs.JLog.Terms.jCompoundTerm;
 import ubc.cs.JLog.Terms.jPredicate;
 import ubc.cs.JLog.Terms.jTerm;
 
+/**
+ * 
+ * @author Jose Zalacain
+ * @since 1.0
+ */
 public class JLogStructure extends JLogTerm implements PrologStructure {
 
 	protected JLogStructure(PrologProvider provider, String functor, PrologTerm... arguments) {

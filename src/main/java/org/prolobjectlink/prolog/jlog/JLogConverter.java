@@ -72,6 +72,11 @@ import ubc.cs.JLog.Terms.jTerm;
 import ubc.cs.JLog.Terms.jTrue;
 import ubc.cs.JLog.Terms.jVariable;
 
+/**
+ * 
+ * @author Jose Zalacain
+ * @since 1.0
+ */
 public class JLogConverter extends AbstractConverter<jTerm> implements PrologConverter<jTerm> {
 
 	protected static final String DOT = ".";

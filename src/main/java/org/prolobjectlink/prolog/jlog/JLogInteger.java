@@ -30,6 +30,11 @@ import org.prolobjectlink.prolog.PrologTerm;
 import ubc.cs.JLog.Terms.jInteger;
 import ubc.cs.JLog.Terms.jTerm;
 
+/**
+ * 
+ * @author Jose Zalacain
+ * @since 1.0
+ */
 public class JLogInteger extends JLogNumber implements PrologInteger {
 
 	public JLogInteger(PrologProvider provider, Number value) {

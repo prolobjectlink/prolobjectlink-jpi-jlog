@@ -23,6 +23,11 @@ package org.prolobjectlink.prolog.jlog;
 
 import ubc.cs.JLog.Terms.jReal;
 
+/**
+ * 
+ * @author Jose Zalacain
+ * @since 1.0
+ */
 public class jFloat extends jReal {
 
 	protected float value;

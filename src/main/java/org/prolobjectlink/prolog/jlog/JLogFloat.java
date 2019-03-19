@@ -29,6 +29,11 @@ import org.prolobjectlink.prolog.PrologTerm;
 
 import ubc.cs.JLog.Terms.jTerm;
 
+/**
+ * 
+ * @author Jose Zalacain
+ * @since 1.0
+ */
 public class JLogFloat extends JLogNumber implements PrologFloat {
 
 	public JLogFloat(PrologProvider provider, Number value) {

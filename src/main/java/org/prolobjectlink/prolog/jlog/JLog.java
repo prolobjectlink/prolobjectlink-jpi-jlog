@@ -52,6 +52,11 @@ import ubc.cs.JLog.Parser.pPredicateRegistry;
 import ubc.cs.JLog.Terms.jPredicateTerms;
 import ubc.cs.JLog.Terms.jTerm;
 
+/**
+ * 
+ * @author Jose Zalacain
+ * @since 1.0
+ */
 public final class JLog extends AbstractProvider implements PrologProvider {
 
 	private final jKnowledgeBase kb = new jKnowledgeBase();

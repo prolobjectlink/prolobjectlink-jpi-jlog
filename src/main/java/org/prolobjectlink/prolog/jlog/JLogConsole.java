@@ -24,6 +24,11 @@ package org.prolobjectlink.prolog.jlog;
 import org.prolobjectlink.prolog.AbstractConsole;
 import org.prolobjectlink.prolog.PrologConsole;
 
+/**
+ * 
+ * @author Jose Zalacain
+ * @since 1.0
+ */
 public class JLogConsole extends AbstractConsole implements PrologConsole {
 
 	public JLogConsole() {
