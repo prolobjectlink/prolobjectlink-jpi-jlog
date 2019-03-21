@@ -21,6 +21,8 @@
  */
 package org.prolobjectlink.prolog.jlog;
 
+import java.io.PrintWriter;
+
 import org.prolobjectlink.prolog.AbstractProgrammer;
 import org.prolobjectlink.prolog.PrologProgrammer;
 import org.prolobjectlink.prolog.PrologProvider;
@@ -34,6 +36,18 @@ public final class JLogProgrammer extends AbstractProgrammer implements PrologPr
 
 	public JLogProgrammer(PrologProvider provider) {
 		super(provider);
+	}
+
+	public void codingInclusion(PrintWriter programmer, String jarEntryName) {
+		StringBuilder b = new StringBuilder();
+		for (int i = 0; i < jarEntryName.lastIndexOf('/'); i++) {
+			if (jarEntryName.charAt(i) == '/') {
+				b.append("../");
+			}
+		}
+		b.append("../../obj/prolobject.pl");
+		programmer.println(":-" + provider.prologInclude("" + b + "") + ".");
+		programmer.println();
 	}
 
 }
