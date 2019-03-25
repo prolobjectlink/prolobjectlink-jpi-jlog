@@ -19,44 +19,58 @@
 % THE SOFTWARE.
 
 % Author: Jose Zalacain
- 
-:- use_module(library(jpl)).
+
+:-load_library('./bsf').
  
 object_null(Object) :- 
+%	TODO Don't have an equivalent yet
 	 jpl_null(Object).
  
 object_false(Object) :- 
-	 jpl_false(Object).
+	Object = false.
 	 
 object_true(Object) :- 
-	 jpl_true(Object).
+	Object = true.
 	 
 object_is_false(Object):-
-	jpl_is_false(Object).
+	object_false(FALSE),
+	Object == FALSE.
 	
 object_is_null(Object):-
-	jpl_is_null(Object).
+	object_null(NULL),
+	Object == NULL.
 	
 object_is_true(Object):-
-	jpl_is_true(Object).
+	object_true(TRUE),
+	Object == TRUE.
 	
 object_new(Class,Object) :- 
 	 object_new(Class,[],Object).
 
-object_new(Class,Argument,Object) :- 
-	 jpl_new(Class,Argument,Object).
+object_new(Class,Arguments,Object) :- 
+	 bsf_create(Object, Class, Arguments).
 	 
 object_list_to_array(Ars, Ac) :- 
-	jpl_list_to_array(Ars, Ac).
+	bsf_p2j(Ars, Ac).
 	 
 object_get(Object,Field,Result) :- 
+%	TODO Don't have an equivalent yet
+
+%    bsf_static (Class, ResultVar)
+%    Retrieves a class and stores it in variable ResultVar,
+% 	 so that static methods can be invoked on it (e.g. Integer.valueOf).
+%	 Can also be used to retrieve static fields of classes 
+%	 (e.g. java.lang.System.out). Class must be a string or a variable
+%	 bound to a string.
+
 	 jpl_get(Object,Field,Result).
 	 
 object_set(Object,Field,Value) :- 
+%	TODO Don't have an equivalent yet
 	 jpl_set(Object,Field,Value).
 
 object_call(Object,Method,Arguments,Result) :- 
-	 jpl_call(Object,Method,Arguments,Result).
+	 bsf_invoke(Result, Object, Method, Arguments).
 	 
 object_call(Object,Method,Arguments) :- 
 	 object_call(Object,Method,Arguments,_).
