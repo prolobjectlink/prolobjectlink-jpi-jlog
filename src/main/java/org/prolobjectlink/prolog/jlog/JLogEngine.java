@@ -47,6 +47,8 @@ import java.util.List;
 import java.util.Set;
 import java.util.StringTokenizer;
 
+import javax.script.ScriptEngine;
+
 import org.prolobjectlink.prolog.AbstractEngine;
 import org.prolobjectlink.prolog.Licenses;
 import org.prolobjectlink.prolog.PrologClause;
@@ -56,6 +58,7 @@ import org.prolobjectlink.prolog.PrologOperator;
 import org.prolobjectlink.prolog.PrologProgrammer;
 import org.prolobjectlink.prolog.PrologProvider;
 import org.prolobjectlink.prolog.PrologQuery;
+import org.prolobjectlink.prolog.PrologScript;
 import org.prolobjectlink.prolog.PrologTerm;
 
 import ubc.cs.JLog.Foundation.iNameArityStub;
@@ -363,6 +366,10 @@ public final class JLogEngine extends AbstractEngine implements PrologEngine {
 			}
 		}
 		return new PrologProgramIterator(cls);
+	}
+
+	public ScriptEngine getPrologScript() {
+		return new PrologScript(new JLogScriptFactory(this));
 	}
 
 	public int getProgramSize() {
