@@ -58,7 +58,7 @@ import org.prolobjectlink.prolog.PrologOperator;
 import org.prolobjectlink.prolog.PrologProgrammer;
 import org.prolobjectlink.prolog.PrologProvider;
 import org.prolobjectlink.prolog.PrologQuery;
-import org.prolobjectlink.prolog.PrologScript;
+import org.prolobjectlink.prolog.PrologScriptEngine;
 import org.prolobjectlink.prolog.PrologTerm;
 
 import ubc.cs.JLog.Foundation.iNameArityStub;
@@ -369,7 +369,7 @@ public final class JLogEngine extends AbstractEngine implements PrologEngine {
 	}
 
 	public ScriptEngine getPrologScript() {
-		return new PrologScript(new JLogScriptFactory(this));
+		return new PrologScriptEngine(new JLogScriptFactory(this));
 	}
 
 	public int getProgramSize() {

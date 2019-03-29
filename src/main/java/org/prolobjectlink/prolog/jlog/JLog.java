@@ -28,6 +28,8 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.script.ScriptEngineFactory;
+
 import org.prolobjectlink.prolog.AbstractProvider;
 import org.prolobjectlink.prolog.PrologAtom;
 import org.prolobjectlink.prolog.PrologConverter;
@@ -204,6 +206,10 @@ public final class JLog extends AbstractProvider implements PrologProvider {
 
 	public PrologTerm newStructure(PrologTerm left, String operator, PrologTerm right) {
 		return new JLogStructure(this, left, operator, right);
+	}
+
+	public ScriptEngineFactory getScriptFactory() {
+		return new JLogScriptFactory(newEngine());
 	}
 
 	public PrologLogger getLogger() {

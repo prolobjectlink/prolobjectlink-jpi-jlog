@@ -26,9 +26,9 @@ import java.util.Arrays;
 import javax.script.ScriptEngineFactory;
 
 import org.prolobjectlink.prolog.PrologEngine;
-import org.prolobjectlink.prolog.PrologScriptFactory;
+import org.prolobjectlink.prolog.PrologScriptEngineFactory;
 
-public final class JLogScriptFactory extends PrologScriptFactory implements ScriptEngineFactory {
+public final class JLogScriptFactory extends PrologScriptEngineFactory implements ScriptEngineFactory {
 
 	public JLogScriptFactory(PrologEngine engine) {
 		super(engine);
