@@ -59,7 +59,7 @@ import ubc.cs.JLog.Terms.jTerm;
  * @author Jose Zalacain
  * @since 1.0
  */
-public final class JLog extends AbstractProvider implements PrologProvider {
+public class JLog extends AbstractProvider implements PrologProvider {
 
 	private final jKnowledgeBase kb = new jKnowledgeBase();
 	private final pOperatorRegistry or = new pOperatorRegistry();

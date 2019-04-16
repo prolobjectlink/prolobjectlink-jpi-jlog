@@ -83,7 +83,7 @@ import ubc.cs.JLog.Terms.jPredicateTerms;
  * @author Jose Zalacain
  * @since 1.0
  */
-public final class JLogEngine extends AbstractEngine implements PrologEngine {
+public class JLogEngine extends AbstractEngine implements PrologEngine {
 
 	final jPrologServices engine;
 	private final jKnowledgeBase kb;
