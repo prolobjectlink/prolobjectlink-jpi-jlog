@@ -30,6 +30,10 @@ import org.prolobjectlink.prolog.PrologScriptEngineFactory;
 
 public final class JLogScriptFactory extends PrologScriptEngineFactory implements ScriptEngineFactory {
 
+	public JLogScriptFactory() {
+		super(new JLog().newEngine());
+	}
+
 	public JLogScriptFactory(PrologEngine engine) {
 		super(engine);
 	}

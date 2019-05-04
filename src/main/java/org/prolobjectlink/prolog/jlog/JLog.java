@@ -27,6 +27,7 @@ import static org.prolobjectlink.prolog.PrologLogger.ERROR_LOADING_BUILT_INS;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.StringTokenizer;
 
 import javax.script.ScriptEngineFactory;
 
@@ -61,6 +62,9 @@ import ubc.cs.JLog.Terms.jTerm;
  */
 public class JLog extends AbstractProvider implements PrologProvider {
 
+	public static final String VERSION;
+	public static final String NAME;
+
 	private final jKnowledgeBase kb = new jKnowledgeBase();
 	private final pOperatorRegistry or = new pOperatorRegistry();
 	private final pPredicateRegistry pr = new pPredicateRegistry();
@@ -70,6 +74,13 @@ public class JLog extends AbstractProvider implements PrologProvider {
 	protected static final String BUILTINS = "builtins";
 	private static final PrologLogger logger = new JLogLogger();
 	protected static final Map<String, String> FUNCTORS = new HashMap<String, String>();
+
+	static {
+		String credits = jPrologServices.getRequiredCreditInfo();
+		StringTokenizer tokenizer = new StringTokenizer(credits);
+		NAME = tokenizer.nextToken();
+		VERSION = tokenizer.nextToken();
+	}
 
 	public JLog() {
 		this(new JLogConverter());

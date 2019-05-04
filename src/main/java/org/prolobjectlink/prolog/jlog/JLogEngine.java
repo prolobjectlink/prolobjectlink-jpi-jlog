@@ -368,7 +368,7 @@ public class JLogEngine extends AbstractEngine implements PrologEngine {
 	}
 
 	public ScriptEngine getPrologScript() {
-		return new PrologScriptEngine(new JLogScriptFactory(this));
+		return new PrologScriptEngine(new JLogScriptFactory(this), this);
 	}
 
 	public int getProgramSize() {
