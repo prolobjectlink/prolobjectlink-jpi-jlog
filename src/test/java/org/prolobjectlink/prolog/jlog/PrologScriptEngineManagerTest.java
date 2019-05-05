@@ -39,6 +39,14 @@ public class PrologScriptEngineManagerTest extends PrologBaseTest {
 		assertEquals(true, engine.eval("?- X is 5+3."));
 		assertEquals(provider.newInteger(8), engine.get("X"));
 
+		engine = manager.getEngineByName("Prolog");
+		assertEquals(true, engine.eval("?- X is 5+3."));
+		assertEquals(provider.newInteger(8), engine.get("X"));
+
+		engine = manager.getEngineByName("prolog");
+		assertEquals(true, engine.eval("?- X is 5+3."));
+		assertEquals(provider.newInteger(8), engine.get("X"));
+
 	}
 
 }
