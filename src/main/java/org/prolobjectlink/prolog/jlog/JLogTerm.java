@@ -40,8 +40,6 @@ import static ubc.cs.JLog.Foundation.iType.TYPE_PREDICATE;
 
 import java.io.IOException;
 import java.util.Enumeration;
-import java.util.HashMap;
-import java.util.Map;
 
 import org.prolobjectlink.prolog.AbstractTerm;
 import org.prolobjectlink.prolog.ArrayStack;
@@ -216,22 +214,6 @@ public abstract class JLogTerm extends AbstractTerm implements PrologTerm {
 		}
 		stack.clear();
 		return match;
-	}
-
-	public final Map<String, PrologTerm> match(PrologTerm term) {
-		ArrayStack<PrologTerm> stack = new ArrayStack<PrologTerm>();
-		if (unify(term, stack)) {
-			int l = stack.size();
-			Map<String, PrologTerm> s = new HashMap<String, PrologTerm>(l);
-			while (l > 0) {
-				JLogVariable variable = (JLogVariable) stack.pop();
-				s.put(variable.getName(), variable.vValue);
-				variable.unbind();
-				l--;
-			}
-			return s;
-		}
-		return new HashMap<String, PrologTerm>();
 	}
 
 	protected final boolean unify(PrologTerm term, ArrayStack<PrologTerm> stack) {
