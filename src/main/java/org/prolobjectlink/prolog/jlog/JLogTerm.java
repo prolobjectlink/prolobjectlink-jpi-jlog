@@ -424,7 +424,7 @@ public abstract class JLogTerm extends AbstractTerm implements PrologTerm {
 		case INTEGER_TYPE:
 
 			int thisIntergerValue = ((jInteger) value).getIntegerValue();
-			int otherIntegerValue = ((PrologNumber) term).getIntValue();
+			int otherIntegerValue = ((PrologNumber) term).getIntegerValue();
 
 			if (thisIntergerValue < otherIntegerValue) {
 				return -1;

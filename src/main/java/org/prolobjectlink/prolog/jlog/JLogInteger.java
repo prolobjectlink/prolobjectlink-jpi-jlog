@@ -46,19 +46,19 @@ public class JLogInteger extends JLogNumber implements PrologInteger {
 	}
 
 	public final long getLongValue() {
-		return (long) getIntValue();
+		return (long) getIntegerValue();
 	}
 
 	public final double getDoubleValue() {
-		return (double) getIntValue();
+		return (double) getIntegerValue();
 	}
 
-	public final int getIntValue() {
+	public final int getIntegerValue() {
 		return ((jInteger) value).getIntegerValue();
 	}
 
 	public final float getFloatValue() {
-		return (float) getIntValue();
+		return (float) getIntegerValue();
 	}
 
 	public final PrologTerm[] getArguments() {

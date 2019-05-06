@@ -52,7 +52,7 @@ public class JLogFloat extends JLogNumber implements PrologFloat {
 		return (double) getFloatValue();
 	}
 
-	public final int getIntValue() {
+	public final int getIntegerValue() {
 		return (int) getFloatValue();
 	}
 

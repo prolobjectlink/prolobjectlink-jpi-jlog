@@ -45,7 +45,7 @@ public abstract class JLogNumber extends JLogTerm implements PrologNumber {
 	}
 
 	public final PrologInteger getPrologInteger() {
-		return new JLogInteger(provider, getIntValue());
+		return new JLogInteger(provider, getIntegerValue());
 	}
 
 	public final PrologFloat getPrologFloat() {
