@@ -37,6 +37,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.StringReader;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Enumeration;
@@ -184,6 +185,12 @@ public class JLogEngine extends AbstractEngine implements PrologEngine {
 			assert writer != null;
 			writer.close();
 		}
+	}
+
+	public void addTheory(String code) {
+		// kb.clearRules();
+		StringReader fileReader = new StringReader(code);
+		new pParseStream(fileReader, kb, pr, or).parseSource();
 	}
 
 	public void abolish(String functor, int arity) {
