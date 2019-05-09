@@ -29,8 +29,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.StringTokenizer;
 
-import javax.script.ScriptEngineFactory;
-
 import org.prolobjectlink.prolog.AbstractProvider;
 import org.prolobjectlink.prolog.PrologAtom;
 import org.prolobjectlink.prolog.PrologConverter;
@@ -72,7 +70,7 @@ public class JLog extends AbstractProvider implements PrologProvider {
 	private final jPrologServices engine = new jPrologServices(kb, pr, or);
 
 	protected static final String DOT = ".";
-	protected static final String BUILTINS = "builtins";
+	protected static final String BUILT_INS = "builtins";
 	private static final PrologLogger logger = new JLogLogger();
 	protected static final Map<String, String> FUNCTORS = new HashMap<String, String>();
 
@@ -91,7 +89,7 @@ public class JLog extends AbstractProvider implements PrologProvider {
 		super(converter);
 		engine.setFileServices(new jPrologFileServices());
 		try {
-			engine.loadLibrary(BUILTINS);
+			engine.loadLibrary(BUILT_INS);
 		} catch (IOException e) {
 			getLogger().error(getClass(), ERROR_LOADING_BUILT_INS, e);
 		}
@@ -222,10 +220,6 @@ public class JLog extends AbstractProvider implements PrologProvider {
 
 	public PrologJavaConverter getJavaConverter() {
 		return new JLogJavaConverter(this);
-	}
-
-	public ScriptEngineFactory getScriptFactory() {
-		return new JLogScriptFactory(newEngine());
 	}
 
 	public PrologLogger getLogger() {
