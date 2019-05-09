@@ -41,7 +41,7 @@ import ubc.cs.JLog.Terms.jTerm;
  * @author Jose Zalacain
  * @since 1.0
  */
-public class JLogList extends JLogTerm implements PrologList {
+class JLogList extends JLogTerm implements PrologList {
 
 	protected JLogList(PrologProvider provider) {
 		super(LIST_TYPE, provider, jNullList.NULL_LIST);
@@ -55,14 +55,6 @@ public class JLogList extends JLogTerm implements PrologList {
 	protected JLogList(PrologProvider provider, jTerm[] arguments) {
 		super(LIST_TYPE, provider);
 		value = jNullList.NULL_LIST;
-		for (int i = arguments.length - 1; i >= 0; --i) {
-			value = new jListPair(arguments[i], value);
-		}
-	}
-
-	protected JLogList(PrologProvider provider, jTerm[] arguments, jTerm tail) {
-		super(LIST_TYPE, provider);
-		value = tail;
 		for (int i = arguments.length - 1; i >= 0; --i) {
 			value = new jListPair(arguments[i], value);
 		}

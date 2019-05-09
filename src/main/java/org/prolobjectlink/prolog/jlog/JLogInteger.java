@@ -35,13 +35,13 @@ import ubc.cs.JLog.Terms.jTerm;
  * @author Jose Zalacain
  * @since 1.0
  */
-public class JLogInteger extends JLogNumber implements PrologInteger {
+class JLogInteger extends JLogNumber implements PrologInteger {
 
-	public JLogInteger(PrologProvider provider, Number value) {
+	JLogInteger(PrologProvider provider, Number value) {
 		super(INTEGER_TYPE, provider, new jInteger(value.intValue()));
 	}
 
-	public JLogInteger(int type, PrologProvider provider, jTerm value) {
+	JLogInteger(int type, PrologProvider provider, jTerm value) {
 		super(type, provider, value);
 	}
 

@@ -33,7 +33,7 @@ import ubc.cs.JLog.Terms.jFail;
  * @author Jose Zalacain
  * @since 1.0
  */
-public final class JLogFail extends JLogTerm implements PrologTerm {
+final class JLogFail extends JLogTerm implements PrologTerm {
 
 	protected JLogFail(PrologProvider provider) {
 		super(FAIL_TYPE, provider, jFail.FAIL);

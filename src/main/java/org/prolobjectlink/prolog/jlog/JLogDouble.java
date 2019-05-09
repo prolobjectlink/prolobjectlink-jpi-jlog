@@ -31,9 +31,9 @@ import org.prolobjectlink.prolog.PrologProvider;
  * @author Jose Zalacain
  * @since 1.0
  */
-public final class JLogDouble extends JLogFloat implements PrologDouble {
+final class JLogDouble extends JLogFloat implements PrologDouble {
 
-	public JLogDouble(PrologProvider provider, Number value) {
+	JLogDouble(PrologProvider provider, Number value) {
 		super(DOUBLE_TYPE, provider, new jDouble(value.doubleValue()));
 	}
 

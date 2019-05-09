@@ -88,12 +88,7 @@ public class JLogEngine extends AbstractEngine implements PrologEngine {
 	private final pOperatorRegistry or;
 	private final pPredicateRegistry pr;
 
-	protected static final String DOT = ".";
-	protected static final String NECK = ":-";
-	protected static final String COMMA = ",";
-	protected static final String BUILTINS = "builtins";
-
-	static final String SIMPLE_ATOM_REGEX = "\\.|\\?|#|[a-z][A-Za-z0-9_]*";
+	private static final String BUILT_INS = "builtins";
 
 	protected JLogEngine(PrologProvider provider) {
 		super(provider);
@@ -103,7 +98,7 @@ public class JLogEngine extends AbstractEngine implements PrologEngine {
 		engine = new jPrologServices(kb, pr, or);
 		engine.setFileServices(new jPrologFileServices());
 		try {
-			engine.loadLibrary(BUILTINS);
+			engine.loadLibrary(BUILT_INS);
 		} catch (IOException e) {
 			getLogger().error(getClass(), ERROR_LOADING_BUILT_INS, e);
 		}
@@ -256,10 +251,6 @@ public class JLogEngine extends AbstractEngine implements PrologEngine {
 
 	public PrologQuery query(String stringQuery) {
 		return new JLogQuery(this, stringQuery);
-	}
-
-	public PrologQuery query(PrologTerm[] terms) {
-		return new JLogQuery(this, terms);
 	}
 
 	public PrologQuery query(PrologTerm term, PrologTerm... terms) {

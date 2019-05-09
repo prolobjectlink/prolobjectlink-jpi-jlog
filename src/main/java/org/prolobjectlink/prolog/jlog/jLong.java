@@ -36,11 +36,11 @@ import ubc.cs.JLog.Terms.jVariable;
  * @author Jose Zalacain
  * @since 1.0
  */
-public final class jLong extends jTerm {
+final class jLong extends jTerm {
 
-	protected long value;
+	private long value;
 
-	public jLong(long v) {
+	jLong(long v) {
 		value = v;
 		type = TYPE_INTEGER;
 	}

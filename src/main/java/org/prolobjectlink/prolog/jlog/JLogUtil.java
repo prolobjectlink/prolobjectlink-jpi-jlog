@@ -256,7 +256,7 @@ final class JLogUtil {
 		return "" + stringWriter + "";
 	}
 
-	static final String toString(String functor, jCompoundTerm args) {
+	private static final String toString(String functor, jCompoundTerm args) {
 		StringBuilder buffer = new StringBuilder();
 		if (!functor.startsWith("'") && !functor.endsWith("'") && !functor.matches(SIMPLE_ATOM_REGEX)) {
 			buffer.append('\'');
@@ -320,7 +320,7 @@ final class JLogUtil {
 		return str;
 	}
 
-	static final jPredicate retrieve(jPredicate predicate) {
+	private static final jPredicate retrieve(jPredicate predicate) {
 		int arity = predicate.getArity();
 		String functor = predicate.getName();
 		if (functor.startsWith("'") && functor.endsWith("'")) {
@@ -337,19 +337,6 @@ final class JLogUtil {
 			predicate = new jPredicate(nFunctor, nArgs);
 		}
 		return predicate;
-	}
-
-	static final jPredicateTerms retrieve(jPredicateTerms predicateTerms) {
-		jPredicateTerms terms = new jPredicateTerms();
-		for (int i = 0; i < terms.size(); i++) {
-			jTerm term = predicateTerms.elementAt(i);
-			if (term instanceof jPredicate) {
-				jPredicate p = (jPredicate) term;
-				term = retrieve(p);
-			}
-			terms.addTerm(term);
-		}
-		return terms;
 	}
 
 }

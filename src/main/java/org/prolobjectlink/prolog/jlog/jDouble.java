@@ -35,11 +35,11 @@ import ubc.cs.JLog.Terms.jVariable;
  * @author Jose Zalacain
  * @since 1.0
  */
-public class jDouble extends jTerm {
+ class jDouble extends jTerm {
 
-	protected double value;
+	private double value;
 
-	public jDouble(double v) {
+	 jDouble(double v) {
 		value = v;
 		type = TYPE_REAL;
 	}

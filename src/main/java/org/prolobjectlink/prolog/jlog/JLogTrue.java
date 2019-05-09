@@ -33,7 +33,7 @@ import ubc.cs.JLog.Terms.jTrue;
  * @author Jose Zalacain
  * @since 1.0
  */
-public final class JLogTrue extends JLogTerm implements PrologTerm {
+final class JLogTrue extends JLogTerm implements PrologTerm {
 
 	protected JLogTrue(PrologProvider provider) {
 		super(TRUE_TYPE, provider, jTrue.TRUE);

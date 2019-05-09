@@ -34,9 +34,9 @@ import ubc.cs.JLog.Terms.jAtom;
  * @author Jose Zalacain
  * @since 1.0
  */
-public final class JLogAtom extends JLogTerm implements PrologAtom {
+final class JLogAtom extends JLogTerm implements PrologAtom {
 
-	public JLogAtom(PrologProvider provider, String value) {
+	JLogAtom(PrologProvider provider, String value) {
 		super(ATOM_TYPE, provider, new jAtom(value));
 	}
 

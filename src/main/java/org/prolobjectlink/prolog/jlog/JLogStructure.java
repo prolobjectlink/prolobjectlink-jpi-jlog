@@ -36,7 +36,7 @@ import ubc.cs.JLog.Terms.jTerm;
  * @author Jose Zalacain
  * @since 1.0
  */
-public class JLogStructure extends JLogTerm implements PrologStructure {
+class JLogStructure extends JLogTerm implements PrologStructure {
 
 	protected JLogStructure(PrologProvider provider, String functor, PrologTerm... arguments) {
 		super(STRUCTURE_TYPE, provider);
@@ -46,15 +46,6 @@ public class JLogStructure extends JLogTerm implements PrologStructure {
 	protected JLogStructure(PrologProvider provider, String functor, jCompoundTerm arguments) {
 		super(STRUCTURE_TYPE, provider);
 		value = new jPredicate(functor, arguments);
-	}
-
-	protected JLogStructure(PrologProvider provider, String functor, jTerm... arguments) {
-		super(STRUCTURE_TYPE, provider);
-		jCompoundTerm compound = new jCompoundTerm(arguments.length);
-		for (jTerm argument : arguments) {
-			compound.addTerm(argument);
-		}
-		value = new jPredicate(functor, compound);
 	}
 
 	protected JLogStructure(PrologProvider provider, PrologTerm left, String operator, PrologTerm right) {

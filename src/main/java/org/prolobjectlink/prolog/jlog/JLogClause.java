@@ -32,7 +32,7 @@ import org.prolobjectlink.prolog.PrologTerm;
  * @author Jose Zalacain
  * @since 1.0
  */
-public class JLogClause extends AbstractClause implements PrologClause {
+class JLogClause extends AbstractClause implements PrologClause {
 
 	private final PrologIndicator indicator;
 

@@ -61,31 +61,21 @@ import ubc.cs.JLog.Terms.jTerm;
  */
 public class JLog extends AbstractProvider implements PrologProvider {
 
-	public static final String VERSION;
-	public static final String NAME;
-
 	private final jKnowledgeBase kb = new jKnowledgeBase();
 	private final pOperatorRegistry or = new pOperatorRegistry();
 	private final pPredicateRegistry pr = new pPredicateRegistry();
 	private final jPrologServices engine = new jPrologServices(kb, pr, or);
 
-	protected static final String DOT = ".";
-	protected static final String BUILT_INS = "builtins";
+	private static final String DOT = ".";
+	private static final String BUILT_INS = "builtins";
 	private static final PrologLogger logger = new JLogLogger();
 	protected static final Map<String, String> FUNCTORS = new HashMap<String, String>();
-
-	static {
-		String credits = jPrologServices.getRequiredCreditInfo();
-		StringTokenizer tokenizer = new StringTokenizer(credits);
-		NAME = tokenizer.nextToken();
-		VERSION = tokenizer.nextToken();
-	}
 
 	public JLog() {
 		this(new JLogConverter());
 	}
 
-	public JLog(PrologConverter<jTerm> converter) {
+	JLog(PrologConverter<jTerm> converter) {
 		super(converter);
 		engine.setFileServices(new jPrologFileServices());
 		try {

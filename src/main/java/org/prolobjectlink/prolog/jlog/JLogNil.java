@@ -33,7 +33,7 @@ import ubc.cs.JLog.Terms.jAtom;
  * @author Jose Zalacain
  * @since 1.0
  */
-public final class JLogNil extends JLogTerm implements PrologTerm {
+final class JLogNil extends JLogTerm implements PrologTerm {
 
 	static final String NIL_STR = "nil";
 

@@ -33,7 +33,7 @@ import ubc.cs.JLog.Builtins.jCut;
  * @author Jose Zalacain
  * @since 1.0
  */
-public class JLogCut extends JLogTerm implements PrologTerm {
+class JLogCut extends JLogTerm implements PrologTerm {
 
 	static final jCut JCUT = new jCut();
 

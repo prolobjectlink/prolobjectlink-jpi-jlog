@@ -32,7 +32,7 @@ import ubc.cs.JLog.Terms.jNullList;
  * @author Jose Zalacain
  * @since 1.0
  */
-public class JLogEmpty extends JLogList implements PrologList {
+class JLogEmpty extends JLogList implements PrologList {
 
 	protected JLogEmpty(PrologProvider provider) {
 		super(provider);

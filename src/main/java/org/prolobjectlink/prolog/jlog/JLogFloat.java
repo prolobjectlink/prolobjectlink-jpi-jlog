@@ -34,13 +34,13 @@ import ubc.cs.JLog.Terms.jTerm;
  * @author Jose Zalacain
  * @since 1.0
  */
-public class JLogFloat extends JLogNumber implements PrologFloat {
+class JLogFloat extends JLogNumber implements PrologFloat {
 
-	public JLogFloat(PrologProvider provider, Number value) {
+	JLogFloat(PrologProvider provider, Number value) {
 		super(FLOAT_TYPE, provider, new jFloat(value.floatValue()));
 	}
 
-	public JLogFloat(int type, PrologProvider provider, jTerm value) {
+	JLogFloat(int type, PrologProvider provider, jTerm value) {
 		super(type, provider, value);
 	}
 

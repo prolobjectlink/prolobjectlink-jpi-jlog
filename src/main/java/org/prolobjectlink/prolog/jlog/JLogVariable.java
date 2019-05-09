@@ -37,13 +37,13 @@ import ubc.cs.JLog.Terms.jVariable;
  * @author Jose Zalacain
  * @since 1.0
  */
-public class JLogVariable extends JLogTerm implements PrologVariable {
+class JLogVariable extends JLogTerm implements PrologVariable {
 
-	public JLogVariable(PrologProvider provider) {
+	JLogVariable(PrologProvider provider) {
 		super(VARIABLE_TYPE, provider, vIdexer++);
 	}
 
-	public JLogVariable(PrologProvider provider, String name) {
+	JLogVariable(PrologProvider provider, String name) {
 		super(VARIABLE_TYPE, provider, name, vIdexer++);
 	}
 

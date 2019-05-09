@@ -60,7 +60,6 @@ import ubc.cs.JLog.Terms.jInteger;
 import ubc.cs.JLog.Terms.jList;
 import ubc.cs.JLog.Terms.jListPair;
 import ubc.cs.JLog.Terms.jNullList;
-import ubc.cs.JLog.Terms.jPredicateTerms;
 import ubc.cs.JLog.Terms.jTerm;
 import ubc.cs.JLog.Terms.jVariable;
 
@@ -68,15 +67,14 @@ import ubc.cs.JLog.Terms.jVariable;
  * @author Jose Zalacain
  * @since 1.0
  */
-public abstract class JLogTerm extends AbstractTerm implements PrologTerm {
+abstract class JLogTerm extends AbstractTerm implements PrologTerm {
 
 	protected int vIndex;
 	protected jTerm value;
-	protected PrologTerm vValue;
+	private PrologTerm vValue;
 	protected static int vIdexer = 0;
 
-	protected final jPredicateTerms emptyBody = new jPredicateTerms();
-	protected final jEquivalenceMapping equivalence = new jEquivalenceMapping();
+	private final jEquivalenceMapping equivalence = new jEquivalenceMapping();
 
 	protected final jList adaptList(PrologTerm[] arguments) {
 		jList pList = jNullList.NULL_LIST;
@@ -216,11 +214,11 @@ public abstract class JLogTerm extends AbstractTerm implements PrologTerm {
 		return match;
 	}
 
-	protected final boolean unify(PrologTerm term, ArrayStack<PrologTerm> stack) {
+	private final boolean unify(PrologTerm term, ArrayStack<PrologTerm> stack) {
 		return unify((JLogTerm) term, stack);
 	}
 
-	protected final boolean unify(JLogTerm otherTerm, ArrayStack<PrologTerm> stack) {
+	private final boolean unify(JLogTerm otherTerm, ArrayStack<PrologTerm> stack) {
 
 		JLogTerm thisTerm = this;
 
@@ -298,7 +296,7 @@ public abstract class JLogTerm extends AbstractTerm implements PrologTerm {
 	 * 
 	 * @return true if Variable and bound.
 	 */
-	protected final boolean isVariableBound() {
+	private final boolean isVariableBound() {
 		return isVariable() && vValue != null;
 	}
 
@@ -308,7 +306,7 @@ public abstract class JLogTerm extends AbstractTerm implements PrologTerm {
 	 * 
 	 * @return true if Variable and not bound.
 	 */
-	protected final boolean isVariableNotBound() {
+	private final boolean isVariableNotBound() {
 		return isVariable() && vValue == null;
 	}
 
@@ -317,42 +315,13 @@ public abstract class JLogTerm extends AbstractTerm implements PrologTerm {
 	 * 
 	 * @param term
 	 */
-	protected final void bind(JLogTerm term) {
+	private final void bind(JLogTerm term) {
 		vValue = term;
 	}
 
 	/** Unbinds a term reseting it to a variable */
-	protected final void unbind() {
+	private final void unbind() {
 		vValue = null;
-	}
-
-	/**
-	 * If the current term is variable check that your occurrence in other term
-	 * passed as parameter. If the other term is compound and at less one argument
-	 * match with the current variable term then return true indicating that the
-	 * current variable term occurs in compound term. If the other term is compound
-	 * and at less one argument is another compound term, then the current term
-	 * check your occurrence in this compound term in recursive way.
-	 * 
-	 * @param otherTerm term to check if current term occurs inside him
-	 * @return true if current term occurs in other compound term, false in another
-	 *         case
-	 */
-	protected final boolean occurs(PrologTerm otherTerm) {
-		JLogTerm thisTerm = this;
-		if (thisTerm.isVariable() && otherTerm.isCompound()) {
-			PrologTerm[] otherArguments = otherTerm.getArguments();
-			for (PrologTerm argument : otherArguments) {
-				if (argument != null) {
-					if (argument.isVariable()) {
-						return thisTerm == argument;
-					} else if (argument.isCompound() && thisTerm.occurs(argument)) {
-						return true;
-					}
-				}
-			}
-		}
-		return false;
 	}
 
 	public final int compareTo(PrologTerm term) {

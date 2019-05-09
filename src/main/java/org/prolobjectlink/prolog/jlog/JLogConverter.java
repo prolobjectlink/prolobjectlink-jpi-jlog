@@ -77,17 +77,12 @@ import ubc.cs.JLog.Terms.jVariable;
  * @author Jose Zalacain
  * @since 1.0
  */
-public class JLogConverter extends AbstractConverter<jTerm> implements PrologConverter<jTerm> {
+class JLogConverter extends AbstractConverter<jTerm> implements PrologConverter<jTerm> {
 
-	protected static final String DOT = ".";
-	protected static final String NECK = ":-";
-	protected static final String COMMA = ",";
-	protected static final String BUILT_INS = "builtins";
+	private final jPredicateTerms emptyBody = new jPredicateTerms();
+	private final jEquivalenceMapping equivalence = new jEquivalenceMapping();
 
-	protected final jPredicateTerms emptyBody = new jPredicateTerms();
-	protected final jEquivalenceMapping equivalence = new jEquivalenceMapping();
-
-	protected jList adaptList(PrologTerm[] arguments) {
+	private jList adaptList(PrologTerm[] arguments) {
 		jList pList = jNullList.NULL_LIST;
 		for (int i = arguments.length - 1; i >= 0; --i) {
 			pList = new jListPair(fromTerm(arguments[i]), pList);
@@ -95,7 +90,7 @@ public class JLogConverter extends AbstractConverter<jTerm> implements PrologCon
 		return pList;
 	}
 
-	protected jCompoundTerm adaptCompound(PrologTerm[] arguments) {
+	private jCompoundTerm adaptCompound(PrologTerm[] arguments) {
 		jCompoundTerm compound = new jCompoundTerm(arguments.length);
 		for (PrologTerm iPrologTerm : arguments) {
 			compound.addTerm(fromTerm(iPrologTerm));

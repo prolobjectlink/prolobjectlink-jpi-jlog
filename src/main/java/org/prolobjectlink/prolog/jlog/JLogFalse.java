@@ -33,7 +33,7 @@ import ubc.cs.JLog.Terms.jAtom;
  * @author Jose Zalacain
  * @since 1.0
  */
-public final class JLogFalse extends JLogTerm implements PrologTerm {
+final class JLogFalse extends JLogTerm implements PrologTerm {
 
 	static final String FALSE_STR = "false";
 
