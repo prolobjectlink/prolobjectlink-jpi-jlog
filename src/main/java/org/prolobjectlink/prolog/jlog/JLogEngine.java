@@ -48,8 +48,6 @@ import java.util.List;
 import java.util.Set;
 import java.util.StringTokenizer;
 
-import javax.script.ScriptEngine;
-
 import org.prolobjectlink.prolog.AbstractEngine;
 import org.prolobjectlink.prolog.Licenses;
 import org.prolobjectlink.prolog.PrologClause;
@@ -58,7 +56,6 @@ import org.prolobjectlink.prolog.PrologIndicator;
 import org.prolobjectlink.prolog.PrologOperator;
 import org.prolobjectlink.prolog.PrologProvider;
 import org.prolobjectlink.prolog.PrologQuery;
-import org.prolobjectlink.prolog.PrologScriptEngine;
 import org.prolobjectlink.prolog.PrologTerm;
 
 import ubc.cs.JLog.Foundation.iNameArityStub;
@@ -152,6 +149,21 @@ public class JLogEngine extends AbstractEngine implements PrologEngine {
 		return false;
 	}
 
+	public void consult(String path) {
+		try {
+			kb.clearRules();
+			FileReader fileReader = new FileReader(path);
+			new pParseStream(fileReader, kb, pr, or).parseSource();
+		} catch (FileNotFoundException e) {
+			getLogger().error(getClass(), FILE_NOT_FOUND + path, e);
+		}
+	}
+
+	public void consult(Reader reader) {
+		kb.clearRules();
+		new pParseStream(reader, kb, pr, or).parseSource();
+	}
+
 	public void include(String path) {
 		try {
 			FileReader fileReader = new FileReader(path);
@@ -161,14 +173,8 @@ public class JLogEngine extends AbstractEngine implements PrologEngine {
 		}
 	}
 
-	public void consult(String path) {
-		try {
-			kb.clearRules();
-			FileReader fileReader = new FileReader(path);
-			new pParseStream(fileReader, kb, pr, or).parseSource();
-		} catch (FileNotFoundException e) {
-			getLogger().error(getClass(), FILE_NOT_FOUND + path, e);
-		}
+	public void include(Reader reader) {
+		new pParseStream(reader, kb, pr, or).parseSource();
 	}
 
 	public void persist(String path) {
@@ -185,10 +191,6 @@ public class JLogEngine extends AbstractEngine implements PrologEngine {
 			assert writer != null;
 			writer.close();
 		}
-	}
-
-	public void include(Reader reader) {
-		new pParseStream(reader, kb, pr, or).parseSource();
 	}
 
 	public void abolish(String functor, int arity) {
@@ -370,10 +372,6 @@ public class JLogEngine extends AbstractEngine implements PrologEngine {
 			}
 		}
 		return new PrologProgramIterator(cls);
-	}
-
-	public ScriptEngine getPrologScript() {
-		return new PrologScriptEngine(new JLogScriptFactory(this), this);
 	}
 
 	public int getProgramSize() {

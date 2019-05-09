@@ -38,6 +38,7 @@ import org.prolobjectlink.prolog.PrologDouble;
 import org.prolobjectlink.prolog.PrologEngine;
 import org.prolobjectlink.prolog.PrologFloat;
 import org.prolobjectlink.prolog.PrologInteger;
+import org.prolobjectlink.prolog.PrologJavaConverter;
 import org.prolobjectlink.prolog.PrologList;
 import org.prolobjectlink.prolog.PrologLogger;
 import org.prolobjectlink.prolog.PrologLong;
@@ -217,6 +218,10 @@ public class JLog extends AbstractProvider implements PrologProvider {
 
 	public PrologTerm newStructure(PrologTerm left, String operator, PrologTerm right) {
 		return new JLogStructure(this, left, operator, right);
+	}
+
+	public PrologJavaConverter getJavaConverter() {
+		return new JLogJavaConverter(this);
 	}
 
 	public ScriptEngineFactory getScriptFactory() {

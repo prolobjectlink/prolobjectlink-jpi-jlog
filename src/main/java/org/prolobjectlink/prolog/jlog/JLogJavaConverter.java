@@ -22,17 +22,13 @@
 package org.prolobjectlink.prolog.jlog;
 
 import org.prolobjectlink.prolog.AbstractJavaConverter;
-import org.prolobjectlink.prolog.JavaConverter;
+import org.prolobjectlink.prolog.PrologJavaConverter;
 import org.prolobjectlink.prolog.PrologProvider;
 
-public class JLogJavaConverter extends AbstractJavaConverter implements JavaConverter {
+public class JLogJavaConverter extends AbstractJavaConverter implements PrologJavaConverter {
 
 	public JLogJavaConverter(PrologProvider provider) {
 		super(provider);
-	}
-
-	public JLogJavaConverter() {
-		super(new JLog());
 	}
 
 }
