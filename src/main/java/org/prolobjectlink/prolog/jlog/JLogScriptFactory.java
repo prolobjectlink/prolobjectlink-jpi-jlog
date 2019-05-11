@@ -25,17 +25,12 @@ import java.util.Arrays;
 
 import javax.script.ScriptEngineFactory;
 
-import org.prolobjectlink.prolog.PrologEngine;
 import org.prolobjectlink.prolog.PrologScriptEngineFactory;
 
 public final class JLogScriptFactory extends PrologScriptEngineFactory implements ScriptEngineFactory {
 
 	public JLogScriptFactory() {
 		super(new JLog().newEngine());
-	}
-
-	public JLogScriptFactory(PrologEngine engine) {
-		super(engine);
 	}
 
 	public String getMethodCallSyntax(String obj, String m, String... args) {
