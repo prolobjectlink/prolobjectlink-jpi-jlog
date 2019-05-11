@@ -14,7 +14,7 @@
 			<directory>${project.basedir}</directory>
 			<outputDirectory>/</outputDirectory>
 			<includes>
-				
+
 				<include>CONTRIBUTING*</include>
 				<include>LICENSE*</include>
 				<include>NOTICE*</include>
@@ -49,24 +49,6 @@
 			</includes>
 		</fileSet>
 
-		<!-- configuration properties folder -->
-		<fileSet>
-			<directory>${project.basedir}/etc</directory>
-			<outputDirectory>etc</outputDirectory>
-		</fileSet>
-
-		<!-- prolog folder -->
-		<fileSet>
-			<directory>${project.basedir}/prt</directory>
-			<outputDirectory>prt</outputDirectory>
-		</fileSet>
-
-		<!-- harness prolog to java folder -->
-		<fileSet>
-			<directory>${project.basedir}/obj</directory>
-			<outputDirectory>obj</outputDirectory>
-		</fileSet>
-
 		<!-- source code folder -->
 		<fileSet>
 			<directory>${project.basedir}/src</directory>
@@ -80,15 +62,6 @@
 			</includes>
 		</fileSet>
 		
-		<!-- install scripts -->
-		<fileSet>
-			<directory>${project.basedir}</directory>
-			<outputDirectory>/</outputDirectory>
-			<includes>
-				<include>install.*</include>
-			</includes>
-		</fileSet>
-
 	</fileSets>
 	<dependencySets>
 		<dependencySet>
