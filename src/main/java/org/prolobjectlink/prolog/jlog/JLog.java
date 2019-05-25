@@ -27,7 +27,6 @@ import static org.prolobjectlink.prolog.PrologLogger.ERROR_LOADING_BUILT_INS;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.StringTokenizer;
 
 import org.prolobjectlink.prolog.AbstractProvider;
 import org.prolobjectlink.prolog.PrologAtom;
