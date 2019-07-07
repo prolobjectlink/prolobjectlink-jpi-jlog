@@ -63,7 +63,7 @@ public class JLog extends AbstractProvider implements PrologProvider {
 	private final jKnowledgeBase kb = new jKnowledgeBase();
 	private final pOperatorRegistry or = new pOperatorRegistry();
 	private final pPredicateRegistry pr = new pPredicateRegistry();
-	private final jPrologServices engine = new jPrologServices(kb, pr, or);
+	private final jPrologServices prolog = new jPrologServices(kb, pr, or);
 
 	private static final String DOT = ".";
 	private static final String BUILT_INS = "builtins";
@@ -76,9 +76,9 @@ public class JLog extends AbstractProvider implements PrologProvider {
 
 	JLog(PrologConverter<jTerm> converter) {
 		super(converter);
-		engine.setFileServices(new jPrologFileServices());
+		prolog.setFileServices(new jPrologFileServices());
 		try {
-			engine.loadLibrary(BUILT_INS);
+			prolog.loadLibrary(BUILT_INS);
 		} catch (IOException e) {
 			getLogger().error(getClass(), ERROR_LOADING_BUILT_INS, e);
 		}
@@ -147,6 +147,12 @@ public class JLog extends AbstractProvider implements PrologProvider {
 
 	public PrologEngine newEngine() {
 		return new JLogEngine(this);
+	}
+
+	public PrologEngine newEngine(String path) {
+		PrologEngine engine = newEngine();
+		engine.consult(path);
+		return engine;
 	}
 
 	public PrologAtom newAtom(String functor) {
@@ -224,7 +230,7 @@ public class JLog extends AbstractProvider implements PrologProvider {
 	public int hashCode() {
 		final int prime = 31;
 		int result = super.hashCode();
-		result = prime * result + engine.hashCode();
+		result = prime * result + prolog.hashCode();
 		return result;
 	}
 
@@ -237,7 +243,7 @@ public class JLog extends AbstractProvider implements PrologProvider {
 		if (getClass() != obj.getClass())
 			return false;
 		JLog other = (JLog) obj;
-		return engine.equals(other.engine);
+		return prolog.equals(other.prolog);
 	}
 
 }

@@ -24,7 +24,6 @@ package org.prolobjectlink.prolog.jlog;
 import static org.prolobjectlink.prolog.PrologTermType.ATOM_TYPE;
 import static org.prolobjectlink.prolog.PrologTermType.CUT_TYPE;
 import static org.prolobjectlink.prolog.PrologTermType.DOUBLE_TYPE;
-import static org.prolobjectlink.prolog.PrologTermType.EMPTY_TYPE;
 import static org.prolobjectlink.prolog.PrologTermType.FAIL_TYPE;
 import static org.prolobjectlink.prolog.PrologTermType.FALSE_TYPE;
 import static org.prolobjectlink.prolog.PrologTermType.FLOAT_TYPE;
@@ -210,8 +209,6 @@ class JLogConverter extends AbstractConverter<jTerm> implements PrologConverter<
 			return jTrue.TRUE;
 		case FALSE_TYPE:
 			return new jAtom("false");
-		case EMPTY_TYPE:
-			return jNullList.NULL_LIST;
 		case ATOM_TYPE:
 			String value = ((PrologAtom) term).getStringValue();
 			return new jAtom(value);

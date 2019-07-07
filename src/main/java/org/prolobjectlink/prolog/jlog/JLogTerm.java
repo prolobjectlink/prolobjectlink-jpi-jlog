@@ -24,7 +24,6 @@ package org.prolobjectlink.prolog.jlog;
 import static org.prolobjectlink.prolog.PrologTermType.ATOM_TYPE;
 import static org.prolobjectlink.prolog.PrologTermType.CUT_TYPE;
 import static org.prolobjectlink.prolog.PrologTermType.DOUBLE_TYPE;
-import static org.prolobjectlink.prolog.PrologTermType.EMPTY_TYPE;
 import static org.prolobjectlink.prolog.PrologTermType.FAIL_TYPE;
 import static org.prolobjectlink.prolog.PrologTermType.FALSE_TYPE;
 import static org.prolobjectlink.prolog.PrologTermType.FLOAT_TYPE;
@@ -39,10 +38,11 @@ import static ubc.cs.JLog.Foundation.iType.TYPE_LIST;
 import static ubc.cs.JLog.Foundation.iType.TYPE_PREDICATE;
 
 import java.io.IOException;
+import java.util.ArrayDeque;
+import java.util.Deque;
 import java.util.Enumeration;
 
 import org.prolobjectlink.prolog.AbstractTerm;
-import org.prolobjectlink.prolog.ArrayStack;
 import org.prolobjectlink.prolog.PrologLogger;
 import org.prolobjectlink.prolog.PrologNumber;
 import org.prolobjectlink.prolog.PrologProvider;
@@ -112,8 +112,8 @@ abstract class JLogTerm extends AbstractTerm implements PrologTerm {
 	}
 
 	public final boolean isAtom() {
-		return type == ATOM_TYPE || type == FAIL_TYPE || type == FALSE_TYPE || type == TRUE_TYPE || type == EMPTY_TYPE
-				|| type == CUT_TYPE || type == NIL_TYPE;
+		return type == ATOM_TYPE || type == FAIL_TYPE || type == FALSE_TYPE || type == TRUE_TYPE || type == CUT_TYPE
+				|| type == NIL_TYPE;
 	}
 
 	public final boolean isNumber() {
@@ -205,7 +205,7 @@ abstract class JLogTerm extends AbstractTerm implements PrologTerm {
 	}
 
 	public final boolean unify(PrologTerm term) {
-		ArrayStack<PrologTerm> stack = new ArrayStack<PrologTerm>();
+		Deque<PrologTerm> stack = new ArrayDeque<PrologTerm>();
 		boolean match = unify(term, stack);
 		for (PrologTerm prologTerm : stack) {
 			((JLogTerm) prologTerm).unbind();
@@ -214,11 +214,11 @@ abstract class JLogTerm extends AbstractTerm implements PrologTerm {
 		return match;
 	}
 
-	private final boolean unify(PrologTerm term, ArrayStack<PrologTerm> stack) {
+	private final boolean unify(PrologTerm term, Deque<PrologTerm> stack) {
 		return unify((JLogTerm) term, stack);
 	}
 
-	private final boolean unify(JLogTerm otherTerm, ArrayStack<PrologTerm> stack) {
+	private final boolean unify(JLogTerm otherTerm, Deque<PrologTerm> stack) {
 
 		JLogTerm thisTerm = this;
 
@@ -404,7 +404,6 @@ abstract class JLogTerm extends AbstractTerm implements PrologTerm {
 			break;
 
 		case LIST_TYPE:
-		case EMPTY_TYPE:
 		case STRUCTURE_TYPE:
 
 			PrologTerm thisCompound = this;
