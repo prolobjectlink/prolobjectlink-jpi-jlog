@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>JLogUtil.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">prolobjectlink-jpi-jlog</a> &gt; <a href="index.source.html" class="el_package">org.prolobjectlink.prolog.jlog</a> &gt; <span class="el_source">JLogUtil.java</span></div><h1>JLogUtil.java</h1><pre class="source lang-java linenums">/*
+ * #%L
+ * prolobjectlink-jpi-jlog
+ * %%
+ * Copyright (C) 2019 Prolobjectlink Project
+ * %%
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as
+ * published by the Free Software Foundation, either version 2 of the
+ * License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public
+ * License along with this program.  If not, see
+ * &lt;http://www.gnu.org/licenses/gpl-2.0.html&gt;.
+ * #L%
+ */
+package org.prolobjectlink.prolog.jlog;
+
+import static org.prolobjectlink.prolog.AbstractConverter.SIMPLE_ATOM_REGEX;
+import static org.prolobjectlink.prolog.jlog.JLog.FUNCTORS;
+
+import java.io.PrintWriter;
+import java.io.StringWriter;
+import java.util.Enumeration;
+import java.util.Map.Entry;
+
+import org.prolobjectlink.prolog.PrologProvider;
+import org.prolobjectlink.prolog.PrologTerm;
+import org.prolobjectlink.prolog.StructureExpectedError;
+
+import ubc.cs.JLog.Foundation.jKnowledgeBase;
+import ubc.cs.JLog.Foundation.jPrologServices;
+import ubc.cs.JLog.Foundation.jRule;
+import ubc.cs.JLog.Foundation.jRuleDefinitions;
+import ubc.cs.JLog.Parser.pOperatorRegistry;
+import ubc.cs.JLog.Parser.pParseStream;
+import ubc.cs.JLog.Parser.pPredicateRegistry;
+import ubc.cs.JLog.Terms.jAtom;
+import ubc.cs.JLog.Terms.jBuiltinRule;
+import ubc.cs.JLog.Terms.jCompoundTerm;
+import ubc.cs.JLog.Terms.jCons;
+import ubc.cs.JLog.Terms.jIf;
+import ubc.cs.JLog.Terms.jPredicate;
+import ubc.cs.JLog.Terms.jPredicateTerms;
+import ubc.cs.JLog.Terms.jTerm;
+import ubc.cs.JLog.Terms.jVariable;
+
+/**
+ * Util class for {@link JLogTerm}
+ * 
+ * @author Jose Zalacain
+ * @since 1.0
+ *
+ */
+final class JLogUtil {
+
+<span class="nc" id="L62">	private JLogUtil() {</span>
+<span class="nc" id="L63">	}</span>
+
+	static final PrologTerm toTerm(PrologProvider provider, Object object) {
+
+		// null pointer
+<span class="pc bpc" id="L68" title="1 of 2 branches missed.">		if (object == null) {</span>
+<span class="nc" id="L69">			return new JLogNil(provider);</span>
+		}
+
+		// string data type
+<span class="fc bfc" id="L73" title="All 2 branches covered.">		else if (object instanceof String) {</span>
+<span class="fc" id="L74">			String string = (String) object;</span>
+<span class="fc" id="L75">			int index = string.indexOf('(');</span>
+<span class="pc bpc" id="L76" title="1 of 2 branches missed.">			if (index &gt; -1) {</span>
+<span class="nc" id="L77">				String functor = string.substring(0, index);</span>
+<span class="nc" id="L78">				String arguments = string.substring(index);</span>
+<span class="nc bnc" id="L79" title="All 2 branches missed.">				if (!functor.matches(SIMPLE_ATOM_REGEX)) {</span>
+<span class="nc" id="L80">					StringBuilder buffer = new StringBuilder();</span>
+<span class="nc" id="L81">					buffer.append('\'');</span>
+<span class="nc" id="L82">					buffer.append(functor);</span>
+<span class="nc" id="L83">					buffer.append('\'');</span>
+<span class="nc" id="L84">					String quoted = &quot;&quot; + buffer + &quot;&quot;;</span>
+<span class="nc" id="L85">					buffer.append(arguments);</span>
+<span class="nc" id="L86">					string = &quot;&quot; + buffer + &quot;&quot;;</span>
+<span class="nc" id="L87">					FUNCTORS.put(functor, quoted);</span>
+
+					// jlog need treatment for complex functors
+<span class="nc bnc" id="L90" title="All 2 branches missed.">					for (Entry&lt;String, String&gt; entry : FUNCTORS.entrySet()) {</span>
+
+						// retrieve cached functors
+<span class="nc" id="L93">						String key = entry.getKey();</span>
+<span class="nc" id="L94">						String value = entry.getValue();</span>
+
+						// first and unique term pattern
+<span class="nc" id="L97">						String firstRegex = &quot;(&quot; + key + &quot;&quot;;</span>
+<span class="nc bnc" id="L98" title="All 2 branches missed.">						if (string.contains(firstRegex)) {</span>
+<span class="nc" id="L99">							string = string.replaceAll(key, value);</span>
+						}
+
+						// non-first term pattern
+<span class="nc" id="L103">						String nonFirstRegex = &quot;,&quot; + key + &quot;&quot;;</span>
+<span class="nc bnc" id="L104" title="All 2 branches missed.">						if (string.contains(nonFirstRegex)) {</span>
+<span class="nc" id="L105">							string = string.replaceAll(key, value);</span>
+						}
+
+<span class="nc" id="L108">					}</span>
+				}
+			}
+
+<span class="fc" id="L112">			return provider.parseTerm(string);</span>
+		}
+
+		// primitives and wrappers data types
+<span class="pc bpc" id="L116" title="2 of 4 branches missed.">		else if (object.getClass() == boolean.class || object instanceof Boolean) {</span>
+<span class="nc bnc" id="L117" title="All 2 branches missed.">			return (Boolean) object ? new JLogTrue(provider) : new JLogFalse(provider);</span>
+<span class="pc bpc" id="L118" title="2 of 4 branches missed.">		} else if (object.getClass() == int.class || object instanceof Integer) {</span>
+<span class="fc" id="L119">			return new JLogInteger(provider, (Integer) object);</span>
+<span class="nc bnc" id="L120" title="All 4 branches missed.">		} else if (object.getClass() == float.class || object instanceof Float) {</span>
+<span class="nc" id="L121">			return new JLogFloat(provider, (Float) object);</span>
+<span class="nc bnc" id="L122" title="All 4 branches missed.">		} else if (object.getClass() == long.class || object instanceof Long) {</span>
+<span class="nc" id="L123">			return new JLogLong(provider, (Long) object);</span>
+<span class="nc bnc" id="L124" title="All 4 branches missed.">		} else if (object.getClass() == double.class || object instanceof Double) {</span>
+<span class="nc" id="L125">			return new JLogDouble(provider, (Double) object);</span>
+		}
+
+		//
+<span class="nc bnc" id="L129" title="All 2 branches missed.">		else if (object instanceof Object[]) {</span>
+<span class="nc" id="L130">			Object[] objects = (Object[]) object;</span>
+<span class="nc" id="L131">			PrologTerm[] terms = new PrologTerm[objects.length];</span>
+<span class="nc bnc" id="L132" title="All 2 branches missed.">			for (int i = 0; i &lt; objects.length; i++) {</span>
+<span class="nc" id="L133">				terms[i] = toTerm(provider, objects[i]);</span>
+			}
+<span class="nc" id="L135">			return new JLogList(provider, terms);</span>
+<span class="nc bnc" id="L136" title="All 2 branches missed.">		} else if (object instanceof jTerm) {</span>
+<span class="nc" id="L137">			return toTerm(provider, (jTerm) object);</span>
+		}
+<span class="nc" id="L139">		return null;</span>
+	}
+
+	static final jRule toRule(String str, jPrologServices engine) {
+<span class="fc" id="L143">		jPredicateTerms emptyBody = new jPredicateTerms();</span>
+<span class="fc" id="L144">		jKnowledgeBase ikb = engine.getKnowledgeBase();</span>
+<span class="fc" id="L145">		pOperatorRegistry ior = engine.getOperatorRegistry();</span>
+<span class="fc" id="L146">		pPredicateRegistry ipr = engine.getPredicateRegistry();</span>
+<span class="pc bpc" id="L147" title="1 of 2 branches missed.">		String clause = str.charAt(str.length() - 1) == '.' ? str : str + '.';</span>
+<span class="fc" id="L148">		jTerm term = new pParseStream(clause, ikb, ipr, ior).parseTerm();</span>
+<span class="fc bfc" id="L149" title="All 2 branches covered.">		if (term.type == jTerm.TYPE_PREDICATE) { // fact</span>
+<span class="fc" id="L150">			jPredicate predicate = (jPredicate) term;</span>
+<span class="fc" id="L151">			return new jRule(predicate, emptyBody);</span>
+<span class="pc bpc" id="L152" title="1 of 2 branches missed.">		} else if (term.type == jTerm.TYPE_IF) { // rule</span>
+<span class="fc" id="L153">			jIf rule = (jIf) term;</span>
+<span class="fc" id="L154">			jPredicate h = (jPredicate) rule.getLHS();</span>
+<span class="fc" id="L155">			jTerm ruleBody = rule.getRHS();</span>
+<span class="pc bpc" id="L156" title="1 of 3 branches missed.">			switch (ruleBody.type) {</span>
+
+			// only and just only predicate
+			case jTerm.TYPE_PREDICATE:
+<span class="fc" id="L160">				jPredicate predicateBody = (jPredicate) ruleBody;</span>
+<span class="fc" id="L161">				jPredicateTerms b = new jPredicateTerms();</span>
+<span class="fc" id="L162">				b.addTerm(predicateBody);</span>
+<span class="fc" id="L163">				return new jRule(h, b);</span>
+
+			//
+			case jTerm.TYPE_CONS:
+<span class="fc" id="L167">				b = new jPredicateTerms();</span>
+<span class="fc bfc" id="L168" title="All 2 branches covered.">				while (ruleBody instanceof jCons) {</span>
+<span class="fc" id="L169">					b.addTerm(((jCons) ruleBody).getLHS());</span>
+<span class="fc" id="L170">					ruleBody = ((jCons) ruleBody).getRHS().getTerm();</span>
+				}
+<span class="fc" id="L172">				b.addTerm(ruleBody);</span>
+<span class="fc" id="L173">				return new jRule(h, b);</span>
+
+			//
+			default:
+<span class="nc" id="L177">				throw new StructureExpectedError(term);</span>
+			}
+
+		}
+
+		// no rule
+<span class="nc" id="L183">		throw new StructureExpectedError(term);</span>
+
+	}
+
+	static final jRule toRule(PrologProvider provider, PrologTerm head, PrologTerm... body) {
+<span class="fc" id="L188">		jTerm termHead = provider.fromTerm(head, jTerm.class);</span>
+<span class="pc bpc" id="L189" title="3 of 4 branches missed.">		if (termHead.type == jTerm.TYPE_PREDICATE || termHead.type == jTerm.TYPE_ATOM) {</span>
+<span class="fc" id="L190">			jPredicate predicateHead = null;</span>
+<span class="pc bpc" id="L191" title="1 of 2 branches missed.">			if (termHead.type == jTerm.TYPE_PREDICATE) {</span>
+<span class="fc" id="L192">				predicateHead = (jPredicate) termHead;</span>
+<span class="nc bnc" id="L193" title="All 2 branches missed.">			} else if (termHead.type == jTerm.TYPE_ATOM) {</span>
+<span class="nc" id="L194">				jAtom atomHead = (jAtom) termHead;</span>
+<span class="nc" id="L195">				predicateHead = new jPredicate(atomHead);</span>
+			}
+<span class="fc" id="L197">			jPredicateTerms predicateBody = new jPredicateTerms();</span>
+<span class="fc bfc" id="L198" title="All 2 branches covered.">			for (PrologTerm iPrologTerm : body) {</span>
+<span class="fc" id="L199">				predicateBody.addTerm(provider.fromTerm(iPrologTerm, jTerm.class));</span>
+			}
+<span class="fc" id="L201">			return new jRule(predicateHead, predicateBody);</span>
+		}
+<span class="nc" id="L203">		throw new StructureExpectedError(head);</span>
+	}
+
+	static final String toString(jPrologServices engine) {
+<span class="fc" id="L207">		jKnowledgeBase kb = engine.getKnowledgeBase();</span>
+<span class="fc" id="L208">		StringWriter stringWriter = new StringWriter();</span>
+<span class="fc" id="L209">		PrintWriter writer = new PrintWriter(stringWriter);</span>
+<span class="fc" id="L210">		Enumeration&lt;?&gt; enumeration = kb.enumDefinitions();</span>
+<span class="fc bfc" id="L211" title="All 2 branches covered.">		while (enumeration.hasMoreElements()) {</span>
+<span class="fc" id="L212">			jRuleDefinitions object = (jRuleDefinitions) enumeration.nextElement();</span>
+<span class="fc" id="L213">			Enumeration&lt;?&gt; r = object.enumRules();</span>
+<span class="fc bfc" id="L214" title="All 2 branches covered.">			while (r.hasMoreElements()) {</span>
+<span class="fc" id="L215">				Object object2 = r.nextElement();</span>
+<span class="fc bfc" id="L216" title="All 2 branches covered.">				if (!(object2 instanceof jBuiltinRule)) {</span>
+<span class="fc" id="L217">					jRule jRule = (jRule) object2;</span>
+
+					// rule head
+<span class="fc" id="L220">					jPredicate ruleHead = jRule.getHead();</span>
+<span class="fc" id="L221">					jCompoundTerm args = ruleHead.getArguments();</span>
+<span class="fc" id="L222">					String functor = ruleHead.getName();</span>
+<span class="fc" id="L223">					String ok = toString(functor, args);</span>
+<span class="fc" id="L224">					writer.print(ok);</span>
+
+					// rule body
+<span class="fc" id="L227">					jPredicateTerms ruleBody = jRule.getBase();</span>
+<span class="fc" id="L228">					Enumeration&lt;?&gt; k = ruleBody.enumTerms();</span>
+<span class="fc bfc" id="L229" title="All 2 branches covered.">					if (k.hasMoreElements()) {</span>
+<span class="fc" id="L230">						writer.print(&quot;:-&quot;);</span>
+<span class="fc bfc" id="L231" title="All 2 branches covered.">						while (k.hasMoreElements()) {</span>
+<span class="fc" id="L232">							jTerm term = (jTerm) k.nextElement();</span>
+<span class="fc bfc" id="L233" title="All 2 branches covered.">							if (term instanceof jPredicate) {</span>
+<span class="fc" id="L234">								jPredicate p = (jPredicate) term;</span>
+<span class="fc" id="L235">								args = p.getArguments();</span>
+<span class="fc" id="L236">								functor = p.getName();</span>
+<span class="fc" id="L237">								ok = toString(functor, args);</span>
+<span class="fc" id="L238">								writer.print(ok);</span>
+<span class="fc" id="L239">							} else {</span>
+<span class="fc" id="L240">								writer.print(term);</span>
+							}
+<span class="fc bfc" id="L242" title="All 2 branches covered.">							if (k.hasMoreElements()) {</span>
+<span class="fc" id="L243">								writer.print(',');</span>
+							}
+<span class="fc" id="L245">						}</span>
+					}
+
+					// rule end
+<span class="fc" id="L249">					writer.println('.');</span>
+				}
+<span class="fc" id="L251">			}</span>
+<span class="fc" id="L252">		}</span>
+<span class="fc" id="L253">		writer.flush();</span>
+<span class="fc" id="L254">		writer.close();</span>
+
+<span class="fc" id="L256">		return &quot;&quot; + stringWriter + &quot;&quot;;</span>
+	}
+
+	private static final String toString(String functor, jCompoundTerm args) {
+<span class="fc" id="L260">		StringBuilder buffer = new StringBuilder();</span>
+<span class="pc bpc" id="L261" title="3 of 6 branches missed.">		if (!functor.startsWith(&quot;'&quot;) &amp;&amp; !functor.endsWith(&quot;'&quot;) &amp;&amp; !functor.matches(SIMPLE_ATOM_REGEX)) {</span>
+<span class="nc" id="L262">			buffer.append('\'');</span>
+<span class="nc" id="L263">			buffer.append(functor);</span>
+<span class="nc" id="L264">			buffer.append('\'');</span>
+<span class="nc" id="L265">			String quoted = &quot;&quot; + buffer + &quot;&quot;;</span>
+<span class="nc" id="L266">			FUNCTORS.put(functor, quoted);</span>
+<span class="nc" id="L267">		} else {</span>
+<span class="fc" id="L268">			buffer.append(functor);</span>
+		}
+<span class="fc" id="L270">		Enumeration&lt;?&gt; e = args.enumTerms();</span>
+<span class="pc bpc" id="L271" title="1 of 2 branches missed.">		if (e.hasMoreElements()) {</span>
+<span class="fc" id="L272">			buffer.append('(');</span>
+<span class="fc bfc" id="L273" title="All 2 branches covered.">			while (e.hasMoreElements()) {</span>
+<span class="fc" id="L274">				jTerm jTerm = (jTerm) e.nextElement();</span>
+<span class="fc bfc" id="L275" title="All 2 branches covered.">				if (jTerm instanceof jVariable) {</span>
+<span class="fc" id="L276">					jVariable jVar = (jVariable) jTerm;</span>
+<span class="fc" id="L277">					buffer.append(jVar.getName());</span>
+<span class="pc bpc" id="L278" title="1 of 2 branches missed.">				} else if (jTerm instanceof jPredicate) {</span>
+<span class="nc" id="L279">					jPredicate p = (jPredicate) jTerm;</span>
+<span class="nc" id="L280">					String arg = toString(p.getName(), p.getArguments());</span>
+<span class="nc" id="L281">					buffer.append(arg);</span>
+<span class="nc" id="L282">				} else {</span>
+<span class="fc" id="L283">					buffer.append(jTerm);</span>
+				}
+<span class="fc bfc" id="L285" title="All 2 branches covered.">				if (e.hasMoreElements())</span>
+<span class="fc" id="L286">					buffer.append(',');</span>
+<span class="fc" id="L287">			}</span>
+<span class="fc" id="L288">			buffer.append(')');</span>
+		}
+<span class="fc" id="L290">		return &quot;&quot; + buffer + &quot;&quot;;</span>
+	}
+
+	static final String removeQuotesIfNeed(String functor) {
+<span class="pc bpc" id="L294" title="3 of 4 branches missed.">		if (functor.startsWith(&quot;'&quot;) &amp;&amp; functor.endsWith(&quot;'&quot;)) {</span>
+<span class="nc" id="L295">			return functor.substring(1, functor.length() - 1);</span>
+		}
+<span class="fc" id="L297">		return functor;</span>
+	}
+
+	static final String rectify(String str) {
+<span class="pc bpc" id="L301" title="1 of 2 branches missed.">		for (Entry&lt;String, String&gt; entry : FUNCTORS.entrySet()) {</span>
+
+			// retrieve cached functors
+<span class="nc" id="L304">			String key = entry.getKey();</span>
+<span class="nc" id="L305">			String value = entry.getValue();</span>
+
+			// first and unique term pattern
+<span class="nc" id="L308">			String firstRegex = &quot;(&quot; + key + &quot;&quot;;</span>
+<span class="nc bnc" id="L309" title="All 2 branches missed.">			if (str.contains(firstRegex)) {</span>
+<span class="nc" id="L310">				str = str.replaceAll(key, value);</span>
+			}
+
+			// non-first term pattern
+<span class="nc" id="L314">			String nonFirstRegex = &quot;,&quot; + key + &quot;&quot;;</span>
+<span class="nc bnc" id="L315" title="All 2 branches missed.">			if (str.contains(nonFirstRegex)) {</span>
+<span class="nc" id="L316">				str = str.replaceAll(key, value);</span>
+			}
+
+<span class="nc" id="L319">		}</span>
+<span class="fc" id="L320">		return str;</span>
+	}
+
+	private static final jPredicate retrieve(jPredicate predicate) {
+<span class="nc" id="L324">		int arity = predicate.getArity();</span>
+<span class="nc" id="L325">		String functor = predicate.getName();</span>
+<span class="nc bnc" id="L326" title="All 4 branches missed.">		if (functor.startsWith(&quot;'&quot;) &amp;&amp; functor.endsWith(&quot;'&quot;)) {</span>
+<span class="nc" id="L327">			String nFunctor = functor.substring(1, functor.length() - 1);</span>
+<span class="nc" id="L328">			jCompoundTerm args = predicate.getArguments();</span>
+<span class="nc" id="L329">			jCompoundTerm nArgs = new jCompoundTerm(arity);</span>
+<span class="nc bnc" id="L330" title="All 2 branches missed.">			for (int i = 0; i &lt; args.size(); i++) {</span>
+<span class="nc" id="L331">				jTerm term = args.elementAt(i);</span>
+<span class="nc bnc" id="L332" title="All 2 branches missed.">				if (term instanceof jPredicate) {</span>
+<span class="nc" id="L333">					jPredicate p = (jPredicate) term;</span>
+<span class="nc" id="L334">					nArgs.addTerm(retrieve(p));</span>
+				}
+			}
+<span class="nc" id="L337">			predicate = new jPredicate(nFunctor, nArgs);</span>
+		}
+<span class="nc" id="L339">		return predicate;</span>
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>jDouble.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">prolobjectlink-jpi-jlog</a> &gt; <a href="index.source.html" class="el_package">org.prolobjectlink.prolog.jlog</a> &gt; <span class="el_source">jDouble.java</span></div><h1>jDouble.java</h1><pre class="source lang-java linenums">/*
+ * #%L
+ * prolobjectlink-jpi-jlog
+ * %%
+ * Copyright (C) 2019 Prolobjectlink Project
+ * %%
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as
+ * published by the Free Software Foundation, either version 2 of the
+ * License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public
+ * License along with this program.  If not, see
+ * &lt;http://www.gnu.org/licenses/gpl-2.0.html&gt;.
+ * #L%
+ */
+package org.prolobjectlink.prolog.jlog;
+
+import ubc.cs.JLog.Foundation.jEquivalenceMapping;
+import ubc.cs.JLog.Foundation.jUnifiedVector;
+import ubc.cs.JLog.Foundation.jVariableRegistry;
+import ubc.cs.JLog.Foundation.jVariableVector;
+import ubc.cs.JLog.Terms.iPredicate;
+import ubc.cs.JLog.Terms.jInteger;
+import ubc.cs.JLog.Terms.jTerm;
+import ubc.cs.JLog.Terms.jVariable;
+
+/**
+ * 
+ * @author Jose Zalacain
+ * @since 1.0
+ */
+ class jDouble extends jTerm {
+
+	private double value;
+
+<span class="fc" id="L42">	 jDouble(double v) {</span>
+<span class="fc" id="L43">		value = v;</span>
+<span class="fc" id="L44">		type = TYPE_REAL;</span>
+<span class="fc" id="L45">	}</span>
+
+	@Override
+	public String getName() {
+<span class="nc" id="L49">		return String.valueOf(value);</span>
+	}
+
+	public double getRealValue() {
+<span class="fc" id="L53">		return value;</span>
+	}
+
+	protected int compare(jTerm term, boolean firstCall, boolean varEqual) {
+<span class="nc" id="L57">		jTerm t = term.getTerm();</span>
+
+<span class="nc bnc" id="L59" title="All 2 branches missed.">		if (t instanceof jVariable)</span>
+<span class="nc" id="L60">			return GREATER_THAN;</span>
+
+<span class="nc bnc" id="L62" title="All 2 branches missed.">		if (t instanceof jDouble) {</span>
+<span class="nc" id="L63">			double f = ((jDouble) t).getRealValue();</span>
+
+<span class="nc bnc" id="L65" title="All 2 branches missed.">			if (value &lt; f)</span>
+<span class="nc" id="L66">				return LESS_THAN;</span>
+<span class="nc bnc" id="L67" title="All 2 branches missed.">			else if (value &gt; f)</span>
+<span class="nc" id="L68">				return GREATER_THAN;</span>
+			else
+<span class="nc" id="L70">				return EQUAL;</span>
+		}
+
+<span class="nc bnc" id="L73" title="All 2 branches missed.">		if (t instanceof jInteger)</span>
+<span class="nc" id="L74">			return LESS_THAN;</span>
+
+<span class="nc bnc" id="L76" title="All 2 branches missed.">		if (t instanceof iPredicate)</span>
+<span class="nc" id="L77">			return LESS_THAN;</span>
+
+<span class="nc bnc" id="L79" title="All 2 branches missed.">		return (firstCall ? -t.compare(this, varEqual) : EQUAL);</span>
+	}
+
+	public boolean equivalence(jTerm term, jEquivalenceMapping v) {
+<span class="fc" id="L83">		jTerm t = term.getTerm();</span>
+
+		// many real may be same instances
+<span class="pc bpc" id="L86" title="1 of 2 branches missed.">		if (this == t)</span>
+<span class="nc" id="L87">			return true;</span>
+
+<span class="pc bpc" id="L89" title="1 of 2 branches missed.">		if (type != t.type)</span>
+<span class="nc" id="L90">			return false;</span>
+
+		// altough we cannot be certain that term is a jReal, if it is not then type was
+		// wrong
+		// so this warrents a failing exception.
+<span class="fc bfc" id="L95" title="All 2 branches covered.">		return (value == ((jDouble) t).value);</span>
+	}
+
+	public boolean unify(jTerm term, jUnifiedVector v) {
+		// if term is variable we let it handle the unification
+<span class="nc bnc" id="L100" title="All 2 branches missed.">		if (term.type == TYPE_VARIABLE)</span>
+<span class="nc" id="L101">			return term.unify(this, v);</span>
+
+		// many real may be same instances
+<span class="nc bnc" id="L104" title="All 2 branches missed.">		if (this == term)</span>
+<span class="nc" id="L105">			return true;</span>
+
+<span class="nc bnc" id="L107" title="All 2 branches missed.">		if (type != term.type)</span>
+<span class="nc" id="L108">			return false;</span>
+
+		// altough we cannot be certain that term is a jReal, if it is not then type was
+		// wrong
+		// so this warrents a failing exception.
+<span class="nc bnc" id="L113" title="All 2 branches missed.">		return (value == ((jDouble) term).value);</span>
+	}
+
+	public void registerVariables(jVariableVector v) {
+		// do nothing
+<span class="nc" id="L118">	}</span>
+
+	public void enumerateVariables(jVariableVector v, boolean all) {
+		// do nothing
+<span class="nc" id="L122">	}</span>
+
+	public jTerm duplicate(jVariable[] vars) {
+<span class="nc" id="L125">		return this; // since reals are constants, don't duplicate for memory and gc considerations</span>
+	}
+
+	public jTerm copy(jVariableRegistry vars) {
+<span class="nc" id="L129">		return this; // since reals are constants, don't duplicate for memory and gc considerations</span>
+	}
+
+	public String toString(boolean usename) {
+<span class="fc" id="L133">		return String.valueOf(value);</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pmd version="4.2.5" timestamp="2019-09-22T09:06:31.619">
+<file name="D:\Programacion\eclipse-java-photon-workspace\prolobjectlink-jpi-jlog\src\main\java\org\prolobjectlink\prolog\jlog\JLogConverter.java">
+<violation beginline="22" endline="296" begincolumn="1" endcolumn="3" rule="TooManyStaticImports" ruleset="Import Statement Rules" package="org.prolobjectlink.prolog.jlog" externalInfoUrl="http://pmd.sourceforge.net/rules/imports.html#TooManyStaticImports" priority="3">
+Too many static imports may lead to messy code
+</violation>
+</file>
+<file name="D:\Programacion\eclipse-java-photon-workspace\prolobjectlink-jpi-jlog\src\main\java\org\prolobjectlink\prolog\jlog\JLogDouble.java">
+<violation beginline="40" endline="42" begincolumn="22" endcolumn="9" rule="UnnecessaryFinalModifier" ruleset="Basic Rules" package="org.prolobjectlink.prolog.jlog" class="JLogDouble" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#UnnecessaryFinalModifier" priority="3">
+Unnecessary final modifier in final class
+</violation>
+</file>
+<file name="D:\Programacion\eclipse-java-photon-workspace\prolobjectlink-jpi-jlog\src\main\java\org\prolobjectlink\prolog\jlog\JLogEngine.java">
+<violation beginline="22" endline="480" begincolumn="1" endcolumn="3" rule="TooManyStaticImports" ruleset="Import Statement Rules" package="org.prolobjectlink.prolog.jlog" externalInfoUrl="http://pmd.sourceforge.net/rules/imports.html#TooManyStaticImports" priority="3">
+Too many static imports may lead to messy code
+</violation>
+</file>
+<file name="D:\Programacion\eclipse-java-photon-workspace\prolobjectlink-jpi-jlog\src\main\java\org\prolobjectlink\prolog\jlog\JLogTerm.java">
+<violation beginline="22" endline="524" begincolumn="1" endcolumn="3" rule="TooManyStaticImports" ruleset="Import Statement Rules" package="org.prolobjectlink.prolog.jlog" externalInfoUrl="http://pmd.sourceforge.net/rules/imports.html#TooManyStaticImports" priority="3">
+Too many static imports may lead to messy code
+</violation>
+</file>
+<file name="D:\Programacion\eclipse-java-photon-workspace\prolobjectlink-jpi-jlog\src\main\java\org\prolobjectlink\prolog\jlog\JLogUtil.java">
+<violation beginline="65" endline="140" begincolumn="22" endcolumn="9" rule="UnnecessaryFinalModifier" ruleset="Basic Rules" package="org.prolobjectlink.prolog.jlog" class="JLogUtil" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#UnnecessaryFinalModifier" priority="3">
+Unnecessary final modifier in final class
+</violation>
+<violation beginline="142" endline="185" begincolumn="22" endcolumn="9" rule="UnnecessaryFinalModifier" ruleset="Basic Rules" package="org.prolobjectlink.prolog.jlog" class="JLogUtil" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#UnnecessaryFinalModifier" priority="3">
+Unnecessary final modifier in final class
+</violation>
+<violation beginline="187" endline="204" begincolumn="22" endcolumn="9" rule="UnnecessaryFinalModifier" ruleset="Basic Rules" package="org.prolobjectlink.prolog.jlog" class="JLogUtil" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#UnnecessaryFinalModifier" priority="3">
+Unnecessary final modifier in final class
+</violation>
+<violation beginline="206" endline="257" begincolumn="22" endcolumn="9" rule="UnnecessaryFinalModifier" ruleset="Basic Rules" package="org.prolobjectlink.prolog.jlog" class="JLogUtil" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#UnnecessaryFinalModifier" priority="3">
+Unnecessary final modifier in final class
+</violation>
+<violation beginline="259" endline="291" begincolumn="30" endcolumn="9" rule="UnnecessaryFinalModifier" ruleset="Basic Rules" package="org.prolobjectlink.prolog.jlog" class="JLogUtil" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#UnnecessaryFinalModifier" priority="3">
+Unnecessary final modifier in final class
+</violation>
+<violation beginline="293" endline="298" begincolumn="22" endcolumn="9" rule="UnnecessaryFinalModifier" ruleset="Basic Rules" package="org.prolobjectlink.prolog.jlog" class="JLogUtil" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#UnnecessaryFinalModifier" priority="3">
+Unnecessary final modifier in final class
+</violation>
+<violation beginline="300" endline="321" begincolumn="22" endcolumn="9" rule="UnnecessaryFinalModifier" ruleset="Basic Rules" package="org.prolobjectlink.prolog.jlog" class="JLogUtil" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#UnnecessaryFinalModifier" priority="3">
+Unnecessary final modifier in final class
+</violation>
+<violation beginline="323" endline="323" begincolumn="41" endcolumn="70" rule="UnusedPrivateMethod" ruleset="Unused Code Rules" package="org.prolobjectlink.prolog.jlog" class="JLogUtil" method="retrieve" externalInfoUrl="http://pmd.sourceforge.net/rules/unusedcode.html#UnusedPrivateMethod" priority="3">
+Avoid unused private methods such as 'retrieve(jPredicate)'.
+</violation>
+<violation beginline="323" endline="340" begincolumn="30" endcolumn="9" rule="UnnecessaryFinalModifier" ruleset="Basic Rules" package="org.prolobjectlink.prolog.jlog" class="JLogUtil" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#UnnecessaryFinalModifier" priority="3">
+Unnecessary final modifier in final class
+</violation>
+</file>
+</pmd>

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>JLogStructure.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">prolobjectlink-jpi-jlog</a> &gt; <a href="index.source.html" class="el_package">org.prolobjectlink.prolog.jlog</a> &gt; <span class="el_source">JLogStructure.java</span></div><h1>JLogStructure.java</h1><pre class="source lang-java linenums">/*
+ * #%L
+ * prolobjectlink-jpi-jlog
+ * %%
+ * Copyright (C) 2019 Prolobjectlink Project
+ * %%
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as
+ * published by the Free Software Foundation, either version 2 of the
+ * License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public
+ * License along with this program.  If not, see
+ * &lt;http://www.gnu.org/licenses/gpl-2.0.html&gt;.
+ * #L%
+ */
+package org.prolobjectlink.prolog.jlog;
+
+import static org.prolobjectlink.prolog.PrologTermType.STRUCTURE_TYPE;
+
+import org.prolobjectlink.prolog.PrologProvider;
+import org.prolobjectlink.prolog.PrologStructure;
+import org.prolobjectlink.prolog.PrologTerm;
+
+import ubc.cs.JLog.Terms.jCompoundTerm;
+import ubc.cs.JLog.Terms.jPredicate;
+import ubc.cs.JLog.Terms.jTerm;
+
+/**
+ * 
+ * @author Jose Zalacain
+ * @since 1.0
+ */
+class JLogStructure extends JLogTerm implements PrologStructure {
+
+	protected JLogStructure(PrologProvider provider, String functor, PrologTerm... arguments) {
+<span class="fc" id="L42">		super(STRUCTURE_TYPE, provider);</span>
+<span class="fc" id="L43">		value = new jPredicate(functor, adaptCompound(arguments));</span>
+<span class="fc" id="L44">	}</span>
+
+	protected JLogStructure(PrologProvider provider, String functor, jCompoundTerm arguments) {
+<span class="fc" id="L47">		super(STRUCTURE_TYPE, provider);</span>
+<span class="fc" id="L48">		value = new jPredicate(functor, arguments);</span>
+<span class="fc" id="L49">	}</span>
+
+	protected JLogStructure(PrologProvider provider, PrologTerm left, String operator, PrologTerm right) {
+<span class="fc" id="L52">		super(STRUCTURE_TYPE, provider);</span>
+<span class="fc" id="L53">		PrologTerm[] operands = { left, right };</span>
+<span class="fc" id="L54">		value = new jPredicate(operator, adaptCompound(operands));</span>
+<span class="fc" id="L55">	}</span>
+
+	protected JLogStructure(PrologProvider provider, jTerm left, String functor, jTerm right) {
+<span class="fc" id="L58">		super(STRUCTURE_TYPE, provider);</span>
+<span class="fc" id="L59">		jCompoundTerm compound = new jCompoundTerm(2);</span>
+<span class="fc" id="L60">		compound.addTerm(left);</span>
+<span class="fc" id="L61">		compound.addTerm(right);</span>
+<span class="fc" id="L62">		value = new jPredicate(functor, compound);</span>
+<span class="fc" id="L63">	}</span>
+
+	public PrologTerm getArgument(int index) {
+<span class="fc" id="L66">		checkIndex(index, getArity());</span>
+<span class="fc" id="L67">		jPredicate structure = (jPredicate) value;</span>
+<span class="fc" id="L68">		jCompoundTerm compound = structure.getArguments();</span>
+<span class="fc" id="L69">		return toTerm(compound.elementAt(index), PrologTerm.class);</span>
+	}
+
+	public PrologTerm[] getArguments() {
+<span class="fc" id="L73">		jPredicate structure = (jPredicate) value;</span>
+<span class="fc" id="L74">		int arity = structure.getArity();</span>
+<span class="fc" id="L75">		PrologTerm[] arguments = new PrologTerm[arity];</span>
+<span class="fc" id="L76">		jCompoundTerm compound = structure.getArguments();</span>
+<span class="fc bfc" id="L77" title="All 2 branches covered.">		for (int i = 0; i &lt; arity; i++) {</span>
+<span class="fc" id="L78">			arguments[i] = toTerm(compound.elementAt(i), PrologTerm.class);</span>
+		}
+<span class="fc" id="L80">		return arguments;</span>
+	}
+
+	public int getArity() {
+<span class="fc" id="L84">		jPredicate structure = (jPredicate) value;</span>
+<span class="fc" id="L85">		return structure.getArity();</span>
+	}
+
+	public String getFunctor() {
+<span class="fc" id="L89">		jPredicate structure = (jPredicate) value;</span>
+<span class="fc" id="L90">		return structure.getName();</span>
+	}
+
+	public String getIndicator() {
+<span class="fc" id="L94">		return getFunctor() + &quot;/&quot; + getArity();</span>
+	}
+
+	public boolean hasIndicator(String functor, int arity) {
+<span class="pc bpc" id="L98" title="1 of 4 branches missed.">		return getFunctor().equals(functor) &amp;&amp; getArity() == arity;</span>
+	}
+
+	public final PrologTerm getRight() {
+<span class="nc" id="L102">		return getArgument(1);</span>
+	}
+
+	public final PrologTerm getLeft() {
+<span class="nc" id="L106">		return getArgument(0);</span>
+	}
+
+	public final String getOperator() {
+<span class="nc" id="L110">		return getFunctor();</span>
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>
