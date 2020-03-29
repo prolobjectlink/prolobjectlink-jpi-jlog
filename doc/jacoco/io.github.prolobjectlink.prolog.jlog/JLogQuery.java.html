@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>JLogQuery.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">prolobjectlink-jpi-jlog</a> &gt; <a href="index.source.html" class="el_package">io.github.prolobjectlink.prolog.jlog</a> &gt; <span class="el_source">JLogQuery.java</span></div><h1>JLogQuery.java</h1><pre class="source lang-java linenums">/*
+ * #%L
+ * prolobjectlink-jpi-jlog
+ * %%
+ * Copyright (C) 2019 Prolobjectlink Project
+ * %%
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as
+ * published by the Free Software Foundation, either version 2 of the
+ * License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public
+ * License along with this program.  If not, see
+ * &lt;http://www.gnu.org/licenses/gpl-2.0.html&gt;.
+ * #L%
+ */
+package io.github.prolobjectlink.prolog.jlog;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import io.github.prolobjectlink.prolog.AbstractEngine;
+import io.github.prolobjectlink.prolog.AbstractQuery;
+import io.github.prolobjectlink.prolog.PrologQuery;
+import io.github.prolobjectlink.prolog.PrologTerm;
+import ubc.cs.JLog.Foundation.jKnowledgeBase;
+import ubc.cs.JLog.Foundation.jPrologAPI;
+import ubc.cs.JLog.Foundation.jVariableVector;
+import ubc.cs.JLog.Parser.pOperatorRegistry;
+import ubc.cs.JLog.Parser.pParseStream;
+import ubc.cs.JLog.Parser.pPredicateRegistry;
+import ubc.cs.JLog.Terms.jPredicateTerms;
+import ubc.cs.JLog.Terms.jVariable;
+
+/**
+ * 
+ * @author Jose Zalacain
+ * @since 1.0
+ */
+final class JLogQuery extends AbstractQuery implements PrologQuery {
+
+	private Map&lt;?, ?&gt; solution;
+	private jPrologAPI jlogApi;
+<span class="pc" id="L53">	private jVariableVector vector = new jVariableVector();</span>
+
+	protected JLogQuery(AbstractEngine engine, String str) {
+<span class="fc" id="L56">		super(engine);</span>
+
+		// saving variable order
+<span class="fc" id="L59">		str = JLogUtil.rectify(str);</span>
+<span class="fc" id="L60">		JLogEngine pe = (JLogEngine) engine;</span>
+<span class="fc" id="L61">		jKnowledgeBase kb = pe.engine.getKnowledgeBase();</span>
+<span class="fc" id="L62">		pOperatorRegistry or = pe.engine.getOperatorRegistry();</span>
+<span class="fc" id="L63">		pPredicateRegistry pr = pe.engine.getPredicateRegistry();</span>
+<span class="pc bpc" id="L64" title="1 of 2 branches missed.">		String s = str.charAt(str.length() - 1) == '.' ? str : str + '.';</span>
+<span class="fc" id="L65">		pParseStream parser = new pParseStream(s, kb, pr, or);</span>
+<span class="fc" id="L66">		jPredicateTerms terms = parser.parseQuery();</span>
+<span class="fc" id="L67">		terms.enumerateVariables(vector, true);</span>
+
+		// adapt program to string
+<span class="fc" id="L70">		String source = JLogUtil.toString(pe.engine);</span>
+<span class="fc" id="L71">		jlogApi = new jPrologAPI(source);</span>
+		try {
+<span class="fc" id="L73">			solution = jlogApi.query(s);</span>
+<span class="nc" id="L74">		} catch (Exception e) {</span>
+<span class="nc" id="L75">			solution = null;</span>
+<span class="fc" id="L76">		}</span>
+
+<span class="fc" id="L78">	}</span>
+
+	protected JLogQuery(AbstractEngine engine, PrologTerm[] terms) {
+<span class="nc" id="L81">		super(engine);</span>
+
+<span class="nc bnc" id="L83" title="All 4 branches missed.">		if (terms != null &amp;&amp; terms.length &gt; 0) {</span>
+
+<span class="nc" id="L85">			String str = Arrays.toString(terms).substring(1);</span>
+<span class="nc" id="L86">			str = str.substring(0, str.length() - 1) + '.';</span>
+
+			// saving variable order
+<span class="nc" id="L89">			str = JLogUtil.rectify(str);</span>
+<span class="nc" id="L90">			JLogEngine pe = (JLogEngine) engine;</span>
+<span class="nc" id="L91">			jKnowledgeBase kb = pe.engine.getKnowledgeBase();</span>
+<span class="nc" id="L92">			pOperatorRegistry or = pe.engine.getOperatorRegistry();</span>
+<span class="nc" id="L93">			pPredicateRegistry pr = pe.engine.getPredicateRegistry();</span>
+<span class="nc" id="L94">			pParseStream parser = new pParseStream(str, kb, pr, or);</span>
+<span class="nc" id="L95">			jPredicateTerms jpts = parser.parseQuery();</span>
+<span class="nc" id="L96">			jpts.enumerateVariables(vector, true);</span>
+
+			// adapt program to string
+<span class="nc" id="L99">			String source = JLogUtil.toString(pe.engine);</span>
+<span class="nc" id="L100">			jlogApi = new jPrologAPI(source);</span>
+			try {
+<span class="nc" id="L102">				solution = jlogApi.query(str);</span>
+<span class="nc" id="L103">			} catch (Exception e) {</span>
+<span class="nc" id="L104">				solution = null;</span>
+<span class="nc" id="L105">			}</span>
+
+		}
+
+<span class="nc" id="L109">	}</span>
+
+	protected JLogQuery(AbstractEngine engine, PrologTerm term, PrologTerm[] terms) {
+<span class="fc" id="L112">		super(engine);</span>
+
+<span class="fc" id="L114">		String str = &quot;&quot; + term + &quot;&quot;;</span>
+
+		// saving variable order
+<span class="fc" id="L117">		str = JLogUtil.rectify(str);</span>
+<span class="fc" id="L118">		JLogEngine pe = (JLogEngine) engine;</span>
+<span class="fc" id="L119">		jKnowledgeBase kb = pe.engine.getKnowledgeBase();</span>
+<span class="fc" id="L120">		pOperatorRegistry or = pe.engine.getOperatorRegistry();</span>
+<span class="fc" id="L121">		pPredicateRegistry pr = pe.engine.getPredicateRegistry();</span>
+<span class="fc" id="L122">		pParseStream parser = new pParseStream(str + '.', kb, pr, or);</span>
+<span class="fc" id="L123">		jPredicateTerms jpts = parser.parseQuery();</span>
+<span class="fc" id="L124">		jpts.enumerateVariables(vector, true);</span>
+
+<span class="pc bpc" id="L126" title="1 of 4 branches missed.">		if (terms != null &amp;&amp; terms.length &gt; 0) {</span>
+
+<span class="fc" id="L128">			str = str + &quot;, &quot; + Arrays.toString(terms).substring(1);</span>
+<span class="fc" id="L129">			str = str.substring(0, str.length() - 1);</span>
+
+			// saving variable order
+<span class="fc" id="L132">			str = JLogUtil.rectify(str);</span>
+<span class="fc" id="L133">			parser = new pParseStream(str + '.', kb, pr, or);</span>
+<span class="fc" id="L134">			jpts = parser.parseQuery();</span>
+<span class="fc" id="L135">			jpts.enumerateVariables(vector, true);</span>
+
+		}
+
+		// adapt program to string
+<span class="fc" id="L140">		String source = JLogUtil.toString(pe.engine);</span>
+<span class="fc" id="L141">		jlogApi = new jPrologAPI(source);</span>
+		try {
+<span class="fc" id="L143">			solution = jlogApi.query(str + '.');</span>
+<span class="nc" id="L144">		} catch (Exception e) {</span>
+<span class="nc" id="L145">			solution = null;</span>
+<span class="fc" id="L146">		}</span>
+<span class="fc" id="L147">	}</span>
+
+	public boolean hasSolution() {
+<span class="pc bpc" id="L150" title="1 of 2 branches missed.">		return solution != null;</span>
+	}
+
+	public boolean hasMoreSolutions() {
+<span class="fc bfc" id="L154" title="All 2 branches covered.">		return solution != null;</span>
+	}
+
+	public PrologTerm[] oneSolution() {
+<span class="pc bpc" id="L158" title="1 of 2 branches missed.">		if (hasSolution()) {</span>
+<span class="fc" id="L159">			int index = 0;</span>
+<span class="fc" id="L160">			PrologTerm[] array = new PrologTerm[solution.size()];</span>
+<span class="fc bfc" id="L161" title="All 4 branches covered.">			for (Enumeration&lt;?&gt; e = vector.enumerate(); e.hasMoreElements() &amp;&amp; index &lt; solution.size();) {</span>
+<span class="fc" id="L162">				Object object = e.nextElement();</span>
+<span class="pc bpc" id="L163" title="1 of 2 branches missed.">				if (object instanceof jVariable) {</span>
+<span class="fc" id="L164">					String key = ((jVariable) object).getName();</span>
+<span class="fc" id="L165">					array[index++] = JLogUtil.toTerm(getProvider(), solution.get(key));</span>
+				}
+<span class="fc" id="L167">			}</span>
+<span class="fc" id="L168">			return array;</span>
+		}
+<span class="nc" id="L170">		return new PrologTerm[0];</span>
+	}
+
+	public Map&lt;String, PrologTerm&gt; oneVariablesSolution() {
+<span class="pc bpc" id="L174" title="1 of 2 branches missed.">		if (hasSolution()) {</span>
+<span class="fc" id="L175">			Map&lt;String, PrologTerm&gt; varMap = new HashMap&lt;String, PrologTerm&gt;(solution.size());</span>
+<span class="fc bfc" id="L176" title="All 2 branches covered.">			for (Enumeration&lt;?&gt; e = vector.enumerate(); e.hasMoreElements();) {</span>
+<span class="fc" id="L177">				Object object = e.nextElement();</span>
+<span class="pc bpc" id="L178" title="1 of 2 branches missed.">				if (object instanceof jVariable) {</span>
+<span class="fc" id="L179">					String key = ((jVariable) object).getName();</span>
+<span class="fc" id="L180">					varMap.put(key, JLogUtil.toTerm(getProvider(), solution.get(key)));</span>
+				}
+<span class="fc" id="L182">			}</span>
+<span class="fc" id="L183">			return varMap;</span>
+		}
+<span class="nc" id="L185">		return new HashMap&lt;String, PrologTerm&gt;(0);</span>
+	}
+
+	public PrologTerm[] nextSolution() {
+<span class="fc" id="L189">		PrologTerm[] array = oneSolution();</span>
+<span class="fc" id="L190">		solution = jlogApi.retry();</span>
+<span class="fc" id="L191">		return array;</span>
+	}
+
+	public Map&lt;String, PrologTerm&gt; nextVariablesSolution() {
+<span class="fc" id="L195">		Map&lt;String, PrologTerm&gt; varMap = oneVariablesSolution();</span>
+<span class="fc" id="L196">		solution = jlogApi.retry();</span>
+<span class="fc" id="L197">		return varMap;</span>
+	}
+
+	public PrologTerm[][] nSolutions(int n) {
+<span class="pc bpc" id="L201" title="1 of 2 branches missed.">		if (n &gt; 0) {</span>
+<span class="fc" id="L202">			int m = 0;</span>
+<span class="fc" id="L203">			int index = 0;</span>
+<span class="fc" id="L204">			List&lt;PrologTerm[]&gt; all = new ArrayList&lt;PrologTerm[]&gt;();</span>
+<span class="pc bpc" id="L205" title="1 of 4 branches missed.">			while (hasMoreSolutions() &amp;&amp; index &lt; n) {</span>
+<span class="fc" id="L206">				PrologTerm[] solutions = oneSolution();</span>
+<span class="fc bfc" id="L207" title="All 2 branches covered.">				m = solutions.length &gt; m ? solutions.length : m;</span>
+<span class="fc" id="L208">				all.add(solutions);</span>
+<span class="fc" id="L209">				index++;</span>
+<span class="fc" id="L210">				solution = jlogApi.retry();</span>
+<span class="fc" id="L211">			}</span>
+
+<span class="fc" id="L213">			PrologTerm[][] allSolutions = new PrologTerm[n][m];</span>
+<span class="fc bfc" id="L214" title="All 2 branches covered.">			for (int i = 0; i &lt; n; i++) {</span>
+<span class="fc" id="L215">				PrologTerm[] solutionArray = all.get(i);</span>
+<span class="fc" id="L216">				System.arraycopy(solutionArray, 0, allSolutions[i], 0, m);</span>
+			}
+<span class="fc" id="L218">			return allSolutions;</span>
+		}
+<span class="nc" id="L220">		return new PrologTerm[0][0];</span>
+	}
+
+	@SuppressWarnings(&quot;unchecked&quot;)
+	public Map&lt;String, PrologTerm&gt;[] nVariablesSolutions(int n) {
+<span class="pc bpc" id="L225" title="1 of 2 branches missed.">		if (n &gt; 0) {</span>
+<span class="fc" id="L226">			int index = 0;</span>
+<span class="fc" id="L227">			Map&lt;String, PrologTerm&gt;[] solutionMaps = new HashMap[n];</span>
+<span class="pc bpc" id="L228" title="1 of 4 branches missed.">			while (hasMoreSolutions() &amp;&amp; index &lt; n) {</span>
+<span class="fc" id="L229">				Map&lt;String, PrologTerm&gt; solutionMap = oneVariablesSolution();</span>
+<span class="fc" id="L230">				solutionMaps[index++] = solutionMap;</span>
+<span class="fc" id="L231">				solution = jlogApi.retry();</span>
+<span class="fc" id="L232">			}</span>
+<span class="fc" id="L233">			return solutionMaps;</span>
+		}
+<span class="nc" id="L235">		return new HashMap[0];</span>
+	}
+
+	public PrologTerm[][] allSolutions() {
+		// n:solutionCount, m:solutionSize
+<span class="fc" id="L240">		int n = 0;</span>
+<span class="fc" id="L241">		int m = 0;</span>
+<span class="fc" id="L242">		List&lt;PrologTerm[]&gt; all = new ArrayList&lt;PrologTerm[]&gt;();</span>
+<span class="fc bfc" id="L243" title="All 2 branches covered.">		while (hasMoreSolutions()) {</span>
+<span class="fc" id="L244">			PrologTerm[] solutions = oneSolution();</span>
+<span class="fc bfc" id="L245" title="All 2 branches covered.">			m = solutions.length &gt; m ? solutions.length : m;</span>
+<span class="fc" id="L246">			n++;</span>
+<span class="fc" id="L247">			all.add(solutions);</span>
+<span class="fc" id="L248">			solution = jlogApi.retry();</span>
+<span class="fc" id="L249">		}</span>
+
+<span class="fc" id="L251">		PrologTerm[][] allSolutions = new PrologTerm[n][m];</span>
+<span class="fc bfc" id="L252" title="All 2 branches covered.">		for (int i = 0; i &lt; n; i++) {</span>
+<span class="fc" id="L253">			PrologTerm[] solutionArray = all.get(i);</span>
+<span class="fc" id="L254">			System.arraycopy(solutionArray, 0, allSolutions[i], 0, m);</span>
+		}
+<span class="fc" id="L256">		return allSolutions;</span>
+	}
+
+	@SuppressWarnings(&quot;unchecked&quot;)
+	public Map&lt;String, PrologTerm&gt;[] allVariablesSolutions() {
+<span class="fc" id="L261">		List&lt;Map&lt;String, PrologTerm&gt;&gt; allVariables = new ArrayList&lt;Map&lt;String, PrologTerm&gt;&gt;();</span>
+<span class="fc bfc" id="L262" title="All 2 branches covered.">		while (hasMoreSolutions()) {</span>
+<span class="fc" id="L263">			Map&lt;String, PrologTerm&gt; variables = oneVariablesSolution();</span>
+<span class="fc" id="L264">			allVariables.add(variables);</span>
+<span class="fc" id="L265">			solution = jlogApi.retry();</span>
+<span class="fc" id="L266">		}</span>
+
+<span class="fc" id="L268">		int lenght = allVariables.size();</span>
+<span class="fc" id="L269">		Map&lt;String, PrologTerm&gt;[] allVariablesSolution = new HashMap[lenght];</span>
+<span class="fc bfc" id="L270" title="All 2 branches covered.">		for (int i = 0; i &lt; lenght; i++) {</span>
+<span class="fc" id="L271">			allVariablesSolution[i] = allVariables.get(i);</span>
+		}
+<span class="fc" id="L273">		return allVariablesSolution;</span>
+	}
+
+	public List&lt;Map&lt;String, PrologTerm&gt;&gt; all() {
+<span class="fc" id="L277">		List&lt;Map&lt;String, PrologTerm&gt;&gt; allVariables = new ArrayList&lt;Map&lt;String, PrologTerm&gt;&gt;();</span>
+<span class="fc bfc" id="L278" title="All 2 branches covered.">		while (hasMoreSolutions()) {</span>
+<span class="fc" id="L279">			Map&lt;String, PrologTerm&gt; variables = oneVariablesSolution();</span>
+<span class="fc" id="L280">			allVariables.add(variables);</span>
+<span class="fc" id="L281">			solution = jlogApi.retry();</span>
+<span class="fc" id="L282">		}</span>
+<span class="fc" id="L283">		return allVariables;</span>
+	}
+
+	@Override
+	public int hashCode() {
+<span class="nc" id="L288">		final int prime = 31;</span>
+<span class="nc" id="L289">		int result = super.hashCode();</span>
+<span class="nc bnc" id="L290" title="All 2 branches missed.">		result = prime * result + ((solution == null) ? 0 : solution.hashCode());</span>
+<span class="nc" id="L291">		return result;</span>
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+<span class="pc bpc" id="L296" title="1 of 2 branches missed.">		if (this == obj)</span>
+<span class="nc" id="L297">			return true;</span>
+<span class="pc bpc" id="L298" title="1 of 2 branches missed.">		if (!super.equals(obj))</span>
+<span class="nc" id="L299">			return false;</span>
+<span class="pc bpc" id="L300" title="1 of 2 branches missed.">		if (getClass() != obj.getClass())</span>
+<span class="nc" id="L301">			return false;</span>
+<span class="fc" id="L302">		JLogQuery other = (JLogQuery) obj;</span>
+<span class="pc bpc" id="L303" title="1 of 2 branches missed.">		if (solution == null) {</span>
+<span class="nc bnc" id="L304" title="All 2 branches missed.">			if (other.solution != null)</span>
+<span class="nc" id="L305">				return false;</span>
+<span class="pc bpc" id="L306" title="1 of 2 branches missed.">		} else if (!solution.equals(other.solution)) {</span>
+<span class="nc" id="L307">			return false;</span>
+		}
+<span class="fc" id="L309">		return true;</span>
+	}
+
+	public void dispose() {
+<span class="fc" id="L313">		vector = new jVariableVector();</span>
+<span class="fc bfc" id="L314" title="All 2 branches covered.">		if (solution != null) {</span>
+<span class="fc" id="L315">			solution.clear();</span>
+		}
+<span class="fc" id="L317">		jlogApi.stop();</span>
+<span class="fc" id="L318">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

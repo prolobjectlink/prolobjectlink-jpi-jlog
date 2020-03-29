@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>JLog.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">prolobjectlink-jpi-jlog</a> &gt; <a href="index.source.html" class="el_package">io.github.prolobjectlink.prolog.jlog</a> &gt; <span class="el_source">JLog.java</span></div><h1>JLog.java</h1><pre class="source lang-java linenums">/*
+ * #%L
+ * prolobjectlink-jpi-jlog
+ * %%
+ * Copyright (C) 2019 Prolobjectlink Project
+ * %%
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as
+ * published by the Free Software Foundation, either version 2 of the
+ * License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public
+ * License along with this program.  If not, see
+ * &lt;http://www.gnu.org/licenses/gpl-2.0.html&gt;.
+ * #L%
+ */
+package io.github.prolobjectlink.prolog.jlog;
+
+import static io.github.prolobjectlink.prolog.AbstractConverter.SIMPLE_ATOM_REGEX;
+import static io.github.prolobjectlink.prolog.PrologLogger.ERROR_LOADING_BUILT_INS;
+
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+
+import io.github.prolobjectlink.prolog.AbstractProvider;
+import io.github.prolobjectlink.prolog.PrologAtom;
+import io.github.prolobjectlink.prolog.PrologConverter;
+import io.github.prolobjectlink.prolog.PrologDouble;
+import io.github.prolobjectlink.prolog.PrologEngine;
+import io.github.prolobjectlink.prolog.PrologFloat;
+import io.github.prolobjectlink.prolog.PrologInteger;
+import io.github.prolobjectlink.prolog.PrologJavaConverter;
+import io.github.prolobjectlink.prolog.PrologList;
+import io.github.prolobjectlink.prolog.PrologLogger;
+import io.github.prolobjectlink.prolog.PrologLong;
+import io.github.prolobjectlink.prolog.PrologProvider;
+import io.github.prolobjectlink.prolog.PrologStructure;
+import io.github.prolobjectlink.prolog.PrologTerm;
+import io.github.prolobjectlink.prolog.PrologVariable;
+import ubc.cs.JLog.Foundation.jKnowledgeBase;
+import ubc.cs.JLog.Foundation.jPrologFileServices;
+import ubc.cs.JLog.Foundation.jPrologServices;
+import ubc.cs.JLog.Parser.pOperatorRegistry;
+import ubc.cs.JLog.Parser.pParseStream;
+import ubc.cs.JLog.Parser.pPredicateRegistry;
+import ubc.cs.JLog.Terms.jPredicateTerms;
+import ubc.cs.JLog.Terms.jTerm;
+
+/**
+ * 
+ * @author Jose Zalacain
+ * @since 1.0
+ */
+public class JLog extends AbstractProvider implements PrologProvider {
+
+<span class="fc" id="L62">	private final jKnowledgeBase kb = new jKnowledgeBase();</span>
+<span class="fc" id="L63">	private final pOperatorRegistry or = new pOperatorRegistry();</span>
+<span class="fc" id="L64">	private final pPredicateRegistry pr = new pPredicateRegistry();</span>
+<span class="fc" id="L65">	private final jPrologServices prolog = new jPrologServices(kb, pr, or);</span>
+
+	private static final String DOT = &quot;.&quot;;
+	private static final String BUILT_INS = &quot;builtins&quot;;
+<span class="fc" id="L69">	private static final PrologLogger logger = new JLogLogger();</span>
+<span class="fc" id="L70">	protected static final Map&lt;String, String&gt; FUNCTORS = new HashMap&lt;String, String&gt;();</span>
+
+	public JLog() {
+<span class="fc" id="L73">		this(new JLogConverter());</span>
+<span class="fc" id="L74">	}</span>
+
+	JLog(PrologConverter&lt;jTerm&gt; converter) {
+<span class="fc" id="L77">		super(converter);</span>
+<span class="fc" id="L78">		prolog.setFileServices(new jPrologFileServices());</span>
+		try {
+<span class="fc" id="L80">			prolog.loadLibrary(BUILT_INS);</span>
+<span class="nc" id="L81">		} catch (IOException e) {</span>
+<span class="nc" id="L82">			getLogger().error(getClass(), ERROR_LOADING_BUILT_INS, e);</span>
+<span class="fc" id="L83">		}</span>
+<span class="fc" id="L84">	}</span>
+
+	public boolean isCompliant() {
+<span class="nc" id="L87">		return false;</span>
+	}
+
+	public PrologTerm prologNil() {
+<span class="fc" id="L91">		return new JLogNil(this);</span>
+	}
+
+	public PrologTerm prologCut() {
+<span class="fc" id="L95">		return new JLogCut(this);</span>
+	}
+
+	public PrologTerm prologFail() {
+<span class="fc" id="L99">		return new JLogFail(this);</span>
+	}
+
+	public PrologTerm prologTrue() {
+<span class="fc" id="L103">		return new JLogTrue(this);</span>
+	}
+
+	public PrologTerm prologFalse() {
+<span class="fc" id="L107">		return new JLogFalse(this);</span>
+	}
+
+	public PrologTerm prologEmpty() {
+<span class="fc" id="L111">		return new JLogEmpty(this);</span>
+	}
+
+	public PrologTerm prologInclude(String file) {
+<span class="nc" id="L115">		return newStructure(&quot;consult&quot;, newAtom(file));</span>
+	}
+
+	public PrologTerm parseTerm(String str) {
+<span class="pc bpc" id="L119" title="1 of 2 branches missed.">		String s = str.charAt(str.length() - 1) == '.' ? str : str + DOT;</span>
+<span class="fc" id="L120">		return toTerm(new pParseStream(s, kb, pr, or).parseTerm(), PrologTerm.class);</span>
+	}
+
+	public PrologTerm[] parseTerms(String str) {
+<span class="pc bpc" id="L124" title="1 of 2 branches missed.">		String s = str.charAt(str.length() - 1) == '.' ? str : str + DOT;</span>
+<span class="fc" id="L125">		jPredicateTerms terms = new pParseStream(s, kb, pr, or).parseQuery();</span>
+<span class="fc" id="L126">		PrologTerm[] prologTerms = new PrologTerm[terms.size()];</span>
+<span class="fc bfc" id="L127" title="All 2 branches covered.">		for (int i = 0; i &lt; prologTerms.length; i++) {</span>
+<span class="fc" id="L128">			PrologTerm term = toTerm(terms.elementAt(i), PrologTerm.class);</span>
+<span class="pc bpc" id="L129" title="2 of 4 branches missed.">			if (term != null &amp;&amp; term.isCompound()) {</span>
+<span class="fc" id="L130">				String functor = term.getFunctor();</span>
+<span class="fc" id="L131">				PrologTerm[] args = term.getArguments();</span>
+<span class="pc bpc" id="L132" title="1 of 2 branches missed.">				if (!functor.matches(SIMPLE_ATOM_REGEX)) {</span>
+<span class="nc" id="L133">					StringBuilder buffer = new StringBuilder();</span>
+<span class="nc" id="L134">					buffer.append(&quot;'&quot;);</span>
+<span class="nc" id="L135">					buffer.append(functor);</span>
+<span class="nc" id="L136">					buffer.append(&quot;'&quot;);</span>
+<span class="nc" id="L137">					String quoted = &quot;&quot; + buffer + &quot;&quot;;</span>
+<span class="nc" id="L138">					FUNCTORS.put(functor, quoted);</span>
+<span class="nc" id="L139">					term = newStructure(quoted, args);</span>
+				}
+			}
+<span class="fc" id="L142">			prologTerms[i] = term;</span>
+		}
+<span class="fc" id="L144">		return prologTerms;</span>
+	}
+
+	public PrologEngine newEngine() {
+<span class="fc" id="L148">		return new JLogEngine(this);</span>
+	}
+
+	public PrologEngine newEngine(String path) {
+<span class="nc" id="L152">		PrologEngine engine = newEngine();</span>
+<span class="nc" id="L153">		engine.consult(path);</span>
+<span class="nc" id="L154">		return engine;</span>
+	}
+
+	public PrologAtom newAtom(String functor) {
+<span class="fc bfc" id="L158" title="All 2 branches covered.">		if (!functor.matches(SIMPLE_ATOM_REGEX)) {</span>
+<span class="fc" id="L159">			return new JLogAtom(this, &quot;'&quot; + functor + &quot;'&quot;);</span>
+		}
+<span class="fc" id="L161">		return new JLogAtom(this, functor);</span>
+	}
+
+	public PrologFloat newFloat(Number value) {
+<span class="fc" id="L165">		return new JLogFloat(this, value);</span>
+	}
+
+	public PrologDouble newDouble(Number value) {
+<span class="fc" id="L169">		return new JLogDouble(this, value);</span>
+	}
+
+	public PrologInteger newInteger(Number value) {
+<span class="fc" id="L173">		return new JLogInteger(this, value);</span>
+	}
+
+	public PrologLong newLong(Number value) {
+<span class="fc" id="L177">		return new JLogLong(this, value);</span>
+	}
+
+	public PrologVariable newVariable(int position) {
+<span class="fc" id="L181">		return new JLogVariable(this);</span>
+	}
+
+	public PrologVariable newVariable(String name, int position) {
+<span class="fc" id="L185">		return new JLogVariable(this, name);</span>
+	}
+
+	public PrologList newList() {
+<span class="nc" id="L189">		return new JLogEmpty(this);</span>
+	}
+
+	public PrologList newList(PrologTerm[] arguments) {
+<span class="pc bpc" id="L193" title="2 of 4 branches missed.">		if (arguments != null &amp;&amp; arguments.length &gt; 0) {</span>
+<span class="fc" id="L194">			return new JLogList(this, arguments);</span>
+		}
+<span class="nc" id="L196">		return new JLogEmpty(this);</span>
+	}
+
+	public PrologList newList(PrologTerm head, PrologTerm tail) {
+<span class="nc" id="L200">		return new JLogList(this, head, tail);</span>
+	}
+
+	public PrologList newList(PrologTerm[] arguments, PrologTerm tail) {
+<span class="nc" id="L204">		return new JLogList(this, arguments, tail);</span>
+	}
+
+	public PrologStructure newStructure(String functor, PrologTerm... arguments) {
+<span class="fc" id="L208">		return new JLogStructure(this, functor, arguments);</span>
+	}
+
+	public PrologTerm newStructure(PrologTerm left, String operator, PrologTerm right) {
+<span class="fc" id="L212">		return new JLogStructure(this, left, operator, right);</span>
+	}
+
+	public PrologTerm newReference(Object reference) {
+<span class="nc" id="L216">		throw new UnsupportedOperationException(&quot;newReference(Object reference)&quot;);</span>
+	}
+
+	public PrologJavaConverter getJavaConverter() {
+<span class="fc" id="L220">		return new JLogJavaConverter(this);</span>
+	}
+
+	public PrologLogger getLogger() {
+<span class="nc" id="L224">		return logger;</span>
+	}
+
+	@Override
+	public String toString() {
+<span class="nc" id="L229">		return &quot;JLogProvider [converter=&quot; + converter + &quot;]&quot;;</span>
+	}
+
+	@Override
+	public int hashCode() {
+<span class="nc" id="L234">		final int prime = 31;</span>
+<span class="nc" id="L235">		int result = super.hashCode();</span>
+<span class="nc" id="L236">		result = prime * result + prolog.hashCode();</span>
+<span class="nc" id="L237">		return result;</span>
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+<span class="nc bnc" id="L242" title="All 2 branches missed.">		if (this == obj)</span>
+<span class="nc" id="L243">			return true;</span>
+<span class="nc bnc" id="L244" title="All 2 branches missed.">		if (!super.equals(obj))</span>
+<span class="nc" id="L245">			return false;</span>
+<span class="nc bnc" id="L246" title="All 2 branches missed.">		if (getClass() != obj.getClass())</span>
+<span class="nc" id="L247">			return false;</span>
+<span class="nc" id="L248">		JLog other = (JLog) obj;</span>
+<span class="nc" id="L249">		return prolog.equals(other.prolog);</span>
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

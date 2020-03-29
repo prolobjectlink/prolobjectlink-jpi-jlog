@@ -1,2 +1,2 @@
 #!/usr/bin/bash
-java -classpath "$(dirname "$(pwd)")/lib/*" org.prolobjectlink.prolog.jlog.JLogConsole ${1+"$@"}
+java -classpath "$(dirname "$(pwd)")/lib/*" io.github.prolobjectlink.prolog.jlog.JLogConsole ${1+"$@"}

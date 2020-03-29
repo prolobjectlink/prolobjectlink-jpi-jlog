@@ -224,7 +224,7 @@
 						<manifest>
 							<addClasspath>true</addClasspath>
 							<mainClass>
-								org.prolobjectlink.prolog.jlog.JLogConsole
+								io.github.prolobjectlink.prolog.jlog.JLogConsole
 							</mainClass>
 						</manifest>
 						<manifestEntries>
