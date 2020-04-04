@@ -6,6 +6,7 @@
 	<artifactId>prolobjectlink-jpi-jlog</artifactId>
 	<version>1.0-SNAPSHOT</version>
 	<name>prolobjectlink-jpi-jlog</name>
+	<packaging>bundle</packaging>
 	<description>Java Prolog Interface Implementation over JLog</description>
 
 	<url>https://prolobjectlink.github.io/${project.name}</url>
@@ -136,6 +137,28 @@
 						</dependency>
 					</dependencies>
 				</plugin>
+				
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-release-plugin</artifactId>
+					<version>2.5.3</version>
+					<configuration>
+						<tag>v${releaseVersion}</tag>
+						<tagNameFormat>v@{project.version}</tagNameFormat>
+						<autoVersionSubmodules>true</autoVersionSubmodules>
+						<useReleaseProfile>false</useReleaseProfile>
+						<releaseProfiles>releases</releaseProfiles>
+						<goals>deploy nexus-staging:release</goals>
+					</configuration>
+					<dependencies>
+						<dependency>
+							<groupId>org.apache.maven.plugins</groupId>
+							<artifactId>maven-scm-plugin</artifactId>
+							<version>1.8.1</version>
+						</dependency>
+					</dependencies>
+				</plugin>
+				
 			</plugins>
 		</pluginManagement>
 
@@ -427,7 +450,7 @@
 				<artifactId>maven-surefire-plugin</artifactId>
 				<version>2.18.1</version>
 			</plugin>
-			
+
 			<plugin>
 				<groupId>org.apache.felix</groupId>
 				<artifactId>maven-bundle-plugin</artifactId>
@@ -437,7 +460,7 @@
 					<instructions>
 						<Bundle-Name>JLog Java Prolog Interface Implementation</Bundle-Name>
 						<Export-Package>${project.groupId}.prolog.jlog</Export-Package>
-						<Import-Package>javax.script;${project.groupId}.*;provide:=true</Import-Package>
+						<Import-Package>javax.script;ubc.cs.JLog.Builtins; ubc.cs.JLog.Foundation; ubc.cs.JLog.Parser; ubc.cs.JLog.Terms;${project.groupId}.*;provide:=true</Import-Package>
 						<Bundle-SymbolicName>${project.groupId}.prolog.jlog.plugin;singleton:=true</Bundle-SymbolicName>
 						<Bundle-RequiredExecutionEnvironment>JavaSE-1.6</Bundle-RequiredExecutionEnvironment>
 					</instructions>
@@ -453,8 +476,8 @@
 					</execution>
 				</executions>
 			</plugin>
-			
-			
+
+
 		</plugins>
 	</build>
 
