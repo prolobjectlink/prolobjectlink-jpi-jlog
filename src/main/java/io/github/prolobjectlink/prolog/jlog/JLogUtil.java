@@ -6,7 +6,7 @@
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as
- * published by the Free Software Foundation, either version 2 of the
+ * published by the Free Software Foundation, either version 3 of the
  * License, or (at your option) any later version.
  * 
  * This program is distributed in the hope that it will be useful,
@@ -16,7 +16,7 @@
  * 
  * You should have received a copy of the GNU General Public
  * License along with this program.  If not, see
- * <http://www.gnu.org/licenses/gpl-2.0.html>.
+ * <http://www.gnu.org/licenses/gpl-3.0.html>.
  * #L%
  */
 package io.github.prolobjectlink.prolog.jlog;
@@ -148,6 +148,10 @@ final class JLogUtil {
 		if (term.type == jTerm.TYPE_PREDICATE) { // fact
 			jPredicate predicate = (jPredicate) term;
 			return new jRule(predicate, emptyBody);
+		} else if (term.type == jTerm.TYPE_ATOM) {
+			jAtom atom = (jAtom) term;
+			jPredicate predicate = new jPredicate(atom);
+			return new jRule(predicate, emptyBody);
 		} else if (term.type == jTerm.TYPE_IF) { // rule
 			jIf rule = (jIf) term;
 			jPredicate h = (jPredicate) rule.getLHS();
@@ -170,6 +174,17 @@ final class JLogUtil {
 				}
 				b.addTerm(ruleBody);
 				return new jRule(h, b);
+
+			case jTerm.TYPE_ATOM:
+				jPredicateTerms atom = new jPredicateTerms();
+				atom.addTerm(ruleBody);
+				return new jRule(h, atom);
+
+			// cut type
+			case jTerm.TYPE_BUILTINPREDICATE:
+				jPredicateTerms builtin = new jPredicateTerms();
+				builtin.addTerm(ruleBody);
+				return new jRule(h, builtin);
 
 			//
 			default:

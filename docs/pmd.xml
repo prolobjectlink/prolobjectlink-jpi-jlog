@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pmd version="4.2.5" timestamp="2020-04-04T01:05:32.961">
+<pmd version="4.2.5" timestamp="2020-04-26T16:35:12.306">
 <file name="C:\Users\Jose Zalacain\Documents\eclipse-java-photon-workspace\prolobjectlink-jpi-jlog\src\main\java\io\github\prolobjectlink\prolog\jlog\JLogConverter.java">
 <violation beginline="22" endline="295" begincolumn="1" endcolumn="3" rule="TooManyStaticImports" ruleset="Import Statement Rules" package="io.github.prolobjectlink.prolog.jlog" externalInfoUrl="http://pmd.sourceforge.net/rules/imports.html#TooManyStaticImports" priority="3">
 Too many static imports may lead to messy code
@@ -24,28 +24,28 @@ Too many static imports may lead to messy code
 <violation beginline="64" endline="139" begincolumn="22" endcolumn="9" rule="UnnecessaryFinalModifier" ruleset="Basic Rules" package="io.github.prolobjectlink.prolog.jlog" class="JLogUtil" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#UnnecessaryFinalModifier" priority="3">
 Unnecessary final modifier in final class
 </violation>
-<violation beginline="141" endline="184" begincolumn="22" endcolumn="9" rule="UnnecessaryFinalModifier" ruleset="Basic Rules" package="io.github.prolobjectlink.prolog.jlog" class="JLogUtil" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#UnnecessaryFinalModifier" priority="3">
+<violation beginline="141" endline="199" begincolumn="22" endcolumn="9" rule="UnnecessaryFinalModifier" ruleset="Basic Rules" package="io.github.prolobjectlink.prolog.jlog" class="JLogUtil" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#UnnecessaryFinalModifier" priority="3">
 Unnecessary final modifier in final class
 </violation>
-<violation beginline="186" endline="203" begincolumn="22" endcolumn="9" rule="UnnecessaryFinalModifier" ruleset="Basic Rules" package="io.github.prolobjectlink.prolog.jlog" class="JLogUtil" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#UnnecessaryFinalModifier" priority="3">
+<violation beginline="201" endline="218" begincolumn="22" endcolumn="9" rule="UnnecessaryFinalModifier" ruleset="Basic Rules" package="io.github.prolobjectlink.prolog.jlog" class="JLogUtil" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#UnnecessaryFinalModifier" priority="3">
 Unnecessary final modifier in final class
 </violation>
-<violation beginline="205" endline="256" begincolumn="22" endcolumn="9" rule="UnnecessaryFinalModifier" ruleset="Basic Rules" package="io.github.prolobjectlink.prolog.jlog" class="JLogUtil" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#UnnecessaryFinalModifier" priority="3">
+<violation beginline="220" endline="271" begincolumn="22" endcolumn="9" rule="UnnecessaryFinalModifier" ruleset="Basic Rules" package="io.github.prolobjectlink.prolog.jlog" class="JLogUtil" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#UnnecessaryFinalModifier" priority="3">
 Unnecessary final modifier in final class
 </violation>
-<violation beginline="258" endline="290" begincolumn="30" endcolumn="9" rule="UnnecessaryFinalModifier" ruleset="Basic Rules" package="io.github.prolobjectlink.prolog.jlog" class="JLogUtil" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#UnnecessaryFinalModifier" priority="3">
+<violation beginline="273" endline="305" begincolumn="30" endcolumn="9" rule="UnnecessaryFinalModifier" ruleset="Basic Rules" package="io.github.prolobjectlink.prolog.jlog" class="JLogUtil" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#UnnecessaryFinalModifier" priority="3">
 Unnecessary final modifier in final class
 </violation>
-<violation beginline="292" endline="297" begincolumn="22" endcolumn="9" rule="UnnecessaryFinalModifier" ruleset="Basic Rules" package="io.github.prolobjectlink.prolog.jlog" class="JLogUtil" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#UnnecessaryFinalModifier" priority="3">
+<violation beginline="307" endline="312" begincolumn="22" endcolumn="9" rule="UnnecessaryFinalModifier" ruleset="Basic Rules" package="io.github.prolobjectlink.prolog.jlog" class="JLogUtil" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#UnnecessaryFinalModifier" priority="3">
 Unnecessary final modifier in final class
 </violation>
-<violation beginline="299" endline="320" begincolumn="22" endcolumn="9" rule="UnnecessaryFinalModifier" ruleset="Basic Rules" package="io.github.prolobjectlink.prolog.jlog" class="JLogUtil" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#UnnecessaryFinalModifier" priority="3">
+<violation beginline="314" endline="335" begincolumn="22" endcolumn="9" rule="UnnecessaryFinalModifier" ruleset="Basic Rules" package="io.github.prolobjectlink.prolog.jlog" class="JLogUtil" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#UnnecessaryFinalModifier" priority="3">
 Unnecessary final modifier in final class
 </violation>
-<violation beginline="322" endline="322" begincolumn="41" endcolumn="70" rule="UnusedPrivateMethod" ruleset="Unused Code Rules" package="io.github.prolobjectlink.prolog.jlog" class="JLogUtil" method="retrieve" externalInfoUrl="http://pmd.sourceforge.net/rules/unusedcode.html#UnusedPrivateMethod" priority="3">
+<violation beginline="337" endline="337" begincolumn="41" endcolumn="70" rule="UnusedPrivateMethod" ruleset="Unused Code Rules" package="io.github.prolobjectlink.prolog.jlog" class="JLogUtil" method="retrieve" externalInfoUrl="http://pmd.sourceforge.net/rules/unusedcode.html#UnusedPrivateMethod" priority="3">
 Avoid unused private methods such as 'retrieve(jPredicate)'.
 </violation>
-<violation beginline="322" endline="339" begincolumn="30" endcolumn="9" rule="UnnecessaryFinalModifier" ruleset="Basic Rules" package="io.github.prolobjectlink.prolog.jlog" class="JLogUtil" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#UnnecessaryFinalModifier" priority="3">
+<violation beginline="337" endline="354" begincolumn="30" endcolumn="9" rule="UnnecessaryFinalModifier" ruleset="Basic Rules" package="io.github.prolobjectlink.prolog.jlog" class="JLogUtil" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#UnnecessaryFinalModifier" priority="3">
 Unnecessary final modifier in final class
 </violation>
 </file>
