@@ -200,280 +200,305 @@ import ubc.cs.JLog.Terms.jPredicateTerms;
 <span class="fc" id="L200">		asserta(JLogUtil.toRule(stringClause, engine));</span>
 <span class="fc" id="L201">	}</span>
 
+	@Override
+	public void asserta(PrologTerm term) {
+<span class="fc" id="L205">		asserta(JLogUtil.toRule(provider, term));</span>
+<span class="fc" id="L206">	}</span>
+
 	public void asserta(PrologTerm head, PrologTerm... body) {
-<span class="fc" id="L204">		asserta(JLogUtil.toRule(provider, head, body));</span>
-<span class="fc" id="L205">	}</span>
+<span class="fc" id="L209">		asserta(JLogUtil.toRule(provider, head, body));</span>
+<span class="fc" id="L210">	}</span>
 
 	private void asserta(jRule rule) {
-<span class="fc bfc" id="L208" title="All 2 branches covered.">		if (!clause(rule)) {</span>
-<span class="fc" id="L209">			kb.addRuleFirst(rule);</span>
+<span class="fc bfc" id="L213" title="All 2 branches covered.">		if (!clause(rule)) {</span>
+<span class="fc" id="L214">			kb.addRuleFirst(rule);</span>
 		}
-<span class="fc" id="L211">	}</span>
+<span class="fc" id="L216">	}</span>
 
 	public void assertz(String stringClause) {
-<span class="fc" id="L214">		assertz(JLogUtil.toRule(stringClause, engine));</span>
-<span class="fc" id="L215">	}</span>
+<span class="fc" id="L219">		assertz(JLogUtil.toRule(stringClause, engine));</span>
+<span class="fc" id="L220">	}</span>
 
-	public void assertz(PrologTerm head, PrologTerm... body) {
-<span class="fc" id="L218">		assertz(JLogUtil.toRule(provider, head, body));</span>
-<span class="fc" id="L219">	}</span>
-
-	private void assertz(jRule rule) {
-<span class="fc bfc" id="L222" title="All 2 branches covered.">		if (!clause(rule)) {</span>
-<span class="fc" id="L223">			kb.addRuleLast(rule);</span>
-		}
+	@Override
+	public void assertz(PrologTerm term) {
+<span class="fc" id="L224">		assertz(JLogUtil.toRule(provider, term));</span>
 <span class="fc" id="L225">	}</span>
 
+	public void assertz(PrologTerm head, PrologTerm... body) {
+<span class="fc" id="L228">		assertz(JLogUtil.toRule(provider, head, body));</span>
+<span class="fc" id="L229">	}</span>
+
+	private void assertz(jRule rule) {
+<span class="fc bfc" id="L232" title="All 2 branches covered.">		if (!clause(rule)) {</span>
+<span class="fc" id="L233">			kb.addRuleLast(rule);</span>
+		}
+<span class="fc" id="L235">	}</span>
+
 	public boolean clause(String stringClause) {
-<span class="fc" id="L228">		return clause(JLogUtil.toRule(stringClause, engine));</span>
+<span class="fc" id="L238">		return clause(JLogUtil.toRule(stringClause, engine));</span>
+	}
+
+	@Override
+	public boolean clause(PrologTerm term) {
+<span class="nc" id="L243">		return clause(JLogUtil.toRule(provider, term));</span>
 	}
 
 	public boolean clause(PrologTerm head, PrologTerm... body) {
-<span class="fc" id="L232">		return clause(JLogUtil.toRule(provider, head, body));</span>
+<span class="fc" id="L247">		return clause(JLogUtil.toRule(provider, head, body));</span>
 	}
 
 	private boolean clause(jRule rule) {
-<span class="fc" id="L236">		return clauseOrRetract(rule, false);</span>
+<span class="fc" id="L251">		return clauseOrRetract(rule, false);</span>
 	}
 
 	public void retract(String stringClause) {
-<span class="fc" id="L240">		retract(JLogUtil.toRule(stringClause, engine));</span>
-<span class="fc" id="L241">	}</span>
+<span class="fc" id="L255">		retract(JLogUtil.toRule(stringClause, engine));</span>
+<span class="fc" id="L256">	}</span>
+
+	@Override
+	public void retract(PrologTerm term) {
+<span class="fc" id="L260">		retract(JLogUtil.toRule(provider, term));</span>
+<span class="fc" id="L261">	}</span>
 
 	public void retract(PrologTerm head, PrologTerm... body) {
-<span class="fc" id="L244">		retract(JLogUtil.toRule(provider, head, body));</span>
-<span class="fc" id="L245">	}</span>
+<span class="fc" id="L264">		retract(JLogUtil.toRule(provider, head, body));</span>
+<span class="fc" id="L265">	}</span>
 
 	private void retract(jRule rule) {
-<span class="fc" id="L248">		clauseOrRetract(rule, true);</span>
-<span class="fc" id="L249">	}</span>
+<span class="fc" id="L268">		clauseOrRetract(rule, true);</span>
+<span class="fc" id="L269">	}</span>
 
 	public PrologQuery query(String stringQuery) {
-<span class="fc" id="L252">		return new JLogQuery(this, stringQuery);</span>
+<span class="fc" id="L272">		return new JLogQuery(this, stringQuery);</span>
+	}
+
+	@Override
+	public PrologQuery query(PrologTerm term) {
+<span class="fc" id="L277">		return new JLogQuery(this, term);</span>
 	}
 
 	public PrologQuery query(PrologTerm[] terms) {
-<span class="nc" id="L256">		return new JLogQuery(this, terms);</span>
+<span class="nc" id="L281">		return new JLogQuery(this, terms);</span>
 	}
 
 	public PrologQuery query(PrologTerm term, PrologTerm... terms) {
-<span class="fc" id="L260">		return new JLogQuery(this, term, terms);</span>
+<span class="fc" id="L285">		return new JLogQuery(this, term, terms);</span>
 	}
 
 	public void operator(int priority, String specifier, String operator) {
-<span class="fc" id="L264">		pOperatorEntry op = new pPredicateOperatorEntry(operator, getType(specifier), priority);</span>
-<span class="fc" id="L265">		engine.getOperatorRegistry().addOperator(op);</span>
-<span class="fc" id="L266">	}</span>
+<span class="fc" id="L289">		pOperatorEntry op = new pPredicateOperatorEntry(operator, getType(specifier), priority);</span>
+<span class="fc" id="L290">		engine.getOperatorRegistry().addOperator(op);</span>
+<span class="fc" id="L291">	}</span>
 
 	public boolean currentPredicate(String functor, int arity) {
-<span class="fc" id="L269">		PrologIndicator pi = new JLogIndicator(functor, arity);</span>
-<span class="fc" id="L270">		return currentPredicates().contains(pi);</span>
+<span class="fc" id="L294">		PrologIndicator pi = new JLogIndicator(functor, arity);</span>
+<span class="fc" id="L295">		return currentPredicates().contains(pi);</span>
 	}
 
 	public boolean currentOperator(int priority, String specifier, String operator) {
-<span class="fc" id="L274">		pOperatorEntry op = engine.getOperatorRegistry().getOperator(operator, true);</span>
-<span class="fc bfc" id="L275" title="All 2 branches covered.">		op = op == null ? engine.getOperatorRegistry().getOperator(operator, false) : op;</span>
-<span class="pc bpc" id="L276" title="2 of 6 branches missed.">		return op != null &amp;&amp; op.getPriority() == priority &amp;&amp; op.getType() == getType(specifier);</span>
+<span class="fc" id="L299">		pOperatorEntry op = engine.getOperatorRegistry().getOperator(operator, true);</span>
+<span class="fc bfc" id="L300" title="All 2 branches covered.">		op = op == null ? engine.getOperatorRegistry().getOperator(operator, false) : op;</span>
+<span class="pc bpc" id="L301" title="2 of 6 branches missed.">		return op != null &amp;&amp; op.getPriority() == priority &amp;&amp; op.getType() == getType(specifier);</span>
 	}
 
 	public Set&lt;PrologOperator&gt; currentOperators() {
-<span class="fc" id="L280">		HashSet&lt;PrologOperator&gt; operators = new HashSet&lt;PrologOperator&gt;();</span>
-<span class="fc" id="L281">		Enumeration&lt;?&gt; e = engine.getOperatorRegistry().enumOperators();</span>
-<span class="fc bfc" id="L282" title="All 2 branches covered.">		while (e.hasMoreElements()) {</span>
-<span class="fc" id="L283">			Object object = e.nextElement();</span>
-<span class="pc bpc" id="L284" title="1 of 2 branches missed.">			if (object instanceof pOperatorEntry) {</span>
-<span class="fc" id="L285">				pOperatorEntry entry = (pOperatorEntry) object;</span>
-<span class="fc" id="L286">				String specifier = &quot;&quot;;</span>
-<span class="fc" id="L287">				String operator = entry.getName();</span>
-<span class="fc" id="L288">				int priority = entry.getPriority();</span>
-<span class="pc bpc" id="L289" title="2 of 7 branches missed.">				switch (entry.getType()) {</span>
+<span class="fc" id="L305">		HashSet&lt;PrologOperator&gt; operators = new HashSet&lt;PrologOperator&gt;();</span>
+<span class="fc" id="L306">		Enumeration&lt;?&gt; e = engine.getOperatorRegistry().enumOperators();</span>
+<span class="fc bfc" id="L307" title="All 2 branches covered.">		while (e.hasMoreElements()) {</span>
+<span class="fc" id="L308">			Object object = e.nextElement();</span>
+<span class="pc bpc" id="L309" title="1 of 2 branches missed.">			if (object instanceof pOperatorEntry) {</span>
+<span class="fc" id="L310">				pOperatorEntry entry = (pOperatorEntry) object;</span>
+<span class="fc" id="L311">				String specifier = &quot;&quot;;</span>
+<span class="fc" id="L312">				String operator = entry.getName();</span>
+<span class="fc" id="L313">				int priority = entry.getPriority();</span>
+<span class="pc bpc" id="L314" title="2 of 7 branches missed.">				switch (entry.getType()) {</span>
 				case FX:
-<span class="fc" id="L291">					specifier = &quot;fx&quot;;</span>
-<span class="fc" id="L292">					break;</span>
+<span class="fc" id="L316">					specifier = &quot;fx&quot;;</span>
+<span class="fc" id="L317">					break;</span>
 				case FY:
-<span class="fc" id="L294">					specifier = &quot;fy&quot;;</span>
-<span class="fc" id="L295">					break;</span>
+<span class="fc" id="L319">					specifier = &quot;fy&quot;;</span>
+<span class="fc" id="L320">					break;</span>
 				case XFX:
-<span class="fc" id="L297">					specifier = &quot;xfx&quot;;</span>
-<span class="fc" id="L298">					break;</span>
+<span class="fc" id="L322">					specifier = &quot;xfx&quot;;</span>
+<span class="fc" id="L323">					break;</span>
 				case XFY:
-<span class="fc" id="L300">					specifier = &quot;xfy&quot;;</span>
-<span class="fc" id="L301">					break;</span>
+<span class="fc" id="L325">					specifier = &quot;xfy&quot;;</span>
+<span class="fc" id="L326">					break;</span>
 				case YFX:
-<span class="fc" id="L303">					specifier = &quot;yfx&quot;;</span>
-<span class="fc" id="L304">					break;</span>
+<span class="fc" id="L328">					specifier = &quot;yfx&quot;;</span>
+<span class="fc" id="L329">					break;</span>
 				case XF:
-<span class="nc" id="L306">					specifier = &quot;xf&quot;;</span>
-<span class="nc" id="L307">					break;</span>
+<span class="nc" id="L331">					specifier = &quot;xf&quot;;</span>
+<span class="nc" id="L332">					break;</span>
 				default:
-<span class="nc" id="L309">					specifier = &quot;yf&quot;;</span>
+<span class="nc" id="L334">					specifier = &quot;yf&quot;;</span>
 					break;
 				}
-<span class="fc" id="L312">				PrologOperator op = new JLogOperator(priority, specifier, operator);</span>
-<span class="fc" id="L313">				operators.add(op);</span>
+<span class="fc" id="L337">				PrologOperator op = new JLogOperator(priority, specifier, operator);</span>
+<span class="fc" id="L338">				operators.add(op);</span>
 			}
-<span class="fc" id="L315">		}</span>
-<span class="fc" id="L316">		return operators;</span>
+<span class="fc" id="L340">		}</span>
+<span class="fc" id="L341">		return operators;</span>
 	}
 
 	private int getType(String specifier) {
-<span class="fc" id="L320">		int type = -1;</span>
-<span class="fc bfc" id="L321" title="All 2 branches covered.">		if (specifier.equals(&quot;fx&quot;)) {</span>
-<span class="fc" id="L322">			type = FX;</span>
-<span class="pc bpc" id="L323" title="1 of 2 branches missed.">		} else if (specifier.equals(&quot;fy&quot;)) {</span>
-<span class="nc" id="L324">			type = FY;</span>
-<span class="fc bfc" id="L325" title="All 2 branches covered.">		} else if (specifier.equals(&quot;xfx&quot;)) {</span>
-<span class="fc" id="L326">			type = XFX;</span>
-<span class="fc bfc" id="L327" title="All 2 branches covered.">		} else if (specifier.equals(&quot;xfy&quot;)) {</span>
-<span class="fc" id="L328">			type = XFY;</span>
-<span class="pc bpc" id="L329" title="1 of 2 branches missed.">		} else if (specifier.equals(&quot;yfx&quot;)) {</span>
-<span class="fc" id="L330">			type = YFX;</span>
-<span class="nc bnc" id="L331" title="All 2 branches missed.">		} else if (specifier.equals(&quot;xf&quot;)) {</span>
-<span class="nc" id="L332">			type = XF;</span>
-<span class="nc bnc" id="L333" title="All 2 branches missed.">		} else if (specifier.equals(&quot;yf&quot;)) {</span>
-<span class="nc" id="L334">			type = YF;</span>
+<span class="fc" id="L345">		int type = -1;</span>
+<span class="fc bfc" id="L346" title="All 2 branches covered.">		if (specifier.equals(&quot;fx&quot;)) {</span>
+<span class="fc" id="L347">			type = FX;</span>
+<span class="pc bpc" id="L348" title="1 of 2 branches missed.">		} else if (specifier.equals(&quot;fy&quot;)) {</span>
+<span class="nc" id="L349">			type = FY;</span>
+<span class="fc bfc" id="L350" title="All 2 branches covered.">		} else if (specifier.equals(&quot;xfx&quot;)) {</span>
+<span class="fc" id="L351">			type = XFX;</span>
+<span class="fc bfc" id="L352" title="All 2 branches covered.">		} else if (specifier.equals(&quot;xfy&quot;)) {</span>
+<span class="fc" id="L353">			type = XFY;</span>
+<span class="pc bpc" id="L354" title="1 of 2 branches missed.">		} else if (specifier.equals(&quot;yfx&quot;)) {</span>
+<span class="fc" id="L355">			type = YFX;</span>
+<span class="nc bnc" id="L356" title="All 2 branches missed.">		} else if (specifier.equals(&quot;xf&quot;)) {</span>
+<span class="nc" id="L357">			type = XF;</span>
+<span class="nc bnc" id="L358" title="All 2 branches missed.">		} else if (specifier.equals(&quot;yf&quot;)) {</span>
+<span class="nc" id="L359">			type = YF;</span>
 		}
-<span class="fc" id="L336">		return type;</span>
+<span class="fc" id="L361">		return type;</span>
 	}
 
 	public Iterator&lt;PrologClause&gt; iterator() {
-<span class="fc" id="L340">		Collection&lt;PrologClause&gt; cls = new LinkedList&lt;PrologClause&gt;();</span>
-<span class="fc" id="L341">		Enumeration&lt;?&gt; enumeration = kb.enumDefinitions();</span>
-<span class="fc bfc" id="L342" title="All 2 branches covered.">		while (enumeration.hasMoreElements()) {</span>
-<span class="fc" id="L343">			jRuleDefinitions object = (jRuleDefinitions) enumeration.nextElement();</span>
-<span class="fc" id="L344">			Enumeration&lt;?&gt; r = object.enumRules();</span>
-<span class="fc bfc" id="L345" title="All 2 branches covered.">			while (r.hasMoreElements()) {</span>
-<span class="fc" id="L346">				Object object2 = r.nextElement();</span>
-<span class="fc bfc" id="L347" title="All 2 branches covered.">				if (!(object2 instanceof jBuiltinRule)) {</span>
-<span class="fc" id="L348">					jRule jRule = (jRule) object2;</span>
+<span class="fc" id="L365">		Collection&lt;PrologClause&gt; cls = new LinkedList&lt;PrologClause&gt;();</span>
+<span class="fc" id="L366">		Enumeration&lt;?&gt; enumeration = kb.enumDefinitions();</span>
+<span class="fc bfc" id="L367" title="All 2 branches covered.">		while (enumeration.hasMoreElements()) {</span>
+<span class="fc" id="L368">			jRuleDefinitions object = (jRuleDefinitions) enumeration.nextElement();</span>
+<span class="fc" id="L369">			Enumeration&lt;?&gt; r = object.enumRules();</span>
+<span class="fc bfc" id="L370" title="All 2 branches covered.">			while (r.hasMoreElements()) {</span>
+<span class="fc" id="L371">				Object object2 = r.nextElement();</span>
+<span class="fc bfc" id="L372" title="All 2 branches covered.">				if (!(object2 instanceof jBuiltinRule)) {</span>
+<span class="fc" id="L373">					jRule jRule = (jRule) object2;</span>
 
 					// rule head
-<span class="fc" id="L351">					jPredicate ruleHead = jRule.getHead();</span>
-<span class="fc" id="L352">					PrologTerm head = toTerm(ruleHead, PrologTerm.class);</span>
+<span class="fc" id="L376">					jPredicate ruleHead = jRule.getHead();</span>
+<span class="fc" id="L377">					PrologTerm head = toTerm(ruleHead, PrologTerm.class);</span>
 
 					// rule body
-<span class="fc" id="L355">					jPredicateTerms ruleBody = jRule.getBase();</span>
-<span class="fc" id="L356">					PrologTerm body = toTerm(ruleBody, PrologTerm.class);</span>
+<span class="fc" id="L380">					jPredicateTerms ruleBody = jRule.getBase();</span>
+<span class="fc" id="L381">					PrologTerm body = toTerm(ruleBody, PrologTerm.class);</span>
 
 					// rule end
-<span class="fc bfc" id="L359" title="All 2 branches covered.">					if (!(body instanceof JLogTrue)) {</span>
-<span class="fc" id="L360">						cls.add(new JLogClause(provider, head, body, false, false, false));</span>
+<span class="fc bfc" id="L384" title="All 2 branches covered.">					if (!(body instanceof JLogTrue)) {</span>
+<span class="fc" id="L385">						cls.add(new JLogClause(provider, head, body, false, false, false));</span>
 					} else {
-<span class="fc" id="L362">						cls.add(new JLogClause(provider, head, false, false, false));</span>
+<span class="fc" id="L387">						cls.add(new JLogClause(provider, head, false, false, false));</span>
 					}
 
 				}
-<span class="fc" id="L366">			}</span>
-<span class="fc" id="L367">		}</span>
-<span class="fc" id="L368">		return new PrologProgramIterator(cls);</span>
+<span class="fc" id="L391">			}</span>
+<span class="fc" id="L392">		}</span>
+<span class="fc" id="L393">		return new PrologProgramIterator(cls);</span>
 	}
 
 	public int getProgramSize() {
-<span class="fc" id="L372">		int programSize = 0;</span>
-<span class="fc" id="L373">		Enumeration&lt;?&gt; de = kb.enumDefinitions();</span>
-<span class="fc bfc" id="L374" title="All 2 branches covered.">		while (de.hasMoreElements()) {</span>
-<span class="fc" id="L375">			jRuleDefinitions rules = (jRuleDefinitions) de.nextElement();</span>
-<span class="fc" id="L376">			Enumeration&lt;?&gt; re = rules.enumRules();</span>
-<span class="fc bfc" id="L377" title="All 2 branches covered.">			while (re.hasMoreElements()) {</span>
-<span class="fc" id="L378">				Object rule = re.nextElement();</span>
-<span class="fc bfc" id="L379" title="All 2 branches covered.">				if (!(rule instanceof jBuiltinRule)) {</span>
-<span class="fc" id="L380">					programSize++;</span>
+<span class="fc" id="L397">		int programSize = 0;</span>
+<span class="fc" id="L398">		Enumeration&lt;?&gt; de = kb.enumDefinitions();</span>
+<span class="fc bfc" id="L399" title="All 2 branches covered.">		while (de.hasMoreElements()) {</span>
+<span class="fc" id="L400">			jRuleDefinitions rules = (jRuleDefinitions) de.nextElement();</span>
+<span class="fc" id="L401">			Enumeration&lt;?&gt; re = rules.enumRules();</span>
+<span class="fc bfc" id="L402" title="All 2 branches covered.">			while (re.hasMoreElements()) {</span>
+<span class="fc" id="L403">				Object rule = re.nextElement();</span>
+<span class="fc bfc" id="L404" title="All 2 branches covered.">				if (!(rule instanceof jBuiltinRule)) {</span>
+<span class="fc" id="L405">					programSize++;</span>
 				}
-<span class="fc" id="L382">			}</span>
-<span class="fc" id="L383">		}</span>
-<span class="fc" id="L384">		return programSize;</span>
+<span class="fc" id="L407">			}</span>
+<span class="fc" id="L408">		}</span>
+<span class="fc" id="L409">		return programSize;</span>
 	}
 
 	public Set&lt;PrologIndicator&gt; getPredicates() {
-<span class="fc" id="L388">		Set&lt;PrologIndicator&gt; predicates = new HashSet&lt;PrologIndicator&gt;();</span>
-<span class="fc" id="L389">		Enumeration&lt;?&gt; e = kb.enumDefinitions();</span>
-<span class="fc bfc" id="L390" title="All 2 branches covered.">		while (e.hasMoreElements()) {</span>
-<span class="fc" id="L391">			jRuleDefinitions definitions = (jRuleDefinitions) e.nextElement();</span>
-<span class="fc" id="L392">			Enumeration&lt;?&gt; rules = definitions.enumRules();</span>
-<span class="fc bfc" id="L393" title="All 2 branches covered.">			while (rules.hasMoreElements()) {</span>
-<span class="fc" id="L394">				Object object2 = rules.nextElement();</span>
-<span class="fc bfc" id="L395" title="All 2 branches covered.">				if (!(object2 instanceof jBuiltinRule)) {</span>
-<span class="fc" id="L396">					jRule jRule = (jRule) object2;</span>
-<span class="fc" id="L397">					jPredicate ruleHead = jRule.getHead();</span>
-<span class="fc" id="L398">					String functor = ruleHead.getName();</span>
-<span class="fc" id="L399">					int arity = ruleHead.getArity();</span>
-<span class="fc" id="L400">					JLogIndicator pi = new JLogIndicator(functor, arity);</span>
-<span class="fc" id="L401">					predicates.add(pi);</span>
+<span class="fc" id="L413">		Set&lt;PrologIndicator&gt; predicates = new HashSet&lt;PrologIndicator&gt;();</span>
+<span class="fc" id="L414">		Enumeration&lt;?&gt; e = kb.enumDefinitions();</span>
+<span class="fc bfc" id="L415" title="All 2 branches covered.">		while (e.hasMoreElements()) {</span>
+<span class="fc" id="L416">			jRuleDefinitions definitions = (jRuleDefinitions) e.nextElement();</span>
+<span class="fc" id="L417">			Enumeration&lt;?&gt; rules = definitions.enumRules();</span>
+<span class="fc bfc" id="L418" title="All 2 branches covered.">			while (rules.hasMoreElements()) {</span>
+<span class="fc" id="L419">				Object object2 = rules.nextElement();</span>
+<span class="fc bfc" id="L420" title="All 2 branches covered.">				if (!(object2 instanceof jBuiltinRule)) {</span>
+<span class="fc" id="L421">					jRule jRule = (jRule) object2;</span>
+<span class="fc" id="L422">					jPredicate ruleHead = jRule.getHead();</span>
+<span class="fc" id="L423">					String functor = ruleHead.getName();</span>
+<span class="fc" id="L424">					int arity = ruleHead.getArity();</span>
+<span class="fc" id="L425">					JLogIndicator pi = new JLogIndicator(functor, arity);</span>
+<span class="fc" id="L426">					predicates.add(pi);</span>
 				}
-<span class="fc" id="L403">			}</span>
-<span class="fc" id="L404">		}</span>
-<span class="fc" id="L405">		return predicates;</span>
+<span class="fc" id="L428">			}</span>
+<span class="fc" id="L429">		}</span>
+<span class="fc" id="L430">		return predicates;</span>
 	}
 
 	public Set&lt;PrologIndicator&gt; getBuiltIns() {
-<span class="fc" id="L409">		Set&lt;PrologIndicator&gt; builtins = new HashSet&lt;PrologIndicator&gt;();</span>
-<span class="fc" id="L410">		Enumeration&lt;?&gt; e = engine.getPredicateRegistry().enumPredicates();</span>
-<span class="fc bfc" id="L411" title="All 2 branches covered.">		while (e.hasMoreElements()) {</span>
-<span class="fc" id="L412">			Object object = e.nextElement();</span>
-<span class="fc bfc" id="L413" title="All 2 branches covered.">			if (object instanceof pGenericPredicateEntry) {</span>
-<span class="fc" id="L414">				pGenericPredicateEntry entry = (pGenericPredicateEntry) object;</span>
-<span class="fc" id="L415">				String functor = entry.getName();</span>
-<span class="fc" id="L416">				int arity = entry.getArity();</span>
-<span class="fc" id="L417">				JLogIndicator pi = new JLogIndicator(functor, arity);</span>
-<span class="fc" id="L418">				builtins.add(pi);</span>
+<span class="fc" id="L434">		Set&lt;PrologIndicator&gt; builtins = new HashSet&lt;PrologIndicator&gt;();</span>
+<span class="fc" id="L435">		Enumeration&lt;?&gt; e = engine.getPredicateRegistry().enumPredicates();</span>
+<span class="fc bfc" id="L436" title="All 2 branches covered.">		while (e.hasMoreElements()) {</span>
+<span class="fc" id="L437">			Object object = e.nextElement();</span>
+<span class="fc bfc" id="L438" title="All 2 branches covered.">			if (object instanceof pGenericPredicateEntry) {</span>
+<span class="fc" id="L439">				pGenericPredicateEntry entry = (pGenericPredicateEntry) object;</span>
+<span class="fc" id="L440">				String functor = entry.getName();</span>
+<span class="fc" id="L441">				int arity = entry.getArity();</span>
+<span class="fc" id="L442">				JLogIndicator pi = new JLogIndicator(functor, arity);</span>
+<span class="fc" id="L443">				builtins.add(pi);</span>
 			}
-<span class="fc" id="L420">		}</span>
-<span class="fc" id="L421">		return builtins;</span>
+<span class="fc" id="L445">		}</span>
+<span class="fc" id="L446">		return builtins;</span>
 	}
 
 	public String getLicense() {
-<span class="fc" id="L425">		return Licenses.GPL_V2;</span>
+<span class="fc" id="L450">		return Licenses.GPL_V2;</span>
 	}
 
 	public String getVersion() {
-<span class="fc" id="L429">		String credits = jPrologServices.getRequiredCreditInfo();</span>
-<span class="fc" id="L430">		StringTokenizer tokenizer = new StringTokenizer(credits);</span>
-<span class="fc" id="L431">		/* String name = */tokenizer.nextToken();</span>
-<span class="fc" id="L432">		return tokenizer.nextToken();</span>
+<span class="fc" id="L454">		String credits = jPrologServices.getRequiredCreditInfo();</span>
+<span class="fc" id="L455">		StringTokenizer tokenizer = new StringTokenizer(credits);</span>
+<span class="fc" id="L456">		/* String name = */tokenizer.nextToken();</span>
+<span class="fc" id="L457">		return tokenizer.nextToken();</span>
 	}
 
 	public String getName() {
-<span class="fc" id="L436">		String credits = jPrologServices.getRequiredCreditInfo();</span>
-<span class="fc" id="L437">		StringTokenizer tokenizer = new StringTokenizer(credits);</span>
-<span class="fc" id="L438">		return tokenizer.nextToken();</span>
+<span class="fc" id="L461">		String credits = jPrologServices.getRequiredCreditInfo();</span>
+<span class="fc" id="L462">		StringTokenizer tokenizer = new StringTokenizer(credits);</span>
+<span class="fc" id="L463">		return tokenizer.nextToken();</span>
 	}
 
 	@Override
 	public int hashCode() {
-<span class="nc" id="L443">		final int prime = 31;</span>
-<span class="nc" id="L444">		int result = 1;</span>
-<span class="nc" id="L445">		result = prime * result + engine.hashCode();</span>
-<span class="nc" id="L446">		result = prime * result + kb.hashCode();</span>
-<span class="nc" id="L447">		result = prime * result + or.hashCode();</span>
-<span class="nc" id="L448">		result = prime * result + pr.hashCode();</span>
-<span class="nc" id="L449">		return result;</span>
+<span class="nc" id="L468">		final int prime = 31;</span>
+<span class="nc" id="L469">		int result = 1;</span>
+<span class="nc" id="L470">		result = prime * result + engine.hashCode();</span>
+<span class="nc" id="L471">		result = prime * result + kb.hashCode();</span>
+<span class="nc" id="L472">		result = prime * result + or.hashCode();</span>
+<span class="nc" id="L473">		result = prime * result + pr.hashCode();</span>
+<span class="nc" id="L474">		return result;</span>
 	}
 
 	@Override
 	public boolean equals(Object obj) {
-<span class="pc bpc" id="L454" title="1 of 2 branches missed.">		if (this == obj)</span>
-<span class="fc" id="L455">			return true;</span>
-<span class="nc bnc" id="L456" title="All 2 branches missed.">		if (obj == null)</span>
-<span class="nc" id="L457">			return false;</span>
-<span class="nc bnc" id="L458" title="All 2 branches missed.">		if (getClass() != obj.getClass())</span>
-<span class="nc" id="L459">			return false;</span>
-<span class="nc" id="L460">		JLogEngine other = (JLogEngine) obj;</span>
-<span class="nc bnc" id="L461" title="All 2 branches missed.">		if (!engine.equals(other.engine))</span>
-<span class="nc" id="L462">			return false;</span>
-<span class="nc bnc" id="L463" title="All 2 branches missed.">		if (!kb.equals(other.kb))</span>
-<span class="nc" id="L464">			return false;</span>
-<span class="nc bnc" id="L465" title="All 2 branches missed.">		if (!or.equals(other.or))</span>
-<span class="nc" id="L466">			return false;</span>
-<span class="nc" id="L467">		return pr.equals(other.pr);</span>
+<span class="pc bpc" id="L479" title="1 of 2 branches missed.">		if (this == obj)</span>
+<span class="fc" id="L480">			return true;</span>
+<span class="nc bnc" id="L481" title="All 2 branches missed.">		if (obj == null)</span>
+<span class="nc" id="L482">			return false;</span>
+<span class="nc bnc" id="L483" title="All 2 branches missed.">		if (getClass() != obj.getClass())</span>
+<span class="nc" id="L484">			return false;</span>
+<span class="nc" id="L485">		JLogEngine other = (JLogEngine) obj;</span>
+<span class="nc bnc" id="L486" title="All 2 branches missed.">		if (!engine.equals(other.engine))</span>
+<span class="nc" id="L487">			return false;</span>
+<span class="nc bnc" id="L488" title="All 2 branches missed.">		if (!kb.equals(other.kb))</span>
+<span class="nc" id="L489">			return false;</span>
+<span class="nc bnc" id="L490" title="All 2 branches missed.">		if (!or.equals(other.or))</span>
+<span class="nc" id="L491">			return false;</span>
+<span class="nc" id="L492">		return pr.equals(other.pr);</span>
 	}
 
 	public void dispose() {
-<span class="fc" id="L471">		engine.release();</span>
-<span class="fc" id="L472">		kb.clearRules();</span>
-<span class="fc" id="L473">	}</span>
+<span class="fc" id="L496">		engine.release();</span>
+<span class="fc" id="L497">		kb.clearRules();</span>
+<span class="fc" id="L498">	}</span>
 
 	public final List&lt;String&gt; verify() {
-<span class="nc" id="L476">		return Arrays.asList(&quot;OK&quot;);</span>
+<span class="nc" id="L501">		return Arrays.asList(&quot;OK&quot;);</span>
 	}
 
 }

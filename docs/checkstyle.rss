@@ -6,10 +6,10 @@
     <link>https://prolobjectlink.github.io/prolobjectlink-jpi-jlog</link>
     <description>prolobjectlink-jpi-jlog - Checkstyle report</description>
     <language>en-us</language>
-    <copyright>&#169;2020 Prolobjectlink Project</copyright>
+    <copyright>&#169;2020 - 2021 Prolobjectlink Project</copyright>
     <item>
       <title>File: 33,
-             Errors: 3329,
+             Errors: 3383,
              Warnings: 0,
              Infos: 0
       </title>
@@ -290,7 +290,7 @@
                   0
                 </td>
                 <td>
-                  499
+                  529
                 </td>
               </tr>
                           <tr>
@@ -374,7 +374,7 @@
                   0
                 </td>
                 <td>
-                  290
+                  314
                 </td>
               </tr>
                           <tr>

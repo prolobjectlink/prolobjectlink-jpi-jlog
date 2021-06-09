@@ -77,6 +77,32 @@ final class JLogQuery extends AbstractQuery implements PrologQuery {
 
 	}
 
+	JLogQuery(AbstractEngine engine, PrologTerm term) {
+		super(engine);
+
+		String str = "" + term + "";
+
+		// saving variable order
+		str = JLogUtil.rectify(str);
+		JLogEngine pe = (JLogEngine) engine;
+		jKnowledgeBase kb = pe.engine.getKnowledgeBase();
+		pOperatorRegistry or = pe.engine.getOperatorRegistry();
+		pPredicateRegistry pr = pe.engine.getPredicateRegistry();
+		pParseStream parser = new pParseStream(str + '.', kb, pr, or);
+		jPredicateTerms jpts = parser.parseQuery();
+		jpts.enumerateVariables(vector, true);
+
+		// adapt program to string
+		String source = JLogUtil.toString(pe.engine);
+		jlogApi = new jPrologAPI(source);
+		try {
+			solution = jlogApi.query(str + '.');
+		} catch (Exception e) {
+			solution = null;
+		}
+
+	}
+
 	protected JLogQuery(AbstractEngine engine, PrologTerm[] terms) {
 		super(engine);
 

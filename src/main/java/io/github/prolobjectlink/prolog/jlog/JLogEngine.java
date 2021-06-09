@@ -200,6 +200,11 @@ public class JLogEngine extends AbstractEngine implements PrologEngine {
 		asserta(JLogUtil.toRule(stringClause, engine));
 	}
 
+	@Override
+	public void asserta(PrologTerm term) {
+		asserta(JLogUtil.toRule(provider, term));
+	}
+
 	public void asserta(PrologTerm head, PrologTerm... body) {
 		asserta(JLogUtil.toRule(provider, head, body));
 	}
@@ -212,6 +217,11 @@ public class JLogEngine extends AbstractEngine implements PrologEngine {
 
 	public void assertz(String stringClause) {
 		assertz(JLogUtil.toRule(stringClause, engine));
+	}
+
+	@Override
+	public void assertz(PrologTerm term) {
+		assertz(JLogUtil.toRule(provider, term));
 	}
 
 	public void assertz(PrologTerm head, PrologTerm... body) {
@@ -228,6 +238,11 @@ public class JLogEngine extends AbstractEngine implements PrologEngine {
 		return clause(JLogUtil.toRule(stringClause, engine));
 	}
 
+	@Override
+	public boolean clause(PrologTerm term) {
+		return clause(JLogUtil.toRule(provider, term));
+	}
+
 	public boolean clause(PrologTerm head, PrologTerm... body) {
 		return clause(JLogUtil.toRule(provider, head, body));
 	}
@@ -240,6 +255,11 @@ public class JLogEngine extends AbstractEngine implements PrologEngine {
 		retract(JLogUtil.toRule(stringClause, engine));
 	}
 
+	@Override
+	public void retract(PrologTerm term) {
+		retract(JLogUtil.toRule(provider, term));
+	}
+
 	public void retract(PrologTerm head, PrologTerm... body) {
 		retract(JLogUtil.toRule(provider, head, body));
 	}
@@ -250,6 +270,11 @@ public class JLogEngine extends AbstractEngine implements PrologEngine {
 
 	public PrologQuery query(String stringQuery) {
 		return new JLogQuery(this, stringQuery);
+	}
+
+	@Override
+	public PrologQuery query(PrologTerm term) {
+		return new JLogQuery(this, term);
 	}
 
 	public PrologQuery query(PrologTerm[] terms) {
