@@ -37,6 +37,10 @@ import ubc.cs.JLog.Terms.jTerm;
  */
 class JLogStructure extends JLogTerm implements PrologStructure {
 
+	protected JLogStructure(int type, PrologProvider provider, jTerm value) {
+		super(type, provider, value);
+	}
+
 	protected JLogStructure(PrologProvider provider, String functor, PrologTerm... arguments) {
 		super(STRUCTURE_TYPE, provider);
 		value = new jPredicate(functor, adaptCompound(arguments));

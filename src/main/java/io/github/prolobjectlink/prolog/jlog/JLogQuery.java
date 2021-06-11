@@ -52,6 +52,9 @@ final class JLogQuery extends AbstractQuery implements PrologQuery {
 	private jPrologAPI jlogApi;
 	private jVariableVector vector = new jVariableVector();
 
+	private static final String PROLOG_EXCEPTION = "PrologException";
+	private static final String JAVA_EXCEPTION = "JavaException";
+
 	protected JLogQuery(AbstractEngine engine, String str) {
 		super(engine);
 
@@ -73,6 +76,12 @@ final class JLogQuery extends AbstractQuery implements PrologQuery {
 			solution = jlogApi.query(s);
 		} catch (Exception e) {
 			solution = null;
+			// getLogger().error(getClass(), PrologLogger.RUNTIME_ERROR, e)
+			Map<String, PrologTerm> m = new HashMap<String, PrologTerm>();
+			JLogReference prologexception = new JLogReference(getProvider(), e);
+			m.put("PrologException", prologexception);
+			m.put(JAVA_EXCEPTION, prologexception);
+			solution = m;
 		}
 
 	}
@@ -99,6 +108,12 @@ final class JLogQuery extends AbstractQuery implements PrologQuery {
 			solution = jlogApi.query(str + '.');
 		} catch (Exception e) {
 			solution = null;
+			// getLogger().error(getClass(), PrologLogger.RUNTIME_ERROR, e)
+			Map<String, PrologTerm> m = new HashMap<String, PrologTerm>();
+			JLogReference prologexception = new JLogReference(getProvider(), e);
+			m.put(PROLOG_EXCEPTION, prologexception);
+			m.put(JAVA_EXCEPTION, prologexception);
+			solution = m;
 		}
 
 	}
@@ -128,6 +143,12 @@ final class JLogQuery extends AbstractQuery implements PrologQuery {
 				solution = jlogApi.query(str);
 			} catch (Exception e) {
 				solution = null;
+				// getLogger().error(getClass(), PrologLogger.RUNTIME_ERROR, e)
+				Map<String, PrologTerm> m = new HashMap<String, PrologTerm>();
+				JLogReference prologexception = new JLogReference(getProvider(), e);
+				m.put(PROLOG_EXCEPTION, prologexception);
+				m.put(JAVA_EXCEPTION, prologexception);
+				solution = m;
 			}
 
 		}
@@ -169,6 +190,12 @@ final class JLogQuery extends AbstractQuery implements PrologQuery {
 			solution = jlogApi.query(str + '.');
 		} catch (Exception e) {
 			solution = null;
+			// getLogger().error(getClass(), PrologLogger.RUNTIME_ERROR, e)
+			Map<String, PrologTerm> m = new HashMap<String, PrologTerm>();
+			JLogReference prologexception = new JLogReference(getProvider(), e);
+			m.put(PROLOG_EXCEPTION, prologexception);
+			m.put(JAVA_EXCEPTION, prologexception);
+			solution = m;
 		}
 	}
 

@@ -199,35 +199,35 @@ abstract class JLogTerm extends AbstractTerm implements PrologTerm {
 <span class="pc bpc" id="L199" title="1 of 4 branches missed.">		return value.type == TYPE_PREDICATE || value.type == TYPE_LIST;</span>
 	}
 
-	public final boolean isTrueType() {
+	public boolean isTrueType() {
 <span class="nc" id="L203">		return false;</span>
 	}
 
-	public final boolean isFalseType() {
+	public boolean isFalseType() {
 <span class="nc" id="L207">		return false;</span>
 	}
 
-	public final boolean isNullType() {
+	public boolean isNullType() {
 <span class="nc" id="L211">		return false;</span>
 	}
 
-	public final boolean isVoidType() {
+	public boolean isVoidType() {
 <span class="nc" id="L215">		return false;</span>
 	}
 
-	public final boolean isObjectType() {
+	public boolean isObjectType() {
 <span class="nc" id="L219">		return false;</span>
 	}
 
-	public final boolean isReference() {
+	public boolean isReference() {
 <span class="nc" id="L223">		return false;</span>
 	}
 
-	public final Object getObject() {
+	public Object getObject() {
 <span class="nc" id="L227">		return null;</span>
 	}
 
-	public final PrologTerm getTerm() {
+	public PrologTerm getTerm() {
 <span class="nc" id="L231">		return toTerm(value.getTerm(), PrologTerm.class);</span>
 	}
 
@@ -361,7 +361,7 @@ abstract class JLogTerm extends AbstractTerm implements PrologTerm {
 <span class="fc" id="L361">			return 1;</span>
 		}
 
-<span class="pc bpc" id="L364" title="1 of 8 branches missed.">		switch (type) {</span>
+<span class="fc bfc" id="L364" title="All 8 branches covered.">		switch (type) {</span>
 		case NIL_TYPE:
 		case CUT_TYPE:
 		case FAIL_TYPE:
@@ -479,7 +479,7 @@ abstract class JLogTerm extends AbstractTerm implements PrologTerm {
 			break;
 
 		default:
-<span class="nc" id="L482">			return 0;</span>
+<span class="fc" id="L482">			return 0;</span>
 
 		}
 

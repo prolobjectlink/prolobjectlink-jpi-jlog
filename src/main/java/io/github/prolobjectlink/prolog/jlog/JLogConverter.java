@@ -148,6 +148,8 @@ class JLogConverter extends AbstractConverter<jTerm> implements PrologConverter<
 				arguments.add(i.next());
 			}
 			return new JLogList(provider, arguments.toArray(array));
+		case jTerm.TYPE_OBJECT:
+			return new JLogReference(provider, prologTerm);
 		case jTerm.TYPE_COMPARE:
 		case jTerm.TYPE_OPERATOR:
 		case jTerm.TYPE_ARITHMETIC:
