@@ -35,19 +35,19 @@ import ubc.cs.JLog.Terms.jFail;
 final class JLogFail extends JLogTerm implements PrologTerm {
 
 	protected JLogFail(PrologProvider provider) {
-<span class="fc" id="L38">		super(FAIL_TYPE, provider, jFail.FAIL);</span>
-<span class="fc" id="L39">	}</span>
+<span class="nc" id="L38">		super(FAIL_TYPE, provider, jFail.FAIL);</span>
+<span class="nc" id="L39">	}</span>
 
 	public PrologTerm[] getArguments() {
-<span class="fc" id="L42">		return new PrologTerm[0];</span>
+<span class="nc" id="L42">		return new PrologTerm[0];</span>
 	}
 
 	public int getArity() {
-<span class="fc" id="L46">		return 0;</span>
+<span class="nc" id="L46">		return 0;</span>
 	}
 
 	public String getFunctor() {
-<span class="fc" id="L50">		return &quot;&quot; + value + &quot;&quot;;</span>
+<span class="nc" id="L50">		return &quot;&quot; + value + &quot;&quot;;</span>
 	}
 
 }

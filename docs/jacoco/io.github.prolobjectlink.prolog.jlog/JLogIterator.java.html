@@ -39,25 +39,25 @@ final class JLogIterator extends AbstractIterator&lt;jTerm&gt; implements Iterat
 
 	private Enumeration&lt;?&gt; e;
 
-<span class="fc" id="L42">	JLogIterator(jList list) {</span>
-<span class="pc bpc" id="L43" title="1 of 2 branches missed.">		if (list != null) {</span>
-<span class="fc" id="L44">			this.e = list.elements(new iTermToObject() {</span>
+<span class="nc" id="L42">	JLogIterator(jList list) {</span>
+<span class="nc bnc" id="L43" title="All 2 branches missed.">		if (list != null) {</span>
+<span class="nc" id="L44">			this.e = list.elements(new iTermToObject() {</span>
 				public Object createObjectFromTerm(jTerm term) {
-<span class="fc" id="L46">					return term;</span>
+<span class="nc" id="L46">					return term;</span>
 				}
 			});
 		}
-<span class="fc" id="L50">	}</span>
+<span class="nc" id="L50">	}</span>
 
 	public boolean hasNext() {
-<span class="pc bpc" id="L53" title="1 of 4 branches missed.">		return e != null &amp;&amp; e.hasMoreElements();</span>
+<span class="nc bnc" id="L53" title="All 4 branches missed.">		return e != null &amp;&amp; e.hasMoreElements();</span>
 	}
 
 	public jTerm next() {
-<span class="pc bpc" id="L57" title="1 of 2 branches missed.">		if (!hasNext()) {</span>
+<span class="nc bnc" id="L57" title="All 2 branches missed.">		if (!hasNext()) {</span>
 <span class="nc" id="L58">			throw new NoSuchElementException();</span>
 		}
-<span class="pc bpc" id="L60" title="1 of 2 branches missed.">		return e != null ? (jTerm) e.nextElement() : null;</span>
+<span class="nc bnc" id="L60" title="All 2 branches missed.">		return e != null ? (jTerm) e.nextElement() : null;</span>
 	}
 
 }

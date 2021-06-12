@@ -36,31 +36,31 @@ import ubc.cs.JLog.Terms.jTerm;
 class JLogFloat extends JLogNumber implements PrologFloat {
 
 	JLogFloat(PrologProvider provider, Number value) {
-<span class="fc" id="L39">		super(FLOAT_TYPE, provider, new jFloat(value.floatValue()));</span>
-<span class="fc" id="L40">	}</span>
+<span class="nc" id="L39">		super(FLOAT_TYPE, provider, new jFloat(value.floatValue()));</span>
+<span class="nc" id="L40">	}</span>
 
 	JLogFloat(int type, PrologProvider provider, jTerm value) {
-<span class="fc" id="L43">		super(type, provider, value);</span>
-<span class="fc" id="L44">	}</span>
+<span class="nc" id="L43">		super(type, provider, value);</span>
+<span class="nc" id="L44">	}</span>
 
 	public final long getLongValue() {
-<span class="fc" id="L47">		return (long) getFloatValue();</span>
+<span class="nc" id="L47">		return (long) getFloatValue();</span>
 	}
 
 	public double getDoubleValue() {
-<span class="fc" id="L51">		return (double) getFloatValue();</span>
+<span class="nc" id="L51">		return (double) getFloatValue();</span>
 	}
 
 	public final int getIntegerValue() {
-<span class="fc" id="L55">		return (int) getFloatValue();</span>
+<span class="nc" id="L55">		return (int) getFloatValue();</span>
 	}
 
 	public float getFloatValue() {
-<span class="fc" id="L59">		return ((jFloat) value).getRealValue();</span>
+<span class="nc" id="L59">		return ((jFloat) value).getRealValue();</span>
 	}
 
 	public final PrologTerm[] getArguments() {
-<span class="fc" id="L63">		return new JLogFloat[0];</span>
+<span class="nc" id="L63">		return new JLogFloat[0];</span>
 	}
 
 }

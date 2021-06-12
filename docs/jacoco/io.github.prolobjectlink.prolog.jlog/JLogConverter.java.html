@@ -75,10 +75,10 @@ import ubc.cs.JLog.Terms.jVariable;
  * @author Jose Zalacain
  * @since 1.0
  */
-<span class="fc" id="L78">class JLogConverter extends AbstractConverter&lt;jTerm&gt; implements PrologConverter&lt;jTerm&gt; {</span>
+<span class="nc" id="L78">class JLogConverter extends AbstractConverter&lt;jTerm&gt; implements PrologConverter&lt;jTerm&gt; {</span>
 
-<span class="fc" id="L80">	private final jPredicateTerms emptyBody = new jPredicateTerms();</span>
-<span class="fc" id="L81">	private final jEquivalenceMapping equivalence = new jEquivalenceMapping();</span>
+<span class="nc" id="L80">	private final jPredicateTerms emptyBody = new jPredicateTerms();</span>
+<span class="nc" id="L81">	private final jEquivalenceMapping equivalence = new jEquivalenceMapping();</span>
 
 	private jList adaptList(PrologTerm[] arguments) {
 <span class="nc" id="L84">		jList pList = jNullList.NULL_LIST;</span>
@@ -89,65 +89,65 @@ import ubc.cs.JLog.Terms.jVariable;
 	}
 
 	private jCompoundTerm adaptCompound(PrologTerm[] arguments) {
-<span class="fc" id="L92">		jCompoundTerm compound = new jCompoundTerm(arguments.length);</span>
-<span class="fc bfc" id="L93" title="All 2 branches covered.">		for (PrologTerm iPrologTerm : arguments) {</span>
-<span class="fc" id="L94">			compound.addTerm(fromTerm(iPrologTerm));</span>
+<span class="nc" id="L92">		jCompoundTerm compound = new jCompoundTerm(arguments.length);</span>
+<span class="nc bnc" id="L93" title="All 2 branches missed.">		for (PrologTerm iPrologTerm : arguments) {</span>
+<span class="nc" id="L94">			compound.addTerm(fromTerm(iPrologTerm));</span>
 		}
-<span class="fc" id="L96">		return compound;</span>
+<span class="nc" id="L96">		return compound;</span>
 	}
 
 	public PrologTerm toTerm(jTerm prologTerm) {
-<span class="pc bpc" id="L100" title="2 of 12 branches missed.">		switch (prologTerm.type) {</span>
+<span class="nc bnc" id="L100" title="All 12 branches missed.">		switch (prologTerm.type) {</span>
 		case jTerm.TYPE_NULLLIST:
-<span class="fc" id="L102">			return new JLogEmpty(provider);</span>
+<span class="nc" id="L102">			return new JLogEmpty(provider);</span>
 		case jTerm.TYPE_ATOM:
-<span class="fc" id="L104">			String value = prologTerm.getName();</span>
-<span class="fc bfc" id="L105" title="All 2 branches covered.">			if (value.equals(JLogNil.NIL_STR)) {</span>
-<span class="fc" id="L106">				return new JLogNil(provider);</span>
-<span class="fc bfc" id="L107" title="All 2 branches covered.">			} else if (value.equals(JLogFalse.FALSE_STR)) {</span>
-<span class="fc" id="L108">				return new JLogFalse(provider);</span>
-<span class="fc bfc" id="L109" title="All 2 branches covered.">			} else if (!value.matches(SIMPLE_ATOM_REGEX)) {</span>
-<span class="fc" id="L110">				return new JLogAtom(provider, &quot;'&quot; + value + &quot;'&quot;);</span>
+<span class="nc" id="L104">			String value = prologTerm.getName();</span>
+<span class="nc bnc" id="L105" title="All 2 branches missed.">			if (value.equals(JLogNil.NIL_STR)) {</span>
+<span class="nc" id="L106">				return new JLogNil(provider);</span>
+<span class="nc bnc" id="L107" title="All 2 branches missed.">			} else if (value.equals(JLogFalse.FALSE_STR)) {</span>
+<span class="nc" id="L108">				return new JLogFalse(provider);</span>
+<span class="nc bnc" id="L109" title="All 2 branches missed.">			} else if (!value.matches(SIMPLE_ATOM_REGEX)) {</span>
+<span class="nc" id="L110">				return new JLogAtom(provider, &quot;'&quot; + value + &quot;'&quot;);</span>
 			}
-<span class="fc" id="L112">			return new JLogAtom(provider, value);</span>
+<span class="nc" id="L112">			return new JLogAtom(provider, value);</span>
 		case jTerm.TYPE_INTEGER:
-<span class="fc" id="L114">			return new JLogInteger(provider, ((jInteger) prologTerm).getIntegerValue());</span>
+<span class="nc" id="L114">			return new JLogInteger(provider, ((jInteger) prologTerm).getIntegerValue());</span>
 		case jTerm.TYPE_REAL:
-<span class="fc" id="L116">			JLogTerm number = null;</span>
+<span class="nc" id="L116">			JLogTerm number = null;</span>
 			try {
 <span class="nc bnc" id="L118" title="All 2 branches missed.">				if (prologTerm instanceof jFloat) {</span>
 <span class="nc" id="L119">					number = new JLogFloat(provider, ((jFloat) prologTerm).getRealValue());</span>
-				} else {
+<span class="nc" id="L120">				} else {</span>
 <span class="nc" id="L121">					number = new JLogDouble(provider, ((jDouble) prologTerm).getRealValue());</span>
 				}
-<span class="fc" id="L123">			} catch (ClassCastException e) {</span>
+<span class="nc" id="L123">			} catch (ClassCastException e) {</span>
 				// the parsed number is a jReal number we need convert in double or float
-<span class="pc bpc" id="L125" title="1 of 2 branches missed.">				if (e.getMessage().contains(jFloat.class.getName())) {</span>
+<span class="nc bnc" id="L125" title="All 2 branches missed.">				if (e.getMessage().contains(jFloat.class.getName())) {</span>
 <span class="nc" id="L126">					number = new JLogFloat(provider, ((jReal) prologTerm).getRealValue());</span>
-<span class="pc bpc" id="L127" title="1 of 2 branches missed.">				} else if (e.getMessage().contains(jDouble.class.getName())) {</span>
-<span class="fc" id="L128">					number = new JLogDouble(provider, ((jReal) prologTerm).getRealValue());</span>
-				} else {
+<span class="nc bnc" id="L127" title="All 2 branches missed.">				} else if (e.getMessage().contains(jDouble.class.getName())) {</span>
+<span class="nc" id="L128">					number = new JLogDouble(provider, ((jReal) prologTerm).getRealValue());</span>
+<span class="nc" id="L129">				} else {</span>
 <span class="nc" id="L130">					getLogger().error(getClass(), PrologLogger.CLASS_CAST, e);</span>
 				}
-<span class="nc" id="L132">			}</span>
-<span class="fc" id="L133">			return number;</span>
+			}
+<span class="nc" id="L133">			return number;</span>
 		case jTerm.TYPE_VARIABLE:
-<span class="fc" id="L135">			String name = ((jVariable) prologTerm).getName();</span>
-<span class="fc" id="L136">			PrologVariable variable = sharedVariables.get(name);</span>
-<span class="fc bfc" id="L137" title="All 2 branches covered.">			if (variable == null) {</span>
-<span class="fc" id="L138">				variable = new JLogVariable(provider, name);</span>
-<span class="fc" id="L139">				sharedVariables.put(variable.getName(), variable);</span>
+<span class="nc" id="L135">			String name = ((jVariable) prologTerm).getName();</span>
+<span class="nc" id="L136">			PrologVariable variable = sharedVariables.get(name);</span>
+<span class="nc bnc" id="L137" title="All 2 branches missed.">			if (variable == null) {</span>
+<span class="nc" id="L138">				variable = new JLogVariable(provider, name);</span>
+<span class="nc" id="L139">				sharedVariables.put(variable.getName(), variable);</span>
 			}
-<span class="fc" id="L141">			return variable;</span>
+<span class="nc" id="L141">			return variable;</span>
 		case jTerm.TYPE_LIST:
-<span class="fc" id="L143">			jTerm[] array = new jTerm[0];</span>
-<span class="fc" id="L144">			jList list = (jList) prologTerm;</span>
-<span class="fc" id="L145">			ArrayList&lt;jTerm&gt; arguments = new ArrayList&lt;jTerm&gt;();</span>
-<span class="fc" id="L146">			Iterator&lt;jTerm&gt; i = new JLogIterator(list);</span>
-<span class="fc bfc" id="L147" title="All 2 branches covered.">			while (i.hasNext()) {</span>
-<span class="fc" id="L148">				arguments.add(i.next());</span>
+<span class="nc" id="L143">			jTerm[] array = new jTerm[0];</span>
+<span class="nc" id="L144">			jList list = (jList) prologTerm;</span>
+<span class="nc" id="L145">			ArrayList&lt;jTerm&gt; arguments = new ArrayList&lt;jTerm&gt;();</span>
+<span class="nc" id="L146">			Iterator&lt;jTerm&gt; i = new JLogIterator(list);</span>
+<span class="nc bnc" id="L147" title="All 2 branches missed.">			while (i.hasNext()) {</span>
+<span class="nc" id="L148">				arguments.add(i.next());</span>
 			}
-<span class="fc" id="L150">			return new JLogList(provider, arguments.toArray(array));</span>
+<span class="nc" id="L150">			return new JLogList(provider, arguments.toArray(array));</span>
 		case jTerm.TYPE_OBJECT:
 <span class="nc" id="L152">			return new JLogReference(provider, prologTerm);</span>
 		case jTerm.TYPE_COMPARE:
@@ -156,42 +156,42 @@ import ubc.cs.JLog.Terms.jVariable;
 		case jTerm.TYPE_UNARYOPERATOR:
 		case jTerm.TYPE_NUMERICCOMPARE:
 		case jTerm.TYPE_UNARYARITHMETIC:
-<span class="fc" id="L159">			jBinaryBuiltinPredicate binary = (jBinaryBuiltinPredicate) prologTerm;</span>
-<span class="fc" id="L160">			return new JLogStructure(provider, binary.getLHS(), binary.getName(), binary.getRHS());</span>
+<span class="nc" id="L159">			jBinaryBuiltinPredicate binary = (jBinaryBuiltinPredicate) prologTerm;</span>
+<span class="nc" id="L160">			return new JLogStructure(provider, binary.getLHS(), binary.getName(), binary.getRHS());</span>
 		case jTerm.TYPE_BUILTINPREDICATE:
-<span class="fc" id="L162">			jBuiltinPredicate builtIn = (jBuiltinPredicate) prologTerm;</span>
-<span class="fc bfc" id="L163" title="All 2 branches covered.">			if (builtIn.equivalence(jTrue.TRUE, equivalence)) {</span>
-<span class="fc" id="L164">				return new JLogTrue(provider);</span>
-<span class="fc bfc" id="L165" title="All 2 branches covered.">			} else if (builtIn.equivalence(jFail.FAIL, equivalence)) {</span>
-<span class="fc" id="L166">				return new JLogFail(provider);</span>
-<span class="pc bpc" id="L167" title="1 of 2 branches missed.">			} else if (builtIn.equivalence(JLogCut.JCUT, equivalence)) {</span>
-<span class="fc" id="L168">				return new JLogCut(provider);</span>
+<span class="nc" id="L162">			jBuiltinPredicate builtIn = (jBuiltinPredicate) prologTerm;</span>
+<span class="nc bnc" id="L163" title="All 2 branches missed.">			if (builtIn.equivalence(jTrue.TRUE, equivalence)) {</span>
+<span class="nc" id="L164">				return new JLogTrue(provider);</span>
+<span class="nc bnc" id="L165" title="All 2 branches missed.">			} else if (builtIn.equivalence(jFail.FAIL, equivalence)) {</span>
+<span class="nc" id="L166">				return new JLogFail(provider);</span>
+<span class="nc bnc" id="L167" title="All 2 branches missed.">			} else if (builtIn.equivalence(JLogCut.JCUT, equivalence)) {</span>
+<span class="nc" id="L168">				return new JLogCut(provider);</span>
 <span class="nc bnc" id="L169" title="All 2 branches missed.">			} else if (builtIn.getArity() == 2) {</span>
 <span class="nc" id="L170">				jBinaryBuiltinPredicate b = (jBinaryBuiltinPredicate) prologTerm;</span>
 <span class="nc" id="L171">				return new JLogStructure(provider, b.getLHS(), b.getName(), b.getRHS());</span>
 			}
 <span class="nc" id="L173">			throw new UnknownTermError(prologTerm);</span>
 		case jTerm.TYPE_PREDICATE:
-<span class="fc" id="L175">			jPredicate predicate = (jPredicate) prologTerm;</span>
-<span class="fc" id="L176">			jCompoundTerm compound = predicate.getArguments();</span>
-<span class="fc" id="L177">			String functor = predicate.getName();</span>
-<span class="fc" id="L178">			return new JLogStructure(provider, functor, compound);</span>
+<span class="nc" id="L175">			jPredicate predicate = (jPredicate) prologTerm;</span>
+<span class="nc" id="L176">			jCompoundTerm compound = predicate.getArguments();</span>
+<span class="nc" id="L177">			String functor = predicate.getName();</span>
+<span class="nc" id="L178">			return new JLogStructure(provider, functor, compound);</span>
 		case jTerm.TYPE_PREDICATETERMS:
-<span class="fc" id="L180">			jPredicateTerms terms = (jPredicateTerms) prologTerm;</span>
-<span class="fc" id="L181">			Enumeration&lt;?&gt; k = terms.enumTerms();</span>
-<span class="fc bfc" id="L182" title="All 2 branches covered.">			if (k.hasMoreElements()) {</span>
-<span class="fc" id="L183">				PrologTerm body = null;</span>
-<span class="fc bfc" id="L184" title="All 2 branches covered.">				while (k.hasMoreElements()) {</span>
-<span class="fc" id="L185">					jTerm term = (jTerm) k.nextElement();</span>
-<span class="fc bfc" id="L186" title="All 2 branches covered.">					if (body != null) {</span>
-<span class="fc" id="L187">						body = new JLogStructure(provider, &quot;,&quot;, body, toTerm(term));</span>
-					} else {
-<span class="fc" id="L189">						body = toTerm(term);</span>
+<span class="nc" id="L180">			jPredicateTerms terms = (jPredicateTerms) prologTerm;</span>
+<span class="nc" id="L181">			Enumeration&lt;?&gt; k = terms.enumTerms();</span>
+<span class="nc bnc" id="L182" title="All 2 branches missed.">			if (k.hasMoreElements()) {</span>
+<span class="nc" id="L183">				PrologTerm body = null;</span>
+<span class="nc bnc" id="L184" title="All 2 branches missed.">				while (k.hasMoreElements()) {</span>
+<span class="nc" id="L185">					jTerm term = (jTerm) k.nextElement();</span>
+<span class="nc bnc" id="L186" title="All 2 branches missed.">					if (body != null) {</span>
+<span class="nc" id="L187">						body = new JLogStructure(provider, &quot;,&quot;, body, toTerm(term));</span>
+<span class="nc" id="L188">					} else {</span>
+<span class="nc" id="L189">						body = toTerm(term);</span>
 					}
-<span class="fc" id="L191">				}</span>
-<span class="fc" id="L192">				return body;</span>
+				}
+<span class="nc" id="L192">				return body;</span>
 			}
-<span class="fc" id="L194">			return new JLogTrue(provider);</span>
+<span class="nc" id="L194">			return new JLogTrue(provider);</span>
 
 		default:
 <span class="nc" id="L197">			throw new UnknownTermError(prologTerm);</span>
@@ -199,43 +199,43 @@ import ubc.cs.JLog.Terms.jVariable;
 	}
 
 	public jTerm fromTerm(PrologTerm term) {
-<span class="pc bpc" id="L202" title="7 of 14 branches missed.">		switch (term.getType()) {</span>
+<span class="nc bnc" id="L202" title="All 14 branches missed.">		switch (term.getType()) {</span>
 		case NIL_TYPE:
 <span class="nc" id="L204">			return new jAtom(&quot;nil&quot;);</span>
 		case CUT_TYPE:
-<span class="fc" id="L206">			return new jAtom(&quot;!&quot;);</span>
+<span class="nc" id="L206">			return new jAtom(&quot;!&quot;);</span>
 		case FAIL_TYPE:
-<span class="fc" id="L208">			return jFail.FAIL;</span>
+<span class="nc" id="L208">			return jFail.FAIL;</span>
 		case TRUE_TYPE:
 <span class="nc" id="L210">			return jTrue.TRUE;</span>
 		case FALSE_TYPE:
 <span class="nc" id="L212">			return new jAtom(&quot;false&quot;);</span>
 		case ATOM_TYPE:
-<span class="fc" id="L214">			String value = ((PrologAtom) term).getStringValue();</span>
-<span class="fc" id="L215">			return new jAtom(value);</span>
+<span class="nc" id="L214">			String value = ((PrologAtom) term).getStringValue();</span>
+<span class="nc" id="L215">			return new jAtom(value);</span>
 		case FLOAT_TYPE:
 <span class="nc" id="L217">			return new jFloat(((PrologFloat) term).getFloatValue());</span>
 		case INTEGER_TYPE:
-<span class="fc" id="L219">			return new jInteger(((PrologInteger) term).getIntegerValue());</span>
+<span class="nc" id="L219">			return new jInteger(((PrologInteger) term).getIntegerValue());</span>
 		case DOUBLE_TYPE:
 <span class="nc" id="L221">			return new jDouble(((PrologDouble) term).getDoubleValue());</span>
 		case LONG_TYPE:
-<span class="fc" id="L223">			return new jInteger(((PrologLong) term).getIntegerValue());</span>
+<span class="nc" id="L223">			return new jInteger(((PrologLong) term).getIntegerValue());</span>
 		case VARIABLE_TYPE:
-<span class="fc" id="L225">			String name = ((PrologVariable) term).getName();</span>
-<span class="fc" id="L226">			jTerm variable = sharedPrologVariables.get(name);</span>
-<span class="fc bfc" id="L227" title="All 2 branches covered.">			if (variable == null) {</span>
-<span class="fc" id="L228">				variable = new jVariable(name);</span>
-<span class="fc" id="L229">				sharedPrologVariables.put(name, variable);</span>
+<span class="nc" id="L225">			String name = ((PrologVariable) term).getName();</span>
+<span class="nc" id="L226">			jTerm variable = sharedPrologVariables.get(name);</span>
+<span class="nc bnc" id="L227" title="All 2 branches missed.">			if (variable == null) {</span>
+<span class="nc" id="L228">				variable = new jVariable(name);</span>
+<span class="nc" id="L229">				sharedPrologVariables.put(name, variable);</span>
 			}
-<span class="fc" id="L231">			return variable;</span>
+<span class="nc" id="L231">			return variable;</span>
 		case LIST_TYPE:
 <span class="nc" id="L233">			PrologTerm[] arguments = ((PrologList) term).getArguments();</span>
 <span class="nc" id="L234">			return adaptList(arguments);</span>
 		case STRUCTURE_TYPE:
-<span class="fc" id="L236">			String functor = term.getFunctor();</span>
-<span class="fc" id="L237">			arguments = ((PrologStructure) term).getArguments();</span>
-<span class="fc" id="L238">			return new jPredicate(functor, adaptCompound(arguments));</span>
+<span class="nc" id="L236">			String functor = term.getFunctor();</span>
+<span class="nc" id="L237">			arguments = ((PrologStructure) term).getArguments();</span>
+<span class="nc" id="L238">			return new jPredicate(functor, adaptCompound(arguments));</span>
 		default:
 <span class="nc" id="L240">			throw new UnknownTermError(term);</span>
 		}
@@ -268,7 +268,7 @@ import ubc.cs.JLog.Terms.jVariable;
 	}
 
 	public PrologProvider createProvider() {
-<span class="fc" id="L271">		return new JLog(this);</span>
+<span class="nc" id="L271">		return new JLog(this);</span>
 	}
 
 	@Override

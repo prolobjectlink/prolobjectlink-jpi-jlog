@@ -38,27 +38,27 @@ import ubc.cs.JLog.Terms.jVariable;
 class JLogVariable extends JLogTerm implements PrologVariable {
 
 	JLogVariable(PrologProvider provider) {
-<span class="fc" id="L41">		super(VARIABLE_TYPE, provider, vIdexer++);</span>
-<span class="fc" id="L42">	}</span>
+<span class="nc" id="L41">		super(VARIABLE_TYPE, provider, vIdexer++);</span>
+<span class="nc" id="L42">	}</span>
 
 	JLogVariable(PrologProvider provider, String name) {
-<span class="fc" id="L45">		super(VARIABLE_TYPE, provider, name, vIdexer++);</span>
-<span class="fc" id="L46">	}</span>
+<span class="nc" id="L45">		super(VARIABLE_TYPE, provider, name, vIdexer++);</span>
+<span class="nc" id="L46">	}</span>
 
 	public boolean isAnonymous() {
-<span class="fc bfc" id="L49" title="All 2 branches covered.">		return !((jVariable) value).isNamed();</span>
+<span class="nc bnc" id="L49" title="All 2 branches missed.">		return !((jVariable) value).isNamed();</span>
 	}
 
 	public String getName() {
-<span class="fc" id="L53">		return ((jVariable) value).getName();</span>
+<span class="nc" id="L53">		return ((jVariable) value).getName();</span>
 	}
 
 	public void setName(String name) {
-<span class="fc" id="L57">		this.value = new jVariable(name);</span>
-<span class="fc" id="L58">	}</span>
+<span class="nc" id="L57">		this.value = new jVariable(name);</span>
+<span class="nc" id="L58">	}</span>
 
 	public PrologTerm[] getArguments() {
-<span class="fc" id="L61">		return new JLogVariable[0];</span>
+<span class="nc" id="L61">		return new JLogVariable[0];</span>
 	}
 
 	public int getArity() {
@@ -66,7 +66,7 @@ class JLogVariable extends JLogTerm implements PrologVariable {
 	}
 
 	public String getFunctor() {
-<span class="fc" id="L69">		throw new FunctorError(this);</span>
+<span class="nc" id="L69">		throw new FunctorError(this);</span>
 	}
 
 	public int getPosition() {

@@ -42,55 +42,55 @@ class JLogStructure extends JLogTerm implements PrologStructure {
 <span class="nc" id="L42">	}</span>
 
 	protected JLogStructure(PrologProvider provider, String functor, PrologTerm... arguments) {
-<span class="fc" id="L45">		super(STRUCTURE_TYPE, provider);</span>
-<span class="fc" id="L46">		value = new jPredicate(functor, adaptCompound(arguments));</span>
-<span class="fc" id="L47">	}</span>
+<span class="nc" id="L45">		super(STRUCTURE_TYPE, provider);</span>
+<span class="nc" id="L46">		value = new jPredicate(functor, adaptCompound(arguments));</span>
+<span class="nc" id="L47">	}</span>
 
 	protected JLogStructure(PrologProvider provider, String functor, jCompoundTerm arguments) {
-<span class="fc" id="L50">		super(STRUCTURE_TYPE, provider);</span>
-<span class="fc" id="L51">		value = new jPredicate(functor, arguments);</span>
-<span class="fc" id="L52">	}</span>
+<span class="nc" id="L50">		super(STRUCTURE_TYPE, provider);</span>
+<span class="nc" id="L51">		value = new jPredicate(functor, arguments);</span>
+<span class="nc" id="L52">	}</span>
 
 	protected JLogStructure(PrologProvider provider, PrologTerm left, String operator, PrologTerm right) {
-<span class="fc" id="L55">		super(STRUCTURE_TYPE, provider);</span>
-<span class="fc" id="L56">		PrologTerm[] operands = { left, right };</span>
-<span class="fc" id="L57">		value = new jPredicate(operator, adaptCompound(operands));</span>
-<span class="fc" id="L58">	}</span>
+<span class="nc" id="L55">		super(STRUCTURE_TYPE, provider);</span>
+<span class="nc" id="L56">		PrologTerm[] operands = { left, right };</span>
+<span class="nc" id="L57">		value = new jPredicate(operator, adaptCompound(operands));</span>
+<span class="nc" id="L58">	}</span>
 
 	protected JLogStructure(PrologProvider provider, jTerm left, String functor, jTerm right) {
-<span class="fc" id="L61">		super(STRUCTURE_TYPE, provider);</span>
-<span class="fc" id="L62">		jCompoundTerm compound = new jCompoundTerm(2);</span>
-<span class="fc" id="L63">		compound.addTerm(left);</span>
-<span class="fc" id="L64">		compound.addTerm(right);</span>
-<span class="fc" id="L65">		value = new jPredicate(functor, compound);</span>
-<span class="fc" id="L66">	}</span>
+<span class="nc" id="L61">		super(STRUCTURE_TYPE, provider);</span>
+<span class="nc" id="L62">		jCompoundTerm compound = new jCompoundTerm(2);</span>
+<span class="nc" id="L63">		compound.addTerm(left);</span>
+<span class="nc" id="L64">		compound.addTerm(right);</span>
+<span class="nc" id="L65">		value = new jPredicate(functor, compound);</span>
+<span class="nc" id="L66">	}</span>
 
 	public PrologTerm getArgument(int index) {
-<span class="fc" id="L69">		checkIndex(index, getArity());</span>
-<span class="fc" id="L70">		jPredicate structure = (jPredicate) value;</span>
-<span class="fc" id="L71">		jCompoundTerm compound = structure.getArguments();</span>
-<span class="fc" id="L72">		return toTerm(compound.elementAt(index), PrologTerm.class);</span>
+<span class="nc" id="L69">		checkIndex(index, getArity());</span>
+<span class="nc" id="L70">		jPredicate structure = (jPredicate) value;</span>
+<span class="nc" id="L71">		jCompoundTerm compound = structure.getArguments();</span>
+<span class="nc" id="L72">		return toTerm(compound.elementAt(index), PrologTerm.class);</span>
 	}
 
 	public PrologTerm[] getArguments() {
-<span class="fc" id="L76">		jPredicate structure = (jPredicate) value;</span>
-<span class="fc" id="L77">		int arity = structure.getArity();</span>
-<span class="fc" id="L78">		PrologTerm[] arguments = new PrologTerm[arity];</span>
-<span class="fc" id="L79">		jCompoundTerm compound = structure.getArguments();</span>
-<span class="fc bfc" id="L80" title="All 2 branches covered.">		for (int i = 0; i &lt; arity; i++) {</span>
-<span class="fc" id="L81">			arguments[i] = toTerm(compound.elementAt(i), PrologTerm.class);</span>
+<span class="nc" id="L76">		jPredicate structure = (jPredicate) value;</span>
+<span class="nc" id="L77">		int arity = structure.getArity();</span>
+<span class="nc" id="L78">		PrologTerm[] arguments = new PrologTerm[arity];</span>
+<span class="nc" id="L79">		jCompoundTerm compound = structure.getArguments();</span>
+<span class="nc bnc" id="L80" title="All 2 branches missed.">		for (int i = 0; i &lt; arity; i++) {</span>
+<span class="nc" id="L81">			arguments[i] = toTerm(compound.elementAt(i), PrologTerm.class);</span>
 		}
-<span class="fc" id="L83">		return arguments;</span>
+<span class="nc" id="L83">		return arguments;</span>
 	}
 
 	public int getArity() {
-<span class="fc" id="L87">		jPredicate structure = (jPredicate) value;</span>
-<span class="fc" id="L88">		return structure.getArity();</span>
+<span class="nc" id="L87">		jPredicate structure = (jPredicate) value;</span>
+<span class="nc" id="L88">		return structure.getArity();</span>
 	}
 
 	public String getFunctor() {
-<span class="fc" id="L92">		jPredicate structure = (jPredicate) value;</span>
-<span class="fc" id="L93">		return structure.getName();</span>
+<span class="nc" id="L92">		jPredicate structure = (jPredicate) value;</span>
+<span class="nc" id="L93">		return structure.getName();</span>
 	}
 
 	public final PrologTerm getRight() {

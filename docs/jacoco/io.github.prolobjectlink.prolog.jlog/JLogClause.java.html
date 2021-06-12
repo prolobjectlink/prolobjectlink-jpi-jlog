@@ -38,44 +38,44 @@ class JLogClause extends AbstractClause implements PrologClause {
 
 	protected JLogClause(PrologProvider provider, PrologTerm head, boolean dynamic, boolean multifile,
 			boolean discontiguous) {
-<span class="fc" id="L41">		super(provider, head, dynamic, multifile, discontiguous);</span>
-<span class="fc" id="L42">		this.indicator = new JLogIndicator(head.getFunctor(), head.getArity());</span>
-<span class="fc" id="L43">	}</span>
+<span class="nc" id="L41">		super(provider, head, dynamic, multifile, discontiguous);</span>
+<span class="nc" id="L42">		this.indicator = new JLogIndicator(head.getFunctor(), head.getArity());</span>
+<span class="nc" id="L43">	}</span>
 
 	protected JLogClause(PrologProvider provider, PrologTerm head, PrologTerm body, boolean dynamic, boolean multifile,
 			boolean discontiguous) {
-<span class="fc" id="L47">		super(provider, head, body, dynamic, multifile, discontiguous);</span>
-<span class="fc" id="L48">		this.indicator = new JLogIndicator(head.getFunctor(), head.getArity());</span>
-<span class="fc" id="L49">	}</span>
+<span class="nc" id="L47">		super(provider, head, body, dynamic, multifile, discontiguous);</span>
+<span class="nc" id="L48">		this.indicator = new JLogIndicator(head.getFunctor(), head.getArity());</span>
+<span class="nc" id="L49">	}</span>
 
 	public PrologIndicator getPrologIndicator() {
-<span class="fc" id="L52">		return indicator;</span>
+<span class="nc" id="L52">		return indicator;</span>
 	}
 
 	@Override
 	public int hashCode() {
-<span class="fc" id="L57">		final int prime = 31;</span>
-<span class="fc" id="L58">		int result = super.hashCode();</span>
-<span class="pc bpc" id="L59" title="1 of 2 branches missed.">		result = prime * result + ((indicator == null) ? 0 : indicator.hashCode());</span>
-<span class="fc" id="L60">		return result;</span>
+<span class="nc" id="L57">		final int prime = 31;</span>
+<span class="nc" id="L58">		int result = super.hashCode();</span>
+<span class="nc bnc" id="L59" title="All 2 branches missed.">		result = prime * result + ((indicator == null) ? 0 : indicator.hashCode());</span>
+<span class="nc" id="L60">		return result;</span>
 	}
 
 	@Override
 	public boolean equals(Object obj) {
-<span class="pc bpc" id="L65" title="1 of 2 branches missed.">		if (this == obj)</span>
+<span class="nc bnc" id="L65" title="All 2 branches missed.">		if (this == obj)</span>
 <span class="nc" id="L66">			return true;</span>
-<span class="fc bfc" id="L67" title="All 2 branches covered.">		if (!super.equals(obj))</span>
-<span class="fc" id="L68">			return false;</span>
-<span class="pc bpc" id="L69" title="1 of 2 branches missed.">		if (getClass() != obj.getClass())</span>
+<span class="nc bnc" id="L67" title="All 2 branches missed.">		if (!super.equals(obj))</span>
+<span class="nc" id="L68">			return false;</span>
+<span class="nc bnc" id="L69" title="All 2 branches missed.">		if (getClass() != obj.getClass())</span>
 <span class="nc" id="L70">			return false;</span>
-<span class="fc" id="L71">		JLogClause other = (JLogClause) obj;</span>
-<span class="pc bpc" id="L72" title="1 of 2 branches missed.">		if (indicator == null) {</span>
+<span class="nc" id="L71">		JLogClause other = (JLogClause) obj;</span>
+<span class="nc bnc" id="L72" title="All 2 branches missed.">		if (indicator == null) {</span>
 <span class="nc bnc" id="L73" title="All 2 branches missed.">			if (other.indicator != null)</span>
 <span class="nc" id="L74">				return false;</span>
-<span class="pc bpc" id="L75" title="1 of 2 branches missed.">		} else if (!indicator.equals(other.indicator)) {</span>
+<span class="nc bnc" id="L75" title="All 2 branches missed.">		} else if (!indicator.equals(other.indicator)) {</span>
 <span class="nc" id="L76">			return false;</span>
 		}
-<span class="fc" id="L78">		return true;</span>
+<span class="nc" id="L78">		return true;</span>
 	}
 
 }
