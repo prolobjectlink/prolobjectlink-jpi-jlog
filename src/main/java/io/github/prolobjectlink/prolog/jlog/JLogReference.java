@@ -52,30 +52,6 @@ public class JLogReference extends JLogTerm implements PrologReference {
 		return new PrologTerm[0];
 	}
 
-	public boolean isTrueType() {
-		return getObject().equals(true);
-	}
-
-	public boolean isFalseType() {
-		return getObject().equals(false);
-	}
-
-	public boolean isNullType() {
-		return getObject() == null;
-	}
-
-	public boolean isVoidType() {
-		return getObject() == void.class;
-	}
-
-	public boolean isObjectType() {
-		return getType() == OBJECT_TYPE;
-	}
-
-	public boolean isReference() {
-		return isObjectType() || isNullType();
-	}
-
 	public Object getObject() {
 		jObject object = (jObject) value;
 		return object.getObjectReference();

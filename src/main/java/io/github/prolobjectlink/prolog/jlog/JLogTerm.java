@@ -30,7 +30,10 @@ import static io.github.prolobjectlink.prolog.PrologTermType.FLOAT_TYPE;
 import static io.github.prolobjectlink.prolog.PrologTermType.INTEGER_TYPE;
 import static io.github.prolobjectlink.prolog.PrologTermType.LIST_TYPE;
 import static io.github.prolobjectlink.prolog.PrologTermType.LONG_TYPE;
+import static io.github.prolobjectlink.prolog.PrologTermType.MAP_ENTRY_TYPE;
+import static io.github.prolobjectlink.prolog.PrologTermType.MAP_TYPE;
 import static io.github.prolobjectlink.prolog.PrologTermType.NIL_TYPE;
+import static io.github.prolobjectlink.prolog.PrologTermType.OBJECT_TYPE;
 import static io.github.prolobjectlink.prolog.PrologTermType.STRUCTURE_TYPE;
 import static io.github.prolobjectlink.prolog.PrologTermType.TRUE_TYPE;
 import static io.github.prolobjectlink.prolog.PrologTermType.VARIABLE_TYPE;
@@ -144,11 +147,15 @@ abstract class JLogTerm extends AbstractTerm implements PrologTerm {
 
 				||
 
-				(this instanceof JLogEmpty);
+				(this instanceof JLogEmpty)
+
+				||
+
+				(this instanceof JLogMap);
 	}
 
 	public final boolean isStructure() {
-		return this instanceof JLogStructure;
+		return (this instanceof JLogStructure) || (this instanceof JLogEntry);
 	}
 
 	public final boolean isNil() {
@@ -156,10 +163,18 @@ abstract class JLogTerm extends AbstractTerm implements PrologTerm {
 	}
 
 	public final boolean isEmptyList() {
-		return this instanceof JLogEmpty;
+		return (this instanceof JLogEmpty)
+
+				||
+
+				(this instanceof JLogMap
+
+						&&
+
+						((JLogMap) this).size() == 0);
 	}
 
-	public final boolean isEvaluable() {
+	public boolean isEvaluable() {
 		if (isStructure()) {
 			String builtins = "builtins";
 			jKnowledgeBase kb = new jKnowledgeBase();
@@ -195,32 +210,40 @@ abstract class JLogTerm extends AbstractTerm implements PrologTerm {
 		return !isCompound();
 	}
 
-	public final boolean isCompound() {
-		return value.type == TYPE_PREDICATE || value.type == TYPE_LIST;
+	public boolean isCompound() {
+		return (value != null)
+
+				&& (value.type == TYPE_PREDICATE
+
+						|| value.type == TYPE_LIST
+
+				);
 	}
 
-	public boolean isTrueType() {
-		return false;
+	public final boolean isTrueType() {
+		Object object = getObject();
+		return object != null && object.equals(true);
 	}
 
-	public boolean isFalseType() {
-		return false;
+	public final boolean isFalseType() {
+		Object object = getObject();
+		return object != null && object.equals(false);
 	}
 
-	public boolean isNullType() {
-		return false;
+	public final boolean isNullType() {
+		return isObjectType() && getObject() == null;
 	}
 
-	public boolean isVoidType() {
-		return false;
+	public final boolean isVoidType() {
+		return getObject() == void.class;
 	}
 
-	public boolean isObjectType() {
-		return false;
+	public final boolean isObjectType() {
+		return getType() == OBJECT_TYPE;
 	}
 
-	public boolean isReference() {
-		return false;
+	public final boolean isReference() {
+		return isObjectType();
 	}
 
 	public Object getObject() {
@@ -430,11 +453,17 @@ abstract class JLogTerm extends AbstractTerm implements PrologTerm {
 
 			break;
 
+		case MAP_TYPE:
 		case LIST_TYPE:
 		case STRUCTURE_TYPE:
+		case MAP_ENTRY_TYPE:
 
 			PrologTerm thisCompound = this;
 			PrologTerm otherCompound = term;
+
+			if (thisCompound.isEmptyList() && otherCompound.isEmptyList()) {
+				return 0;
+			}
 
 			// comparison by arity
 			if (thisCompound.getArity() < otherCompound.getArity()) {
@@ -487,7 +516,7 @@ abstract class JLogTerm extends AbstractTerm implements PrologTerm {
 	}
 
 	@Override
-	public final int hashCode() {
+	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + type;
@@ -496,7 +525,7 @@ abstract class JLogTerm extends AbstractTerm implements PrologTerm {
 	}
 
 	@Override
-	public final boolean equals(Object obj) {
+	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
 		if (obj == null)
@@ -516,7 +545,7 @@ abstract class JLogTerm extends AbstractTerm implements PrologTerm {
 	}
 
 	@Override
-	public final String toString() {
+	public String toString() {
 		return value.toString(true);
 	}
 
