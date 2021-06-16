@@ -457,6 +457,12 @@ public class JLogEngine extends AbstractEngine implements PrologEngine {
 		return tokenizer.nextToken();
 	}
 
+	public String getVendor() {
+		String credits = jPrologServices.getRequiredCreditInfo();
+		StringTokenizer tokenizer = new StringTokenizer(credits);
+		return tokenizer.nextToken();
+	}
+
 	public String getName() {
 		String credits = jPrologServices.getRequiredCreditInfo();
 		StringTokenizer tokenizer = new StringTokenizer(credits);
