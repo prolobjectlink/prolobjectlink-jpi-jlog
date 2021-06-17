@@ -457,48 +457,54 @@ import ubc.cs.JLog.Terms.jPredicateTerms;
 <span class="fc" id="L457">		return tokenizer.nextToken();</span>
 	}
 
+	public String getVendor() {
+<span class="nc" id="L461">		String credits = jPrologServices.getRequiredCreditInfo();</span>
+<span class="nc" id="L462">		StringTokenizer tokenizer = new StringTokenizer(credits);</span>
+<span class="nc" id="L463">		return tokenizer.nextToken();</span>
+	}
+
 	public String getName() {
-<span class="fc" id="L461">		String credits = jPrologServices.getRequiredCreditInfo();</span>
-<span class="fc" id="L462">		StringTokenizer tokenizer = new StringTokenizer(credits);</span>
-<span class="fc" id="L463">		return tokenizer.nextToken();</span>
+<span class="fc" id="L467">		String credits = jPrologServices.getRequiredCreditInfo();</span>
+<span class="fc" id="L468">		StringTokenizer tokenizer = new StringTokenizer(credits);</span>
+<span class="fc" id="L469">		return tokenizer.nextToken();</span>
 	}
 
 	@Override
 	public int hashCode() {
-<span class="nc" id="L468">		final int prime = 31;</span>
-<span class="nc" id="L469">		int result = 1;</span>
-<span class="nc" id="L470">		result = prime * result + engine.hashCode();</span>
-<span class="nc" id="L471">		result = prime * result + kb.hashCode();</span>
-<span class="nc" id="L472">		result = prime * result + or.hashCode();</span>
-<span class="nc" id="L473">		result = prime * result + pr.hashCode();</span>
-<span class="nc" id="L474">		return result;</span>
+<span class="nc" id="L474">		final int prime = 31;</span>
+<span class="nc" id="L475">		int result = 1;</span>
+<span class="nc" id="L476">		result = prime * result + engine.hashCode();</span>
+<span class="nc" id="L477">		result = prime * result + kb.hashCode();</span>
+<span class="nc" id="L478">		result = prime * result + or.hashCode();</span>
+<span class="nc" id="L479">		result = prime * result + pr.hashCode();</span>
+<span class="nc" id="L480">		return result;</span>
 	}
 
 	@Override
 	public boolean equals(Object obj) {
-<span class="pc bpc" id="L479" title="1 of 2 branches missed.">		if (this == obj)</span>
-<span class="fc" id="L480">			return true;</span>
-<span class="nc bnc" id="L481" title="All 2 branches missed.">		if (obj == null)</span>
-<span class="nc" id="L482">			return false;</span>
-<span class="nc bnc" id="L483" title="All 2 branches missed.">		if (getClass() != obj.getClass())</span>
-<span class="nc" id="L484">			return false;</span>
-<span class="nc" id="L485">		JLogEngine other = (JLogEngine) obj;</span>
-<span class="nc bnc" id="L486" title="All 2 branches missed.">		if (!engine.equals(other.engine))</span>
-<span class="nc" id="L487">			return false;</span>
-<span class="nc bnc" id="L488" title="All 2 branches missed.">		if (!kb.equals(other.kb))</span>
-<span class="nc" id="L489">			return false;</span>
-<span class="nc bnc" id="L490" title="All 2 branches missed.">		if (!or.equals(other.or))</span>
-<span class="nc" id="L491">			return false;</span>
-<span class="nc" id="L492">		return pr.equals(other.pr);</span>
+<span class="pc bpc" id="L485" title="1 of 2 branches missed.">		if (this == obj)</span>
+<span class="fc" id="L486">			return true;</span>
+<span class="nc bnc" id="L487" title="All 2 branches missed.">		if (obj == null)</span>
+<span class="nc" id="L488">			return false;</span>
+<span class="nc bnc" id="L489" title="All 2 branches missed.">		if (getClass() != obj.getClass())</span>
+<span class="nc" id="L490">			return false;</span>
+<span class="nc" id="L491">		JLogEngine other = (JLogEngine) obj;</span>
+<span class="nc bnc" id="L492" title="All 2 branches missed.">		if (!engine.equals(other.engine))</span>
+<span class="nc" id="L493">			return false;</span>
+<span class="nc bnc" id="L494" title="All 2 branches missed.">		if (!kb.equals(other.kb))</span>
+<span class="nc" id="L495">			return false;</span>
+<span class="nc bnc" id="L496" title="All 2 branches missed.">		if (!or.equals(other.or))</span>
+<span class="nc" id="L497">			return false;</span>
+<span class="nc" id="L498">		return pr.equals(other.pr);</span>
 	}
 
 	public void dispose() {
-<span class="fc" id="L496">		engine.release();</span>
-<span class="fc" id="L497">		kb.clearRules();</span>
-<span class="fc" id="L498">	}</span>
+<span class="fc" id="L502">		engine.release();</span>
+<span class="fc" id="L503">		kb.clearRules();</span>
+<span class="fc" id="L504">	}</span>
 
 	public final List&lt;String&gt; verify() {
-<span class="nc" id="L501">		return Arrays.asList(&quot;OK&quot;);</span>
+<span class="nc" id="L507">		return Arrays.asList(&quot;OK&quot;);</span>
 	}
 
 }

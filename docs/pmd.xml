@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pmd version="4.2.5" timestamp="2021-06-16T06:53:21.784">
+<pmd version="4.2.5" timestamp="2021-06-19T23:06:33.223">
 <file name="C:\Users\Jose Zalacain\Documents\eclipse-java-photon-workspace\prolobjectlink-jpi-jlog\src\main\java\io\github\prolobjectlink\prolog\jlog\JLogConverter.java">
 <violation beginline="22" endline="297" begincolumn="1" endcolumn="3" rule="TooManyStaticImports" ruleset="Import Statement Rules" package="io.github.prolobjectlink.prolog.jlog" externalInfoUrl="http://pmd.sourceforge.net/rules/imports.html#TooManyStaticImports" priority="3">
 Too many static imports may lead to messy code
@@ -11,12 +11,12 @@ Unnecessary final modifier in final class
 </violation>
 </file>
 <file name="C:\Users\Jose Zalacain\Documents\eclipse-java-photon-workspace\prolobjectlink-jpi-jlog\src\main\java\io\github\prolobjectlink\prolog\jlog\JLogEngine.java">
-<violation beginline="22" endline="504" begincolumn="1" endcolumn="3" rule="TooManyStaticImports" ruleset="Import Statement Rules" package="io.github.prolobjectlink.prolog.jlog" externalInfoUrl="http://pmd.sourceforge.net/rules/imports.html#TooManyStaticImports" priority="3">
+<violation beginline="22" endline="510" begincolumn="1" endcolumn="3" rule="TooManyStaticImports" ruleset="Import Statement Rules" package="io.github.prolobjectlink.prolog.jlog" externalInfoUrl="http://pmd.sourceforge.net/rules/imports.html#TooManyStaticImports" priority="3">
 Too many static imports may lead to messy code
 </violation>
 </file>
 <file name="C:\Users\Jose Zalacain\Documents\eclipse-java-photon-workspace\prolobjectlink-jpi-jlog\src\main\java\io\github\prolobjectlink\prolog\jlog\JLogTerm.java">
-<violation beginline="22" endline="552" begincolumn="1" endcolumn="3" rule="TooManyStaticImports" ruleset="Import Statement Rules" package="io.github.prolobjectlink.prolog.jlog" externalInfoUrl="http://pmd.sourceforge.net/rules/imports.html#TooManyStaticImports" priority="3">
+<violation beginline="22" endline="548" begincolumn="1" endcolumn="3" rule="TooManyStaticImports" ruleset="Import Statement Rules" package="io.github.prolobjectlink.prolog.jlog" externalInfoUrl="http://pmd.sourceforge.net/rules/imports.html#TooManyStaticImports" priority="3">
 Too many static imports may lead to messy code
 </violation>
 </file>

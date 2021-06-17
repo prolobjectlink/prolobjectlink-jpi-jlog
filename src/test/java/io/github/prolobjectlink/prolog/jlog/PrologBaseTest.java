@@ -53,7 +53,7 @@ public abstract class PrologBaseTest {
 	protected String employee = "employee";
 	protected String department = "department";
 
-	protected static final PrologProvider provider = Prolog.getInstance();
+	protected static final PrologProvider provider = Prolog.getProvider();
 	protected static final ScriptEngineManager manager = new ScriptEngineManager();
 
 	protected PrologTerm nil = provider.prologNil();

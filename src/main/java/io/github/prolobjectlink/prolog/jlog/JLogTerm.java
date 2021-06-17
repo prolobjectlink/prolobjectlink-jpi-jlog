@@ -246,10 +246,6 @@ abstract class JLogTerm extends AbstractTerm implements PrologTerm {
 		return isObjectType();
 	}
 
-	public Object getObject() {
-		return null;
-	}
-
 	public PrologTerm getTerm() {
 		return toTerm(value.getTerm(), PrologTerm.class);
 	}

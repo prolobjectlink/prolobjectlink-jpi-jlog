@@ -83,10 +83,6 @@ public class JLog extends AbstractProvider implements PrologProvider {
 		}
 	}
 
-	public boolean isCompliant() {
-		return false;
-	}
-
 	public PrologTerm prologNil() {
 		return new JLogNil(this);
 	}
