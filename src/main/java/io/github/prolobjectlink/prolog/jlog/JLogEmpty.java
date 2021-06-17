@@ -52,14 +52,4 @@ class JLogEmpty extends JLogList implements PrologList {
 		return ((jNullList) value).getName();
 	}
 
-	@Override
-	public String getIndicator() {
-		return getFunctor() + "/" + getArity();
-	}
-
-	@Override
-	public boolean hasIndicator(String functor, int arity) {
-		return getFunctor().equals(functor) && getArity() == arity;
-	}
-
 }

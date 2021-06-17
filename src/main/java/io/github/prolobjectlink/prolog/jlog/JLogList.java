@@ -115,14 +115,6 @@ class JLogList extends JLogTerm implements PrologList {
 		return list.getName();
 	}
 
-	public String getIndicator() {
-		return getFunctor() + "/" + getArity();
-	}
-
-	public boolean hasIndicator(String functor, int arity) {
-		return getFunctor().equals(functor) && getArity() == arity;
-	}
-
 	public PrologTerm[] getArguments() {
 		int index = 0;
 		PrologTerm[] arguments = new PrologTerm[size()];
