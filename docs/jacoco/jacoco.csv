@@ -1,13 +1,13 @@
 GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
 prolobjectlink-jpi-jlog,io.github.prolobjectlink.prolog.jlog,JLogFloat,0,36,0,0,0,9,0,7,0,7
-prolobjectlink-jpi-jlog,io.github.prolobjectlink.prolog.jlog,JLogMap.PrologMapIterator,4,54,0,2,1,10,1,3,1,2
+prolobjectlink-jpi-jlog,io.github.prolobjectlink.prolog.jlog,JLogMap.PrologMapIterator,0,58,0,2,0,11,0,4,0,3
 prolobjectlink-jpi-jlog,io.github.prolobjectlink.prolog.jlog,JLogAtom,0,36,0,0,0,8,0,6,0,6
 prolobjectlink-jpi-jlog,io.github.prolobjectlink.prolog.jlog,JLogEmpty,0,14,0,0,0,5,0,4,0,4
 prolobjectlink-jpi-jlog,io.github.prolobjectlink.prolog.jlog,JLog,168,330,12,12,34,57,20,34,10,32
 prolobjectlink-jpi-jlog,io.github.prolobjectlink.prolog.jlog,JLogStructure,17,138,0,2,5,31,4,9,4,8
 prolobjectlink-jpi-jlog,io.github.prolobjectlink.prolog.jlog,jDouble,97,38,24,4,29,10,20,5,7,4
 prolobjectlink-jpi-jlog,io.github.prolobjectlink.prolog.jlog,JLogQuery,248,679,25,47,59,150,23,31,2,16
-prolobjectlink-jpi-jlog,io.github.prolobjectlink.prolog.jlog,JLogMap,13,286,8,16,5,72,7,33,0,28
+prolobjectlink-jpi-jlog,io.github.prolobjectlink.prolog.jlog,JLogMap,15,303,10,20,6,77,9,34,0,28
 prolobjectlink-jpi-jlog,io.github.prolobjectlink.prolog.jlog,JLogIndicator,0,5,0,0,0,2,0,1,0,1
 prolobjectlink-jpi-jlog,io.github.prolobjectlink.prolog.jlog,JLogInteger,0,36,0,0,0,9,0,7,0,7
 prolobjectlink-jpi-jlog,io.github.prolobjectlink.prolog.jlog,JLogFalse,0,26,0,0,0,5,0,4,0,4

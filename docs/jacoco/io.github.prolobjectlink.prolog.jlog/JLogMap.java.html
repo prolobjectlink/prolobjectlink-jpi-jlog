@@ -76,71 +76,78 @@ public final class JLogMap extends JLogTerm implements PrologMap {
 	}
 
 	public PrologTerm getArgument(int index) {
-		// TODO Optimize
-<span class="fc" id="L80">		PrologTerm[] array = getArguments();</span>
-<span class="fc" id="L81">		checkIndex(index, array.length);</span>
-<span class="fc" id="L82">		return array[index];</span>
+<span class="fc" id="L79">		int idx = 0;</span>
+<span class="fc" id="L80">		PrologTerm term = null;</span>
+<span class="fc" id="L81">		checkIndex(index, size());</span>
+<span class="fc" id="L82">		Iterator&lt;PrologTerm&gt; i = iterator();</span>
+<span class="pc bpc" id="L83" title="2 of 4 branches missed.">		for (; i.hasNext() &amp;&amp; idx &lt;= index; idx++) {</span>
+<span class="fc" id="L84">			term = i.next();</span>
+<span class="fc bfc" id="L85" title="All 2 branches covered.">			if (idx == index) {</span>
+<span class="fc" id="L86">				return term;</span>
+			}
+		}
+<span class="nc" id="L89">		return term;</span>
 	}
 
 	public int hashCode() {
-<span class="fc" id="L86">		int result = 0;</span>
-<span class="fc" id="L87">		final int prime = 31;</span>
-<span class="pc bpc" id="L88" title="1 of 2 branches missed.">		result = prime * result + ((map == null) ? 0 : map.hashCode());</span>
-<span class="fc" id="L89">		return result;</span>
+<span class="fc" id="L93">		int result = 0;</span>
+<span class="fc" id="L94">		final int prime = 31;</span>
+<span class="pc bpc" id="L95" title="1 of 2 branches missed.">		result = prime * result + ((map == null) ? 0 : map.hashCode());</span>
+<span class="fc" id="L96">		return result;</span>
 	}
 
 	public boolean equals(Object obj) {
-<span class="fc bfc" id="L93" title="All 2 branches covered.">		if (this == obj)</span>
-<span class="fc" id="L94">			return true;</span>
-<span class="pc bpc" id="L95" title="1 of 2 branches missed.">		if (obj == null)</span>
-<span class="nc" id="L96">			return false;</span>
-<span class="fc bfc" id="L97" title="All 2 branches covered.">		if (getClass() != obj.getClass())</span>
-<span class="fc" id="L98">			return false;</span>
-<span class="fc" id="L99">		JLogMap other = (JLogMap) obj;</span>
-<span class="pc bpc" id="L100" title="1 of 2 branches missed.">		if (map == null) {</span>
-<span class="nc bnc" id="L101" title="All 2 branches missed.">			if (other.map != null)</span>
-<span class="nc" id="L102">				return false;</span>
-<span class="pc bpc" id="L103" title="1 of 2 branches missed.">		} else if (!map.equals(other.map)) {</span>
-<span class="nc" id="L104">			return false;</span>
+<span class="fc bfc" id="L100" title="All 2 branches covered.">		if (this == obj)</span>
+<span class="fc" id="L101">			return true;</span>
+<span class="pc bpc" id="L102" title="1 of 2 branches missed.">		if (obj == null)</span>
+<span class="nc" id="L103">			return false;</span>
+<span class="fc bfc" id="L104" title="All 2 branches covered.">		if (getClass() != obj.getClass())</span>
+<span class="fc" id="L105">			return false;</span>
+<span class="fc" id="L106">		JLogMap other = (JLogMap) obj;</span>
+<span class="pc bpc" id="L107" title="1 of 2 branches missed.">		if (map == null) {</span>
+<span class="nc bnc" id="L108" title="All 2 branches missed.">			if (other.map != null)</span>
+<span class="nc" id="L109">				return false;</span>
+<span class="pc bpc" id="L110" title="1 of 2 branches missed.">		} else if (!map.equals(other.map)) {</span>
+<span class="nc" id="L111">			return false;</span>
 		}
-<span class="fc" id="L106">		return true;</span>
+<span class="fc" id="L113">		return true;</span>
 	}
 
 	@Override
 	public String toString() {
-<span class="fc" id="L111">		StringBuilder b = new StringBuilder();</span>
-<span class="fc" id="L112">		Set&lt;Entry&lt;PrologTerm, PrologTerm&gt;&gt; set = entrySet();</span>
-<span class="fc" id="L113">		Iterator&lt;Entry&lt;PrologTerm, PrologTerm&gt;&gt; i = set.iterator();</span>
-<span class="fc" id="L114">		b.append('[');</span>
-<span class="fc bfc" id="L115" title="All 2 branches covered.">		while (i.hasNext()) {</span>
-<span class="fc" id="L116">			Entry&lt;PrologTerm, PrologTerm&gt; entry = i.next();</span>
-<span class="fc" id="L117">			b.append(entry.getKey());</span>
-<span class="fc" id="L118">			b.append('-');</span>
-<span class="fc" id="L119">			b.append(entry.getValue());</span>
-<span class="fc bfc" id="L120" title="All 2 branches covered.">			if (i.hasNext()) {</span>
-<span class="fc" id="L121">				b.append(',');</span>
-<span class="fc" id="L122">				b.append(' ');</span>
+<span class="fc" id="L118">		StringBuilder b = new StringBuilder();</span>
+<span class="fc" id="L119">		Set&lt;Entry&lt;PrologTerm, PrologTerm&gt;&gt; set = entrySet();</span>
+<span class="fc" id="L120">		Iterator&lt;Entry&lt;PrologTerm, PrologTerm&gt;&gt; i = set.iterator();</span>
+<span class="fc" id="L121">		b.append('[');</span>
+<span class="fc bfc" id="L122" title="All 2 branches covered.">		while (i.hasNext()) {</span>
+<span class="fc" id="L123">			Entry&lt;PrologTerm, PrologTerm&gt; entry = i.next();</span>
+<span class="fc" id="L124">			b.append(entry.getKey());</span>
+<span class="fc" id="L125">			b.append('-');</span>
+<span class="fc" id="L126">			b.append(entry.getValue());</span>
+<span class="fc bfc" id="L127" title="All 2 branches covered.">			if (i.hasNext()) {</span>
+<span class="fc" id="L128">				b.append(',');</span>
+<span class="fc" id="L129">				b.append(' ');</span>
 			}
-<span class="fc" id="L124">		}</span>
-<span class="fc" id="L125">		b.append(']');</span>
-<span class="fc" id="L126">		return &quot;&quot; + b + &quot;&quot;;</span>
+<span class="fc" id="L131">		}</span>
+<span class="fc" id="L132">		b.append(']');</span>
+<span class="fc" id="L133">		return &quot;&quot; + b + &quot;&quot;;</span>
 	}
 
 	@Override
 	public Iterator&lt;PrologTerm&gt; iterator() {
-<span class="fc" id="L131">		return new PrologMapIterator();</span>
+<span class="fc" id="L138">		return new PrologMapIterator();</span>
 	}
 
 	@Override
 	public PrologTerm getHead() {
-<span class="fc" id="L136">		return iterator().next();</span>
+<span class="fc" id="L143">		return iterator().next();</span>
 	}
 
 	@Override
 	public PrologTerm getTail() {
-<span class="fc" id="L141">		JLogMap m = new JLogMap(provider, map);</span>
-<span class="fc" id="L142">		m.remove(((Entry&lt;?, ?&gt;) getHead()).getKey());</span>
-<span class="fc" id="L143">		return m;</span>
+<span class="fc" id="L148">		JLogMap m = new JLogMap(provider, map);</span>
+<span class="fc" id="L149">		m.remove(((Entry&lt;?, ?&gt;) getHead()).getKey());</span>
+<span class="fc" id="L150">		return m;</span>
 	}
 
 	private class PrologMapIterator extends AbstractIterator&lt;PrologTerm&gt; implements Iterator&lt;PrologTerm&gt; {
@@ -148,107 +155,107 @@ public final class JLogMap extends JLogTerm implements PrologMap {
 		private final Set&lt;PrologTerm&gt; set;
 		private final Iterator&lt;PrologTerm&gt; itr;
 
-<span class="fc" id="L151">		private PrologMapIterator() {</span>
-<span class="fc" id="L152">			set = new LinkedHashSet&lt;PrologTerm&gt;(map.size());</span>
-<span class="fc bfc" id="L153" title="All 2 branches covered.">			for (Iterator&lt;Entry&lt;PrologTerm, PrologTerm&gt;&gt; i = map.entrySet().iterator(); i.hasNext();) {</span>
-<span class="fc" id="L154">				Entry&lt;PrologTerm, PrologTerm&gt; e = i.next();</span>
-<span class="fc" id="L155">				PrologTerm t = new JLogEntry(provider, e.getKey(), e.getValue());</span>
-<span class="fc" id="L156">				set.add(t);</span>
-<span class="fc" id="L157">			}</span>
-<span class="fc" id="L158">			itr = set.iterator();</span>
-<span class="fc" id="L159">		}</span>
+<span class="fc" id="L158">		private PrologMapIterator() {</span>
+<span class="fc" id="L159">			set = new LinkedHashSet&lt;PrologTerm&gt;(map.size());</span>
+<span class="fc bfc" id="L160" title="All 2 branches covered.">			for (Iterator&lt;Entry&lt;PrologTerm, PrologTerm&gt;&gt; i = map.entrySet().iterator(); i.hasNext();) {</span>
+<span class="fc" id="L161">				Entry&lt;PrologTerm, PrologTerm&gt; e = i.next();</span>
+<span class="fc" id="L162">				PrologTerm t = new JLogEntry(provider, e.getKey(), e.getValue());</span>
+<span class="fc" id="L163">				set.add(t);</span>
+<span class="fc" id="L164">			}</span>
+<span class="fc" id="L165">			itr = set.iterator();</span>
+<span class="fc" id="L166">		}</span>
 
 		@Override
 		public boolean hasNext() {
-<span class="nc" id="L163">			return itr.hasNext();</span>
+<span class="fc" id="L170">			return itr.hasNext();</span>
 		}
 
 		@Override
 		public PrologTerm next() {
-<span class="fc" id="L168">			return itr.next();</span>
+<span class="fc" id="L175">			return itr.next();</span>
 		}
 
 	}
 
 	public PrologTerm put(PrologTerm key, PrologTerm value) {
-<span class="fc" id="L174">		return map.put(key, value);</span>
+<span class="fc" id="L181">		return map.put(key, value);</span>
 	}
 
 	public Set&lt;Entry&lt;PrologTerm, PrologTerm&gt;&gt; entrySet() {
-<span class="fc" id="L178">		return map.entrySet();</span>
+<span class="fc" id="L185">		return map.entrySet();</span>
 	}
 
 	@Override
 	public boolean containsKey(Object key) {
-<span class="fc" id="L183">		return map.containsKey(key);</span>
+<span class="fc" id="L190">		return map.containsKey(key);</span>
 	}
 
 	@Override
 	public boolean containsValue(Object value) {
-<span class="fc" id="L188">		return map.containsValue(value);</span>
+<span class="fc" id="L195">		return map.containsValue(value);</span>
 	}
 
 	@Override
 	public PrologTerm get(Object key) {
-<span class="fc" id="L193">		return map.get(key);</span>
+<span class="fc" id="L200">		return map.get(key);</span>
 	}
 
 	@Override
 	public PrologTerm remove(Object key) {
-<span class="fc" id="L198">		return map.remove(key);</span>
+<span class="fc" id="L205">		return map.remove(key);</span>
 	}
 
 	@Override
 	public void putAll(Map&lt;? extends PrologTerm, ? extends PrologTerm&gt; m) {
-<span class="fc" id="L203">		map.putAll(m);</span>
-<span class="fc" id="L204">	}</span>
+<span class="fc" id="L210">		map.putAll(m);</span>
+<span class="fc" id="L211">	}</span>
 
 	@Override
 	public Set&lt;PrologTerm&gt; keySet() {
-<span class="fc" id="L208">		return map.keySet();</span>
+<span class="fc" id="L215">		return map.keySet();</span>
 	}
 
 	@Override
 	public Collection&lt;PrologTerm&gt; values() {
-<span class="fc" id="L213">		return map.values();</span>
+<span class="fc" id="L220">		return map.values();</span>
 	}
 
 	@Override
 	public boolean isEmpty() {
-<span class="fc" id="L218">		return map.isEmpty();</span>
+<span class="fc" id="L225">		return map.isEmpty();</span>
 	}
 
 	@Override
 	public void clear() {
-<span class="fc" id="L223">		map.clear();</span>
-<span class="fc" id="L224">	}</span>
+<span class="fc" id="L230">		map.clear();</span>
+<span class="fc" id="L231">	}</span>
 
 	@Override
 	public int size() {
-<span class="fc" id="L228">		return map.size();</span>
+<span class="fc" id="L235">		return map.size();</span>
 	}
 
 	@Override
 	public int getArity() {
-<span class="pc bpc" id="L233" title="1 of 2 branches missed.">		if (map.size() &gt; 0) {</span>
-<span class="nc" id="L234">			return 2;</span>
+<span class="pc bpc" id="L240" title="1 of 2 branches missed.">		if (map.size() &gt; 0) {</span>
+<span class="nc" id="L241">			return 2;</span>
 		}
-<span class="fc" id="L236">		return 0;</span>
+<span class="fc" id="L243">		return 0;</span>
 	}
 
 	@Override
 	public PrologTerm getTerm() {
-<span class="fc" id="L241">		return this;</span>
+<span class="fc" id="L248">		return this;</span>
 	}
 
 	@Override
 	public boolean isEvaluable() {
-<span class="fc" id="L246">		return false;</span>
+<span class="fc" id="L253">		return false;</span>
 	}
 
 	@Override
 	public boolean isCompound() {
-<span class="fc" id="L251">		return true;</span>
+<span class="fc" id="L258">		return true;</span>
 	}
 
 }
