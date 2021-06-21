@@ -76,10 +76,17 @@ public final class JLogMap extends JLogTerm implements PrologMap {
 	}
 
 	public PrologTerm getArgument(int index) {
-		// TODO Optimize
-		PrologTerm[] array = getArguments();
-		checkIndex(index, array.length);
-		return array[index];
+		int idx = 0;
+		PrologTerm term = null;
+		checkIndex(index, size());
+		Iterator<PrologTerm> i = iterator();
+		for (; i.hasNext() && idx <= index; idx++) {
+			term = i.next();
+			if (idx == index) {
+				return term;
+			}
+		}
+		return term;
 	}
 
 	public int hashCode() {
