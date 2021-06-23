@@ -342,7 +342,7 @@ abstract class JLogTerm extends AbstractTerm implements PrologTerm {
 	 * 
 	 * @return true if Variable and bound.
 	 */
-	private final boolean isVariableBound() {
+	public final boolean isVariableBound() {
 		return isVariable() && vValue != null;
 	}
 
@@ -352,7 +352,7 @@ abstract class JLogTerm extends AbstractTerm implements PrologTerm {
 	 * 
 	 * @return true if Variable and not bound.
 	 */
-	private final boolean isVariableNotBound() {
+	public final boolean isVariableNotBound() {
 		return isVariable() && vValue == null;
 	}
 

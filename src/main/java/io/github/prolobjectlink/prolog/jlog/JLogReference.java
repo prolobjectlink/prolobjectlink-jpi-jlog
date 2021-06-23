@@ -39,6 +39,11 @@ public class JLogReference extends JLogTerm implements PrologReference {
 		super(OBJECT_TYPE, provider, new jObject(reference));
 	}
 
+	@Override
+	public Class<?> getReferenceType() {
+		return getObject().getClass();
+	}
+
 	public int getArity() {
 		return 0;
 	}
