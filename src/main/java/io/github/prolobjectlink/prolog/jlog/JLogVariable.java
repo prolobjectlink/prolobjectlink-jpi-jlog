@@ -28,6 +28,7 @@ import io.github.prolobjectlink.prolog.FunctorError;
 import io.github.prolobjectlink.prolog.PrologProvider;
 import io.github.prolobjectlink.prolog.PrologTerm;
 import io.github.prolobjectlink.prolog.PrologVariable;
+import ubc.cs.JLog.Terms.jTerm;
 import ubc.cs.JLog.Terms.jVariable;
 
 /**
@@ -43,6 +44,18 @@ class JLogVariable extends JLogTerm implements PrologVariable {
 
 	JLogVariable(PrologProvider provider, String name) {
 		super(VARIABLE_TYPE, provider, name, vIdexer++);
+	}
+
+	JLogVariable(int type, PrologProvider provider) {
+		super(type, provider);
+	}
+
+	JLogVariable(int type, PrologProvider provider, String name) {
+		super(type, provider, new jVariable(name));
+	}
+
+	JLogVariable(int type, PrologProvider provider, jTerm var) {
+		super(type, provider, var);
 	}
 
 	public boolean isAnonymous() {
