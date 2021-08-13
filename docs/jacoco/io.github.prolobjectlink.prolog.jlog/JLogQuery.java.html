@@ -50,7 +50,7 @@ final class JLogQuery extends AbstractQuery implements PrologQuery {
 
 	private Map&lt;?, ?&gt; solution;
 	private jPrologAPI jlogApi;
-<span class="pc" id="L53">	private jVariableVector vector = new jVariableVector();</span>
+<span class="fc" id="L53">	private jVariableVector vector = new jVariableVector();</span>
 
 	private static final String PROLOG_EXCEPTION = &quot;PrologException&quot;;
 	private static final String JAVA_EXCEPTION = &quot;JavaException&quot;;
@@ -119,28 +119,28 @@ final class JLogQuery extends AbstractQuery implements PrologQuery {
 <span class="fc" id="L119">	}</span>
 
 	protected JLogQuery(AbstractEngine engine, PrologTerm[] terms) {
-<span class="nc" id="L122">		super(engine);</span>
+<span class="fc" id="L122">		super(engine);</span>
 
-<span class="nc bnc" id="L124" title="All 4 branches missed.">		if (terms != null &amp;&amp; terms.length &gt; 0) {</span>
+<span class="pc bpc" id="L124" title="1 of 4 branches missed.">		if (terms != null &amp;&amp; terms.length &gt; 0) {</span>
 
-<span class="nc" id="L126">			String str = Arrays.toString(terms).substring(1);</span>
-<span class="nc" id="L127">			str = str.substring(0, str.length() - 1) + '.';</span>
+<span class="fc" id="L126">			String str = Arrays.toString(terms).substring(1);</span>
+<span class="fc" id="L127">			str = str.substring(0, str.length() - 1) + '.';</span>
 
 			// saving variable order
-<span class="nc" id="L130">			str = JLogUtil.rectify(str);</span>
-<span class="nc" id="L131">			JLogEngine pe = (JLogEngine) engine;</span>
-<span class="nc" id="L132">			jKnowledgeBase kb = pe.engine.getKnowledgeBase();</span>
-<span class="nc" id="L133">			pOperatorRegistry or = pe.engine.getOperatorRegistry();</span>
-<span class="nc" id="L134">			pPredicateRegistry pr = pe.engine.getPredicateRegistry();</span>
-<span class="nc" id="L135">			pParseStream parser = new pParseStream(str, kb, pr, or);</span>
-<span class="nc" id="L136">			jPredicateTerms jpts = parser.parseQuery();</span>
-<span class="nc" id="L137">			jpts.enumerateVariables(vector, true);</span>
+<span class="fc" id="L130">			str = JLogUtil.rectify(str);</span>
+<span class="fc" id="L131">			JLogEngine pe = (JLogEngine) engine;</span>
+<span class="fc" id="L132">			jKnowledgeBase kb = pe.engine.getKnowledgeBase();</span>
+<span class="fc" id="L133">			pOperatorRegistry or = pe.engine.getOperatorRegistry();</span>
+<span class="fc" id="L134">			pPredicateRegistry pr = pe.engine.getPredicateRegistry();</span>
+<span class="fc" id="L135">			pParseStream parser = new pParseStream(str, kb, pr, or);</span>
+<span class="fc" id="L136">			jPredicateTerms jpts = parser.parseQuery();</span>
+<span class="fc" id="L137">			jpts.enumerateVariables(vector, true);</span>
 
 			// adapt program to string
-<span class="nc" id="L140">			String source = JLogUtil.toString(pe.engine);</span>
-<span class="nc" id="L141">			jlogApi = new jPrologAPI(source);</span>
+<span class="fc" id="L140">			String source = JLogUtil.toString(pe.engine);</span>
+<span class="fc" id="L141">			jlogApi = new jPrologAPI(source);</span>
 			try {
-<span class="nc" id="L143">				solution = jlogApi.query(str);</span>
+<span class="fc" id="L143">				solution = jlogApi.query(str);</span>
 <span class="nc" id="L144">			} catch (Exception e) {</span>
 <span class="nc" id="L145">				solution = null;</span>
 				// getLogger().error(getClass(), PrologLogger.RUNTIME_ERROR, e)
@@ -149,11 +149,11 @@ final class JLogQuery extends AbstractQuery implements PrologQuery {
 <span class="nc" id="L149">				m.put(PROLOG_EXCEPTION, prologexception);</span>
 <span class="nc" id="L150">				m.put(JAVA_EXCEPTION, prologexception);</span>
 <span class="nc" id="L151">				solution = m;</span>
-<span class="nc" id="L152">			}</span>
+<span class="fc" id="L152">			}</span>
 
 		}
 
-<span class="nc" id="L156">	}</span>
+<span class="fc" id="L156">	}</span>
 
 	protected JLogQuery(AbstractEngine engine, PrologTerm term, PrologTerm[] terms) {
 <span class="fc" id="L159">		super(engine);</span>
