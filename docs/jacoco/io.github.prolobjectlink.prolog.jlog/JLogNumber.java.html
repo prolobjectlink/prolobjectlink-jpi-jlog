@@ -39,31 +39,31 @@ import ubc.cs.JLog.Terms.jTerm;
 abstract class JLogNumber extends JLogTerm implements PrologNumber {
 
 	protected JLogNumber(int type, PrologProvider provider, jTerm value) {
-<span class="nc" id="L42">		super(type, provider, value);</span>
-<span class="nc" id="L43">	}</span>
+<span class="fc" id="L42">		super(type, provider, value);</span>
+<span class="fc" id="L43">	}</span>
 
 	public final PrologInteger getPrologInteger() {
-<span class="nc" id="L46">		return new JLogInteger(provider, getIntegerValue());</span>
+<span class="fc" id="L46">		return new JLogInteger(provider, getIntegerValue());</span>
 	}
 
 	public final PrologFloat getPrologFloat() {
-<span class="nc" id="L50">		return new JLogFloat(provider, getFloatValue());</span>
+<span class="fc" id="L50">		return new JLogFloat(provider, getFloatValue());</span>
 	}
 
 	public final PrologDouble getPrologDouble() {
-<span class="nc" id="L54">		return new JLogDouble(provider, getDoubleValue());</span>
+<span class="fc" id="L54">		return new JLogDouble(provider, getDoubleValue());</span>
 	}
 
 	public final PrologLong getPrologLong() {
-<span class="nc" id="L58">		return new JLogLong(provider, getLongValue());</span>
+<span class="fc" id="L58">		return new JLogLong(provider, getLongValue());</span>
 	}
 
 	public final int getArity() {
-<span class="nc" id="L62">		throw new ArityError(this);</span>
+<span class="fc" id="L62">		throw new ArityError(this);</span>
 	}
 
 	public final String getFunctor() {
-<span class="nc" id="L66">		throw new FunctorError(this);</span>
+<span class="fc" id="L66">		throw new FunctorError(this);</span>
 	}
 
 }
