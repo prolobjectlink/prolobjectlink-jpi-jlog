@@ -294,4 +294,9 @@ class JLogConverter extends AbstractConverter<jTerm> implements PrologConverter<
 		return equivalence.equals(other.equivalence);
 	}
 
+	@Override
+	public String toString() {
+		return "JLogConverter";
+	}
+
 }

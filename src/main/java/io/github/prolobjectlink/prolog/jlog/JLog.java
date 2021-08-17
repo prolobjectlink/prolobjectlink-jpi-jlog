@@ -315,7 +315,7 @@ public class JLog extends AbstractProvider implements PrologProvider {
 
 	@Override
 	public String toString() {
-		return "JLogProvider [converter=" + converter + "]";
+		return "JLog [converter=" + converter + "]";
 	}
 
 	@Override
