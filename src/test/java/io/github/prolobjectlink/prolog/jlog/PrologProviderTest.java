@@ -300,7 +300,7 @@ public class PrologProviderTest extends PrologBaseTest {
 	public void testNewEntryObjectObject() {
 		PrologTerm entry = provider.newEntry("X", "elephant");
 		PrologEntry e = entry.cast();
-		assertEquals(x, e.getKey());
+		assertEquals(provider.newAtom("X"), e.getKey());
 		assertEquals(elephant, e.getValue());
 	}
 
@@ -552,8 +552,8 @@ public class PrologProviderTest extends PrologBaseTest {
 		assertEquals(new ArrayList<ArrayList<Object>>(), provider.newThread().get());
 
 		// true query
-		assertEquals(new ArrayList<ArrayList<Object>>(), provider.newThread(assertion, atomCheck).call());
-		assertEquals(new ArrayList<ArrayList<Object>>(), provider.newThread(assertion, atomCheck).get());
+		assertEquals(Arrays.asList(Arrays.asList()), provider.newThread(assertion, atomCheck).call());
+		assertEquals(Arrays.asList(Arrays.asList()), provider.newThread(assertion, atomCheck).get());
 
 	}
 
@@ -572,9 +572,8 @@ public class PrologProviderTest extends PrologBaseTest {
 		assertEquals(new ArrayList<ArrayList<Object>>(), provider.newThread("Bifurcation").get());
 
 		// true query
-		assertEquals(new ArrayList<ArrayList<Object>>(),
-				provider.newThread("Bifurcation", assertion, atomCheck).call());
-		assertEquals(new ArrayList<ArrayList<Object>>(), provider.newThread("Bifurcation", assertion, atomCheck).get());
+		assertEquals(Arrays.asList(Arrays.asList()), provider.newThread("Bifurcation", assertion, atomCheck).call());
+		assertEquals(Arrays.asList(Arrays.asList()), provider.newThread("Bifurcation", assertion, atomCheck).get());
 
 	}
 

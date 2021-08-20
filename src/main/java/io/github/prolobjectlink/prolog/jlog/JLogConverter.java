@@ -68,6 +68,7 @@ import ubc.cs.JLog.Terms.jPredicateTerms;
 import ubc.cs.JLog.Terms.jReal;
 import ubc.cs.JLog.Terms.jTerm;
 import ubc.cs.JLog.Terms.jTrue;
+import ubc.cs.JLog.Terms.jUnaryBuiltinPredicate;
 import ubc.cs.JLog.Terms.jVariable;
 
 /**
@@ -150,6 +151,9 @@ class JLogConverter extends AbstractConverter<jTerm> implements PrologConverter<
 			return new JLogList(provider, arguments.toArray(array));
 		case jTerm.TYPE_OBJECT:
 			return new JLogReference(provider, prologTerm);
+		case jTerm.TYPE_TYPE:
+			jUnaryBuiltinPredicate unary=(jUnaryBuiltinPredicate) prologTerm;
+			return new JLogStructure(provider, unary.getName(), unary.getRHS());
 		case jTerm.TYPE_COMPARE:
 		case jTerm.TYPE_OPERATOR:
 		case jTerm.TYPE_ARITHMETIC:
