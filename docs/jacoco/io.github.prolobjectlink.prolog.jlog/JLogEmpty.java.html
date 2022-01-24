@@ -34,22 +34,22 @@ import ubc.cs.JLog.Terms.jNullList;
 class JLogEmpty extends JLogList implements PrologList {
 
 	protected JLogEmpty(PrologProvider provider) {
-<span class="fc" id="L37">		super(provider);</span>
-<span class="fc" id="L38">	}</span>
+<span class="nc" id="L37">		super(provider);</span>
+<span class="nc" id="L38">	}</span>
 
 	@Override
 	public PrologTerm[] getArguments() {
-<span class="fc" id="L42">		return new PrologTerm[0];</span>
+<span class="nc" id="L42">		return new PrologTerm[0];</span>
 	}
 
 	@Override
 	public int getArity() {
-<span class="fc" id="L47">		return 0;</span>
+<span class="nc" id="L47">		return 0;</span>
 	}
 
 	@Override
 	public String getFunctor() {
-<span class="fc" id="L52">		return ((jNullList) value).getName();</span>
+<span class="nc" id="L52">		return ((jNullList) value).getName();</span>
 	}
 
 }

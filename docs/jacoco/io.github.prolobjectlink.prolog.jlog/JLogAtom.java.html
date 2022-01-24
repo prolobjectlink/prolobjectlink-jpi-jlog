@@ -36,27 +36,27 @@ import ubc.cs.JLog.Terms.jAtom;
 final class JLogAtom extends JLogTerm implements PrologAtom {
 
 	JLogAtom(PrologProvider provider, String value) {
-<span class="fc" id="L39">		super(ATOM_TYPE, provider, new jAtom(value));</span>
-<span class="fc" id="L40">	}</span>
+<span class="nc" id="L39">		super(ATOM_TYPE, provider, new jAtom(value));</span>
+<span class="nc" id="L40">	}</span>
 
 	public String getStringValue() {
-<span class="fc" id="L43">		return getFunctor();</span>
+<span class="nc" id="L43">		return getFunctor();</span>
 	}
 
 	public void setStringValue(String value) {
-<span class="fc" id="L47">		this.value = new jAtom(value);</span>
-<span class="fc" id="L48">	}</span>
+<span class="nc" id="L47">		this.value = new jAtom(value);</span>
+<span class="nc" id="L48">	}</span>
 
 	public PrologTerm[] getArguments() {
-<span class="fc" id="L51">		return new JLogAtom[0];</span>
+<span class="nc" id="L51">		return new JLogAtom[0];</span>
 	}
 
 	public int getArity() {
-<span class="fc" id="L55">		return 0;</span>
+<span class="nc" id="L55">		return 0;</span>
 	}
 
 	public String getFunctor() {
-<span class="fc" id="L59">		return &quot;&quot; + value + &quot;&quot;;</span>
+<span class="nc" id="L59">		return &quot;&quot; + value + &quot;&quot;;</span>
 	}
 
 }

@@ -35,9 +35,9 @@ public class JLogField extends JLogVariable implements PrologField {
 <span class="nc" id="L35">	}</span>
 
 	JLogField(PrologProvider provider, PrologTerm name) {
-<span class="fc" id="L38">		super(PrologTermType.FIELD_TYPE, provider);</span>
-<span class="fc" id="L39">		this.value = new jVariable(((PrologVariable) name).getName());</span>
-<span class="fc" id="L40">	}</span>
+<span class="nc" id="L38">		super(PrologTermType.FIELD_TYPE, provider);</span>
+<span class="nc" id="L39">		this.value = new jVariable(((PrologVariable) name).getName());</span>
+<span class="nc" id="L40">	}</span>
 
 	JLogField(PrologProvider provider, int position) {
 <span class="nc" id="L43">		super(PrologTermType.FIELD_TYPE, provider, new jVariable());</span>

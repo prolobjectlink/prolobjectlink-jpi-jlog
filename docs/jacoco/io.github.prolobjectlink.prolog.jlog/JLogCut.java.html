@@ -34,22 +34,22 @@ import ubc.cs.JLog.Builtins.jCut;
  */
 class JLogCut extends JLogTerm implements PrologTerm {
 
-<span class="fc" id="L37">	static final jCut JCUT = new jCut();</span>
+<span class="nc" id="L37">	static final jCut JCUT = new jCut();</span>
 
 	protected JLogCut(PrologProvider provider) {
-<span class="fc" id="L40">		super(CUT_TYPE, provider, JCUT);</span>
-<span class="fc" id="L41">	}</span>
+<span class="nc" id="L40">		super(CUT_TYPE, provider, JCUT);</span>
+<span class="nc" id="L41">	}</span>
 
 	public PrologTerm[] getArguments() {
-<span class="fc" id="L44">		return new PrologTerm[0];</span>
+<span class="nc" id="L44">		return new PrologTerm[0];</span>
 	}
 
 	public int getArity() {
-<span class="fc" id="L48">		return 0;</span>
+<span class="nc" id="L48">		return 0;</span>
 	}
 
 	public String getFunctor() {
-<span class="fc" id="L52">		return &quot;&quot; + value + &quot;&quot;;</span>
+<span class="nc" id="L52">		return &quot;&quot; + value + &quot;&quot;;</span>
 	}
 
 }

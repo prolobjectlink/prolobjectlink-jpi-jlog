@@ -36,8 +36,8 @@ public class JLogReference extends JLogTerm implements PrologReference {
 <span class="nc" id="L36">	}</span>
 
 	JLogReference(PrologProvider provider, Object reference) {
-<span class="fc" id="L39">		super(OBJECT_TYPE, provider, new jObject(reference));</span>
-<span class="fc" id="L40">	}</span>
+<span class="nc" id="L39">		super(OBJECT_TYPE, provider, new jObject(reference));</span>
+<span class="nc" id="L40">	}</span>
 
 	@Override
 	public Class&lt;?&gt; getReferenceType() {
@@ -45,26 +45,26 @@ public class JLogReference extends JLogTerm implements PrologReference {
 	}
 
 	public int getArity() {
-<span class="fc" id="L48">		return 0;</span>
+<span class="nc" id="L48">		return 0;</span>
 	}
 
 	public String getFunctor() {
-<span class="fc" id="L52">		jObject object = (jObject) value;</span>
-<span class="fc" id="L53">		return object.getName();</span>
+<span class="nc" id="L52">		jObject object = (jObject) value;</span>
+<span class="nc" id="L53">		return object.getName();</span>
 	}
 
 	public PrologTerm[] getArguments() {
-<span class="fc" id="L57">		return new PrologTerm[0];</span>
+<span class="nc" id="L57">		return new PrologTerm[0];</span>
 	}
 
 	public Object getObject() {
-<span class="fc" id="L61">		jObject object = (jObject) value;</span>
-<span class="fc" id="L62">		return object.getObjectReference();</span>
+<span class="nc" id="L61">		jObject object = (jObject) value;</span>
+<span class="nc" id="L62">		return object.getObjectReference();</span>
 	}
 
 	public PrologTerm getTerm() {
-<span class="fc" id="L66">		String tag = &quot;&quot; + getObject() + &quot;&quot;;</span>
-<span class="fc" id="L67">		return provider.newAtom(tag);</span>
+<span class="nc" id="L66">		String tag = &quot;&quot; + getObject() + &quot;&quot;;</span>
+<span class="nc" id="L67">		return provider.newAtom(tag);</span>
 	}
 
 }
