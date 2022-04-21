@@ -34,15 +34,15 @@ import io.github.prolobjectlink.prolog.PrologProvider;
 final class JLogDouble extends JLogFloat implements PrologDouble {
 
 	JLogDouble(PrologProvider provider, Number value) {
-<span class="nc" id="L37">		super(DOUBLE_TYPE, provider, new jDouble(value.doubleValue()));</span>
-<span class="nc" id="L38">	}</span>
+<span class="fc" id="L37">		super(DOUBLE_TYPE, provider, new jDouble(value.doubleValue()));</span>
+<span class="fc" id="L38">	}</span>
 
 	public final double getDoubleValue() {
-<span class="nc" id="L41">		return ((jDouble) value).getRealValue();</span>
+<span class="fc" id="L41">		return ((jDouble) value).getRealValue();</span>
 	}
 
 	public float getFloatValue() {
-<span class="nc" id="L45">		return (float) getDoubleValue();</span>
+<span class="fc" id="L45">		return (float) getDoubleValue();</span>
 	}
 
 }

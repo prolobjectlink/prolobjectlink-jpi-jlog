@@ -22,15 +22,23 @@
 package io.github.prolobjectlink.prolog.jlog;
 
 import static io.github.prolobjectlink.prolog.PrologTermType.ATOM_TYPE;
+import static io.github.prolobjectlink.prolog.PrologTermType.CLASS_TYPE;
 import static io.github.prolobjectlink.prolog.PrologTermType.CUT_TYPE;
 import static io.github.prolobjectlink.prolog.PrologTermType.DOUBLE_TYPE;
 import static io.github.prolobjectlink.prolog.PrologTermType.FAIL_TYPE;
 import static io.github.prolobjectlink.prolog.PrologTermType.FALSE_TYPE;
+import static io.github.prolobjectlink.prolog.PrologTermType.FIELD_TYPE;
 import static io.github.prolobjectlink.prolog.PrologTermType.FLOAT_TYPE;
 import static io.github.prolobjectlink.prolog.PrologTermType.INTEGER_TYPE;
 import static io.github.prolobjectlink.prolog.PrologTermType.LIST_TYPE;
 import static io.github.prolobjectlink.prolog.PrologTermType.LONG_TYPE;
+import static io.github.prolobjectlink.prolog.PrologTermType.MAP_ENTRY_TYPE;
+import static io.github.prolobjectlink.prolog.PrologTermType.MAP_TYPE;
+import static io.github.prolobjectlink.prolog.PrologTermType.MIXIN_TYPE;
 import static io.github.prolobjectlink.prolog.PrologTermType.NIL_TYPE;
+import static io.github.prolobjectlink.prolog.PrologTermType.OBJECT_TYPE;
+import static io.github.prolobjectlink.prolog.PrologTermType.PARAMETER_TYPE;
+import static io.github.prolobjectlink.prolog.PrologTermType.RESULT_TYPE;
 import static io.github.prolobjectlink.prolog.PrologTermType.STRUCTURE_TYPE;
 import static io.github.prolobjectlink.prolog.PrologTermType.TRUE_TYPE;
 import static io.github.prolobjectlink.prolog.PrologTermType.VARIABLE_TYPE;
@@ -63,6 +71,7 @@ import ubc.cs.JLog.Terms.jInteger;
 import ubc.cs.JLog.Terms.jList;
 import ubc.cs.JLog.Terms.jListPair;
 import ubc.cs.JLog.Terms.jNullList;
+import ubc.cs.JLog.Terms.jObject;
 import ubc.cs.JLog.Terms.jPredicate;
 import ubc.cs.JLog.Terms.jPredicateTerms;
 import ubc.cs.JLog.Terms.jReal;
@@ -152,7 +161,7 @@ class JLogConverter extends AbstractConverter<jTerm> implements PrologConverter<
 		case jTerm.TYPE_OBJECT:
 			return new JLogReference(provider, prologTerm);
 		case jTerm.TYPE_TYPE:
-			jUnaryBuiltinPredicate unary=(jUnaryBuiltinPredicate) prologTerm;
+			jUnaryBuiltinPredicate unary = (jUnaryBuiltinPredicate) prologTerm;
 			return new JLogStructure(provider, unary.getName(), unary.getRHS());
 		case jTerm.TYPE_COMPARE:
 		case jTerm.TYPE_OPERATOR:
@@ -234,11 +243,25 @@ class JLogConverter extends AbstractConverter<jTerm> implements PrologConverter<
 			}
 			return variable;
 		case LIST_TYPE:
+		case MAP_TYPE:
 			PrologTerm[] arguments = ((PrologList) term).getArguments();
 			return adaptList(arguments);
 		case STRUCTURE_TYPE:
+		case MAP_ENTRY_TYPE:
 			String functor = term.getFunctor();
 			arguments = ((PrologStructure) term).getArguments();
+			return new jPredicate(functor, adaptCompound(arguments));
+		case OBJECT_TYPE:
+			return new jObject(term.getObject());
+		case PARAMETER_TYPE:
+		case RESULT_TYPE:
+		case FIELD_TYPE:
+			name = ((PrologVariable) term).getName();
+			return new jVariable(name);
+		case MIXIN_TYPE:
+		case CLASS_TYPE:
+			arguments = term.getArguments();
+			functor = removeQuoted(term.getFunctor());
 			return new jPredicate(functor, adaptCompound(arguments));
 		default:
 			throw new UnknownTermError(term);

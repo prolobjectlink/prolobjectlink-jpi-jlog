@@ -39,10 +39,10 @@ import ubc.cs.JLog.Terms.jVariable;
 
 	private double value;
 
-<span class="nc" id="L42">	 jDouble(double v) {</span>
-<span class="nc" id="L43">		value = v;</span>
-<span class="nc" id="L44">		type = TYPE_REAL;</span>
-<span class="nc" id="L45">	}</span>
+<span class="fc" id="L42">	 jDouble(double v) {</span>
+<span class="fc" id="L43">		value = v;</span>
+<span class="fc" id="L44">		type = TYPE_REAL;</span>
+<span class="fc" id="L45">	}</span>
 
 	@Override
 	public String getName() {
@@ -50,7 +50,7 @@ import ubc.cs.JLog.Terms.jVariable;
 	}
 
 	public double getRealValue() {
-<span class="nc" id="L53">		return value;</span>
+<span class="fc" id="L53">		return value;</span>
 	}
 
 	protected int compare(jTerm term, boolean firstCall, boolean varEqual) {
@@ -80,19 +80,19 @@ import ubc.cs.JLog.Terms.jVariable;
 	}
 
 	public boolean equivalence(jTerm term, jEquivalenceMapping v) {
-<span class="nc" id="L83">		jTerm t = term.getTerm();</span>
+<span class="fc" id="L83">		jTerm t = term.getTerm();</span>
 
 		// many real may be same instances
-<span class="nc bnc" id="L86" title="All 2 branches missed.">		if (this == t)</span>
+<span class="pc bpc" id="L86" title="1 of 2 branches missed.">		if (this == t)</span>
 <span class="nc" id="L87">			return true;</span>
 
-<span class="nc bnc" id="L89" title="All 2 branches missed.">		if (type != t.type)</span>
+<span class="pc bpc" id="L89" title="1 of 2 branches missed.">		if (type != t.type)</span>
 <span class="nc" id="L90">			return false;</span>
 
 		// altough we cannot be certain that term is a jReal, if it is not then type was
 		// wrong
 		// so this warrents a failing exception.
-<span class="nc bnc" id="L95" title="All 2 branches missed.">		return (value == ((jDouble) t).value);</span>
+<span class="fc bfc" id="L95" title="All 2 branches covered.">		return (value == ((jDouble) t).value);</span>
 	}
 
 	public boolean unify(jTerm term, jUnifiedVector v) {
@@ -130,7 +130,7 @@ import ubc.cs.JLog.Terms.jVariable;
 	}
 
 	public String toString(boolean usename) {
-<span class="nc" id="L133">		return String.valueOf(value);</span>
+<span class="fc" id="L133">		return String.valueOf(value);</span>
 	}
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>

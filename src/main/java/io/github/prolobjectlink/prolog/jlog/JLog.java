@@ -251,60 +251,6 @@ public class JLog extends AbstractProvider implements PrologProvider {
 		return newReference(void.class);
 	}
 
-	public PrologTerm newField(PrologTerm name) {
-		return new JLogField(this, name);
-	}
-
-	public PrologTerm newField(String name) {
-		return new JLogField(this, name);
-	}
-
-	public PrologTerm newField(PrologTerm name, PrologTerm type) {
-		return new JLogTypedField(this, name, type);
-	}
-
-	public PrologTerm newField(String name, String type) {
-		PrologTerm oname = newVariable(name, 0);
-		PrologTerm otype = newVariable(type, 1);
-		return new JLogTypedField(this, oname, otype);
-	}
-
-	public PrologTerm newResult(PrologTerm name) {
-		return new JLogResult(this, name);
-	}
-
-	public PrologTerm newResult(String name) {
-		return new JLogResult(this, name);
-	}
-
-	public PrologTerm newResult(PrologTerm name, PrologTerm type) {
-		return new JLogTypedResult(this, name, type);
-	}
-
-	public PrologTerm newResult(String name, String type) {
-		PrologTerm oname = newVariable(name, 0);
-		PrologTerm otype = newVariable(type, 1);
-		return new JLogTypedResult(this, oname, otype);
-	}
-
-	public PrologTerm newParameter(PrologTerm name) {
-		return new JLogParameter(this, name);
-	}
-
-	public PrologTerm newParameter(String name) {
-		return new JLogParameter(this, name);
-	}
-
-	public PrologTerm newParameter(PrologTerm name, PrologTerm type) {
-		return new JLogTypedParameter(this, name, type);
-	}
-
-	public PrologTerm newParameter(String name, String type) {
-		PrologTerm oname = newVariable(name, 0);
-		PrologTerm otype = newVariable(type, 1);
-		return new JLogTypedParameter(this, oname, otype);
-	}
-
 	public PrologJavaConverter getJavaConverter() {
 		return new JLogJavaConverter(this);
 	}

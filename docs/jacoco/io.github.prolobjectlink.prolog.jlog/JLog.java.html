@@ -59,52 +59,52 @@ import ubc.cs.JLog.Terms.jTerm;
  */
 public class JLog extends AbstractProvider implements PrologProvider {
 
-<span class="nc" id="L62">	private final jKnowledgeBase kb = new jKnowledgeBase();</span>
-<span class="nc" id="L63">	private final pOperatorRegistry or = new pOperatorRegistry();</span>
-<span class="nc" id="L64">	private final pPredicateRegistry pr = new pPredicateRegistry();</span>
-<span class="nc" id="L65">	private final jPrologServices prolog = new jPrologServices(kb, pr, or);</span>
+<span class="fc" id="L62">	private final jKnowledgeBase kb = new jKnowledgeBase();</span>
+<span class="fc" id="L63">	private final pOperatorRegistry or = new pOperatorRegistry();</span>
+<span class="fc" id="L64">	private final pPredicateRegistry pr = new pPredicateRegistry();</span>
+<span class="fc" id="L65">	private final jPrologServices prolog = new jPrologServices(kb, pr, or);</span>
 
 	private static final String DOT = &quot;.&quot;;
 	private static final String BUILT_INS = &quot;builtins&quot;;
-<span class="nc" id="L69">	private static final PrologLogger logger = new JLogLogger();</span>
-<span class="nc" id="L70">	protected static final Map&lt;String, String&gt; FUNCTORS = new HashMap&lt;String, String&gt;();</span>
+<span class="fc" id="L69">	private static final PrologLogger logger = new JLogLogger();</span>
+<span class="fc" id="L70">	protected static final Map&lt;String, String&gt; FUNCTORS = new HashMap&lt;String, String&gt;();</span>
 
 	public JLog() {
-<span class="nc" id="L73">		this(new JLogConverter());</span>
-<span class="nc" id="L74">	}</span>
+<span class="fc" id="L73">		this(new JLogConverter());</span>
+<span class="fc" id="L74">	}</span>
 
 	JLog(PrologConverter&lt;jTerm&gt; converter) {
-<span class="nc" id="L77">		super(converter);</span>
-<span class="nc" id="L78">		prolog.setFileServices(new jPrologFileServices());</span>
+<span class="fc" id="L77">		super(converter);</span>
+<span class="fc" id="L78">		prolog.setFileServices(new jPrologFileServices());</span>
 		try {
-<span class="nc" id="L80">			prolog.loadLibrary(BUILT_INS);</span>
+<span class="fc" id="L80">			prolog.loadLibrary(BUILT_INS);</span>
 <span class="nc" id="L81">		} catch (IOException e) {</span>
 <span class="nc" id="L82">			getLogger().error(getClass(), ERROR_LOADING_BUILT_INS, e);</span>
-		}
-<span class="nc" id="L84">	}</span>
+<span class="fc" id="L83">		}</span>
+<span class="fc" id="L84">	}</span>
 
 	public PrologTerm prologNil() {
-<span class="nc" id="L87">		return new JLogNil(this);</span>
+<span class="fc" id="L87">		return new JLogNil(this);</span>
 	}
 
 	public PrologTerm prologCut() {
-<span class="nc" id="L91">		return new JLogCut(this);</span>
+<span class="fc" id="L91">		return new JLogCut(this);</span>
 	}
 
 	public PrologTerm prologFail() {
-<span class="nc" id="L95">		return new JLogFail(this);</span>
+<span class="fc" id="L95">		return new JLogFail(this);</span>
 	}
 
 	public PrologTerm prologTrue() {
-<span class="nc" id="L99">		return new JLogTrue(this);</span>
+<span class="fc" id="L99">		return new JLogTrue(this);</span>
 	}
 
 	public PrologTerm prologFalse() {
-<span class="nc" id="L103">		return new JLogFalse(this);</span>
+<span class="fc" id="L103">		return new JLogFalse(this);</span>
 	}
 
 	public PrologTerm prologEmpty() {
-<span class="nc" id="L107">		return new JLogEmpty(this);</span>
+<span class="fc" id="L107">		return new JLogEmpty(this);</span>
 	}
 
 	public PrologTerm prologInclude(String file) {
@@ -112,20 +112,20 @@ public class JLog extends AbstractProvider implements PrologProvider {
 	}
 
 	public PrologTerm parseTerm(String str) {
-<span class="nc bnc" id="L115" title="All 2 branches missed.">		String s = str.charAt(str.length() - 1) == '.' ? str : str + DOT;</span>
-<span class="nc" id="L116">		return toTerm(new pParseStream(s, kb, pr, or).parseTerm(), PrologTerm.class);</span>
+<span class="pc bpc" id="L115" title="1 of 2 branches missed.">		String s = str.charAt(str.length() - 1) == '.' ? str : str + DOT;</span>
+<span class="fc" id="L116">		return toTerm(new pParseStream(s, kb, pr, or).parseTerm(), PrologTerm.class);</span>
 	}
 
 	public PrologTerm[] parseTerms(String str) {
-<span class="nc bnc" id="L120" title="All 2 branches missed.">		String s = str.charAt(str.length() - 1) == '.' ? str : str + DOT;</span>
-<span class="nc" id="L121">		jPredicateTerms terms = new pParseStream(s, kb, pr, or).parseQuery();</span>
-<span class="nc" id="L122">		PrologTerm[] prologTerms = new PrologTerm[terms.size()];</span>
-<span class="nc bnc" id="L123" title="All 2 branches missed.">		for (int i = 0; i &lt; prologTerms.length; i++) {</span>
-<span class="nc" id="L124">			PrologTerm term = toTerm(terms.elementAt(i), PrologTerm.class);</span>
-<span class="nc bnc" id="L125" title="All 4 branches missed.">			if (term != null &amp;&amp; term.isCompound()) {</span>
-<span class="nc" id="L126">				String functor = term.getFunctor();</span>
-<span class="nc" id="L127">				PrologTerm[] args = term.getArguments();</span>
-<span class="nc bnc" id="L128" title="All 2 branches missed.">				if (!functor.matches(SIMPLE_ATOM_REGEX)) {</span>
+<span class="pc bpc" id="L120" title="1 of 2 branches missed.">		String s = str.charAt(str.length() - 1) == '.' ? str : str + DOT;</span>
+<span class="fc" id="L121">		jPredicateTerms terms = new pParseStream(s, kb, pr, or).parseQuery();</span>
+<span class="fc" id="L122">		PrologTerm[] prologTerms = new PrologTerm[terms.size()];</span>
+<span class="fc bfc" id="L123" title="All 2 branches covered.">		for (int i = 0; i &lt; prologTerms.length; i++) {</span>
+<span class="fc" id="L124">			PrologTerm term = toTerm(terms.elementAt(i), PrologTerm.class);</span>
+<span class="pc bpc" id="L125" title="2 of 4 branches missed.">			if (term != null &amp;&amp; term.isCompound()) {</span>
+<span class="fc" id="L126">				String functor = term.getFunctor();</span>
+<span class="fc" id="L127">				PrologTerm[] args = term.getArguments();</span>
+<span class="pc bpc" id="L128" title="1 of 2 branches missed.">				if (!functor.matches(SIMPLE_ATOM_REGEX)) {</span>
 <span class="nc" id="L129">					StringBuilder buffer = new StringBuilder();</span>
 <span class="nc" id="L130">					buffer.append(&quot;'&quot;);</span>
 <span class="nc" id="L131">					buffer.append(functor);</span>
@@ -135,13 +135,13 @@ public class JLog extends AbstractProvider implements PrologProvider {
 <span class="nc" id="L135">					term = newStructure(quoted, args);</span>
 				}
 			}
-<span class="nc" id="L138">			prologTerms[i] = term;</span>
+<span class="fc" id="L138">			prologTerms[i] = term;</span>
 		}
-<span class="nc" id="L140">		return prologTerms;</span>
+<span class="fc" id="L140">		return prologTerms;</span>
 	}
 
 	public PrologEngine newEngine() {
-<span class="nc" id="L144">		return new JLogEngine(this);</span>
+<span class="fc" id="L144">		return new JLogEngine(this);</span>
 	}
 
 	public PrologEngine newEngine(String path) {
@@ -151,34 +151,34 @@ public class JLog extends AbstractProvider implements PrologProvider {
 	}
 
 	public PrologAtom newAtom(String functor) {
-<span class="nc bnc" id="L154" title="All 2 branches missed.">		if (!functor.matches(SIMPLE_ATOM_REGEX)) {</span>
-<span class="nc" id="L155">			return new JLogAtom(this, &quot;'&quot; + functor + &quot;'&quot;);</span>
+<span class="fc bfc" id="L154" title="All 2 branches covered.">		if (!functor.matches(SIMPLE_ATOM_REGEX)) {</span>
+<span class="fc" id="L155">			return new JLogAtom(this, &quot;'&quot; + functor + &quot;'&quot;);</span>
 		}
-<span class="nc" id="L157">		return new JLogAtom(this, functor);</span>
+<span class="fc" id="L157">		return new JLogAtom(this, functor);</span>
 	}
 
 	public PrologFloat newFloat(Number value) {
-<span class="nc" id="L161">		return new JLogFloat(this, value);</span>
+<span class="fc" id="L161">		return new JLogFloat(this, value);</span>
 	}
 
 	public PrologDouble newDouble(Number value) {
-<span class="nc" id="L165">		return new JLogDouble(this, value);</span>
+<span class="fc" id="L165">		return new JLogDouble(this, value);</span>
 	}
 
 	public PrologInteger newInteger(Number value) {
-<span class="nc" id="L169">		return new JLogInteger(this, value);</span>
+<span class="fc" id="L169">		return new JLogInteger(this, value);</span>
 	}
 
 	public PrologLong newLong(Number value) {
-<span class="nc" id="L173">		return new JLogLong(this, value);</span>
+<span class="fc" id="L173">		return new JLogLong(this, value);</span>
 	}
 
 	public PrologVariable newVariable(int position) {
-<span class="nc" id="L177">		return new JLogVariable(this);</span>
+<span class="fc" id="L177">		return new JLogVariable(this);</span>
 	}
 
 	public PrologVariable newVariable(String name, int position) {
-<span class="nc" id="L181">		return new JLogVariable(this, name);</span>
+<span class="fc" id="L181">		return new JLogVariable(this, name);</span>
 	}
 
 	public PrologList newList() {
@@ -186,8 +186,8 @@ public class JLog extends AbstractProvider implements PrologProvider {
 	}
 
 	public PrologList newList(PrologTerm[] arguments) {
-<span class="nc bnc" id="L189" title="All 4 branches missed.">		if (arguments != null &amp;&amp; arguments.length &gt; 0) {</span>
-<span class="nc" id="L190">			return new JLogList(this, arguments);</span>
+<span class="pc bpc" id="L189" title="2 of 4 branches missed.">		if (arguments != null &amp;&amp; arguments.length &gt; 0) {</span>
+<span class="fc" id="L190">			return new JLogList(this, arguments);</span>
 		}
 <span class="nc" id="L192">		return new JLogEmpty(this);</span>
 	}
@@ -201,141 +201,87 @@ public class JLog extends AbstractProvider implements PrologProvider {
 	}
 
 	public PrologStructure newStructure(String functor, PrologTerm... arguments) {
-<span class="nc" id="L204">		return new JLogStructure(this, functor, arguments);</span>
+<span class="fc" id="L204">		return new JLogStructure(this, functor, arguments);</span>
 	}
 
 	public PrologTerm newStructure(PrologTerm left, String operator, PrologTerm right) {
-<span class="nc" id="L208">		return new JLogStructure(this, left, operator, right);</span>
+<span class="fc" id="L208">		return new JLogStructure(this, left, operator, right);</span>
 	}
 
 	public final PrologTerm newEntry(PrologTerm key, PrologTerm value) {
-<span class="nc" id="L212">		return new JLogEntry(this, key, value);</span>
+<span class="fc" id="L212">		return new JLogEntry(this, key, value);</span>
 	}
 
 	public final PrologTerm newEntry(Object key, Object value) {
-<span class="nc" id="L216">		PrologJavaConverter transformer = getJavaConverter();</span>
-<span class="nc" id="L217">		PrologTerm keyTerm = transformer.toTerm(key);</span>
-<span class="nc" id="L218">		PrologTerm valueTerm = transformer.toTerm(value);</span>
-<span class="nc" id="L219">		return new JLogEntry(this, keyTerm, valueTerm);</span>
+<span class="fc" id="L216">		PrologJavaConverter transformer = getJavaConverter();</span>
+<span class="fc" id="L217">		PrologTerm keyTerm = transformer.toTerm(key);</span>
+<span class="fc" id="L218">		PrologTerm valueTerm = transformer.toTerm(value);</span>
+<span class="fc" id="L219">		return new JLogEntry(this, keyTerm, valueTerm);</span>
 	}
 
 	public final PrologTerm newMap(Map&lt;PrologTerm, PrologTerm&gt; map) {
-<span class="nc" id="L223">		return new JLogMap(this, map);</span>
+<span class="fc" id="L223">		return new JLogMap(this, map);</span>
 	}
 
 	public final PrologTerm newMap(int initialCapacity) {
-<span class="nc" id="L227">		return new JLogMap(this, initialCapacity);</span>
+<span class="fc" id="L227">		return new JLogMap(this, initialCapacity);</span>
 	}
 
 	public final PrologTerm newMap() {
-<span class="nc" id="L231">		return new JLogMap(this);</span>
+<span class="fc" id="L231">		return new JLogMap(this);</span>
 	}
 
 	public PrologTerm newReference(Object reference) {
-<span class="nc" id="L235">		return new JLogReference(this, reference);</span>
+<span class="fc" id="L235">		return new JLogReference(this, reference);</span>
 	}
 
 	public PrologTerm falseReference() {
-<span class="nc" id="L239">		return newReference(false);</span>
+<span class="fc" id="L239">		return newReference(false);</span>
 	}
 
 	public PrologTerm trueReference() {
-<span class="nc" id="L243">		return newReference(true);</span>
+<span class="fc" id="L243">		return newReference(true);</span>
 	}
 
 	public PrologTerm nullReference() {
-<span class="nc" id="L247">		return newReference(null);</span>
+<span class="fc" id="L247">		return newReference(null);</span>
 	}
 
 	public PrologTerm voidReference() {
-<span class="nc" id="L251">		return newReference(void.class);</span>
-	}
-
-	public PrologTerm newField(PrologTerm name) {
-<span class="nc" id="L255">		return new JLogField(this, name);</span>
-	}
-
-	public PrologTerm newField(String name) {
-<span class="nc" id="L259">		return new JLogField(this, name);</span>
-	}
-
-	public PrologTerm newField(PrologTerm name, PrologTerm type) {
-<span class="nc" id="L263">		return new JLogTypedField(this, name, type);</span>
-	}
-
-	public PrologTerm newField(String name, String type) {
-<span class="nc" id="L267">		PrologTerm oname = newVariable(name, 0);</span>
-<span class="nc" id="L268">		PrologTerm otype = newVariable(type, 1);</span>
-<span class="nc" id="L269">		return new JLogTypedField(this, oname, otype);</span>
-	}
-
-	public PrologTerm newResult(PrologTerm name) {
-<span class="nc" id="L273">		return new JLogResult(this, name);</span>
-	}
-
-	public PrologTerm newResult(String name) {
-<span class="nc" id="L277">		return new JLogResult(this, name);</span>
-	}
-
-	public PrologTerm newResult(PrologTerm name, PrologTerm type) {
-<span class="nc" id="L281">		return new JLogTypedResult(this, name, type);</span>
-	}
-
-	public PrologTerm newResult(String name, String type) {
-<span class="nc" id="L285">		PrologTerm oname = newVariable(name, 0);</span>
-<span class="nc" id="L286">		PrologTerm otype = newVariable(type, 1);</span>
-<span class="nc" id="L287">		return new JLogTypedResult(this, oname, otype);</span>
-	}
-
-	public PrologTerm newParameter(PrologTerm name) {
-<span class="nc" id="L291">		return new JLogParameter(this, name);</span>
-	}
-
-	public PrologTerm newParameter(String name) {
-<span class="nc" id="L295">		return new JLogParameter(this, name);</span>
-	}
-
-	public PrologTerm newParameter(PrologTerm name, PrologTerm type) {
-<span class="nc" id="L299">		return new JLogTypedParameter(this, name, type);</span>
-	}
-
-	public PrologTerm newParameter(String name, String type) {
-<span class="nc" id="L303">		PrologTerm oname = newVariable(name, 0);</span>
-<span class="nc" id="L304">		PrologTerm otype = newVariable(type, 1);</span>
-<span class="nc" id="L305">		return new JLogTypedParameter(this, oname, otype);</span>
+<span class="fc" id="L251">		return newReference(void.class);</span>
 	}
 
 	public PrologJavaConverter getJavaConverter() {
-<span class="nc" id="L309">		return new JLogJavaConverter(this);</span>
+<span class="fc" id="L255">		return new JLogJavaConverter(this);</span>
 	}
 
 	public PrologLogger getLogger() {
-<span class="nc" id="L313">		return logger;</span>
+<span class="fc" id="L259">		return logger;</span>
 	}
 
 	@Override
 	public String toString() {
-<span class="nc" id="L318">		return &quot;JLog [converter=&quot; + converter + &quot;]&quot;;</span>
+<span class="fc" id="L264">		return &quot;JLog [converter=&quot; + converter + &quot;]&quot;;</span>
 	}
 
 	@Override
 	public int hashCode() {
-<span class="nc" id="L323">		final int prime = 31;</span>
-<span class="nc" id="L324">		int result = super.hashCode();</span>
-<span class="nc" id="L325">		result = prime * result + prolog.hashCode();</span>
-<span class="nc" id="L326">		return result;</span>
+<span class="nc" id="L269">		final int prime = 31;</span>
+<span class="nc" id="L270">		int result = super.hashCode();</span>
+<span class="nc" id="L271">		result = prime * result + prolog.hashCode();</span>
+<span class="nc" id="L272">		return result;</span>
 	}
 
 	@Override
 	public boolean equals(Object obj) {
-<span class="nc bnc" id="L331" title="All 2 branches missed.">		if (this == obj)</span>
-<span class="nc" id="L332">			return true;</span>
-<span class="nc bnc" id="L333" title="All 2 branches missed.">		if (!super.equals(obj))</span>
-<span class="nc" id="L334">			return false;</span>
-<span class="nc bnc" id="L335" title="All 2 branches missed.">		if (getClass() != obj.getClass())</span>
-<span class="nc" id="L336">			return false;</span>
-<span class="nc" id="L337">		JLog other = (JLog) obj;</span>
-<span class="nc" id="L338">		return prolog.equals(other.prolog);</span>
+<span class="pc bpc" id="L277" title="1 of 2 branches missed.">		if (this == obj)</span>
+<span class="fc" id="L278">			return true;</span>
+<span class="nc bnc" id="L279" title="All 2 branches missed.">		if (!super.equals(obj))</span>
+<span class="nc" id="L280">			return false;</span>
+<span class="nc bnc" id="L281" title="All 2 branches missed.">		if (getClass() != obj.getClass())</span>
+<span class="nc" id="L282">			return false;</span>
+<span class="nc" id="L283">		JLog other = (JLog) obj;</span>
+<span class="nc" id="L284">		return prolog.equals(other.prolog);</span>
 	}
 
 }

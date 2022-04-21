@@ -8,8 +8,8 @@
     <language>en-us</language>
     <copyright>&#169;2020 - 2022 Prolobjectlink Project</copyright>
     <item>
-      <title>File: 44,
-             Errors: 4378,
+      <title>File: 38,
+             Errors: 3960,
              Warnings: 0,
              Infos: 0
       </title>
@@ -85,20 +85,6 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="https://prolobjectlink.github.io/prolobjectlink-jpi-jlog/checkstyle.html#io.github.prolobjectlink.prolog.jlog.JLogTypedParameter.java">io/github/prolobjectlink/prolog/jlog/JLogTypedParameter.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  79
-                </td>
-              </tr>
-                          <tr>
-                <td>
                   <a href="https://prolobjectlink.github.io/prolobjectlink-jpi-jlog/checkstyle.html#io.github.prolobjectlink.prolog.jlog.JLogUtil.java">io/github/prolobjectlink/prolog/jlog/JLogUtil.java</a>
                 </td>
                 <td>
@@ -109,20 +95,6 @@
                 </td>
                 <td>
                   340
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="https://prolobjectlink.github.io/prolobjectlink-jpi-jlog/checkstyle.html#io.github.prolobjectlink.prolog.jlog.JLogResult.java">io/github/prolobjectlink/prolog/jlog/JLogResult.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  38
                 </td>
               </tr>
                           <tr>
@@ -234,7 +206,7 @@
                   0
                 </td>
                 <td>
-                  398
+                  314
                 </td>
               </tr>
                           <tr>
@@ -323,20 +295,6 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="https://prolobjectlink.github.io/prolobjectlink-jpi-jlog/checkstyle.html#io.github.prolobjectlink.prolog.jlog.JLogTypedField.java">io/github/prolobjectlink/prolog/jlog/JLogTypedField.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  77
-                </td>
-              </tr>
-                          <tr>
-                <td>
                   <a href="https://prolobjectlink.github.io/prolobjectlink-jpi-jlog/checkstyle.html#io.github.prolobjectlink.prolog.jlog.JLogEmpty.java">io/github/prolobjectlink/prolog/jlog/JLogEmpty.java</a>
                 </td>
                 <td>
@@ -351,20 +309,6 @@
               </tr>
                           <tr>
                 <td>
-                  <a href="https://prolobjectlink.github.io/prolobjectlink-jpi-jlog/checkstyle.html#io.github.prolobjectlink.prolog.jlog.JLogParameter.java">io/github/prolobjectlink/prolog/jlog/JLogParameter.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  38
-                </td>
-              </tr>
-                          <tr>
-                <td>
                   <a href="https://prolobjectlink.github.io/prolobjectlink-jpi-jlog/checkstyle.html#io.github.prolobjectlink.prolog.jlog.JLogMap.java">io/github/prolobjectlink/prolog/jlog/JLogMap.java</a>
                 </td>
                 <td>
@@ -375,20 +319,6 @@
                 </td>
                 <td>
                   249
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="https://prolobjectlink.github.io/prolobjectlink-jpi-jlog/checkstyle.html#io.github.prolobjectlink.prolog.jlog.JLogField.java">io/github/prolobjectlink/prolog/jlog/JLogField.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  37
                 </td>
               </tr>
                           <tr>
@@ -458,7 +388,7 @@
                   0
                 </td>
                 <td>
-                  267
+                  280
                 </td>
               </tr>
                           <tr>
@@ -487,20 +417,6 @@
                 </td>
                 <td>
                   17
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="https://prolobjectlink.github.io/prolobjectlink-jpi-jlog/checkstyle.html#io.github.prolobjectlink.prolog.jlog.JLogTypedResult.java">io/github/prolobjectlink/prolog/jlog/JLogTypedResult.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  78
                 </td>
               </tr>
                           <tr>
