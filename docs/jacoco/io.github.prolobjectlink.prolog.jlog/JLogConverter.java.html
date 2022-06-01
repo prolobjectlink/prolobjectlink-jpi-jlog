@@ -107,7 +107,7 @@ import ubc.cs.JLog.Terms.jVariable;
 	}
 
 	public PrologTerm toTerm(jTerm prologTerm) {
-<span class="pc bpc" id="L110" title="2 of 13 branches missed.">		switch (prologTerm.type) {</span>
+<span class="pc bpc" id="L110" title="3 of 13 branches missed.">		switch (prologTerm.type) {</span>
 		case jTerm.TYPE_NULLLIST:
 <span class="fc" id="L112">			return new JLogEmpty(provider);</span>
 		case jTerm.TYPE_ATOM:
@@ -161,8 +161,8 @@ import ubc.cs.JLog.Terms.jVariable;
 		case jTerm.TYPE_OBJECT:
 <span class="nc" id="L162">			return new JLogReference(provider, prologTerm);</span>
 		case jTerm.TYPE_TYPE:
-<span class="fc" id="L164">			jUnaryBuiltinPredicate unary = (jUnaryBuiltinPredicate) prologTerm;</span>
-<span class="fc" id="L165">			return new JLogStructure(provider, unary.getName(), unary.getRHS());</span>
+<span class="nc" id="L164">			jUnaryBuiltinPredicate unary = (jUnaryBuiltinPredicate) prologTerm;</span>
+<span class="nc" id="L165">			return new JLogStructure(provider, unary.getName(), unary.getRHS());</span>
 		case jTerm.TYPE_COMPARE:
 		case jTerm.TYPE_OPERATOR:
 		case jTerm.TYPE_ARITHMETIC:

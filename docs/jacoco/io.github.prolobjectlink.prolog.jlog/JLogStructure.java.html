@@ -42,11 +42,11 @@ class JLogStructure extends JLogTerm implements PrologStructure {
 <span class="nc" id="L42">	}</span>
 
 	protected JLogStructure(PrologProvider provider, String functor, jTerm term) {
-<span class="fc" id="L45">		super(STRUCTURE_TYPE, provider);</span>
-<span class="fc" id="L46">		jCompoundTerm compound = new jCompoundTerm(1);</span>
-<span class="fc" id="L47">		compound.addTerm(term);</span>
-<span class="fc" id="L48">		value = new jPredicate(functor, compound);</span>
-<span class="fc" id="L49">	}</span>
+<span class="nc" id="L45">		super(STRUCTURE_TYPE, provider);</span>
+<span class="nc" id="L46">		jCompoundTerm compound = new jCompoundTerm(1);</span>
+<span class="nc" id="L47">		compound.addTerm(term);</span>
+<span class="nc" id="L48">		value = new jPredicate(functor, compound);</span>
+<span class="nc" id="L49">	}</span>
 
 	protected JLogStructure(PrologProvider provider, String functor, PrologTerm... arguments) {
 <span class="fc" id="L52">		super(STRUCTURE_TYPE, provider);</span>

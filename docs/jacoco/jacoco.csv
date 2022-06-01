@@ -5,9 +5,9 @@ prolobjectlink-jpi-jlog,io.github.prolobjectlink.prolog.jlog,JLogProgram,10,0,0,
 prolobjectlink-jpi-jlog,io.github.prolobjectlink.prolog.jlog,JLogAtom,0,36,0,0,0,8,0,6,0,6
 prolobjectlink-jpi-jlog,io.github.prolobjectlink.prolog.jlog,JLogEmpty,0,14,0,0,0,5,0,4,0,4
 prolobjectlink-jpi-jlog,io.github.prolobjectlink.prolog.jlog,JLog,130,368,12,12,27,64,16,38,6,36
-prolobjectlink-jpi-jlog,io.github.prolobjectlink.prolog.jlog,JLogStructure,17,158,0,2,5,36,4,10,4,9
+prolobjectlink-jpi-jlog,io.github.prolobjectlink.prolog.jlog,JLogStructure,37,138,0,2,10,31,5,9,5,8
 prolobjectlink-jpi-jlog,io.github.prolobjectlink.prolog.jlog,jDouble,97,38,24,4,29,10,20,5,7,4
-prolobjectlink-jpi-jlog,io.github.prolobjectlink.prolog.jlog,JLogQuery,163,764,22,50,42,167,21,33,1,17
+prolobjectlink-jpi-jlog,io.github.prolobjectlink.prolog.jlog,JLogQuery,248,679,25,47,59,150,23,31,2,16
 prolobjectlink-jpi-jlog,io.github.prolobjectlink.prolog.jlog,JLogMap,60,303,14,20,16,77,15,34,4,28
 prolobjectlink-jpi-jlog,io.github.prolobjectlink.prolog.jlog,JLogIndicator,0,5,0,0,0,2,0,1,0,1
 prolobjectlink-jpi-jlog,io.github.prolobjectlink.prolog.jlog,JLogInteger,0,36,0,0,0,9,0,7,0,7
@@ -24,7 +24,7 @@ prolobjectlink-jpi-jlog,io.github.prolobjectlink.prolog.jlog,JLogReference,10,45
 prolobjectlink-jpi-jlog,io.github.prolobjectlink.prolog.jlog,JLogEntry,20,127,11,11,7,31,9,15,0,13
 prolobjectlink-jpi-jlog,io.github.prolobjectlink.prolog.jlog,JLogIterator,5,36,4,6,1,7,4,4,0,3
 prolobjectlink-jpi-jlog,io.github.prolobjectlink.prolog.jlog,JLogVariable,28,50,0,2,8,10,5,8,5,7
-prolobjectlink-jpi-jlog,io.github.prolobjectlink.prolog.jlog,JLogEngine,271,760,42,69,47,206,34,71,6,41
+prolobjectlink-jpi-jlog,io.github.prolobjectlink.prolog.jlog,JLogEngine,277,754,42,69,48,205,35,70,7,40
 prolobjectlink-jpi-jlog,io.github.prolobjectlink.prolog.jlog,JLogOperator,0,6,0,0,0,2,0,1,0,1
 prolobjectlink-jpi-jlog,io.github.prolobjectlink.prolog.jlog,JLogCut,0,28,0,0,0,6,0,5,0,5
 prolobjectlink-jpi-jlog,io.github.prolobjectlink.prolog.jlog,JLogConsole,6,6,0,0,2,2,1,1,1,1
@@ -33,7 +33,7 @@ prolobjectlink-jpi-jlog,io.github.prolobjectlink.prolog.jlog,JLogLogger,34,88,3,
 prolobjectlink-jpi-jlog,io.github.prolobjectlink.prolog.jlog,JLogFail,0,23,0,0,0,5,0,4,0,4
 prolobjectlink-jpi-jlog,io.github.prolobjectlink.prolog.jlog,JLogList,55,137,2,8,8,35,3,16,2,12
 prolobjectlink-jpi-jlog,io.github.prolobjectlink.prolog.jlog,jFloat,0,4,0,0,0,2,0,1,0,1
-prolobjectlink-jpi-jlog,io.github.prolobjectlink.prolog.jlog,JLogConverter,319,418,37,45,62,82,31,34,5,6
+prolobjectlink-jpi-jlog,io.github.prolobjectlink.prolog.jlog,JLogConverter,332,405,38,44,64,80,32,33,5,6
 prolobjectlink-jpi-jlog,io.github.prolobjectlink.prolog.jlog,JLogIterator.new iTermToObject() {...},0,8,0,0,0,2,0,2,0,2
 prolobjectlink-jpi-jlog,io.github.prolobjectlink.prolog.jlog,JLogJavaConverter,0,4,0,0,0,2,0,1,0,1
 prolobjectlink-jpi-jlog,io.github.prolobjectlink.prolog.jlog,JLogTrue,0,23,0,0,0,5,0,4,0,4
