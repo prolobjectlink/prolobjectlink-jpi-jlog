@@ -108,10 +108,6 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.build.resourceEncoding>UTF-8</project.build.resourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<sonar.coverage.jacoco.xmlReportPaths>
-			<!-- ../app-it/target/site/jacoco-aggregate/jacoco.xml -->
-			../prolobjectlink-jpi-jlog/target/jacoco-ut/jacoco.xml
-		</sonar.coverage.jacoco.xmlReportPaths>
 		<maven.compiler.source>1.6</maven.compiler.source>
 		<maven.compiler.target>1.6</maven.compiler.target>
 	</properties>
