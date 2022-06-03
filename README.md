@@ -1,3 +1,5 @@
+![Build Status](https://github.com/prolobjectlink/prolobjectlink-jpi-jlog/actions/workflows/maven.yml/badge.svg?event=push)
+
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=prolobjectlink_prolobjectlink-jpi-jlog&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=prolobjectlink_prolobjectlink-jpi-jlog)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=prolobjectlink_prolobjectlink-jpi-jlog&metric=coverage)](https://sonarcloud.io/summary/new_code?id=prolobjectlink_prolobjectlink-jpi-jlog)
 
