@@ -1,5 +1,3 @@
-![GitHub](https://img.shields.io/github/license/prolobjectlink/prolobjectlink-jpi/badge.svg)(https://github.com/prolobjectlink/prolobjectlink-jpi/blob/master/LICENSE.md)
-
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=prolobjectlink_prolobjectlink-jpi-jlog&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=prolobjectlink_prolobjectlink-jpi-jlog)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=prolobjectlink_prolobjectlink-jpi-jlog&metric=coverage)](https://sonarcloud.io/summary/new_code?id=prolobjectlink_prolobjectlink-jpi-jlog)
 
