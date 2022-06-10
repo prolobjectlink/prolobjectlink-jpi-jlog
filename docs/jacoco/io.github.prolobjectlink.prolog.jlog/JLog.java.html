@@ -73,7 +73,7 @@ public class JLog extends AbstractProvider implements PrologProvider {
 <span class="fc" id="L73">		this(new JLogConverter());</span>
 <span class="fc" id="L74">	}</span>
 
-	JLog(PrologConverter&lt;jTerm&gt; converter) {
+	public JLog(PrologConverter&lt;jTerm&gt; converter) {
 <span class="fc" id="L77">		super(converter);</span>
 <span class="fc" id="L78">		prolog.setFileServices(new jPrologFileServices());</span>
 		try {

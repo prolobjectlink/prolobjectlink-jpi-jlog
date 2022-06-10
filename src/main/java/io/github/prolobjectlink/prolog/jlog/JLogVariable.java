@@ -36,25 +36,25 @@ import ubc.cs.JLog.Terms.jVariable;
  * @author Jose Zalacain
  * @since 1.0
  */
-class JLogVariable extends JLogTerm implements PrologVariable {
+public class JLogVariable extends JLogTerm implements PrologVariable {
 
-	JLogVariable(PrologProvider provider) {
+	protected JLogVariable(PrologProvider provider) {
 		super(VARIABLE_TYPE, provider, vIdexer++);
 	}
 
-	JLogVariable(PrologProvider provider, String name) {
+	protected JLogVariable(PrologProvider provider, String name) {
 		super(VARIABLE_TYPE, provider, name, vIdexer++);
 	}
 
-	JLogVariable(int type, PrologProvider provider) {
+	protected JLogVariable(int type, PrologProvider provider) {
 		super(type, provider);
 	}
 
-	JLogVariable(int type, PrologProvider provider, String name) {
+	protected JLogVariable(int type, PrologProvider provider, String name) {
 		super(type, provider, new jVariable(name));
 	}
 
-	JLogVariable(int type, PrologProvider provider, jTerm var) {
+	protected JLogVariable(int type, PrologProvider provider, jTerm var) {
 		super(type, provider, var);
 	}
 

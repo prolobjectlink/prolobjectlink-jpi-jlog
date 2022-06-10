@@ -1,4 +1,4 @@
-Comparing source compatibility of C:\eclipse-jee-photon-workspace\prolobjectlink-jpi-jlog\target\prolobjectlink-jpi-jlog-1.1-SNAPSHOT.jar against C:\Users\Jose Zalacain\.m2\repository\io\github\prolobjectlink\prolobjectlink-jpi-jlog\1.0\prolobjectlink-jpi-jlog-1.0.jar
+Comparing source compatibility of C:\eclipse-jee-photon-workspace\prolobjectlink-jpi-jlog\target\prolobjectlink-jpi-jlog-1.1.jar against C:\Users\Jose Zalacain\.m2\repository\io\github\prolobjectlink\prolobjectlink-jpi-jlog\1.0\prolobjectlink-jpi-jlog-1.0.jar
 ***  MODIFIED CLASS: PUBLIC io.github.prolobjectlink.prolog.jlog.JLog  (not serializable)
 	===  CLASS FILE FORMAT VERSION: 50.0 <- 50.0
 	===  UNCHANGED INTERFACE: io.github.prolobjectlink.prolog.PrologProvider
@@ -6,6 +6,7 @@ Comparing source compatibility of C:\eclipse-jee-photon-workspace\prolobjectlink
 	===  UNCHANGED INTERFACE: io.github.prolobjectlink.prolog.PrologParser
 	===  UNCHANGED SUPERCLASS: io.github.prolobjectlink.prolog.AbstractProvider (<- io.github.prolobjectlink.prolog.AbstractProvider)
 	===  UNCHANGED FIELD: PROTECTED STATIC FINAL java.util.Map FUNCTORS
+	***  MODIFIED CONSTRUCTOR: PUBLIC (<- PACKAGE_PROTECTED) JLog(io.github.prolobjectlink.prolog.PrologConverter)
 	===  UNCHANGED CONSTRUCTOR: PUBLIC JLog()
 	===  UNCHANGED METHOD: PUBLIC boolean equals(java.lang.Object)
 	+++  NEW METHOD: PUBLIC(+) io.github.prolobjectlink.prolog.PrologTerm falseReference()
@@ -176,3 +177,24 @@ Comparing source compatibility of C:\eclipse-jee-photon-workspace\prolobjectlink
 	===  UNCHANGED SUPERCLASS: io.github.prolobjectlink.prolog.PrologScriptEngineFactory (<- io.github.prolobjectlink.prolog.PrologScriptEngineFactory)
 	===  UNCHANGED CONSTRUCTOR: PUBLIC JLogScriptFactory()
 	===  UNCHANGED METHOD: PUBLIC java.lang.String getMethodCallSyntax(java.lang.String, java.lang.String, java.lang.String[])
+***  MODIFIED CLASS: PUBLIC (<- PACKAGE_PROTECTED) io.github.prolobjectlink.prolog.jlog.JLogVariable  (not serializable)
+	===  CLASS FILE FORMAT VERSION: 50.0 <- 50.0
+	===  UNCHANGED INTERFACE: io.github.prolobjectlink.prolog.PrologVariable
+	===  UNCHANGED INTERFACE: io.github.prolobjectlink.prolog.PrologElement
+	===  UNCHANGED INTERFACE: java.lang.Comparable
+	===  UNCHANGED INTERFACE: io.github.prolobjectlink.prolog.PrologTerm
+	===  UNCHANGED SUPERCLASS: io.github.prolobjectlink.prolog.jlog.JLogTerm (<- io.github.prolobjectlink.prolog.jlog.JLogTerm)
+	***  MODIFIED CONSTRUCTOR: PROTECTED (<- PACKAGE_PROTECTED) JLogVariable(io.github.prolobjectlink.prolog.PrologProvider, java.lang.String)
+	***  MODIFIED CONSTRUCTOR: PROTECTED (<- PACKAGE_PROTECTED) JLogVariable(io.github.prolobjectlink.prolog.PrologProvider)
+	+++  NEW CONSTRUCTOR: PROTECTED(+) JLogVariable(int, io.github.prolobjectlink.prolog.PrologProvider)
+	+++  NEW CONSTRUCTOR: PROTECTED(+) JLogVariable(int, io.github.prolobjectlink.prolog.PrologProvider, ubc.cs.JLog.Terms.jTerm)
+	+++  NEW CONSTRUCTOR: PROTECTED(+) JLogVariable(int, io.github.prolobjectlink.prolog.PrologProvider, java.lang.String)
+	===  UNCHANGED METHOD: PUBLIC io.github.prolobjectlink.prolog.PrologTerm[] getArguments()
+	===  UNCHANGED METHOD: PUBLIC int getArity()
+	===  UNCHANGED METHOD: PUBLIC java.lang.String getFunctor()
+	---  REMOVED METHOD: PUBLIC(-) java.lang.String getIndicator()
+	===  UNCHANGED METHOD: PUBLIC java.lang.String getName()
+	===  UNCHANGED METHOD: PUBLIC int getPosition()
+	---  REMOVED METHOD: PUBLIC(-) boolean hasIndicator(java.lang.String, int)
+	===  UNCHANGED METHOD: PUBLIC boolean isAnonymous()
+	===  UNCHANGED METHOD: PUBLIC void setName(java.lang.String)
