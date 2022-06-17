@@ -65,6 +65,7 @@ import ubc.cs.JLog.Foundation.jPrologServices;
 import ubc.cs.JLog.Foundation.jRule;
 import ubc.cs.JLog.Foundation.jRuleDefinitions;
 import ubc.cs.JLog.Foundation.jUnifiedVector;
+import ubc.cs.JLog.Parser.pGenericOperatorEntry;
 import ubc.cs.JLog.Parser.pGenericPredicateEntry;
 import ubc.cs.JLog.Parser.pOperatorEntry;
 import ubc.cs.JLog.Parser.pOperatorRegistry;
@@ -90,11 +91,15 @@ public class JLogEngine extends AbstractEngine implements PrologEngine {
 
 	private static final String BUILT_INS = "builtins";
 
+	private final pGenericPredicateEntry multifile = new pGenericPredicateEntry("multifile", 1, jMultifile.class);
+//	private final pGenericOperatorEntry m = new pGenericOperatorEntry("multifile", type, priority, jMultifile.class);
+
 	protected JLogEngine(PrologProvider provider) {
 		super(provider);
 		kb = new jKnowledgeBase();
 		or = new pOperatorRegistry();
 		pr = new pPredicateRegistry();
+		pr.addPredicate(multifile);
 		engine = new jPrologServices(kb, pr, or);
 		engine.setFileServices(new jPrologFileServices());
 		try {
