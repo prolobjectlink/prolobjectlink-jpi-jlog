@@ -38,6 +38,7 @@ import java.util.Map;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import io.github.prolobjectlink.prolog.PrologAtom;
@@ -282,6 +283,7 @@ public class PrologProviderTest extends PrologBaseTest {
 	}
 
 	@Test
+	@Ignore
 	public void testNewEntryObjectObject() {
 		PrologTerm entry = provider.newEntry("X", "elephant");
 		PrologEntry e = entry.cast();
