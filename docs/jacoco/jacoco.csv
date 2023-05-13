@@ -4,7 +4,7 @@ prolobjectlink-jpi-jlog,io.github.prolobjectlink.prolog.jlog,JLogMap.PrologMapIt
 prolobjectlink-jpi-jlog,io.github.prolobjectlink.prolog.jlog,JLogProgram,10,0,0,0,3,0,2,0,2,0
 prolobjectlink-jpi-jlog,io.github.prolobjectlink.prolog.jlog,JLogAtom,0,36,0,0,0,8,0,6,0,6
 prolobjectlink-jpi-jlog,io.github.prolobjectlink.prolog.jlog,JLogEmpty,0,14,0,0,0,5,0,4,0,4
-prolobjectlink-jpi-jlog,io.github.prolobjectlink.prolog.jlog,JLog,130,368,12,12,27,64,16,38,6,36
+prolobjectlink-jpi-jlog,io.github.prolobjectlink.prolog.jlog,JLog,148,350,12,12,31,60,17,37,7,35
 prolobjectlink-jpi-jlog,io.github.prolobjectlink.prolog.jlog,JLogStructure,37,138,0,2,10,31,5,9,5,8
 prolobjectlink-jpi-jlog,io.github.prolobjectlink.prolog.jlog,jDouble,97,38,24,4,29,10,20,5,7,4
 prolobjectlink-jpi-jlog,io.github.prolobjectlink.prolog.jlog,JLogQuery,248,679,25,47,59,150,23,31,2,16

@@ -118,16 +118,16 @@ public abstract class AbstractJavaConverter implements PrologJavaConverter {
 
 	public final PrologTerm toTerm(Object object) {
 		// null pointer
-<span class="pc bpc" id="L121" title="1 of 2 branches missed.">		if (object == null) {</span>
+<span class="nc bnc" id="L121" title="All 2 branches missed.">		if (object == null) {</span>
 <span class="nc" id="L122">			return provider.prologNil();</span>
 		}
 
 		// string data type
-<span class="pc bpc" id="L126" title="1 of 2 branches missed.">		else if (object instanceof String) {</span>
-<span class="fc bfc" id="L127" title="All 2 branches covered.">			if (((String) object).matches(&quot;[A-Z_]*&quot;)) {</span>
-<span class="fc" id="L128">				return provider.newVariable(&quot;&quot; + (String) object + &quot;&quot;, 0);</span>
+<span class="nc bnc" id="L126" title="All 2 branches missed.">		else if (object instanceof String) {</span>
+<span class="nc bnc" id="L127" title="All 2 branches missed.">			if (((String) object).matches(&quot;[A-Z_]*&quot;)) {</span>
+<span class="nc" id="L128">				return provider.newVariable(&quot;&quot; + (String) object + &quot;&quot;, 0);</span>
 			}
-<span class="fc" id="L130">			return provider.newAtom(&quot;&quot; + (String) object + &quot;&quot;);</span>
+<span class="nc" id="L130">			return provider.newAtom(&quot;&quot; + (String) object + &quot;&quot;);</span>
 		}
 
 		// primitives and wrappers data types

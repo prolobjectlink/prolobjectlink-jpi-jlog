@@ -213,10 +213,10 @@ public class JLog extends AbstractProvider implements PrologProvider {
 	}
 
 	public final PrologTerm newEntry(Object key, Object value) {
-<span class="fc" id="L216">		PrologJavaConverter transformer = getJavaConverter();</span>
-<span class="fc" id="L217">		PrologTerm keyTerm = transformer.toTerm(key);</span>
-<span class="fc" id="L218">		PrologTerm valueTerm = transformer.toTerm(value);</span>
-<span class="fc" id="L219">		return new JLogEntry(this, keyTerm, valueTerm);</span>
+<span class="nc" id="L216">		PrologJavaConverter transformer = getJavaConverter();</span>
+<span class="nc" id="L217">		PrologTerm keyTerm = transformer.toTerm(key);</span>
+<span class="nc" id="L218">		PrologTerm valueTerm = transformer.toTerm(value);</span>
+<span class="nc" id="L219">		return new JLogEntry(this, keyTerm, valueTerm);</span>
 	}
 
 	public final PrologTerm newMap(Map&lt;PrologTerm, PrologTerm&gt; map) {
