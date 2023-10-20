@@ -50,11 +50,11 @@ public abstract class AbstractConverter&lt;T&gt; implements PrologConverter&lt;T
 	protected final HashMap&lt;String, T&gt; sharedPrologVariables;
 	protected final PrologProvider provider;
 
-<span class="nc" id="L53">	protected AbstractConverter() {</span>
-<span class="nc" id="L54">		sharedVariables = new HashMap&lt;String, PrologVariable&gt;();</span>
-<span class="nc" id="L55">		sharedPrologVariables = new HashMap&lt;String, T&gt;();</span>
-<span class="nc" id="L56">		provider = createProvider();</span>
-<span class="nc" id="L57">	}</span>
+<span class="fc" id="L53">	protected AbstractConverter() {</span>
+<span class="fc" id="L54">		sharedVariables = new HashMap&lt;String, PrologVariable&gt;();</span>
+<span class="fc" id="L55">		sharedPrologVariables = new HashMap&lt;String, T&gt;();</span>
+<span class="fc" id="L56">		provider = createProvider();</span>
+<span class="fc" id="L57">	}</span>
 
 	protected final PrologLogger getLogger() {
 <span class="nc" id="L60">		return provider.getLogger();</span>
@@ -101,7 +101,7 @@ public abstract class AbstractConverter&lt;T&gt; implements PrologConverter&lt;T
 <span class="nc" id="L101">		Set&lt;String&gt; keys = map.keySet();</span>
 <span class="nc bnc" id="L102" title="All 2 branches missed.">		for (String key : keys) {</span>
 <span class="nc" id="L103">			solutionMap.put(key, toTerm(map.get(key)));</span>
-		}
+<span class="nc" id="L104">		}</span>
 <span class="nc" id="L105">		return solutionMap;</span>
 	}
 
@@ -114,16 +114,16 @@ public abstract class AbstractConverter&lt;T&gt; implements PrologConverter&lt;T
 	}
 
 	public final &lt;K extends PrologTerm&gt; K toTerm(Object o, Class&lt;K&gt; from) {
-<span class="nc" id="L117">		Class&lt;T&gt; clazz = getGenericClass();</span>
-<span class="nc bnc" id="L118" title="All 4 branches missed.">		if (clazz != null &amp;&amp; clazz.isAssignableFrom(o.getClass())) {</span>
-<span class="nc" id="L119">			PrologTerm term = toTerm((T) o);</span>
-<span class="nc bnc" id="L120" title="All 2 branches missed.">			if (from.isAssignableFrom(term.getClass())) {</span>
-<span class="nc" id="L121">				return from.cast(term);</span>
+<span class="fc" id="L117">		Class&lt;T&gt; clazz = getGenericClass();</span>
+<span class="pc bpc" id="L118" title="2 of 4 branches missed.">		if (clazz != null &amp;&amp; clazz.isAssignableFrom(o.getClass())) {</span>
+<span class="fc" id="L119">			PrologTerm term = toTerm((T) o);</span>
+<span class="pc bpc" id="L120" title="1 of 2 branches missed.">			if (from.isAssignableFrom(term.getClass())) {</span>
+<span class="fc" id="L121">				return from.cast(term);</span>
 			}
 		}
 <span class="nc" id="L124">		throw new PrologError(</span>
 
-<span class="nc" id="L126">				IMPOSIBLE_CONVERT + o + FROM + from + &quot;'&quot;</span>
+				IMPOSIBLE_CONVERT + o + FROM + from + &quot;'&quot;
 
 		);
 	}
@@ -139,11 +139,11 @@ public abstract class AbstractConverter&lt;T&gt; implements PrologConverter&lt;T
 		}
 <span class="nc" id="L140">		throw new PrologError(</span>
 
-<span class="nc" id="L142">				IMPOSIBLE_CONVERT +</span>
+				IMPOSIBLE_CONVERT +
 
 <span class="nc" id="L144">						Arrays.toString(os) +</span>
 
-<span class="nc" id="L146">						FROM + from + &quot;'&quot;</span>
+						FROM + from + &quot;'&quot;
 
 		);
 	}
@@ -160,11 +160,11 @@ public abstract class AbstractConverter&lt;T&gt; implements PrologConverter&lt;T
 		}
 <span class="nc" id="L161">		throw new PrologError(</span>
 
-<span class="nc" id="L163">				IMPOSIBLE_CONVERT +</span>
+				IMPOSIBLE_CONVERT +
 
 <span class="nc" id="L165">						Arrays.toString(oss) +</span>
 
-<span class="nc" id="L167">						FROM + from + &quot;'&quot;</span>
+						FROM + from + &quot;'&quot;
 
 		);
 	}
@@ -177,7 +177,7 @@ public abstract class AbstractConverter&lt;T&gt; implements PrologConverter&lt;T
 <span class="nc" id="L177">			Object o = map.get(key);</span>
 <span class="nc" id="L178">			PrologTerm term = toTerm(o, from);</span>
 <span class="nc" id="L179">			solutionMap.put(key, term);</span>
-		}
+<span class="nc" id="L180">		}</span>
 <span class="nc" id="L181">		return solutionMap;</span>
 	}
 
@@ -191,13 +191,13 @@ public abstract class AbstractConverter&lt;T&gt; implements PrologConverter&lt;T
 	}
 
 	public final &lt;K&gt; K fromTerm(PrologTerm term, Class&lt;K&gt; to) {
-<span class="nc" id="L194">		T t = fromTerm(term);</span>
-<span class="nc bnc" id="L195" title="All 2 branches missed.">		if (to.isAssignableFrom(t.getClass())) {</span>
-<span class="nc" id="L196">			return to.cast(t);</span>
+<span class="fc" id="L194">		T t = fromTerm(term);</span>
+<span class="pc bpc" id="L195" title="1 of 2 branches missed.">		if (to.isAssignableFrom(t.getClass())) {</span>
+<span class="fc" id="L196">			return to.cast(t);</span>
 		}
 <span class="nc" id="L198">		throw new PrologError(</span>
 
-<span class="nc" id="L200">				IMPOSIBLE_CONVERT + term + TO + to + &quot;'&quot;</span>
+				IMPOSIBLE_CONVERT + term + TO + to + &quot;'&quot;
 
 		);
 	}
@@ -221,26 +221,26 @@ public abstract class AbstractConverter&lt;T&gt; implements PrologConverter&lt;T
 		}
 <span class="nc" id="L222">		throw new PrologError(</span>
 
-<span class="nc" id="L224">				IMPOSIBLE_CONVERT +</span>
+				IMPOSIBLE_CONVERT +
 
 <span class="nc" id="L226">						head + &quot; and &quot; + Arrays.toString(body) +</span>
 
-<span class="nc" id="L228">						TO + to + &quot;'&quot;</span>
+						TO + to + &quot;'&quot;
 
 		);
 	}
 
 	public final Class&lt;T&gt; getGenericClass() {
-<span class="nc" id="L234">		Class&lt;T&gt; templateClass = null;</span>
-<span class="nc" id="L235">		Type[] generics = getClass().getGenericInterfaces();</span>
-<span class="nc bnc" id="L236" title="All 4 branches missed.">		if (generics.length == 1 &amp;&amp; generics[0] instanceof ParameterizedType) {</span>
-<span class="nc" id="L237">			ParameterizedType parameterized = (ParameterizedType) generics[0];</span>
-<span class="nc" id="L238">			Type type = parameterized.getActualTypeArguments()[0];</span>
-<span class="nc bnc" id="L239" title="All 2 branches missed.">			if (type instanceof Class&lt;?&gt;) {</span>
-<span class="nc" id="L240">				templateClass = (Class&lt;T&gt;) type;</span>
+<span class="fc" id="L234">		Class&lt;T&gt; templateClass = null;</span>
+<span class="fc" id="L235">		Type[] generics = getClass().getGenericInterfaces();</span>
+<span class="pc bpc" id="L236" title="2 of 4 branches missed.">		if (generics.length == 1 &amp;&amp; generics[0] instanceof ParameterizedType) {</span>
+<span class="fc" id="L237">			ParameterizedType parameterized = (ParameterizedType) generics[0];</span>
+<span class="fc" id="L238">			Type type = parameterized.getActualTypeArguments()[0];</span>
+<span class="pc bpc" id="L239" title="1 of 2 branches missed.">			if (type instanceof Class&lt;?&gt;) {</span>
+<span class="fc" id="L240">				templateClass = (Class&lt;T&gt;) type;</span>
 			}
 		}
-<span class="nc" id="L243">		return templateClass;</span>
+<span class="fc" id="L243">		return templateClass;</span>
 	}
 
 	@Override
