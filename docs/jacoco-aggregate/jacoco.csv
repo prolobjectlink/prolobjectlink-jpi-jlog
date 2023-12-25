@@ -19,7 +19,7 @@ prolobjectlink-jpi-jlog/prolobjectlink-jpi,io.github.prolobjectlink.prolog,Abstr
 prolobjectlink-jpi-jlog/prolobjectlink-jpi,io.github.prolobjectlink.prolog,AbstractOperator,30,131,17,13,12,29,15,8,0,8
 prolobjectlink-jpi-jlog/prolobjectlink-jpi,io.github.prolobjectlink.prolog,PrologScriptEngineFactory,62,189,17,17,15,38,12,20,1,14
 prolobjectlink-jpi-jlog/prolobjectlink-jpi,io.github.prolobjectlink.prolog,AbstractBuilder,134,37,24,2,32,10,18,3,5,3
-prolobjectlink-jpi-jlog/prolobjectlink-jpi,io.github.prolobjectlink.prolog,AbstractClause,67,329,25,39,18,67,32,29,9,20
+prolobjectlink-jpi-jlog/prolobjectlink-jpi,io.github.prolobjectlink.prolog,AbstractClause,148,443,50,54,49,88,62,29,19,20
 prolobjectlink-jpi-jlog/prolobjectlink-jpi,io.github.prolobjectlink.prolog,Prolog,71,12,0,0,20,3,2,1,2,1
 prolobjectlink-jpi-jlog/prolobjectlink-jpi,io.github.prolobjectlink.prolog,AbstractEngine.PrologProgramIterator,26,27,1,1,6,7,2,3,1,3
 prolobjectlink-jpi-jlog/prolobjectlink-jpi,io.github.prolobjectlink.prolog,AbstractLogger,72,3,0,0,22,1,11,1,11,1

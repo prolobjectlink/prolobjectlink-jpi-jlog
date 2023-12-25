@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pmd version="4.2.5" timestamp="2023-12-10T08:14:51.111">
+<pmd version="4.2.5" timestamp="2023-12-25T09:53:47.621">
 <file name="C:\prolobjectlink-dev\workspace\prolobjectlink-jpi-jlog\src\main\java\io\github\prolobjectlink\prolog\jlog\JLogConverter.java">
 <violation beginline="22" endline="329" begincolumn="1" endcolumn="3" rule="TooManyStaticImports" ruleset="Import Statement Rules" package="io.github.prolobjectlink.prolog.jlog" externalInfoUrl="http://pmd.sourceforge.net/rules/imports.html#TooManyStaticImports" priority="3">
 Too many static imports may lead to messy code
